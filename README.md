@@ -30,10 +30,11 @@ You can add any ideas you have.
       Each level contains a number of vocabularies. 
       In the vocabulary app indicates the number of times a level needs to be studied can be as follows:
       Level 1: Level needs to studied each day.
-      Level 2: Level needs to be studied every second day.
-      Level 3: Level needs to be studied every third day.
-      Level 4: Level needs to be studied every fourth day.
-      Level 5: Level needs to be studied every fifth day.
-      Level 6: Level needs to be studied every sixth day.
+      Level 2: Level needs to be studied every 2nd day.
+      Level 3: Level needs to be studied every 3rd day.
+      Level 4: Level needs to be studied every 4th day.
+      Level 5: Level needs to be studied every 5th day.
+      Level 6: Level needs to be studied every 6th day.
+      This above is to obtain the fullest proficiency. Now, the user does not necessarily have to follow the guide with one what day to       study what vocabulary. The app on the other hand will count the number he was supposed to learn a vocabulary and will not give         the proficiency level until the user has iterated the number the app makes him do so.
       
   
