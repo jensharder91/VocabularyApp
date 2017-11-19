@@ -11,14 +11,14 @@ Learning vocabularies: App can approximately tell user's knowledge on vocabulari
 ## 2.1 User's viewpoint on vocabularies:
 The application has three dimensions. Each dimension gives a different view on the to-study-vocabularies.
 
-First dimension: The chapter dimension.
+- First dimension: The chapter dimension.
 The chapter dimension lets the student see/learn the vocabularies per book chapter or different categories.
 Indication of proficiency level: Circle with different colors: red, yellow, green. Each vocab gets a different color depending on the numbers it has been reviewed by the user. Once each vocabulary has a green level the whole circle appears green and adequately for the other levels.
 
-Second dimension: The vocabulary box dimension.
+- Second dimension: The vocabulary box dimension.
 Suppose, the vocabulary box has six sections. The number six supposed to denote the number of days in a week [minus Sunday, this is a free day from work and from studying vocabularies. :) ]
 
-Third dimension: The quick test dimension.
+- Third dimension: The quick test dimension.
 Students can test there knowledge in a short period of time (e.g. while waiting for the bus). 10 (numbers may change) vocabularies are chosen randomly from all selected / learned categories. The student can repeat this dimension multiply times to get an overview how solid his vocabulary knowledge is.
 
 ## 2.2 Internal viewpoint on vocabulary:
@@ -47,7 +47,9 @@ The app should be able to communicate to the related app server. This is necessa
 ##### Local storage
 To make the content offline available and save mobile data, chosen content should be saved local on the device. This way students can learn independent of an internet connection. A content version number (for each category ?) should indicate if a downloaded category is still up to date. This number has to be compared with the current number on the server from time to time (or on user request). If necessary the app should download the new content and replace the old one.
 ### 2.3.2 Authentication / Users
-The should be implemented some kind of authentication. This accomplishes two goals: First goal: It is possible to restrict categories to a special group of students (e.g. only people from school XY can see the categories related to XY). Second goal: It is possible to see / save / analyze the progress and usage of an user.
+There should be implemented some kind of authentication. This accomplishes two goals:
+- It is possible to restrict categories to a special group of students (e.g. only people from school XY can see the categories related to XY).
+- It is possible to see / save / analyze the progress and usage of an user.
 
 # 3. Ideas to improve app later.
 
