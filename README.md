@@ -38,6 +38,8 @@ In the vocabulary app indicates the number of times a level needs to be studied 
 - Level 5: Level needs to be studied every 5th day.
 - Level 6: Level needs to be studied every 6th day.
 
+[See Phase 6](https://help.phase-6.de/knowledge-base/phaseneinstellungen/)
+
 This above is to obtain the fullest proficiency. Now, the user does not necessarily have to follow the guide with one what day to study what vocabulary. The app on the other hand will count the number he was supposed to learn a vocabulary and will not give the proficiency level until the user has iterated the number the app makes him do so.
 
 ## 2.3 Technical viewpoint
