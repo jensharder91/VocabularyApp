@@ -54,3 +54,4 @@ The should be implemented some kind of authentication. This accomplishes two goa
 - Content Management (chose which content should be downloaded).
 - Editor. Create, edit and delete your own local vocabulary category.
 - Extend usage e.g. for grammar tasks, irregular vocabularies, etc.
+- For school: Assign homework, get an appropiate grade out of the performance level
