@@ -48,6 +48,28 @@ This above is to obtain the fullest proficiency. Now, the user does not necessar
 The app should be able to communicate to the related app server. This is necessary to provide up to date content (add new vocabularies / categories and change / fix existing content). Students can chose categories they are interested in, download this content and store it local on the device. [To make things easier at the beginning we can assume all students select all content. So download, store and manage all content.]
 ##### Local storage
 To make the content offline available and save mobile data, chosen content should be saved local on the device. This way students can learn independent of an internet connection. A content version number (for each category ?) should indicate if a downloaded category is still up to date. This number has to be compared with the current number on the server from time to time (or on user request). If necessary the app should download the new content and replace the old one.
+##### Content hierarchy for Vocabulary Cards
+- CardCategory (e.g. English, Spanish, ...):
+  - categoryId (string)
+  - cardGroupIds (array of strings)
+  - contentVersion (integer)
+- CardGroup (e.g. School XY Class ABC, Travel, ...):
+  - groupId (string)
+  - categoryId (string)
+  - cardBundleIds (array of strings)
+  - contentVersion (integer)
+- CardBundle (e.g. Lecture 1, At the airport, ...):
+  - cardId (string)
+  - groupId (string)
+  - cards (array of cards)
+  - contentVersion (integer)
+- Card:
+  - cardId (string)
+  - bundleIds (array of strings)
+  - question (string)
+  - answer (string)
+  - reverseable (boolean)
+  - contentVersion (integer)
 ### 2.3.2 Authentication / Users
 There should be implemented some kind of authentication. This accomplishes two goals:
 - It is possible to restrict categories to a special group of students (e.g. only people from school XY can see the categories related to XY).
