@@ -52,4 +52,14 @@ public class GroupDAOImpl implements GroupDAO {
 		query.executeUpdate();
 	}
 
+//	@Override
+//	public int getCategoryIdByGroupId(int groupId) {
+//		Session session = sessionFactory.getCurrentSession();
+//		
+//		Query query = session.createQuery("select categoryId from Group where id=:groupId");
+//		query.setParameter("groupId", groupId);
+//		
+//		return query.getFirstResult();
+//	}
+
 }

@@ -39,5 +39,11 @@ public class GroupServiceImpl implements GroupService {
 		groupDAO.deleteGroupById(groupId);
 	}
 
+//	@Override
+//	@Transactional
+//	public int getCategoryIdByGroupId(int groupId) {
+//		return groupDAO.getCategoryIdByGroupId(groupId);
+//	}
+
 
 }

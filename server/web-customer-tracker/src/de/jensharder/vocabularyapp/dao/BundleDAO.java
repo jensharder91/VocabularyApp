@@ -14,5 +14,5 @@ public interface BundleDAO {
 
 	void deleteBundleById(int bundleId);
 
-
+	int getCategoryIdByGroupId(int groupId);
 }

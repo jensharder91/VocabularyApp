@@ -22,36 +22,30 @@ public class BundleController {
 	private BundleService bundleService;
 
 	@GetMapping("/show")
-	public String showBundlesByGroupId(@RequestParam("groupId") int groupId, @RequestParam("categoryId") int categoryId,
-			Model model) {
+	public String showBundlesByGroupId(@RequestParam("groupId") int groupId, Model model) {
 
 		List<Bundle> bundles = bundleService.getBundlesByGroupId(groupId);
 		model.addAttribute("bundles", bundles);
 		model.addAttribute("groupId", groupId);
-		model.addAttribute("categoryId", categoryId);
 
 		return "list-bundles";
 	}
-	
+
 	@GetMapping("/addForm")
-	public String showAddForm(@RequestParam("categoryId") int categoryId,@RequestParam("groupId") int groupId, Model model) {
+	public String showAddForm(@RequestParam("groupId") int groupId, Model model) {
 
 		Bundle bundle = new Bundle();
+		bundle.setGroupId(groupId);
 		model.addAttribute("bundle", bundle);
-		model.addAttribute("categoryId", categoryId);
-		model.addAttribute("groupId", groupId);
 
 		return "form-bundle";
 	}
 
 	@GetMapping("/updateForm")
-	public String showUpdateForm(@RequestParam("categoryId") int categoryId,@RequestParam("groupId") int groupId, @RequestParam("bundleId") int bundleId,
-			Model model) {
+	public String showUpdateForm(@RequestParam("bundleId") int bundleId, Model model) {
 
 		Bundle bundle = bundleService.getBundleById(bundleId);
 		model.addAttribute("bundle", bundle);
-		model.addAttribute("categoryId", categoryId);
-		model.addAttribute("groupId", groupId);
 
 		return "form-bundle";
 	}
@@ -64,9 +58,18 @@ public class BundleController {
 	}
 
 	@GetMapping("/delete")
-	public String deleteBundle(@RequestParam("categoryId") int categoryId,@RequestParam("groupId") int groupId,@RequestParam("bundleId") int bundleId, Model model) {
+	public String deleteBundle(@RequestParam("groupId") int groupId, @RequestParam("bundleId") int bundleId,
+			Model model) {
 
 		bundleService.deleteBundleById(bundleId);
-		return "redirect:/bundle/show?categoryId=" + categoryId+"&groupId=" + groupId;
+		return "redirect:/bundle/show?groupId=" + groupId;
+	}
+
+	@GetMapping("/back")
+	public String goBackToGroupList(@RequestParam("groupId") int groupId, Model model) {
+
+		int categoryId = bundleService.getCategoryIdByGroupId(groupId);
+
+		return "redirect:/group/show?categoryId=" + categoryId;
 	}
 }

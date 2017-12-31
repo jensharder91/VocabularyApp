@@ -14,4 +14,6 @@ public interface CardService {
 
 	void deleteCardById(int cardId);
 
+	int getGroupIdByBundleId(int bundleId);
+
 }

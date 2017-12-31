@@ -22,40 +22,30 @@ public class CardController {
 	private CardService cardService;
 
 	@GetMapping("/show")
-	public String showCardsByBundleId(@RequestParam("bundleId") int bundleId, @RequestParam("groupId") int groupId,
-			@RequestParam("categoryId") int categoryId, Model model) {
+	public String showCardsByBundleId(@RequestParam("bundleId") int bundleId, Model model) {
 
 		List<Card> cards = cardService.getCardsByBundleId(bundleId);
 		model.addAttribute("cards", cards);
 		model.addAttribute("bundleId", bundleId);
-		model.addAttribute("groupId", groupId);
-		model.addAttribute("categoryId", categoryId);
 
 		return "list-cards";
 	}
 
 	@GetMapping("/addForm")
-	public String showAddForm(@RequestParam("categoryId") int categoryId, @RequestParam("groupId") int groupId,
-			@RequestParam("bundleId") int bundleId, Model model) {
+	public String showAddForm(@RequestParam("bundleId") int bundleId, Model model) {
 
 		Card card = new Card();
+		card.setBundleId(bundleId);
 		model.addAttribute("card", card);
-		model.addAttribute("categoryId", categoryId);
-		model.addAttribute("groupId", groupId);
-		model.addAttribute("bundleId", bundleId);
 
 		return "form-card";
 	}
 
 	@GetMapping("/updateForm")
-	public String showUpdateForm(@RequestParam("categoryId") int categoryId, @RequestParam("groupId") int groupId,
-			@RequestParam("bundleId") int bundleId, @RequestParam("cardId") int cardId, Model model) {
+	public String showUpdateForm(@RequestParam("cardId") int cardId, Model model) {
 
 		Card card = cardService.getCardById(cardId);
 		model.addAttribute("card", card);
-		model.addAttribute("categoryId", categoryId);
-		model.addAttribute("groupId", groupId);
-		model.addAttribute("bundleId", bundleId);
 
 		return "form-card";
 	}
@@ -68,10 +58,18 @@ public class CardController {
 	}
 
 	@GetMapping("/delete")
-	public String deleteBundle(@RequestParam("categoryId") int categoryId, @RequestParam("groupId") int groupId,
-			@RequestParam("bundleId") int bundleId, @RequestParam("cardId") int cardId, Model model) {
+	public String deleteBundle(@RequestParam("cardId") int cardId, @RequestParam("bundleId") int bundleId,
+			Model model) {
 
 		cardService.deleteCardById(cardId);
-		return "redirect:/card/show?categoryId=" + categoryId + "?groupId=" + groupId + "?bundleId=" + bundleId;
+		return "redirect:/card/show?bundleId=" + bundleId;
+	}
+	
+	@GetMapping("/back")
+	public String goBackToBundleList(@RequestParam("bundleId") int bundleId, Model model) {
+
+		int groupId = cardService.getGroupIdByBundleId(bundleId);
+
+		return "redirect:/bundle/show?groupId=" + groupId;
 	}
 }

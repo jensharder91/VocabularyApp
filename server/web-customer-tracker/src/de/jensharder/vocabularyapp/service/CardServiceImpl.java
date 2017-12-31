@@ -10,8 +10,8 @@ import de.jensharder.vocabularyapp.dao.CardDAO;
 import de.jensharder.vocabularyapp.model.Card;
 
 @Service
-public class CardServiceImpl implements CardService{
-	
+public class CardServiceImpl implements CardService {
+
 	@Autowired
 	private CardDAO cardDAO;
 
@@ -39,6 +39,10 @@ public class CardServiceImpl implements CardService{
 		cardDAO.deleteCardById(cardId);
 	}
 
-
+	@Override
+	@Transactional
+	public int getGroupIdByBundleId(int bundleId) {
+		return cardDAO.getGroupIdByBundleId(bundleId);
+	}
 
 }

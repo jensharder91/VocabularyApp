@@ -13,5 +13,7 @@ public interface GroupService {
 	void saveGroup(Group group);
 
 	void deleteGroupById(int groupId);
+	
+//	int getCategoryIdByGroupId(int groupId);
 
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import de.jensharder.vocabularyapp.model.Bundle;
+import de.jensharder.vocabularyapp.model.Group;
 
 @Repository
 public class BundleDAOImpl implements BundleDAO {
@@ -19,10 +20,10 @@ public class BundleDAOImpl implements BundleDAO {
 	@Override
 	public List<Bundle> getBundlesByGroupId(int groupId) {
 		Session session = sessionFactory.getCurrentSession();
-		
+
 		Query<Bundle> query = session.createQuery("from Bundle where groupId=:groupId");
 		query.setParameter("groupId", groupId);
-		
+
 		List<Bundle> bundles = query.getResultList();
 
 		return bundles;
@@ -31,14 +32,14 @@ public class BundleDAOImpl implements BundleDAO {
 	@Override
 	public Bundle getBundleById(int bundleId) {
 		Session session = sessionFactory.getCurrentSession();
-		
+
 		return session.get(Bundle.class, bundleId);
 	}
 
 	@Override
 	public void saveBundle(Bundle bundle) {
 		Session session = sessionFactory.getCurrentSession();
-		
+
 		session.saveOrUpdate(bundle);
 	}
 
@@ -50,6 +51,15 @@ public class BundleDAOImpl implements BundleDAO {
 		query.setParameter("bundleId", bundleId);
 
 		query.executeUpdate();
+	}
+
+	@Override
+	public int getCategoryIdByGroupId(int groupId) {
+		Session session = sessionFactory.getCurrentSession();
+
+		Group group = session.get(Group.class, groupId);
+
+		return group.getCategoryId();
 	}
 
 }

@@ -38,5 +38,11 @@ public class BundleServiceImpl implements BundleService{
 	public void deleteBundleById(int bundleId) {
 		bundleDAO.deleteBundleById(bundleId);
 	}
+	
+	@Override
+	@Transactional
+	public int getCategoryIdByGroupId(int groupId) {
+		return bundleDAO.getCategoryIdByGroupId(groupId);
+	}
 
 }

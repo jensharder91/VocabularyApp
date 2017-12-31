@@ -25,8 +25,9 @@
 
 			<!-- important, to map this customer to the right customer (while updating) -->
 			<form:hidden path="id" />
+			<form:hidden path="groupId" />
 			<%-- <form:hidden path="categoryId" /> --%>
-			<input name="groupId" type="hidden" value="${groupId}"/>
+			<%-- <input name="groupId" type="hidden" value="${groupId}"/> --%>
 
 			<table>
 				<tbody>
@@ -44,8 +45,7 @@
 
 		<!--  backToBundleLink with category id -->
 		<c:url var="backToGroupsLink" value="/bundle/show">
-			<c:param name="categoryId" value="${categoryId}"></c:param>
-			<c:param name="groupId" value="${groupId}"></c:param>
+			<c:param name="groupId" value="${bundle.groupId}"></c:param>
 		</c:url>
 
 		<div style="">

@@ -8,7 +8,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import de.jensharder.vocabularyapp.model.Bundle;
 import de.jensharder.vocabularyapp.model.Card;
+import de.jensharder.vocabularyapp.model.Group;
 
 @Repository
 public class CardDAOImpl implements CardDAO {
@@ -19,10 +21,10 @@ public class CardDAOImpl implements CardDAO {
 	@Override
 	public List<Card> getCardsByBundleId(int bundleId) {
 		Session session = sessionFactory.getCurrentSession();
-		
+
 		Query<Card> query = session.createQuery("from Card where bundleId=:bundleId");
 		query.setParameter("bundleId", bundleId);
-		
+
 		List<Card> cards = query.getResultList();
 
 		return cards;
@@ -37,19 +39,28 @@ public class CardDAOImpl implements CardDAO {
 	@Override
 	public void saveCard(Card card) {
 		Session session = sessionFactory.getCurrentSession();
-		
+
 		session.saveOrUpdate(card);
 	}
 
 	@Override
 	public void deleteCardById(int cardId) {
 		Session session = sessionFactory.getCurrentSession();
-		
+
 		Query<Card> query = session.createQuery("delete from Card where id=:cardId");
 		query.setParameter("cardId", cardId);
-		
+
 		query.executeUpdate();
 
+	}
+
+	@Override
+	public int getGroupIdByBundleId(int bundleId) {
+		Session session = sessionFactory.getCurrentSession();
+
+		Bundle bundle = session.get(Bundle.class, bundleId);
+
+		return bundle.getGroupId();
 	}
 
 }

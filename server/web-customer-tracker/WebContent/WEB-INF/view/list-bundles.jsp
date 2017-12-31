@@ -18,18 +18,14 @@
 
 	<div id="container">
 
-		<!-- <input class="add button" type="button" value="Add Kategorie"
-			onclick="window.location.href='addForom'; return false;" /> -->
-
 		<!--  addlink with customer id -->
 		<c:url var="addLink" value="/bundle/addForm">
 			<c:param name="groupId" value="${groupId}"></c:param>
-			<c:param name="categoryId" value="${categoryId}"></c:param>
 		</c:url>
 
 		<!--  backToGroupLink with category id -->
-		<c:url var="backToGroupLink" value="/group/show">
-			<c:param name="categoryId" value="${categoryId}"></c:param>
+		<c:url var="backToGroupLink" value="/bundle/back">
+			<c:param name="groupId" value="${groupId}"></c:param>
 		</c:url>
 
 
@@ -44,21 +40,16 @@
 
 				<!--  updatelink with category id -->
 				<c:url var="updateLink" value="/bundle/updateForm">
-										<c:param name="bundleId" value="${bundle.id}"></c:param>
-					<c:param name="groupId" value="${groupId}"></c:param>
-					<c:param name="categoryId" value="${categoryId}"></c:param>
+					<c:param name="bundleId" value="${bundle.id}"></c:param>
 				</c:url>
 				<!--  deletelink with category id -->
 				<c:url var="deleteLink" value="/bundle/delete">
 					<c:param name="bundleId" value="${bundle.id}"></c:param>
 					<c:param name="groupId" value="${groupId}"></c:param>
-					<c:param name="categoryId" value="${categoryId}"></c:param>
 				</c:url>
 				<!--  showlink with category id -->
 				<c:url var="showLink" value="/card/show">
 					<c:param name="bundleId" value="${bundle.id}"></c:param>
-					<c:param name="groupId" value="${groupId}"></c:param>
-					<c:param name="categoryId" value="${categoryId}"></c:param>
 				</c:url>
 
 				<tr>

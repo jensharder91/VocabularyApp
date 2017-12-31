@@ -14,5 +14,7 @@ public interface BundleService {
 	void saveBundle(Bundle bundle);
 
 	void deleteBundleById(int bundleId);
+	
+	int getCategoryIdByGroupId(int groupId);
 
 }

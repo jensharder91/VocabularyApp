@@ -15,4 +15,6 @@ public interface GroupDAO {
 
 	void deleteGroupById(int groupId);
 
+//	int getCategoryIdByGroupId(int groupId);
+
 }

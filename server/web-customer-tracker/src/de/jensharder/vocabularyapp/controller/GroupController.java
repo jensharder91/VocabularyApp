@@ -35,19 +35,18 @@ public class GroupController {
 	public String showAddForm(@RequestParam("categoryId") int categoryId, Model model) {
 
 		Group group = new Group();
+		group.setCategoryId(categoryId);
 		model.addAttribute("group", group);
-		model.addAttribute("categoryId", categoryId);
 
 		return "form-group";
 	}
 
 	@GetMapping("/updateForm")
-	public String showUpdateForm(@RequestParam("categoryId") int categoryId, @RequestParam("groupId") int groupId,
+	public String showUpdateForm(@RequestParam("groupId") int groupId,
 			Model model) {
 
 		Group group = groupService.getGroupById(groupId);
 		model.addAttribute("group", group);
-		model.addAttribute("categoryId", categoryId);
 
 		return "form-group";
 	}
