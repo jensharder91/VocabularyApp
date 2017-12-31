@@ -75,7 +75,12 @@
 				</tr>
 			</table>
 		</form>
-		<a href="${backToBundleLink}">Back to Bundle</a>
+
+		<c:url var="downloadLink" value="/card/downloadList">
+		</c:url>
+		<a href="${downloadLink}">DOWNLOAD</a> <br>
+		<br>
+		<br> <a href="${backToBundleLink}">Back to Bundle</a>
 	</div>
 </body>
 </html>
