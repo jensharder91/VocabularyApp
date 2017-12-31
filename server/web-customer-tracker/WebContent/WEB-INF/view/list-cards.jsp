@@ -60,6 +60,21 @@
 				</tr>
 			</c:forEach>
 		</table>
+
+		<br> <br>
+		<form method="POST" enctype="multipart/form-data" action="uploadList">
+			<input name="bundleId" type="hidden" value="${bundleId}" />
+			<table>
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Upload" /></td>
+				</tr>
+			</table>
+		</form>
 		<a href="${backToBundleLink}">Back to Bundle</a>
 	</div>
 </body>

@@ -1,5 +1,6 @@
 package de.jensharder.vocabularyapp.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import de.jensharder.vocabularyapp.model.Card;
 import de.jensharder.vocabularyapp.service.CardService;
@@ -50,6 +52,23 @@ public class CardController {
 		return "form-card";
 	}
 
+	@PostMapping("/uploadList")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("bundleId") int bundleId) {
+
+		System.out.println("uloaded file!  " + file.getOriginalFilename());
+
+		try {
+			// TODO read and process
+			String content = new String(file.getBytes());
+			System.out.println(content);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "redirect:/card/show?bundleId=" + bundleId;
+	}
+
 	@PostMapping("/save")
 	public String saveBundle(@ModelAttribute("card") Card card) {
 
@@ -64,7 +83,7 @@ public class CardController {
 		cardService.deleteCardById(cardId);
 		return "redirect:/card/show?bundleId=" + bundleId;
 	}
-	
+
 	@GetMapping("/back")
 	public String goBackToBundleList(@RequestParam("bundleId") int bundleId, Model model) {
 
