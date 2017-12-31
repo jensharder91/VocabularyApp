@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>List Customers</title>
+<title>Bundle List</title>
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
 <%-- <link href="<c:url value='/resources/css/style.css' />" rel="stylesheet">
@@ -12,7 +12,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>Bundles</h2>
+			<h2>Bundle List</h2>
 		</div>
 	</div>
 
@@ -33,7 +33,7 @@
 			<tr>
 				<th>Titel</th>
 				<th>GroupId</th>
-				<th><a href="${addLink}">Add</a></th>
+				<th><a href="${addLink}">Add new Bundle</a></th>
 			</tr>
 
 			<c:forEach var="bundle" items="${bundles}">

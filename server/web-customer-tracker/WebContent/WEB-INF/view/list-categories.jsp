@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>List Customers</title>
+<title>Category List</title>
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
 <%-- <link href="<c:url value='/resources/css/style.css' />" rel="stylesheet">
@@ -12,7 +12,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>Kategorien</h2>
+			<h2>Category List</h2>
 		</div>
 	</div>
 
@@ -28,7 +28,7 @@
 		<table>
 			<tr>
 				<th>Titel</th>
-				<th><a href="${addLink}">Add</a></th>
+				<th><a href="${addLink}">Add new Category</a></th>
 			</tr>
 
 			<c:forEach var="category" items="${categories}">
@@ -48,8 +48,8 @@
 
 				<tr>
 					<td>${category.title}</td>
-					<td><a href="${showLink}">Show</a> | <a href="${updateLink}">Update</a> | <a
-						href="${deleteLink}"
+					<td><a href="${showLink}">Show</a> | <a href="${updateLink}">Update</a>
+						| <a href="${deleteLink}"
 						onClick="if(!(confirm('Are you sure you want to delete this category?'))) return false">Delete</a></td>
 				</tr>
 			</c:forEach>

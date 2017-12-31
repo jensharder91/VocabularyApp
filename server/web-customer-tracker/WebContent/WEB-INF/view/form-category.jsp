@@ -1,9 +1,17 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Save Customers</title>
+<title><c:choose>
+		<c:when test="${category.id=='0'}">
+			Create new Category
+		</c:when>
+		<c:otherwise>
+			Update Category
+		</c:otherwise>
+	</c:choose></title>
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
 <link type="text/css" rel="stylesheet"
@@ -14,17 +22,22 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>My Header</h2>
+			<c:choose>
+				<c:when test="${category.id=='0'}">
+					<h2>Create new Category</h2>
+				</c:when>
+				<c:otherwise>
+					<h2>Update Category</h2>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
 	<div id="container">
-		<h2>Save Category</h2>
-		<form:form action="save" modelAttribute="category"
-			method="POST">
-			
+		<form:form action="save" modelAttribute="category" method="POST">
+
 			<!-- important, to map this customer to the right customer (while updating) -->
-			<form:hidden path="id"/>
+			<form:hidden path="id" />
 
 			<table>
 				<tbody>
@@ -41,8 +54,8 @@
 		</form:form>
 
 		<div style="">
-			<a href="${pageContext.request.contextPath}/category/getAll">Back to
-				List</a>
+			<a href="${pageContext.request.contextPath}/category/getAll">Back
+				to List</a>
 		</div>
 	</div>
 

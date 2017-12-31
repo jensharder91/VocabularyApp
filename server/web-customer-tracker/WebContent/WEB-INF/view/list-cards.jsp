@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>List Customers</title>
+<title>Card List</title>
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
 <%-- <link href="<c:url value='/resources/css/style.css' />" rel="stylesheet">
@@ -12,7 +12,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>Cards</h2>
+			<h2>Card List</h2>
 		</div>
 	</div>
 
@@ -34,7 +34,7 @@
 				<th>Answer</th>
 				<th>Reversable</th>
 				<th>BundleId</th>
-				<th><a href="${addLink}">Add</a></th>
+				<th><a href="${addLink}">Add new Card</a></th>
 			</tr>
 
 			<c:forEach var="card" items="${cards}">

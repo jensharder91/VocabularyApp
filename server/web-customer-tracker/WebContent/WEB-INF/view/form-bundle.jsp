@@ -4,7 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Save Customers</title>
+<title><c:choose>
+		<c:when test="${bundle.id=='0'}">
+					Create new Bundle
+				</c:when>
+		<c:otherwise>
+					Update Bundle
+				</c:otherwise>
+	</c:choose></title>
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
 <link type="text/css" rel="stylesheet"
@@ -15,12 +22,18 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>My Header</h2>
+			<c:choose>
+				<c:when test="${bundle.id=='0'}">
+					<h2>Create new Bundle</h2>
+				</c:when>
+				<c:otherwise>
+					<h2>Update Bundle</h2>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
 	<div id="container">
-		<h2>Save Category</h2>
 		<form:form action="save" modelAttribute="bundle" method="POST">
 
 			<!-- important, to map this customer to the right customer (while updating) -->
