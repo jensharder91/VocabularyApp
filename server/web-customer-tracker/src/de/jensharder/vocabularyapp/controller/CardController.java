@@ -8,6 +8,9 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import de.jensharder.vocabularyapp.model.Card;
 import de.jensharder.vocabularyapp.service.CardService;
+import de.jensharder.vocabularyapp.utils.FileHelper;
 
 @Controller
 @RequestMapping("/card")
@@ -71,6 +75,14 @@ public class CardController {
 			// TODO read and process
 			String content = new String(file.getBytes());
 			System.out.println(content);
+
+			for (int i = 0; i < 25; i++) {
+				Card card = new Card();
+				card.setQuestion("question " + i);
+				card.setAnswer("answer " + i);
+				card.setBundleId(6);
+				cardService.saveCard(card);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,30 +92,14 @@ public class CardController {
 	}
 
 	@GetMapping("/downloadList")
-	public ResponseEntity<byte[]> getPDF() {
+	public ResponseEntity<byte[]> getPDF(@RequestParam("bundleId") int bundleId) {
 
-		byte[] contents = null;
-		try {
-			// TODO generate file
-			// Creating PDF document object
-			PDDocument document = new PDDocument();
+		// get content
+		List<Card> cards = cardService.getCardsByBundleId(bundleId);
 
-			// Saving the document
-			document.save("my_doc.pdf");
+		byte[] contents = FileHelper.genPdfFromCards(cards);
 
-			System.out.println("PDF created");
-
-			// Closing the document
-			document.close();
-
-			Path path = Paths.get("my_doc.pdf");
-			contents = Files.readAllBytes(path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if(contents == null) {
+		if (contents == null) {
 			return null;
 		}
 
