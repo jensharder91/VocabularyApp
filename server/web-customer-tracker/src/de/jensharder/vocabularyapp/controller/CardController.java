@@ -53,6 +53,7 @@ public class CardController {
 		Card card = new Card();
 		card.setBundleId(bundleId);
 		model.addAttribute("card", card);
+		model.addAttribute("bundleId", bundleId);
 
 		return "form-card";
 	}
@@ -80,7 +81,7 @@ public class CardController {
 				Card card = new Card();
 				card.setQuestion("question " + i);
 				card.setAnswer("answer " + i);
-				card.setBundleId(6);
+				card.setBundleId(bundleId);
 				cardService.saveCard(card);
 			}
 		} catch (IOException e) {

@@ -36,7 +36,7 @@
 				</c:when>
 				<c:otherwise>
 					<h2>
-						<a class="mybutton" href="${backToGroupsLink}">Back to List</a>Update
+						<a class="mybutton" href="${backToGroupsLink}">&#171; Back to List</a> Update
 						Card
 					</h2>
 				</c:otherwise>
