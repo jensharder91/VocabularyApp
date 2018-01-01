@@ -34,7 +34,7 @@
 				<th>Answer</th>
 				<th>Reversable</th>
 				<th>BundleId</th>
-				<th><a href="${addLink}">Add new Card</a></th>
+				<th><a class="mybutton" href="${addLink}">Add new Card</a></th>
 			</tr>
 
 			<c:forEach var="card" items="${cards}">
@@ -54,8 +54,8 @@
 					<td>${card.answer}</td>
 					<td>${card.reversable}</td>
 					<td>${card.bundleId}</td>
-					<td><a href="${updateLink}">Update</a> | <a
-						href="${deleteLink}"
+					<td><a class="mybutton" href="${updateLink}">Update</a> <a
+						class="mybutton" href="${deleteLink}"
 						onClick="if(!(confirm('Are you sure you want to delete this card?'))) return false">Delete</a></td>
 				</tr>
 			</c:forEach>
@@ -77,10 +77,10 @@
 		</form>
 
 		<c:url var="downloadLink" value="/card/downloadList">
+			<c:param name="bundleId" value="${bundleId}"></c:param>
 		</c:url>
-		<a href="${downloadLink}">DOWNLOAD</a> <br>
-		<br>
-		<br> <a href="${backToBundleLink}">Back to Bundle</a>
+		<a class="mybutton" href="${downloadLink}">DOWNLOAD</a> <br> <br> <br> <a
+			class="mybutton" href="${backToBundleLink}">Back to Bundle</a>
 	</div>
 </body>
 </html>
