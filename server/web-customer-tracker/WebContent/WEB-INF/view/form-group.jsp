@@ -20,14 +20,24 @@
 </head> --%>
 <body>
 
+	<!--  backToGroupsLink with category id -->
+	<c:url var="backToGroupsLink" value="/group/show">
+		<c:param name="categoryId" value="${group.categoryId}"></c:param>
+	</c:url>
+
 	<div id="wrapper">
 		<div id="header">
 			<c:choose>
 				<c:when test="${group.id=='0'}">
-					<h2>Create new Group</h2>
+					<h2>
+						<a class="mybutton" href="${backToGroupsLink}">&#171; Back to List</a> Create new
+						Group
+					</h2>
 				</c:when>
 				<c:otherwise>
-					<h2>Update Group</h2>
+					<h2>
+						<a class="mybutton" href="${backToGroupsLink}">&#171; Back to List</a> Update Group
+					</h2>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -50,20 +60,12 @@
 					</tr>
 					<tr>
 						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
+						<td><input type="submit" value="Save" class="mybutton" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</form:form>
 
-		<!--  backToGroupsLink with category id -->
-		<c:url var="backToGroupsLink" value="/group/show">
-			<c:param name="categoryId" value="${group.categoryId}"></c:param>
-		</c:url>
-
-		<div style="">
-			<a href="${backToGroupsLink}">Back to List</a>
-		</div>
 	</div>
 
 </body>

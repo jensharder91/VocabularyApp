@@ -19,15 +19,25 @@
 <%-- <link href="<c:url value='/resources/css/style.css' />" rel="stylesheet">
 </head> --%>
 <body>
+	<!--  backToBundleLink with category id -->
+	<c:url var="backToGroupsLink" value="/bundle/show">
+		<c:param name="groupId" value="${bundle.groupId}"></c:param>
+	</c:url>
 
 	<div id="wrapper">
 		<div id="header">
 			<c:choose>
 				<c:when test="${bundle.id=='0'}">
-					<h2>Create new Bundle</h2>
+					<h2>
+						<a class="mybutton" href="${backToGroupsLink}">&#171; Back to List</a> Create new
+						Bundle
+					</h2>
 				</c:when>
 				<c:otherwise>
-					<h2>Update Bundle</h2>
+					<h2>
+						<a class="mybutton" href="${backToGroupsLink}">&#171; Back to List</a> Update
+						Bundle
+					</h2>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -50,20 +60,13 @@
 					</tr>
 					<tr>
 						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
+						<td><input type="submit" value="Save" class="mybutton" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</form:form>
 
-		<!--  backToBundleLink with category id -->
-		<c:url var="backToGroupsLink" value="/bundle/show">
-			<c:param name="groupId" value="${bundle.groupId}"></c:param>
-		</c:url>
 
-		<div style="">
-			<a href="${backToGroupsLink}">Back to List</a>
-		</div>
 	</div>
 
 </body>

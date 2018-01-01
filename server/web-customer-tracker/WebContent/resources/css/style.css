@@ -9,14 +9,15 @@ table {
 	border-collapse: collapse;
 	border-bottom: 1px solid gray;
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
-	width: 72%;
+	width: 80%;
+	margin: auto;
 }
 
 th {
 	border-bottom: 1px solid gray;
-	background: none repeat scroll 0 0 #09c332;
+	background: none repeat scroll 0 0 #68adc4;
 	padding: 10px;
-	color: #FFFFFF;
+	color: #005875;
 }
 
 tr {
@@ -29,18 +30,18 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-	background: #e2e2e2
+	background: #e8f9ff
 }
 
 #wrapper {
 	width: 100%;
-	margin-top: 0px;
+	margin: auto;
 }
 
 #header {
-	width: 70%;
-	background: #09c332;
-	margin-top: 0px;
+	width: 80%;
+	background: #68adc4;
+	margin: 10px auto;
 	padding: 15px 0px 15px 15px;
 }
 

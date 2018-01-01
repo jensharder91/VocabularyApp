@@ -10,9 +10,17 @@
 </head> --%>
 <body>
 
+	<!--  backToBundleLink with category id -->
+	<c:url var="backToBundleLink" value="/card/back">
+		<c:param name="bundleId" value="${bundleId}"></c:param>
+	</c:url>
+
 	<div id="wrapper">
 		<div id="header">
-			<h2>Card List</h2>
+			<h2>
+				<a class="mybutton" href="${backToBundleLink}">&#171; Back to
+					Bundle</a> Card List
+			</h2>
 		</div>
 	</div>
 
@@ -23,8 +31,7 @@
 			<c:param name="bundleId" value="${bundleId}"></c:param>
 		</c:url>
 
-		<!--  backToBundleLink with category id -->
-		<c:url var="backToBundleLink" value="/card/back">
+		<c:url var="downloadLink" value="/card/downloadList">
 			<c:param name="bundleId" value="${bundleId}"></c:param>
 		</c:url>
 
@@ -34,7 +41,8 @@
 				<th>Answer</th>
 				<th>Reversable</th>
 				<th>BundleId</th>
-				<th><a class="mybutton" href="${addLink}">Add new Card</a></th>
+				<th><a class="mybutton" href="${addLink}">Add new Card</a> <a
+					class="mybutton" href="${downloadLink}">Download</a></th>
 			</tr>
 
 			<c:forEach var="card" items="${cards}">
@@ -61,7 +69,7 @@
 			</c:forEach>
 		</table>
 
-		<br> <br>
+<%-- 		<br> <br>
 		<form method="POST" enctype="multipart/form-data" action="uploadList">
 			<input name="bundleId" type="hidden" value="${bundleId}" />
 			<table>
@@ -74,13 +82,10 @@
 					<td><input type="submit" value="Upload" /></td>
 				</tr>
 			</table>
-		</form>
+		</form> --%>
 
-		<c:url var="downloadLink" value="/card/downloadList">
-			<c:param name="bundleId" value="${bundleId}"></c:param>
-		</c:url>
-		<a class="mybutton" href="${downloadLink}">DOWNLOAD</a> <br> <br> <br> <a
-			class="mybutton" href="${backToBundleLink}">Back to Bundle</a>
+
+
 	</div>
 </body>
 </html>

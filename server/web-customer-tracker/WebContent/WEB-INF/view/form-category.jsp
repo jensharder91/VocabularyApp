@@ -24,10 +24,16 @@
 		<div id="header">
 			<c:choose>
 				<c:when test="${category.id=='0'}">
-					<h2>Create new Category</h2>
+					<h2>
+						<a class="mybutton" href="${pageContext.request.contextPath}/category/getAll">&#171;
+							Back to List</a> Create new Category
+					</h2>
 				</c:when>
 				<c:otherwise>
-					<h2>Update Category</h2>
+					<h2>
+						<a class="mybutton" href="${pageContext.request.contextPath}/category/getAll">&#171;
+							Back to List</a>Update Category
+					</h2>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -47,16 +53,11 @@
 					</tr>
 					<tr>
 						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
+						<td><input type="submit" value="Save" class="mybutton" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</form:form>
-
-		<div style="">
-			<a href="${pageContext.request.contextPath}/category/getAll">Back
-				to List</a>
-		</div>
 	</div>
 
 </body>

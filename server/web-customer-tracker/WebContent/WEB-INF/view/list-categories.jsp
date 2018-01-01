@@ -28,7 +28,7 @@
 		<table>
 			<tr>
 				<th>Titel</th>
-				<th><a href="${addLink}">Add new Category</a></th>
+				<th><a class="mybutton" href="${addLink}">Add new Category</a></th>
 			</tr>
 
 			<c:forEach var="category" items="${categories}">
@@ -48,8 +48,7 @@
 
 				<tr>
 					<td>${category.title}</td>
-					<td><a href="${showLink}">Show</a> | <a href="${updateLink}">Update</a>
-						| <a href="${deleteLink}"
+					<td><a class="mybutton" href="${showLink}">Show</a> <a class="mybutton" href="${updateLink}">Update</a> <a class="mybutton" href="${deleteLink}"
 						onClick="if(!(confirm('Are you sure you want to delete this category?'))) return false">Delete</a></td>
 				</tr>
 			</c:forEach>

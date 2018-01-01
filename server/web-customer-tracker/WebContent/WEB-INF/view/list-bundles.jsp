@@ -10,9 +10,17 @@
 </head> --%>
 <body>
 
+	<!--  backToGroupLink with category id -->
+	<c:url var="backToGroupLink" value="/bundle/back">
+		<c:param name="groupId" value="${groupId}"></c:param>
+	</c:url>
+
 	<div id="wrapper">
 		<div id="header">
-			<h2>Bundle List</h2>
+			<h2>
+				<a class="mybutton" href="${backToGroupLink}">&#171; Back to
+					Group</a> Bundle List
+			</h2>
 		</div>
 	</div>
 
@@ -23,17 +31,12 @@
 			<c:param name="groupId" value="${groupId}"></c:param>
 		</c:url>
 
-		<!--  backToGroupLink with category id -->
-		<c:url var="backToGroupLink" value="/bundle/back">
-			<c:param name="groupId" value="${groupId}"></c:param>
-		</c:url>
-
 
 		<table>
 			<tr>
 				<th>Titel</th>
 				<th>GroupId</th>
-				<th><a href="${addLink}">Add new Bundle</a></th>
+				<th><a class="mybutton" href="${addLink}">Add new Bundle</a></th>
 			</tr>
 
 			<c:forEach var="bundle" items="${bundles}">
@@ -55,13 +58,13 @@
 				<tr>
 					<td>${bundle.title}</td>
 					<td>${bundle.groupId}</td>
-					<td><a href="${showLink}">Show</a> | <a href="${updateLink}">Update</a>
-						| <a href="${deleteLink}"
+					<td><a class="mybutton" href="${showLink}">Show</a> <a
+						class="mybutton" href="${updateLink}">Update</a> <a
+						class="mybutton" href="${deleteLink}"
 						onClick="if(!(confirm('Are you sure you want to delete this bundle?'))) return false">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<a href="${backToGroupLink}">Back to Group</a>
 	</div>
 </body>
 </html>

@@ -20,14 +20,25 @@
 </head> --%>
 <body>
 
+	<!--  backToGroupsLink with category id -->
+	<c:url var="backToGroupsLink" value="/card/show">
+		<c:param name="bundleId" value="${card.bundleId}"></c:param>
+	</c:url>
+
 	<div id="wrapper">
 		<div id="header">
 			<c:choose>
 				<c:when test="${card.id=='0'}">
-					<h2>Create new Card</h2>
+					<h2>
+						<a class="mybutton" href="${backToGroupsLink}">&#171; Back to
+							List</a> Create new Card
+					</h2>
 				</c:when>
 				<c:otherwise>
-					<h2>Update Card</h2>
+					<h2>
+						<a class="mybutton" href="${backToGroupsLink}">Back to List</a>Update
+						Card
+					</h2>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -58,20 +69,29 @@
 					</tr>
 					<tr>
 						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
+						<td><input type="submit" value="Save" class="mybutton" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</form:form>
 
-		<!--  backToGroupsLink with category id -->
-		<c:url var="backToGroupsLink" value="/card/show">
-			<c:param name="bundleId" value="${card.bundleId}"></c:param>
-		</c:url>
 
-		<div style="">
-			<a href="${backToGroupsLink}">Back to List</a>
-		</div>
+		<form method="POST" enctype="multipart/form-data" action="uploadList">
+			<input name="bundleId" type="hidden" value="${bundleId}" />
+			<table>
+				<tr>
+					<td>Upload a List:</td>
+				</tr>
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Upload" class="mybutton" /></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 
 </body>
