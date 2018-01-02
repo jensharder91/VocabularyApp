@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Study phase
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="card-background-page">
+  This is the mainpage!
+
+  <ion-card>
+
+
+    <img src="../assets/imgs/cardimage.jpg"/>
+    <ion-card-content>
+
+      <div class="card-title">{{vocab}}</div>
+    </ion-card-content>
+
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="dark" icon-start (click)="nextVocab()">
+          <ion-icon name='arrow-right-c'></ion-icon>
+          Next
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="secondary" icon-start (click)="showVocab()">
+          <ion-icon name='checkmark'></ion-icon>
+          Know it!
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-start (click)="showVocab()">
+          <ion-icon name='close'></ion-icon>
+          Don't know it!
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+  </p>
+</ion-content>
