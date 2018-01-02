@@ -75,15 +75,27 @@ public class CardController {
 		try {
 			// TODO read and process
 			String content = new String(file.getBytes());
-			System.out.println(content);
-
-			for (int i = 0; i < 25; i++) {
+//			System.out.println(content);
+			
+			String[] rows = content.split("\n");
+//			System.out.println("size: "+rows.length);
+			
+			for(String row : rows) {
+				String[] rowContent = row.split(";");
 				Card card = new Card();
-				card.setQuestion("question " + i);
-				card.setAnswer("answer " + i);
+				card.setQuestion(rowContent[0]);
+				card.setAnswer(rowContent[1]);
 				card.setBundleId(bundleId);
 				cardService.saveCard(card);
 			}
+
+//			for (int i = 0; i < 25; i++) {
+//				Card card = new Card();
+//				card.setQuestion("question " + i);
+//				card.setAnswer("answer " + i);
+//				card.setBundleId(bundleId);
+//				cardService.saveCard(card);
+//			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
