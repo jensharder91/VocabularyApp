@@ -1,39 +1,40 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
+import {VocabProvider} from "../../providers/vocab/vocab";
 
 @Component({
-  selector: 'page-mainPage',
-  templateUrl: 'mainPage.html'
+  selector: 'page-studyPhase',
+  templateUrl: 'studyPhase.html'
 })
 
 
-export class MainPagePage {
+export class StudyPhasePage {
 
-  dict: any
-  card1:any;
-  card2:any;
+
   currentVocab: String;
   counter: number = 0;
   currentCardDeck: any;
+  levelsCounters: any;
 
   //Pay attention: Level 1 in the userface is level 0 for the developer due to 0-index based array.
-  levelsCounters = [0,0,0,0,0,0]
+  //levelsCounters = [0,0,0,0,0,0]
 
 
   levelPassed: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public vocabProvider: VocabProvider) {
 
     this.levelPassed = navParams.get("levelPassed");
+    this.levelsCounters = this.vocabProvider.levelsCounters
+
+    //this.dict = []
+    //this.createCard("laufen", "correr");
+    //this.createCard("schlafen", "dormir");
 
 
-    this.dict = []
-    this.createCard("laufen", "correr");
-    this.createCard("schlafen", "dormir");
 
 
-
-    this.currentCardDeck = this.getCardDeck(this.dict, this.levelPassed)
+    this.currentCardDeck = this.getCardDeck(this.vocabProvider.dict, this.levelPassed)
     //this.currentCardDeck = this.shuffle(this.currentCardDeck)
     /*if (this.currentCardDeck.length() == 0) {
         this.currentVocab = "There are no vocabularies in this level."
@@ -69,6 +70,8 @@ export class MainPagePage {
     //The currentVocab was known
     if(id == "known"){
 
+
+
       //Tasks: 1. adjust number of vocabs in each level [levelCounter] 2.Adjust specific level of current currentVocab.
 
       //Task 1.
@@ -95,6 +98,7 @@ export class MainPagePage {
       //If the currentVocab is not known, put it back into level 1.
       this.levelsCounters[0]++;
 
+      console.log(this.levelsCounters[0])
       if(this.levelsCounters[currentVocab.level] > 0){
         this.levelsCounters[currentVocab.level]--;
       }
@@ -112,20 +116,10 @@ export class MainPagePage {
     }
   }
 
-  createCard(frontSideValue, backSideValue){
-    var card = {
-      frontSide: frontSideValue,
-      backSide: backSideValue,
-      level: 0
-    };
-    //console.log(card.level-1)
-    this.levelsCounters[card.level]++;
-    this.dict.push(card)
-  }
 
   nextVocab(){
 
-    if(this.counter == 1){
+    if(this.counter == this.currentCardDeck.length-1){
       this.counter = 0;
     }else{
       this.counter++;

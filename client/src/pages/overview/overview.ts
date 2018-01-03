@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {MainPagePage} from '../mainPage/mainPage'
+import {StudyPhasePage} from '../studyPhase/studyPhase'
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'overview.html'
 })
-export class HomePage {
+export class OverviewPage {
 
   levelsCounters = [0,0,0,0,0,0]
 
@@ -14,7 +14,7 @@ export class HomePage {
 
     //for(var i = 0; i < this.levelsCounters.length; i++){
 
-      //this.levelsCounters[i] = this.returnNumbersOfCards(this.mainPage.dict, i)
+      //this.levelsCounters[i] = this.returnNumbersOfCards(this.studyPhase.dict, i)
     //}
 
   }
@@ -37,7 +37,7 @@ export class HomePage {
 
   openMainScreen(level){
 
-    this.navCtrl.push(MainPagePage, {
+    this.navCtrl.push(StudyPhasePage, {
       levelPassed: level
     });
 

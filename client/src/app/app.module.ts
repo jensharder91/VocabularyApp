@@ -5,15 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { MainPagePage } from '../pages/mainPage/mainPage';
+import { OverviewPage } from '../pages/overview/overview';
+import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { VocabProvider } from '../providers/vocab/vocab';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    MainPagePage
+    OverviewPage,
+    StudyPhasePage
   ],
   imports: [
     BrowserModule,
@@ -22,8 +22,8 @@ import { VocabProvider } from '../providers/vocab/vocab';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    MainPagePage
+    OverviewPage,
+    StudyPhasePage
   ],
   providers: [
     StatusBar,
