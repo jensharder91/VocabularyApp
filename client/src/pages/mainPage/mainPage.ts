@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
 @Component({
   selector: 'page-mainPage',
   templateUrl: 'mainPage.html'
 })
+
+
 export class MainPagePage {
 
   dict: any
@@ -32,6 +34,7 @@ export class MainPagePage {
 
 
     this.currentCardDeck = this.getCardDeck(this.dict, this.levelPassed)
+    //this.currentCardDeck = this.shuffle(this.currentCardDeck)
     /*if (this.currentCardDeck.length() == 0) {
         this.currentVocab = "There are no vocabularies in this level."
     }else{
@@ -131,4 +134,22 @@ export class MainPagePage {
 
   }
 
+  //Funtionality: Shuffle the order of objects in the array.
+  shuffle(array) {
+    var m = array.length, t, i;
+
+    // While there remain elements to shuffle…
+    while (m) {
+
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+
+      // And swap it with the current element.
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+
+    return array;
+  }
 }
