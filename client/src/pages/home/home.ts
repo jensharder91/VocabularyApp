@@ -12,7 +12,9 @@ import {OverviewPage} from "../overview/overview";
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+
+
+  constructor(public navCtrl: NavController, public vocabProvider: VocabProvider) {
 
   }
 

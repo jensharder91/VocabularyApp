@@ -37,10 +37,10 @@ export class OverviewPage {
   }
 
 
-  showAlert() {
+  showAlert(title, subtitle) {
     let alert = this.alertCtrl.create({
-      title: 'No vocabulary!',
-      subTitle: 'This level is empty.',
+      title: title,
+      subTitle: subtitle,
       buttons: ['OK']
     });
     alert.present();
@@ -51,12 +51,47 @@ export class OverviewPage {
 
 
     if(this.vocabProvider.levelsCounters[level] == 0){
-      this.showAlert()
+      this.showAlert('No vocabulary!','This level is empty.')
     }else{
       this.navCtrl.push(StudyPhasePage, {
         levelPassed: level
       });
     }
   }
+
+  createVocabCard() {
+    let prompt = this.alertCtrl.create({
+      title: 'Login',
+      message: "Enter a name for this new album you're so keen on adding",
+      inputs: [
+        {
+          name: 'front',
+          placeholder: 'Frontside'
+        },
+        {
+          name: 'back',
+          placeholder: 'Backside'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.vocabProvider.createCard(data.front, data.back);
+            this.showAlert("Successful!", "New vocabulary card created.")
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+
 
 }

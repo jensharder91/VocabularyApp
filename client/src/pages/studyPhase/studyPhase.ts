@@ -36,6 +36,7 @@ export class StudyPhasePage {
 
     this.currentCardDeck = this.vocabProvider.getCardDeck(this.vocabProvider.dict, this.levelPassed)
 
+    this.currentCardDeck = this.shuffle(this.currentCardDeck)
 
     //this.currentCardDeck = this.shuffle(this.currentCardDeck)
     /*if (this.currentCardDeck.length() == 0) {
@@ -137,4 +138,16 @@ export class StudyPhasePage {
 
     return array;
   }
+
+
+  turnCard(){
+
+    console.log("Salam")
+    if(this.currentVocab == this.currentCardDeck[this.counter].frontSide){
+      this.currentVocab = this.currentCardDeck[this.counter].backSide;
+    }else{
+      this.currentVocab = this.currentCardDeck[this.counter].frontSide;
+    }
+  }
+
 }

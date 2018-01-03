@@ -9,6 +9,7 @@ import { OverviewPage } from '../pages/overview/overview';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { VocabProvider } from '../providers/vocab/vocab';
 import {HomePage} from "../pages/home/home";
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {HomePage} from "../pages/home/home";
     StatusBar,
     SplashScreen,
     VocabProvider,
+    SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VocabProvider
   ]

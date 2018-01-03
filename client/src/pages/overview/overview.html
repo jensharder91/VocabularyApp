@@ -7,6 +7,10 @@
 <ion-content class=" cards-bg">
 
 
+
+
+  <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
   <ion-card>
     <ion-card-header>
       Perfomance summary.
@@ -105,9 +109,9 @@
     </ion-card-content>
   </ion-card>
 
-  <button  ion-button outline (click)='CreateVocabCard;'>Create own card</button>
+  <button  ion-button outline (click)='createVocabCard();'>Create own card</button>
 
-  
+
 </ion-content>
 
 
