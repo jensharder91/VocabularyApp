@@ -13,9 +13,18 @@ export class HomePage {
 
   }
 
-  openMainScreen(){
+  openMainScreen(level){
 
-    this.navCtrl.push(MainPagePage);
+    this.navCtrl.push(MainPagePage, {
+      levelPassed: level
+    });
 
+  }
+
+  startLevel1(){
+
+    this.navCtrl.push(MainPagePage, {
+      levelPassed: 0
+    });
   }
 }

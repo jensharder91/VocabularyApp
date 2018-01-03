@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 
 @Component({
   selector: 'page-mainPage',
@@ -10,43 +10,72 @@ export class MainPagePage {
   dict: any
   card1:any;
   card2:any;
-  vocab: String;
+  currentVocab: String;
   counter: number = 0;
+  currentCardDeck: any;
 
   //Pay attention: Level 1 in the userface is level 0 for the developer due to 0-index based array.
   levelsCounters = [0,0,0,0,0,0]
 
 
-  constructor(public navCtrl: NavController) {
+  levelPassed: number;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.levelPassed = navParams.get("levelPassed");
+
 
     this.dict = []
     this.createCard("laufen", "correr");
     this.createCard("schlafen", "dormir");
 
-    this.vocab = this.dict[this.counter].frontSide;
+
+
+    this.currentCardDeck = this.getCardDeck(this.dict, this.levelPassed)
+    /*if (this.currentCardDeck.length() == 0) {
+        this.currentVocab = "There are no vocabularies in this level."
+    }else{
+      */  //Initialize the currentVocab, so the HTML-Filw knows what to diyplay.
+        this.currentVocab = this.currentCardDeck[this.counter].frontSide;
+    //}
+
 
   }
 
+  //Getting the card decks based on the level chosen by the user.
+  getCardDeck(arr, value) {
+
+    var result =[];
+    for (var i=0, iLen=arr.length; i<iLen; i++) {
+
+      if (arr[i].level == value){
+
+        result.push(arr[i]);
+
+      }
+    }
+
+    return result;
+  }
 
   showVocab(id){
 
-    console.log(id)
 
-    var currentVocab = this.dict[this.counter];
-    //The vocab was known
+
+    var currentVocab = this.currentCardDeck[this.counter];
+    //The currentVocab was known
     if(id == "known"){
 
-      console.log("Salam")
-      //Tasks: 1. adjust number of vocabs in each level [levelCounter] 2.Adjust specific level of current vocab.
+      //Tasks: 1. adjust number of vocabs in each level [levelCounter] 2.Adjust specific level of current currentVocab.
 
       //Task 1.
       //Test whether the levelCounter is not below 0.
       if(this.levelsCounters[currentVocab.level] > 0 && this.levelsCounters[currentVocab.level] < 6 ){
 
-        //The vocab is known: Thus the vocab will be deleted from this level and added to the next one.
+        //The currentVocab is known: Thus the currentVocab will be deleted from this level and added to the next one.
         this.levelsCounters[currentVocab.level]--;
       }
-      //Add vocab to the next level
+      //Add currentVocab to the next level
 
 
       //Task 2.
@@ -57,10 +86,10 @@ export class MainPagePage {
 
 
     }
-    //The vocab was not known.
+    //The currentVocab was not known.
     else{
 
-      //If the vocab is not known, put it back into level 1.
+      //If the currentVocab is not known, put it back into level 1.
       this.levelsCounters[0]++;
 
       if(this.levelsCounters[currentVocab.level] > 0){
@@ -73,10 +102,10 @@ export class MainPagePage {
 
     }
 
-    if(this.vocab == this.dict[this.counter].frontSide){
-      this.vocab = this.dict[this.counter].backSide;
+    if(this.currentVocab == this.currentCardDeck[this.counter].frontSide){
+      this.currentVocab = this.currentCardDeck[this.counter].backSide;
     }else{
-      this.vocab = this.dict[this.counter].frontSide;
+      this.currentVocab = this.currentCardDeck[this.counter].frontSide;
     }
   }
 
@@ -93,8 +122,12 @@ export class MainPagePage {
 
   nextVocab(){
 
-    this.counter++;
-    this.dict[this.counter].frontSide
+    if(this.counter == 1){
+      this.counter = 0;
+    }else{
+      this.counter++;
+    }
+    this.currentVocab = this.currentCardDeck[this.counter].frontSide
 
   }
 

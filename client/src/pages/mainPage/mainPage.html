@@ -9,10 +9,10 @@
 <ion-content padding class="card-background-page">
   This is the mainpage!
 
+
   <table>
     <thead>
     <tr>
-      <th>Level</th>
       <th>1</th>
       <th>2</th>
       <th>3</th>
@@ -23,7 +23,6 @@
     </thead>
     <tbody>
       <tr>
-        <td>Number of cards</td>
         <td>{{levelsCounters[0]}}</td>
         <td>{{levelsCounters[1]}}</td>
         <td>{{levelsCounters[2]}}</td>
@@ -33,8 +32,8 @@
       </tr>
     </tbody>
 
-
   </table>
+
 
   <ion-card>
 
@@ -42,10 +41,12 @@
 
     </ion-card-header>
 
-    <img src="../assets/imgs/cardimage.jpg"/>
     <ion-card-content>
 
-      <div class="card-title">{{vocab}}</div>
+    <!--<img src="../assets/imgs/cardimage.jpg"/> -->
+
+      <div class="card-title">{{currentVocab}}</div>
+
     </ion-card-content>
 
 

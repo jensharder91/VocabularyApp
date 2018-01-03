@@ -1,20 +1,62 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title>Card Lists</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class=" cards-bg">
 
-  The world is your oyster. Ich bin Ramtin.
+  <ion-card class="cards-list-demo">
+    <ion-card-header>
+      Learn box
+    </ion-card-header>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-card-content>
+
+      <ion-list>
+
+      <button  ion-button outline (click)='openMainScreen(0);' color="dark">
+        Level 1
+      </button>
+
+      </ion-list>
+
+      <ion-list>
+        <button ion-button outline (click)='openMainScreen(1);' color="dark">
+          Level 2
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <button  ion-button outline (click)='openMainScreen(2);' color="dark">
+          Level 3
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <button  ion-button outline (click)='openMainScreen(3);' color="dark">
+          Level 4
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <button  ion-button outline (click)='openMainScreen(4);' color="dark">
+          Level 5
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <button  ion-button outline (click)='openMainScreen(5);' color="dark">
+          Level 6
+        </button>
+      </ion-list>
+
+
+    </ion-card-content>
+  </ion-card>
 
   <button  ion-button outline (click)='openMainScreen();'>Primary Outline</button>
 
-
 </ion-content>
+
+
