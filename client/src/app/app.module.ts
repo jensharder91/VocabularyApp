@@ -8,12 +8,14 @@ import { MyApp } from './app.component';
 import { OverviewPage } from '../pages/overview/overview';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { VocabProvider } from '../providers/vocab/vocab';
+import {HomePage} from "../pages/home/home";
 
 @NgModule({
   declarations: [
     MyApp,
     OverviewPage,
-    StudyPhasePage
+    StudyPhasePage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { VocabProvider } from '../providers/vocab/vocab';
   entryComponents: [
     MyApp,
     OverviewPage,
-    StudyPhasePage
+    StudyPhasePage,
+    HomePage
   ],
   providers: [
     StatusBar,

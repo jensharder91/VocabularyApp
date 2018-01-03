@@ -14,7 +14,7 @@ export class StudyPhasePage {
   currentVocab: String;
   counter: number = 0;
   currentCardDeck: any;
-  levelsCounters: any;
+
 
   //Pay attention: Level 1 in the userface is level 0 for the developer due to 0-index based array.
   //levelsCounters = [0,0,0,0,0,0]
@@ -22,10 +22,11 @@ export class StudyPhasePage {
 
   levelPassed: number;
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public vocabProvider: VocabProvider) {
 
     this.levelPassed = navParams.get("levelPassed");
-    this.levelsCounters = this.vocabProvider.levelsCounters
+
 
     //this.dict = []
     //this.createCard("laufen", "correr");
@@ -33,8 +34,9 @@ export class StudyPhasePage {
 
 
 
+    this.currentCardDeck = this.vocabProvider.getCardDeck(this.vocabProvider.dict, this.levelPassed)
 
-    this.currentCardDeck = this.getCardDeck(this.vocabProvider.dict, this.levelPassed)
+
     //this.currentCardDeck = this.shuffle(this.currentCardDeck)
     /*if (this.currentCardDeck.length() == 0) {
         this.currentVocab = "There are no vocabularies in this level."
@@ -46,25 +48,11 @@ export class StudyPhasePage {
 
   }
 
-  //Getting the card decks based on the level chosen by the user.
-  getCardDeck(arr, value) {
-
-    var result =[];
-    for (var i=0, iLen=arr.length; i<iLen; i++) {
-
-      if (arr[i].level == value){
-
-        result.push(arr[i]);
-
-      }
-    }
-
-    return result;
-  }
-
   showVocab(id){
 
 
+
+    var levelsCounters = this.vocabProvider.levelsCounters;
 
     var currentVocab = this.currentCardDeck[this.counter];
     //The currentVocab was known
@@ -76,10 +64,10 @@ export class StudyPhasePage {
 
       //Task 1.
       //Test whether the levelCounter is not below 0.
-      if(this.levelsCounters[currentVocab.level] > 0 && this.levelsCounters[currentVocab.level] < 6 ){
+      if(levelsCounters[currentVocab.level] > 0 && levelsCounters[currentVocab.level] < 6 ){
 
         //The currentVocab is known: Thus the currentVocab will be deleted from this level and added to the next one.
-        this.levelsCounters[currentVocab.level]--;
+        levelsCounters[currentVocab.level]--;
       }
       //Add currentVocab to the next level
 
@@ -87,7 +75,7 @@ export class StudyPhasePage {
       //Task 2.
       if(currentVocab.level <6){
         currentVocab.level++;
-        this.levelsCounters[currentVocab.level]++;
+        levelsCounters[currentVocab.level]++;
       }
 
 
@@ -96,11 +84,11 @@ export class StudyPhasePage {
     else{
 
       //If the currentVocab is not known, put it back into level 1.
-      this.levelsCounters[0]++;
+      levelsCounters[0]++;
 
-      console.log(this.levelsCounters[0])
-      if(this.levelsCounters[currentVocab.level] > 0){
-        this.levelsCounters[currentVocab.level]--;
+      console.log(levelsCounters[0])
+      if(levelsCounters[currentVocab.level] > 0){
+        levelsCounters[currentVocab.level]--;
       }
 
 
@@ -114,6 +102,9 @@ export class StudyPhasePage {
     }else{
       this.currentVocab = this.currentCardDeck[this.counter].frontSide;
     }
+
+
+    this.vocabProvider.levelsCounters = levelsCounters;
   }
 
 

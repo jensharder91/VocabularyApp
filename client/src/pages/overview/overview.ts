@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import {StudyPhasePage} from '../studyPhase/studyPhase'
+import {VocabProvider} from "../../providers/vocab/vocab";
 
 @Component({
-  selector: 'page-home',
+  selector: 'page-overview',
   templateUrl: 'overview.html'
 })
 export class OverviewPage {
 
-  levelsCounters = [0,0,0,0,0,0]
 
-  constructor(public navCtrl: NavController) {
+  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public vocabProvider: VocabProvider) {
+
+
 
     //for(var i = 0; i < this.levelsCounters.length; i++){
 
@@ -35,12 +37,26 @@ export class OverviewPage {
   }
 
 
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'No vocabulary!',
+      subTitle: 'This level is empty.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   openMainScreen(level){
 
-    this.navCtrl.push(StudyPhasePage, {
-      levelPassed: level
-    });
 
+
+    if(this.vocabProvider.levelsCounters[level] == 0){
+      this.showAlert()
+    }else{
+      this.navCtrl.push(StudyPhasePage, {
+        levelPassed: level
+      });
+    }
   }
 
 }

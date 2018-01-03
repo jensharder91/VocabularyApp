@@ -29,11 +29,28 @@ export class VocabProvider {
       level: 0
     };
 
-
     //console.log(card.level-1)
     this.levelsCounters[card.level]++;
     this.dict.push(card)
   }
+
+  //Getting the card decks based on the level chosen by the user.
+  getCardDeck(arr, value) {
+
+    var result =[];
+    for (var i=0, iLen=arr.length; i<iLen; i++) {
+
+      if (arr[i].level == value){
+
+        result.push(arr[i]);
+      }
+    }
+
+    return result;
+  }
+
+
+
 
 
 
