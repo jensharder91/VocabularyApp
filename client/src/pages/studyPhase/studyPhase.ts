@@ -98,12 +98,6 @@ export class StudyPhasePage {
 
     }
 
-    if(this.currentVocab == this.currentCardDeck[this.counter].frontSide){
-      this.currentVocab = this.currentCardDeck[this.counter].backSide;
-    }else{
-      this.currentVocab = this.currentCardDeck[this.counter].frontSide;
-    }
-
 
     this.vocabProvider.levelsCounters = levelsCounters;
   }
