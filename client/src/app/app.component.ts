@@ -20,17 +20,17 @@ export class MyApp {
               public splashScreen: SplashScreen,
               public vocabProvider: VocabProvider) {
 
-
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      //***this.createDatabase();
     });
   }
 
 
-  /*
+
   private createDatabase(){
     this.sqlite.create({
       name: 'data.db',
@@ -49,6 +49,6 @@ export class MyApp {
       });
   }
 
-  */
+
 }
 

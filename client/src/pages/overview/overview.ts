@@ -84,7 +84,21 @@ export class OverviewPage {
           text: 'Save',
           handler: data => {
             this.vocabProvider.createCard(data.front, data.back);
+
+            // Save in DB
+            /*
+            this.vocabProvider.create(data)
+              .then(response => {
+                this.vocabProvider.dict.unshift( data );
+              })
+              .catch( error => {
+                console.error(error);
+              })
+
+            console.log(this.vocabProvider.getAll());
+
             this.showAlert("Successful!", "New vocabulary card created.")
+            */
           }
         }
       ]

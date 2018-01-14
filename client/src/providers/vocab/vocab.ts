@@ -14,7 +14,7 @@ export class VocabProvider {
   dict: any
   levelsCounters = [0,0,0,0,0,0]
 
-  //db: SQLiteObject = null;
+  db: SQLiteObject = null;
 
 
 
@@ -34,6 +34,7 @@ export class VocabProvider {
       backSide: backSideValue,
       level: 0
     };
+
 
     //console.log(card.level-1)
     this.levelsCounters[card.level]++;
@@ -59,7 +60,7 @@ export class VocabProvider {
 
   //*************** DATABASE Methods*******************
 
-  /*
+
   setDatabase(db: SQLiteObject){
     if(this.db === null){
       this.db = db;
@@ -99,7 +100,7 @@ export class VocabProvider {
     return this.db.executeSql(sql, [card.id]);
   }
 
-  */
+
 
 
 }
