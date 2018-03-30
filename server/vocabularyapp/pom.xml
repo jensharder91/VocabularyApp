@@ -11,7 +11,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<springframework.version>4.3.9.RELEASE</springframework.version>
+		<springframework.version>5.0.2.RELEASE</springframework.version>
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -51,6 +51,19 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
+		
+		<!-- jackson -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.9.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.4</version>
+		 </dependency>
 	</dependencies>
 
 
@@ -63,9 +76,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>3.2.0</version>
-					<configuration>
+<!-- 					<configuration>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
-					</configuration>
+					</configuration> -->
 				</plugin>
 			</plugins>
 		</pluginManagement>
