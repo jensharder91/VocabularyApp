@@ -1,14 +1,23 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+
+  <div class="center-content">
+
+
+    <h1>Welcome to your vocabulary app! </h1>
+
+    <h2>What would you language would you like to learn today?</h2>
+
+   <!-- <button ion-button (click)='startStudy();'>Study vocabulary</button> <br/>-->
+    <button ion-button (click)="startStudy('Spanish')">Spanish</button> <br/>
+    <button ion-button outline (click)="addNewLanguage()">Add new language</button>
+  </div>
+
+
 </ion-content>
+
