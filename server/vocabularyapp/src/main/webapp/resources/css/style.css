@@ -1,3 +1,95 @@
-body{
-	background-color:red;
+html, body {
+	margin-left: 15px;
+	margin-right: 15px;
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+	border-bottom: 1px solid gray;
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	width: 80%;
+	margin: auto;
+}
+
+th {
+	border-bottom: 1px solid gray;
+	background: none repeat scroll 0 0 #68adc4;
+	padding: 10px;
+	color: #005875;
+}
+
+tr {
+	border-top: 1px solid gray;
+	text-align: center;
+}
+
+tr:nth-child(even) {
+	background: #FFFFFF
+}
+
+tr:nth-child(odd) {
+	background: #e8f9ff
+}
+
+#wrapper {
+	width: 100%;
+	margin: auto;
+}
+
+#header {
+	width: 80%;
+	background: #68adc4;
+	margin: 10px auto;
+	padding: 15px 0px 15px 15px;
+}
+
+#header h2 {
+	width: 100%;
+	margin: auto;
+	color: #FFFFFF;
+}
+
+#container {
+	width: 100%;
+	margin: auto
+}
+
+#container h3 {
+	color: #000;
+}
+
+#container #content {
+	margin-top: 20px;
+}
+
+.add-button {
+	border: 1px solid #666;
+	border-radius: 5px;
+	padding: 4px;
+	font-size: 12px;
+	font-weight: bold;
+	width: 120px;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	background: #cccccc;
+}
+
+.mybutton {
+	background-color: #008CBA; /* Blue */
+	border: none;
+	color: white;
+	padding: 7px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+.mybutton:hover {
+	background-color: #005875; /* darker Blue */
+	color: white;
 }
