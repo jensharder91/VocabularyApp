@@ -1,84 +1,52 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Study phase
+      Level {{level + 1}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="card-background-page">
+<ion-content class="card-background-page">
 
-  <!--
-  <table>
-    <thead>
-    <tr>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{this.vocabProvider.levelsCounters[0]}}</td>
-        <td>{{this.vocabProvider.levelsCounters[1]}}</td>
-        <td>{{this.vocabProvider.levelsCounters[]}}</td>
-        <td>{{this.vocabProvider.levelsCounters[0]}}</td>
-        <td>{{this.vocabProvider.levelsCounters[0]}}</td>
-        <td>{{this.vocabProvider.levelsCounters[0]}}</td>
-      </tr>
-    </tbody>
-
-  </table>
-
-  -->
-
-  <ion-grid style="height: 100%" vertical-align="center">
-    <ion-row justify-content-center align-items-center style="height: 100%">
-
-      <ion-card class="flip-container" (click)="turnCard();">
-
-        <ion-card-header>
-
-        </ion-card-header>
-
-        <ion-card-content class="flip-cards">
-
-        <!--<img src="../assets/imgs/cardimage.jpg"/> -->
-
-          <div class="front-card">{{currentVocab}}</div>
-
-        </ion-card-content>
-
-      </ion-card>
-
-      <ion-card class="vocabSubInfo">
-        <ion-row>
-          <ion-col text-right>
-            <button id="known" ion-button clear small color="secondary" icon-start (click)="showVocab('known')">
-              <ion-icon name='checkmark'></ion-icon>
-              Know it!
-            </button>
-          </ion-col>
-          <ion-col text-center>
-            <button ion-button clear small color="dark" icon-start (click)="nextVocab()">
-              <ion-icon name='arrow-right-c'></ion-icon>
-              Next
-            </button>
-          </ion-col>
-          <ion-col text-left>
-            <button id="unknown" ion-button clear small color="danger" icon-start (click)="showVocab('unknown')">
-              <ion-icon name='close'></ion-icon>
-              Don't know it!
-            </button>
-          </ion-col>
-        </ion-row>
-
-      </ion-card>
-
-    </ion-row>
-  </ion-grid>
+  <!-- Vocabulary card -->
+  <div class="container">
+    <div class="card" (click)="flip()">
+      <div class="front">
+          <h1>{{ frontCard }}</h1>
+      </div>
+      <div class="back">
+        <h1>{{ backCard }}</h1>
+      </div>
+    </div>
+  </div>
 
  </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <!-- Space to enter answer -->
+    <ion-row style="height: 90%;">
+      <ion-col>
+        <div class="inputContainer">
+          <h2>
+            <ion-input text-wrap text-center placeholder="Type your answer here..." [value]="input_value"></ion-input>
+          </h2>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-left>
+        <button id="unknown" ion-button color="danger" icon-start (click)="showVocab('unknown')">
+          <ion-icon name='close'></ion-icon>
+          Wrong
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button id="known" ion-button color="secondary" icon-start (click)="showVocab('known')">
+          <ion-icon name='checkmark'></ion-icon>
+          Correct
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

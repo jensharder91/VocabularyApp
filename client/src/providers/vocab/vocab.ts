@@ -1,51 +1,183 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { SQLiteObject } from '@ionic-native/sqlite';
+import {Injectable} from '@angular/core';
+import { Storage } from "@ionic/storage";
+import {AlertController} from "ionic-angular";
 
-/*
-  Generated class for the VocabProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class VocabProvider {
 
-  dict: any
-  levelsCounters = [0,0,0,0,0,0]
+  dict: any = [];
+  levelsCounters = [0, 0, 0, 0, 0, 0];
+  csvLoaded = false;
 
-  db: SQLiteObject = null;
+  constructor(private storage: Storage,
+              public alertCtrl: AlertController) {
 
+    // get dictionary from storage
+    this.storage.get('dictionary_es').then((val) => {
+      if (val != null){
+        this.dict = val;
+      }
+    });
 
+    // get level counter from storage
+    this.storage.get('level_es').then((val) => {
+      if (val != null){
+        this.levelsCounters = val;
+      }
+    });
 
-
-  constructor() {
-    console.log('Hello VocabProvider Provider');
-    this.dict = []
-    this.createCard("laufen", "correr");
-    this.createCard("schlafen", "dormir");
+    // get boolean flag on csv loaded status
+    this.storage.get('csv_loaded').then((val) => {
+      if (val != null){
+        this.csvLoaded = val;
+      }
+    });
   }
 
+  createCard(frontSideValue:String, backSideValue:String, prompt:boolean){
 
-
-  createCard(frontSideValue, backSideValue){
-    var card = {
+    let card = {
       frontSide: frontSideValue,
       backSide: backSideValue,
       level: 0
     };
 
-
-    //console.log(card.level-1)
-    this.levelsCounters[card.level]++;
-    this.dict.push(card)
+    this.addCard(card, prompt);
   }
 
-  //Getting the card decks based on the level chosen by the user.
+  addCard(card:any, prompt:boolean) {
+
+    if (card.frontSide != null && card.backSide != null) {
+      if (card.level ==  null) {
+        card.level = 0;
+      }
+
+      if (!this.cardExists(card)) {
+        this.dict.push(card);
+        this.levelsCounters[card.level]++;
+        // store dict
+        this.storeDict();
+      } else if (prompt){
+
+        this.promptCardExists(card);
+      }
+    }
+  }
+
+  private forceAddCard(card:any) {
+
+    if (card.frontSide != null && card.backSide != null) {
+      if (card.level == null) {
+        card.level = 0;
+      }
+
+      this.dict.push(card);
+      this.levelsCounters[card.level]++;
+      // store dict
+      this.storeDict();
+    }
+  }
+
+  cardExists(card:any){
+
+    if (card != null) {
+      for (let existingCard of this.dict) {
+
+        if (card.frontSide == existingCard.frontSide
+          && card.backSide == existingCard.backSide) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  promptCardExists(card:any){
+
+    let prompt = this.alertCtrl.create({
+      title: 'Card already exists',
+      message: "Do you want to add the card \"" + card.frontSide + " - " + card.backSide + "\" anyways?",
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+            this.forceAddCard(card);
+          }
+        }
+      ]
+    });
+
+    prompt.present();
+  }
+
+  changeCard(card:any, frontSideValue, backSideValue) {
+
+    let index = this.dict.indexOf(card);
+    let newCard = this.dict[index];
+    newCard.frontSide = frontSideValue;
+    newCard.backSide = backSideValue;
+
+    if (!this.cardExists(newCard)) {
+      this.storeDict();
+    } else {
+      this.promptCardExists(newCard);
+    }
+
+  }
+
+  deleteCard(card:any){
+
+    this.levelsCounters[card.level]--;
+
+    let index = this.dict.indexOf(card, 0);
+    if (index > -1) {
+      this.dict.splice(index, 1);
+    }
+
+    // store dict
+    this.storeDict();
+  }
+
+  clearStorage() {
+
+    let prompt = this.alertCtrl.create({
+      title: 'Deleting all cards',
+      message: "Are you sure that you want to remove all cards?",
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+
+            this.dict = [];
+            this.levelsCounters = [0, 0, 0, 0, 0, 0];
+            this.storeDict();
+            this.setCsvLoaded(false);
+          }
+        }
+      ]
+    });
+
+    prompt.present();
+  }
+
+  // Getting the card decks based on the level chosen by the user.
   getCardDeck(arr, value) {
 
-    var result =[];
-    for (var i=0, iLen=arr.length; i<iLen; i++) {
+    let result = [];
+    for (let i = 0, iLen = arr.length; i < iLen; i++) {
 
       if (arr[i].level == value){
 
@@ -56,51 +188,18 @@ export class VocabProvider {
     return result;
   }
 
+  storeDict(){
 
+    // store level counter
+    this.storage.set('level_es', this.levelsCounters);
 
-  //*************** DATABASE Methods*******************
-
-
-  setDatabase(db: SQLiteObject){
-    if(this.db === null){
-      this.db = db;
-    }
+    // store dict
+    this.storage.set('dictionary_es', this.dict);
   }
 
-  createTable(){
-    let sql = 'CREATE TABLE IF NOT EXISTS vocabularies(id INTEGER PRIMARY KEY AUTOINCREMENT, front TEXT, back TEXT, level INTEGER)';
-    return this.db.executeSql(sql, []);
+  setCsvLoaded(loaded){
+
+    this.csvLoaded = loaded;
+    this.storage.set("csv_loaded", loaded);
   }
-
-  getAll(){
-    let sql = 'SELECT * FROM vocabularies';
-    return this.db.executeSql(sql, [])
-      .then(response => {
-        let tasks = [];
-        for (let index = 0; index < response.rows.length; index++) {
-          tasks.push( response.rows.item(index) );
-        }
-        return Promise.resolve( tasks );
-      })
-      .catch(error => Promise.reject(error));
-  }
-
-  create(card: any){
-    let sql = 'INSERT INTO vocabularies(front, back, level) VALUES(?,?,?)';
-    return this.db.executeSql(sql, [card.front, card.back, card.level]);
-  }
-
-  update(card: any){
-    let sql = 'UPDATE vocabularies SET front=?, back=?, level=? WHERE id=?';
-    return this.db.executeSql(sql, [card.front, card.back, card.level]);
-  }
-
-  delete(card: any){
-    let sql = 'DELETE FROM vocabularies WHERE id=?';
-    return this.db.executeSql(sql, [card.id]);
-  }
-
-
-
-
 }

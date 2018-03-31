@@ -1,115 +1,110 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Card Lists</ion-title>
+    <ion-title>{{language}}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class=" cards-bg">
+<ion-content text-center>
 
+  <h1>Your progress</h1>
 
-
-
-  <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
-
-  <ion-card>
-    <ion-card-header>
-      Perfomance summary.
-    </ion-card-header>
-    <ion-grid class="summary">
-      <ion-row>
-        <ion-col >
-          1
-        </ion-col>
-        <ion-col>
-          2
-        </ion-col>
-        <ion-col>
-          3
-        </ion-col>
-        <ion-col>
-          4
-        </ion-col>
-        <ion-col>
-          5
-        </ion-col>
-        <ion-col>
-          6
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          {{this.vocabProvider.levelsCounters[0]}}
-        </ion-col>
-        <ion-col>
-          {{this.vocabProvider.levelsCounters[1]}}
-        </ion-col>
-        <ion-col>
-          {{this.vocabProvider.levelsCounters[2]}}
-        </ion-col>
-        <ion-col>
-          {{this.vocabProvider.levelsCounters[3]}}
-        </ion-col>
-        <ion-col>
-          {{this.vocabProvider.levelsCounters[4]}}
-        </ion-col>
-        <ion-col>
-          {{this.vocabProvider.levelsCounters[5]}}
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
-
-  <ion-card class="cards-list-demo">
-    <ion-card-header>
-      Which level would you like to study?
-    </ion-card-header>
-
-    <ion-card-content>
-
-      <ion-list>
-
-      <button  ion-button outline (click)='openMainScreen(0);' color="dark">
+  <ion-grid class="levelGrid">
+    <ion-row align-items-center>
+      <ion-col>
         Level 1
-      </button>
-
-      </ion-list>
-
-      <ion-list>
-        <button ion-button outline (click)='openMainScreen(1);' color="dark">
-          Level 2
+      </ion-col>
+      <ion-col>
+        {{this.vocabProvider.levelsCounters[0]}} cards
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startLevel(0)" [disabled]="this.vocabProvider.levelsCounters[0] == 0">
+          <ion-icon name="play"></ion-icon>
         </button>
-      </ion-list>
+      </ion-col>
+    </ion-row>
 
-      <ion-list>
-        <button  ion-button outline (click)='openMainScreen(2);' color="dark">
-          Level 3
+    <ion-row align-items-center>
+      <ion-col>
+        Level 2
+      </ion-col>
+      <ion-col>
+        {{this.vocabProvider.levelsCounters[1]}} cards
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startLevel(1)" [disabled]="this.vocabProvider.levelsCounters[1] == 0">
+          <ion-icon name="play"></ion-icon>
         </button>
-      </ion-list>
+      </ion-col>
+    </ion-row>
 
-      <ion-list>
-        <button  ion-button outline (click)='openMainScreen(3);' color="dark">
-          Level 4
+    <ion-row align-items-center>
+      <ion-col>
+        Level 3
+      </ion-col>
+      <ion-col>
+        {{this.vocabProvider.levelsCounters[2]}} cards
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startLevel(2)" [disabled]="this.vocabProvider.levelsCounters[2] == 0">
+          <ion-icon name="play"></ion-icon>
         </button>
-      </ion-list>
+      </ion-col>
+    </ion-row>
 
-      <ion-list>
-        <button  ion-button outline (click)='openMainScreen(4);' color="dark">
-          Level 5
+    <ion-row align-items-center>
+      <ion-col>
+        Level 4
+      </ion-col>
+      <ion-col>
+        {{this.vocabProvider.levelsCounters[3]}} cards
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startLevel(3)" [disabled]="this.vocabProvider.levelsCounters[3] == 0">
+          <ion-icon name="play"></ion-icon>
         </button>
-      </ion-list>
+      </ion-col>
+    </ion-row>
 
-      <ion-list>
-        <button  ion-button outline (click)='openMainScreen(5);' color="dark">
-          Level 6
+    <ion-row align-items-center>
+      <ion-col>
+        Level 5
+      </ion-col>
+      <ion-col>
+        {{this.vocabProvider.levelsCounters[4]}} cards
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startLevel(4)" [disabled]="this.vocabProvider.levelsCounters[4] == 0">
+          <ion-icon name="play"></ion-icon>
         </button>
-      </ion-list>
+      </ion-col>
+    </ion-row>
 
+    <ion-row align-items-center>
+      <ion-col>
+        Level 6
+      </ion-col>
+      <ion-col>
+        {{this.vocabProvider.levelsCounters[5]}} cards
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startLevel(5)" [disabled]="this.vocabProvider.levelsCounters[5] == 0">
+          <ion-icon name="play"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
 
-    </ion-card-content>
-  </ion-card>
+  </ion-grid>
 
-  <button  ion-button outline (click)='createVocabCard();'>Create own card</button>
+  <ion-fab right bottom>
+    <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)='showAllVocabulary();'><ion-icon name="book"></ion-icon></button> <br/>
+      <button ion-fab (click)='loadCsvToDict()' [disabled]="vocabProvider.csvLoaded"><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button> <br/>
+      <button ion-fab (click)="createCard();"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="danger" (click)='resetAll();'><ion-icon name="trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
 
 
 </ion-content>

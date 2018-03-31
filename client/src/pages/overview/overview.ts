@@ -1,41 +1,46 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
-import {StudyPhasePage} from '../studyPhase/studyPhase'
-import {VocabProvider} from "../../providers/vocab/vocab";
+import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
+import { StudyPhasePage } from '../studyPhase/studyPhase'
+import { VocabProvider } from "../../providers/vocab/vocab";
+import { VocabularyListPage } from "../vocabularyList/vocabularyList";
+import { Http } from "@angular/http";
+import 'rxjs/add/operator/map';
+import * as papa from 'papaparse';
 
 @Component({
   selector: 'page-overview',
   templateUrl: 'overview.html'
 })
+
 export class OverviewPage {
 
+  public language: String;
+  csvData: any[] = [];
+  headerRow: any[] = [];
 
-  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public vocabProvider: VocabProvider) {
+  constructor(public alertCtrl: AlertController,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              public loadingCtrl: LoadingController,
+              public vocabProvider: VocabProvider,
+              public http: Http) {
 
-
-
-    //for(var i = 0; i < this.levelsCounters.length; i++){
-
-      //this.levelsCounters[i] = this.returnNumbersOfCards(this.studyPhase.dict, i)
-    //}
-
+    this.language = navParams.get('language');
+    this.readCsvData('assets/data/test.csv');
   }
 
-  returnNumbersOfCards(arr, value) {
+  getNumbersOfCards(arr, value) {
 
-    var counter;
-    for (var i=0, iLen=arr.length; i<iLen; i++) {
+    let counter = 0;
+    for (let i = 0, iLen = arr.length; i < iLen; i++) {
 
       if (arr[i].level == value){
 
         counter++;
-
       }
     }
-
     return counter;
   }
-
 
   showAlert(title, subtitle) {
     let alert = this.alertCtrl.create({
@@ -46,31 +51,28 @@ export class OverviewPage {
     alert.present();
   }
 
-  openMainScreen(level){
+  startLevel(level){
 
+    if(this.vocabProvider.levelsCounters[level] != 0){
 
-
-    if(this.vocabProvider.levelsCounters[level] == 0){
-      this.showAlert('No vocabulary!','This level is empty.')
-    }else{
       this.navCtrl.push(StudyPhasePage, {
-        levelPassed: level
+        level: level
       });
     }
   }
 
-  createVocabCard() {
+  createCard() {
     let prompt = this.alertCtrl.create({
-      title: 'Login',
-      message: "Enter a name for this new album you're so keen on adding",
+      title: 'Create new card',
+      message: "Enter a new vocabulary!",
       inputs: [
         {
           name: 'front',
-          placeholder: 'Frontside'
+          placeholder: 'Front'
         },
         {
           name: 'back',
-          placeholder: 'Backside'
+          placeholder: 'Back'
         },
       ],
       buttons: [
@@ -83,29 +85,70 @@ export class OverviewPage {
         {
           text: 'Save',
           handler: data => {
-            this.vocabProvider.createCard(data.front, data.back);
-
-            // Save in DB
-            /*
-            this.vocabProvider.create(data)
-              .then(response => {
-                this.vocabProvider.dict.unshift( data );
-              })
-              .catch( error => {
-                console.error(error);
-              })
-
-            console.log(this.vocabProvider.getAll());
-
-            this.showAlert("Successful!", "New vocabulary card created.")
-            */
+            this.vocabProvider.createCard(data.front, data.back, true);
           }
         }
       ]
     });
+
     prompt.present();
   }
 
+  showAllVocabulary(){
 
+    this.navCtrl.push(VocabularyListPage);
+  }
 
+  resetAll() {
+
+    this.vocabProvider.clearStorage();
+  }
+
+  private readCsvData(url) {
+
+    this.http.get(url)
+      .subscribe(
+        data => this.extractData(data),
+        err => this.handleError(err)
+      );
+  }
+
+  private extractData(res){
+    let csvData = res['_body'] || '';
+    let parsedData = papa.parse(csvData).data;
+
+    this.headerRow = parsedData[0];
+
+    parsedData.splice(0, 1);
+    this.csvData = parsedData;
+  }
+
+  private handleError(err) {
+
+    console.log('An error occured: ', err);
+  }
+
+  public loadCsvToDict(){
+
+    let loading = this.loadingCtrl.create();
+
+    loading.present();
+
+    if (this.csvData != null) {
+      for (let j = 0; j < this.csvData.length; j++) {
+        this.vocabProvider.dict.push({
+          frontSide: this.csvData[j][0],
+          backSide: this.csvData[j][1],
+          level: 0
+        });
+        this.vocabProvider.levelsCounters[0]++;
+      }
+
+      this.vocabProvider.storeDict();
+
+      this.vocabProvider.setCsvLoaded(true);
+    }
+
+    loading.dismiss();
+  }
 }

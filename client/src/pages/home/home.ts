@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {StudyPhasePage} from '../studyPhase/studyPhase'
-import {VocabProvider} from "../../providers/vocab/vocab";
-import {OverviewPage} from "../overview/overview";
+import { OverviewPage } from "../overview/overview";
 
 @Component({
   selector: 'page-home',
@@ -13,13 +11,21 @@ import {OverviewPage} from "../overview/overview";
 export class HomePage {
 
 
-
-  constructor(public navCtrl: NavController, public vocabProvider: VocabProvider) {
-
+  constructor(public navCtrl: NavController) {
   }
 
-  startStudy(){
+  startStudy(language: String) {
 
-    this.navCtrl.push(OverviewPage)
+    switch (language) {
+      case 'Spanish':
+        this.navCtrl.push(OverviewPage, {
+          language: language
+        });
+        break;
+    }
+  }
+
+  addNewLanguage() {
+
   }
 }

@@ -6,11 +6,18 @@
 
 <ion-content>
 
-  Welcome to your vocabulary app!
+  <div class="center-content">
 
-  What would you like to do today?
 
-  <button  ion-button outline (click)='startStudy();'>Study vocabulary</button>
+    <h1>Welcome to your vocabulary app! </h1>
+
+    <h2>What would you language would you like to learn today?</h2>
+
+   <!-- <button ion-button (click)='startStudy();'>Study vocabulary</button> <br/>-->
+    <button ion-button (click)="startStudy('Spanish')">Spanish</button> <br/>
+    <button ion-button outline (click)="addNewLanguage()">Add new language</button>
+  </div>
+
 
 </ion-content>
 
