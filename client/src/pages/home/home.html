@@ -11,13 +11,25 @@
 
     <h1>Welcome to your vocabulary app! </h1>
 
-    <h2>What would you language would you like to learn today?</h2>
+    <h2>Ready to start learning?</h2>
 
-   <!-- <button ion-button (click)='startStudy();'>Study vocabulary</button> <br/>-->
-    <button ion-button (click)="startStudy('Spanish')">Spanish</button> <br/>
-    <button ion-button outline (click)="addNewLanguage()">Add new language</button>
-  </div>
+    <!-- <button ion-button (click)='startStudy();'>Study vocabulary</button> <br/>-->
+    <!-- <button ion-button (click)="startStudy('Spanish')">Spanish</button> <br/>
+    <button ion-button outline (click)="addNewLanguage()">Add new language</button> -->
+
+    <button block ion-button (click)="startLearning()">Learn</button>
+    <button block ion-button (click)="showProgress()">Show Progress</button>
+  </div> 
+
+  <ion-fab right bottom>
+    <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)='showAllVocabulary();'><ion-icon name="book"></ion-icon></button> <br/>
+      <button ion-fab (click)='loadCsvToDict()' [disabled]="vocabProvider.csvLoaded"><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button> <br/>
+      <button ion-fab (click)="createCard();"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="danger" (click)='resetAll();'><ion-icon name="trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 
 
 </ion-content>
-

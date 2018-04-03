@@ -1,12 +1,14 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Level {{level + 1}}
+      Learning
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="card-background-page">
+
+  <img src={{getProgressImage(currentCard.level)}} alt="Level {{currentCard.level}}" height="42" width="42" class="levelIndicator">
 
   <!-- Vocabulary card -->
   <div class="container">
@@ -36,13 +38,13 @@
     </ion-row>
     <ion-row>
       <ion-col text-left>
-        <button id="unknown" ion-button color="danger" icon-start (click)="showVocab('unknown')">
+        <button id="unknown" ion-button color="danger" icon-start (click)="showVocab('unknown')" [disabled]="!seeBackside">
           <ion-icon name='close'></ion-icon>
           Wrong
         </button>
       </ion-col>
       <ion-col text-right>
-        <button id="known" ion-button color="secondary" icon-start (click)="showVocab('known')">
+        <button id="known" ion-button color="secondary" icon-start (click)="showVocab('known')" [disabled]="!seeBackside">
           <ion-icon name='checkmark'></ion-icon>
           Correct
         </button>

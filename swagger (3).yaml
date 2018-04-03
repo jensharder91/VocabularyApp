@@ -1,0 +1,228 @@
+swagger: '2.0'
+info:
+  description: Temporal Api for LearnIt.
+  version: 0.1.0
+  title: LearnIt
+host: 127.0.0.1:8080
+basePath: /v1
+tags:
+  - name: cards
+    description: Operations about Cards
+schemes:
+  - http
+paths:
+  '/cards/categories':
+    get:
+      tags:
+        - cards
+      summary: Get all cardCategories
+      description: ''
+      operationId: getAllCategories
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardCategory'
+        '404':
+          description: No Categories found
+  '/cards/groupById/{groupId}':
+    get:
+      tags:
+        - cards
+      summary: Find cardGroup by ID
+      description: Returns a single group
+      operationId: getGroupById
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: groupId
+          in: path
+          description: ID of cardGroup to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/CardGroup'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: CardGroup not found
+  '/cards/groupByCategory/{categoryId}':
+    get:
+      tags:
+        - cards
+      summary: Find cardGroup by category
+      description: Returns a single group
+      operationId: getGroupByCategoryId
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: categoryId
+          in: path
+          description: return all groups related to categoryId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/CardGroup'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: CardGroups not found
+  '/cards/bundleById/{bundleId}':
+    get:
+      tags:
+        - cards
+      summary: Find cardBundle by ID
+      description: Returns a single cardBundle
+      operationId: getBundleById
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: bundleId
+          in: path
+          description: ID of cardBundle to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/CardBundle'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: CardBundle not found
+  '/cards/bundleByGroup/{groupId}':
+    get:
+      tags:
+        - cards
+      summary: Find cardBundle by group
+      description: Returns all bundles related to group
+      operationId: getBundleByGroupId
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: groupId
+          in: path
+          description: return all bundles related to groupId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/CardBundle'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: CardBundle not found
+definitions:
+  Card:
+    type: "object"
+    required:
+      - "cardId"
+      - "bundleIds"
+      - "question"
+      - "answer"
+      - "reverseable"
+      - "contentVersion"
+    properties:
+      cardId:
+        type: "string"
+      bundleIds:
+        type: "array"
+        items: 
+          type: "string"
+      question:
+        type: "string"
+      answer:
+        type: "string"
+      reverseable:
+        type: "boolean"
+        default: false
+      contentVersion:
+        type: "integer"
+  CardBundle:
+    type: "object"
+    required:
+      - "cardId"
+      - "groupId"
+      - "cards"
+      - "contentVersion"
+    properties:
+      cardId:
+        type: "string"
+      groupId:
+         type: "string"
+      cards:
+        type: "array"
+        items:
+          $ref: "#/definitions/Card"
+      contentVersion:
+        type: "integer"
+  CardGroup:
+    type: "object"
+    required:
+      - "groupId"
+      - "categoryId"
+      - "cardBundleIds"
+      - "contentVersion"
+    properties:
+      groupId:
+        type: "string"
+      categoryId:
+         type: "string"
+      cardBundleIds:
+        type: "array"
+        items:
+          type: "string"
+      contentVersion:
+        type: "integer"
+  CardCategory:
+    type: "object"
+    required:
+      - "categoryId"
+      - "cardGroupIds"
+      - "contentVersion"
+    properties:
+      categoryId:
+        type: "string"
+      cardGroupIds:
+        type: "array"
+        items:
+          type: "string"
+      contentVersion:
+        type: "integer"
+  User:
+    type: "object"
+    required:
+      - "userId"
+      - "username"
+      - "passwordHash"
+    properties:
+      userId:
+        type: "string"
+      username:
+        type: "string"
+      passwordHash:
+        type: "string"
+      email:
+        type: "string"

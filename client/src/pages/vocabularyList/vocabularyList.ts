@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
+import { Card } from '../../../model/card';
 
 @Component({
   selector: 'page-overview',
@@ -9,32 +10,37 @@ import { VocabProvider } from "../../providers/vocab/vocab";
 
 export class VocabularyListPage {
 
-  dict: any = [];
+  dict: Card[] = [];
 
   listLowerLimit = 0;
   listUpperLimit = 10;
 
   constructor(public alertCtrl: AlertController,
-              public navCtrl: NavController,
-              public navParams: NavParams,
-              public vocabProvider: VocabProvider) {
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public vocabProvider: VocabProvider) {
 
-    this.dict = vocabProvider.dict;
+    this.dict = this.navParams.get('cards');
 
-    // get limits to show part of vocabulary list
-    if (this.navParams.get('lowerLimit') != null && this.navParams.get('upperLimit') != null) {
+    this.listLowerLimit = 0;
+    this.listUpperLimit = 10;
 
-      this.listLowerLimit = this.navParams.get('lowerLimit');
-      this.listUpperLimit = this.navParams.get('upperLimit');
+    if (this.listUpperLimit >= this.dict.length) {
+      this.listUpperLimit = this.dict.length;
     }
   }
 
-  deleteCard(card: any){
+  getProgressImage(level: number): string {
+    if (!level) level = 0;
+    return "assets/imgs/progress/progress" + level + ".svg";
+  }
+
+  deleteCard(card: any) {
 
     this.vocabProvider.deleteCard(card);
   }
 
-  changeCard(card:any){
+  changeCard(card: any) {
 
     let prompt = this.alertCtrl.create({
       title: 'Change card',
@@ -68,7 +74,7 @@ export class VocabularyListPage {
     prompt.present();
   }
 
-  addCard(){
+  addCard() {
 
     let prompt = this.alertCtrl.create({
       title: 'Create New Card',
@@ -93,7 +99,7 @@ export class VocabularyListPage {
         {
           text: 'Save',
           handler: data => {
-            this.vocabProvider.createCard(data.front, data.back, true);
+            this.vocabProvider.createCard(data.front, data.back);
           }
         }
       ]
@@ -104,21 +110,27 @@ export class VocabularyListPage {
 
   showNextList() {
 
-    if (this.listUpperLimit + 10 < this.dict.length) {
+    if (this.listUpperLimit < this.dict.length) {
 
       this.listLowerLimit += 10;
       this.listUpperLimit += 10;
-      this.navCtrl.push(VocabularyListPage, {'lowerLimit': this.listLowerLimit, 'upperLimit': this.listUpperLimit});
+
+      if (this.listUpperLimit > this.dict.length) {
+        this.listUpperLimit = this.dict.length;
+      }
     }
   }
 
   showPrevList() {
 
-    if (this.listLowerLimit - 10 >= 0) {
+    if (this.listLowerLimit > 0) {
 
       this.listLowerLimit -= 10;
-      this.listUpperLimit -= 10;
-      this.navCtrl.push(VocabularyListPage, {'lowerLimit': this.listLowerLimit, 'upperLimit': this.listUpperLimit});
+      this.listUpperLimit = this.listLowerLimit + 10;
+
+      if (this.listUpperLimit > this.dict.length) {
+        this.listUpperLimit = this.dict.length;
+      }
     }
   }
 }

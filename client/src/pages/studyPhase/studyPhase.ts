@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
-import { OverviewPage } from "../overview/overview";
+import { Card } from '../../../model/card';
 
 @Component({
   selector: 'page-studyPhase',
@@ -10,60 +10,44 @@ import { OverviewPage } from "../overview/overview";
 
 export class StudyPhasePage {
 
-  currentCard: any;
+  currentCard: Card;
   frontCard: String;
   backCard: String;
-  currentCardDeck: any;
-  level: number;
+  currentCardDeck: Card[];
+  private seeBackside: boolean = false;
 
   input_value: String;
 
   counter: number = 0; //Pay attention: Level 1 in the UI is level 0 for the developer due to 0-based array
 
   constructor(public navCtrl: NavController,
-              public alertCtrl: AlertController,
-              public navParams: NavParams,
-              public vocabProvider: VocabProvider) {
+    public alertCtrl: AlertController,
+    public navParams: NavParams,
+    public vocabProvider: VocabProvider) {
 
-    this.level = navParams.get('level');
-    this.currentCardDeck = this.vocabProvider.getCardDeck(this.vocabProvider.dict, this.level);
+    this.currentCardDeck = navParams.get('cards');
     this.currentCardDeck = this.shuffle(this.currentCardDeck);
     this.currentCard = this.currentCardDeck[this.counter];
     this.randCardSide();
   }
 
-  showVocab(id){
+  getProgressImage(level: number): string {
+    if (!level) level = 0;
+    return "assets/imgs/progress/progress" + level + ".svg";
+  }
 
-    let levelsCounters = this.vocabProvider.levelsCounters;
-    let currentVocab = this.currentCardDeck[this.counter];
+  showVocab(id) {
+
+    // let levelsCounters = this.vocabProvider.levelsCounters;
+    let currentVocab: Card = this.currentCardDeck[this.counter];
 
     if (id == "known") { // Correct
-      console.log(currentVocab.level);
-      // Remove card from currently assigned level
-      if (levelsCounters[currentVocab.level] > 0 && currentVocab.level < 5) {
-        levelsCounters[currentVocab.level]--;
-      }
 
-      // Update card level to next level
-      if (currentVocab.level < 5) {
-        currentVocab.level++;
-        levelsCounters[currentVocab.level]++;
-      }
+      this.vocabProvider.increaseCardLevel(currentVocab);
     } else { // Wrong
 
-      // Delete card from previously assigned level
-      if(levelsCounters[currentVocab.level] > 0){
-        levelsCounters[currentVocab.level]--;
-      }
-
-      // Assign card to level 1
-      levelsCounters[0]++;
-      currentVocab.level = 0;
+      this.vocabProvider.resetCardLevel(currentVocab);
     }
-
-    // store changes
-    this.vocabProvider.levelsCounters = levelsCounters;
-    this.vocabProvider.storeDict();
 
     // reset input field
     this.input_value = null;
@@ -72,21 +56,15 @@ export class StudyPhasePage {
     this.nextCard();
   }
 
-  nextCard(){
+  nextCard() {
 
-    if (this.counter == this.currentCardDeck.length - 1) {
+    if (this.counter >= this.currentCardDeck.length - 1) {
 
 
       let prompt = this.alertCtrl.create({
         title: 'All done!',
         message: "Congratulations! You studied all cards of this level.",
         buttons: [
-          {
-            text: 'Try again',
-            handler: data => {
-              this.counter = 0;
-            }
-          },
           {
             text: 'Go Back',
             handler: data => {
@@ -119,6 +97,8 @@ export class StudyPhasePage {
         this.frontCard = this.currentCard.backSide;
         this.backCard = this.currentCard.frontSide;
       }
+
+      this.seeBackside = false;
     }
   }
 
@@ -147,5 +127,6 @@ export class StudyPhasePage {
 
     let card = document.getElementsByClassName("card")[0];
     card.classList.toggle("flipped");
+    this.seeBackside = !this.seeBackside;
   }
 }
