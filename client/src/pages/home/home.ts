@@ -76,19 +76,17 @@ export class HomePage {
     prompt.present();
   }
 
-  showAllVocabulary() {
-
-    this.navCtrl.push(VocabularyListPage, { cards: this.vocabProvider.getCardDeckAll() });
-  }
+  // showAllVocabulary() {
+  //
+  //   this.navCtrl.push(VocabularyListPage, { cards: this.vocabProvider.getCardDeckAll() });
+  // }
 
   resetAll() {
-
     this.vocabProvider.clearStorage();
   }
 
   public loadCsvToDict() {
-
-    this.vocabProvider.importCSV();
+    this.vocabProvider.addTenVocs();
   }
 
   showProgress() {

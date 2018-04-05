@@ -82,4 +82,45 @@ export class OverviewPage {
     this.navCtrl.push(VocabularyListPage, { cards: this.vocabProvider.getCardDeckAll() });
   }
 
+  createCard() {
+    let prompt = this.alertCtrl.create({
+      title: 'Create new card',
+      message: "Enter a new vocabulary!",
+      inputs: [
+        {
+          name: 'front',
+          placeholder: 'Front'
+        },
+        {
+          name: 'back',
+          placeholder: 'Back'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.vocabProvider.createCard(data.front, data.back);
+          }
+        }
+      ]
+    });
+
+    prompt.present();
+  }
+
+  resetAll() {
+    this.vocabProvider.clearStorage();
+  }
+
+  public loadCsvToDict() {
+    this.vocabProvider.addTenVocs();
+  }
+
 }

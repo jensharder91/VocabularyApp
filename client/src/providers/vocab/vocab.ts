@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
-import { AlertController } from "ionic-angular";
+import { AlertController, ToastController } from "ionic-angular";
 import { Card } from '../../../model/card';
 import * as papa from 'papaparse';
 import { Http } from "@angular/http";
@@ -10,31 +10,39 @@ export class VocabProvider {
 
   private dict: Card[] = [];
   private levelsCounters = [0, 0, 0, 0, 0, 0];
-  csvLoaded = false;
+  private csvLoaded: Card[] = [];
   private MAX_LEVEL = 5;
+
+  //Storage
+  private csv_loaded:string = "CSV_DATA";
+  private dictionary_es:string = "dictionary_es";
+  private level_es:string = 'level_es';
 
   constructor(private storage: Storage,
     public alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     public http: Http) {
 
     // get dictionary from storage
-    this.storage.get('dictionary_es').then((val) => {
+    this.storage.get(this.dictionary_es).then((val) => {
       if (val != null) {
         this.dict = val;
       }
     });
 
     // get level counter from storage
-    this.storage.get('level_es').then((val) => {
+    this.storage.get(this.level_es).then((val) => {
       if (val != null) {
         this.levelsCounters = val;
       }
     });
 
     // get boolean flag on csv loaded status
-    this.storage.get('csv_loaded').then((val) => {
+    this.storage.get(this.csv_loaded).then((val: Card[]) => {
       if (val != null) {
         this.csvLoaded = val;
+      } else {
+        this.importCSV();
       }
     });
   }
@@ -169,8 +177,8 @@ export class VocabProvider {
 
             this.dict = [];
             this.levelsCounters = [0, 0, 0, 0, 0, 0];
+            this.csvLoaded = [];
             this.storeDict();
-            this.setCsvLoaded(false);
           }
         }
       ]
@@ -215,10 +223,13 @@ export class VocabProvider {
   storeDict() {
 
     // store level counter
-    this.storage.set('level_es', this.levelsCounters);
+    this.storage.set(this.level_es, this.levelsCounters);
 
     // store dict
-    this.storage.set('dictionary_es', this.dict);
+    this.storage.set(this.dictionary_es, this.dict);
+
+    //set csvLoaded
+    this.storage.set(this.csv_loaded, this.csvLoaded);
   }
 
 
@@ -285,7 +296,7 @@ export class VocabProvider {
     parsedData.splice(0, 1);
 
     for (let j = 0; j < parsedData.length; j++) {
-      this.dict.push({
+      this.csvLoaded.push({
         frontSide: parsedData[j][0],
         backSide: parsedData[j][1],
         level: 0,
@@ -295,15 +306,31 @@ export class VocabProvider {
     }
 
     this.storeDict();
-
-    this.setCsvLoaded(true);
   }
 
-  private setCsvLoaded(loaded) {
+  public addTenVocs() {
 
-    this.csvLoaded = loaded;
-    this.storage.set("csv_loaded", loaded);
+    let max = 10;
+    if (max > this.csvLoaded.length) {
+      max = this.csvLoaded.length;
+    }
+
+    for (let i = 0; i < max; i++) {
+      let card: Card = this.csvLoaded[0];//get the first item
+      this.csvLoaded.splice(0, 1);//delete the first items
+      this.dict.push(card);//add it to dictionary
+      this.levelsCounters[0]++;
+    }
+
+    this.storeDict();
+
+    let toast = this.toastCtrl.create({
+      message: max + ' cards added to the first level',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.present();
   }
-
 
 }
