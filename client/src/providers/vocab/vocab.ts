@@ -14,9 +14,9 @@ export class VocabProvider {
   private MAX_LEVEL = 5;
 
   //Storage
-  private csv_loaded:string = "CSV_DATA";
-  private dictionary_es:string = "dictionary_es";
-  private level_es:string = 'level_es';
+  private csv_loaded: string = "CSV_DATA";
+  private dictionary_es: string = "dictionary_es";
+  private level_es: string = 'level_es';
 
   constructor(private storage: Storage,
     public alertCtrl: AlertController,
@@ -177,7 +177,7 @@ export class VocabProvider {
 
             this.dict = [];
             this.levelsCounters = [0, 0, 0, 0, 0, 0];
-            this.csvLoaded = [];
+            this.csvLoaded = null;
             this.storeDict();
           }
         }
@@ -247,7 +247,7 @@ export class VocabProvider {
       this.levelsCounters[card.level]++;
 
       //set dueDate (for now level * 1hh)
-      card.dueDate = new Date().getTime() + 1000 * 60 * 60 * card.level; //1h
+      card.dueDate = new Date().getTime() + 1000 * 60 * 60 * 24 * card.level; //1 day
 
       //save
       this.storeDict();
@@ -278,22 +278,27 @@ export class VocabProvider {
   **                       **
   **************************/
 
-  public importCSV() {
+  public importCSV(): Promise<any> {
 
-    let url: string = 'assets/data/test.csv';
+    return new Promise((resolve, reject) => {
+      let url: string = 'assets/data/test.csv';
 
-    this.http.get(url)
-      .subscribe(
-      data => this.extractData(data),
-      err => console.log("Error with csv")
-      );
+      this.http.get(url)
+        .subscribe(
+        data => this.extractData(data, resolve),
+        err => { console.log("Error with csv"); reject(); }
+        );
+    });
+
   }
 
-  private extractData(res) {
+  private extractData(res, resolve) {
     let csvData = res['_body'] || '';
     let parsedData = papa.parse(csvData).data;
 
     parsedData.splice(0, 1);
+
+    this.csvLoaded = [];
 
     for (let j = 0; j < parsedData.length; j++) {
       this.csvLoaded.push({
@@ -306,9 +311,22 @@ export class VocabProvider {
     }
 
     this.storeDict();
+
+    resolve();
   }
 
   public addTenVocs() {
+
+    if (this.csvLoaded == null) {
+      this.importCSV().then(() => {
+        this.addTenVocsNow();
+      })
+    } else {
+      this.addTenVocsNow();
+    }
+  }
+
+  private addTenVocsNow() {
 
     let max = 10;
     if (max > this.csvLoaded.length) {
