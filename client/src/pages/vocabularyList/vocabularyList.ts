@@ -11,6 +11,7 @@ import { Card } from '../../../model/card';
 export class VocabularyListPage {
 
   dict: Card[] = [];
+  private level: number;
 
   listLowerLimit = 0;
   listUpperLimit = 10;
@@ -20,7 +21,13 @@ export class VocabularyListPage {
     public navParams: NavParams,
     public vocabProvider: VocabProvider) {
 
-    this.dict = this.navParams.get('cards');
+    this.level = this.navParams.get('level');
+
+    if (this.level != null && this.level != undefined) {
+      this.dict = this.vocabProvider.getCardDeckForLevel(this.level);
+    } else {
+      this.dict = this.vocabProvider.getCardDeckAll();
+    }
 
     this.listLowerLimit = 0;
     this.listUpperLimit = 10;
@@ -38,6 +45,13 @@ export class VocabularyListPage {
   deleteCard(card: any) {
 
     this.vocabProvider.deleteCard(card);
+    //update list
+    if (this.level != null && this.level != undefined) {
+      this.dict = this.vocabProvider.getCardDeckForLevel(this.level);
+    } else {
+      this.dict = this.vocabProvider.getCardDeckAll();
+    }
+
   }
 
   changeCard(card: any) {

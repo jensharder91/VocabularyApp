@@ -9,14 +9,13 @@ import { Http } from "@angular/http";
 export class VocabProvider {
 
   private dict: Card[] = [];
-  private levelsCounters = [0, 0, 0, 0, 0, 0];
   private csvLoaded: Card[] = [];
   private MAX_LEVEL = 5;
 
   //Storage
   private csv_loaded: string = "CSV_DATA";
   private dictionary_es: string = "dictionary_es";
-  private level_es: string = 'level_es';
+  // private level_es: string = 'level_es';
 
   constructor(private storage: Storage,
     public alertCtrl: AlertController,
@@ -27,13 +26,6 @@ export class VocabProvider {
     this.storage.get(this.dictionary_es).then((val) => {
       if (val != null) {
         this.dict = val;
-      }
-    });
-
-    // get level counter from storage
-    this.storage.get(this.level_es).then((val) => {
-      if (val != null) {
-        this.levelsCounters = val;
       }
     });
 
@@ -68,7 +60,6 @@ export class VocabProvider {
 
       if (!this.cardExists(card)) {
         this.dict.push(card);
-        this.levelsCounters[card.level]++;
         // store dict
         this.storeDict();
       } else {
@@ -86,7 +77,6 @@ export class VocabProvider {
       }
 
       this.dict.push(card);
-      this.levelsCounters[card.level]++;
       // store dict
       this.storeDict();
     }
@@ -134,23 +124,16 @@ export class VocabProvider {
   changeCard(card: any, frontSideValue, backSideValue) {
 
     let index = this.dict.indexOf(card);
-    let newCard = this.dict[index];
-    newCard.frontSide = frontSideValue;
-    newCard.backSide = backSideValue;
+    this.dict[index].frontSide = frontSideValue;
+    this.dict[index].backSide = backSideValue;
 
-    if (!this.cardExists(newCard)) {
-      this.storeDict();
-    } else {
-      this.promptCardExists(newCard);
-    }
+    this.storeDict();
 
   }
 
   deleteCard(card: any) {
 
-    this.levelsCounters[card.level]--;
-
-    let index = this.dict.indexOf(card, 0);
+    let index = this.dict.indexOf(card);
     if (index > -1) {
       this.dict.splice(index, 1);
     }
@@ -176,7 +159,6 @@ export class VocabProvider {
           handler: data => {
 
             this.dict = [];
-            this.levelsCounters = [0, 0, 0, 0, 0, 0];
             this.csvLoaded = null;
             this.storeDict();
           }
@@ -221,10 +203,6 @@ export class VocabProvider {
   }
 
   storeDict() {
-
-    // store level counter
-    this.storage.set(this.level_es, this.levelsCounters);
-
     // store dict
     this.storage.set(this.dictionary_es, this.dict);
 
@@ -237,14 +215,10 @@ export class VocabProvider {
   increaseCardLevel(card: Card) {
     //only if it is not to early to study this cards
     if (card.dueDate <= new Date().getTime()) {
-      //decrease counter of current level
-      this.levelsCounters[card.level]--;
       //increase card level
       if (card.level < this.MAX_LEVEL) {
         card.level++;
       }
-      //increase level counter of new level
-      this.levelsCounters[card.level]++;
 
       //set dueDate (for now level * 1hh)
       card.dueDate = new Date().getTime() + 1000 * 60 * 60 * 24 * card.level; //1 day
@@ -255,12 +229,8 @@ export class VocabProvider {
   }
 
   resetCardLevel(card: Card) {
-    //decrease counter of current level
-    this.levelsCounters[card.level]--;
     //reset card level
     card.level = 0;
-    //increase level counter of new level
-    this.levelsCounters[card.level]++;
 
     //dueDate is now (in level 0)
     card.dueDate = new Date().getTime();
@@ -307,7 +277,6 @@ export class VocabProvider {
         level: 0,
         dueDate: new Date().getTime()
       });
-      this.levelsCounters[0]++;
     }
 
     this.storeDict();
@@ -337,7 +306,6 @@ export class VocabProvider {
       let card: Card = this.csvLoaded[0];//get the first item
       this.csvLoaded.splice(0, 1);//delete the first items
       this.dict.push(card);//add it to dictionary
-      this.levelsCounters[0]++;
     }
 
     this.storeDict();

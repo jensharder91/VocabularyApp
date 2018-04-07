@@ -70,16 +70,11 @@ export class OverviewPage {
   }
 
   displayLevel(level) {
-
-    let curCards: Card[] = this.vocabProvider.getCardDeckForLevel(level);
-
-    if (curCards.length > 0) {
-      this.navCtrl.push(VocabularyListPage, { cards: curCards });
-    }
+    this.navCtrl.push(VocabularyListPage, { level: level });
   }
 
   displayAll() {
-    this.navCtrl.push(VocabularyListPage, { cards: this.vocabProvider.getCardDeckAll() });
+    this.navCtrl.push(VocabularyListPage);
   }
 
   createCard() {
