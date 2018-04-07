@@ -1,20 +1,33 @@
 page-home {
   .center-content {
     text-align: center;
-    padding: 70px 0;
+    padding: 10vh 0;
+    // margin: 10px 10px 20px 10px;
+    // box-shadow: 0px 8px 8px map-get($colors, primary);
+    // border: 1px solid map-get($colors, primary);
   }
 
-  ion-card-content {
+  .button_card {
     background-color: map-get($colors, primary);
     text-align: center;
     color: white;
   }
 
-  .white {
+  .button_title {
     color: white;
+    font-size: 2.4rem;
   }
 
   .primarycolor {
     color: map-get($colors, primary);
+  }
+
+  .header_card {
+    min-height: 30vh;
+  }
+
+  .button_icon {
+    color: white;
+    margin-right: 15px;
   }
 }

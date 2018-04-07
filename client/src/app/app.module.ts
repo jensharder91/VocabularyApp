@@ -12,6 +12,7 @@ import { VocabProvider } from '../providers/vocab/vocab';
 import { OverviewPage } from '../pages/overview/overview';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { HomePage } from "../pages/home/home";
+import { SettingsPage } from "../pages/settings/settings";
 import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
 
@@ -21,6 +22,7 @@ import { HttpModule } from "@angular/http";
     OverviewPage,
     StudyPhasePage,
     HomePage,
+    SettingsPage,
     VocabularyListPage
   ],
   imports: [
@@ -35,6 +37,7 @@ import { HttpModule } from "@angular/http";
     OverviewPage,
     StudyPhasePage,
     HomePage,
+    SettingsPage,
     VocabularyListPage
   ],
   providers: [

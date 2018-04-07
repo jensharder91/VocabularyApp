@@ -15,15 +15,13 @@ import { OverviewPage } from "../overview/overview";
 
 export class HomePage {
 
-  public language: String = "Spanish";
-
-
   constructor(public alertCtrl: AlertController,
     public navCtrl: NavController,
     private toastCtrl: ToastController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public vocabProvider: VocabProvider) {
+
     }
 
 
@@ -32,7 +30,7 @@ export class HomePage {
     let curCards: Card[] = this.vocabProvider.getCardsToLearn();
 
     if (curCards.length > 0) {
-      this.navCtrl.push(StudyPhasePage, {
+      this.navCtrl.setRoot(StudyPhasePage, {
         cards: curCards
       });
     } else {
@@ -77,11 +75,6 @@ export class HomePage {
     prompt.present();
   }
 
-  // showAllVocabulary() {
-  //
-  //   this.navCtrl.push(VocabularyListPage, { cards: this.vocabProvider.getCardDeckAll() });
-  // }
-
   resetAll() {
     this.vocabProvider.clearStorage();
   }
@@ -91,9 +84,7 @@ export class HomePage {
   }
 
   showProgress() {
-    this.navCtrl.push(OverviewPage, {
-      language: this.language
-    });
+    this.navCtrl.setRoot(OverviewPage);
   }
 
 }

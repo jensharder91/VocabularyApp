@@ -1,1 +1,31 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title *ngIf="vocabProvider.getUserName()">{{vocabProvider.getUserName()}}</ion-title>
+      <ion-title *ngIf="!vocabProvider.getUserName()">Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list no-lines>
+      <button menuClose ion-item (click)="openHomePage()">
+        <ion-icon class="menu_icon" name="home"></ion-icon><span class="menu_item">Home</span>
+      </button>
+      <button menuClose ion-item (click)="startLearning()">
+        <ion-icon class="menu_icon" name="play"></ion-icon><span class="menu_item">Learn</span> <ion-badge item-end>{{vocabProvider.getCardsToLearn().length}}</ion-badge>
+      </button>
+      <button menuClose ion-item (click)="showProgress()">
+        <ion-icon class="menu_icon" name="eye"></ion-icon><span class="menu_item">Show Progress</span>
+      </button>
+      <button menuClose ion-item (click)="openSettingsPage()">
+        <ion-icon class="menu_icon" name="settings"></ion-icon><span class="menu_item">Settings</span>
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

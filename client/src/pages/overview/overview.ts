@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, LoadingController, NavController } from 'ionic-angular';
 import { StudyPhasePage } from '../studyPhase/studyPhase'
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
@@ -13,17 +13,14 @@ import { Card } from '../../../model/card';
 
 export class OverviewPage {
 
-  public language: String;
+  public language: String = "Spanish";
   csvData: any[] = [];
   // headerRow: any[] = [];
 
   constructor(public alertCtrl: AlertController,
     public navCtrl: NavController,
-    public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public vocabProvider: VocabProvider) {
-
-    this.language = navParams.get('language');
   }
 
   getCardsOfLevel(level: number): Card[] {
@@ -62,11 +59,7 @@ export class OverviewPage {
   }
 
   startLevel(level) {
-    let curCards: Card[] = this.vocabProvider.getCardDeckForLevel(level);
-
-    if (curCards.length > 0) {
-      this.navCtrl.push(StudyPhasePage, { cards: curCards, practise: true });
-    }
+      this.navCtrl.setRoot(StudyPhasePage, { level: level});
   }
 
   displayLevel(level) {

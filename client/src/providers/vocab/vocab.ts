@@ -11,10 +11,13 @@ export class VocabProvider {
   private dict: Card[] = [];
   private csvLoaded: Card[] = [];
   private MAX_LEVEL = 5;
+  private userName: string;
 
   //Storage
   private csv_loaded: string = "CSV_DATA";
   private dictionary_es: string = "dictionary_es";
+  private user_name: string = "USER_NAME";
+  private asked_for_username:string = "ASKED_FOR_USER_NAME";
 
   constructor(private storage: Storage,
     public alertCtrl: AlertController,
@@ -36,6 +39,51 @@ export class VocabProvider {
         this.importCSV();
       }
     });
+
+    // get boolean flag on csv loaded status
+    this.storage.get(this.user_name).then((myUserName: string) => {
+      if (myUserName) {
+        this.userName = myUserName;
+      }else{
+        this.storage.get(this.asked_for_username).then((askedForUserName: boolean) => {
+          if(!askedForUserName){
+            this.alertCtrl.create({
+              title: 'Hello!',
+              message: "Would you mind sharing your username? :)",
+              inputs: [
+                {
+                  name: 'name',
+                  placeholder: 'Username'
+                }
+              ],
+              buttons: [
+                {
+                  text: 'Ok',
+                  handler: data => {
+                    this.saveUserName(data.name);
+                  }
+                }
+              ]
+            }).present();
+            this.storage.set(this.asked_for_username, true);
+          }
+        });
+      }
+    });
+  }
+
+  saveUserName(myUserName: string) {
+    //set userName
+    this.userName = myUserName;
+    this.storage.set(this.user_name, myUserName);
+  }
+
+  getUserName(): string {
+    if (this.userName) {
+      return this.userName;
+    } else {
+      return "";
+    }
   }
 
   createCard(frontSideValue: string, backSideValue: string) {

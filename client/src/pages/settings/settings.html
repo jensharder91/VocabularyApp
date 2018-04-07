@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="custom-card">
+      <h1>Username</h1>
+      <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
+  </div>
+
+  <ion-card class="save-button" (click)="save()">
+    <ion-card-content class="save-button-title">
+      Save
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { Card } from '../../../model/card';
+import { HomePage } from "../home/home";
 
 @Component({
   selector: 'page-studyPhase',
@@ -15,6 +16,8 @@ export class StudyPhasePage {
   backCard: String;
   currentCardDeck: Card[];
   private seeBackside: boolean = false;
+  private repeatLevel:boolean = false;
+  private level:number;
 
   input_value: String;
 
@@ -25,7 +28,15 @@ export class StudyPhasePage {
     public navParams: NavParams,
     public vocabProvider: VocabProvider) {
 
-    this.currentCardDeck = navParams.get('cards');
+    this.level = navParams.get('level');
+    if (this.level != null && this.level != undefined) {
+      this.currentCardDeck = this.vocabProvider.getCardDeckForLevel(this.level);
+      this.repeatLevel = true;
+    }
+    else {
+      this.currentCardDeck = this.vocabProvider.getCardsToLearn();
+      this.repeatLevel = false;
+    }
     this.currentCardDeck = this.shuffle(this.currentCardDeck);
     this.currentCard = this.currentCardDeck[this.counter];
     this.randCardSide();
@@ -68,7 +79,7 @@ export class StudyPhasePage {
           {
             text: 'Go Back',
             handler: data => {
-              this.navCtrl.pop();
+              this.navCtrl.setRoot(HomePage);
             }
           }
         ]

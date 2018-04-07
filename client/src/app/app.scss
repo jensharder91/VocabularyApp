@@ -27,3 +27,19 @@
 .back-button {
   color: white;
 }
+
+.bar-button-default-md{
+  color: white;
+}
+
+.alert-message{
+  color: map-get($colors, primary)!important;
+}
+
+.alert-head{
+  color: map-get($colors, primary)!important;
+}
+
+.alert-input{
+  color: map-get($colors, primary)!important;
+}

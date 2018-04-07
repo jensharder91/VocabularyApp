@@ -1,0 +1,32 @@
+settings{
+
+  h1{
+    color: map-get($colors, primary)!important;
+    font-size: 200%!important;
+  }
+
+  ion-input{
+    font-size: 150%;
+    border-bottom: 1px solid map-get($colors, primary);
+    color: map-get($colors, primary);
+  }
+
+  .save-button{
+    background-color: map-get($colors, primary)!important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+  }
+
+  .save-button-title{
+    color: white;
+  }
+
+  .custom-card{
+    padding: 10px;
+    margin: 10px 10px 20px 10px;
+    box-shadow: 3px 5px 8px map-get($colors, primary);
+    border: 1px solid map-get($colors, primary);
+  }
+}
