@@ -23,7 +23,8 @@ export class HomePage {
     private toastCtrl: ToastController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public vocabProvider: VocabProvider) { }
+    public vocabProvider: VocabProvider) {
+    }
 
 
 

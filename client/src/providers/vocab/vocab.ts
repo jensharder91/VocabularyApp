@@ -15,7 +15,6 @@ export class VocabProvider {
   //Storage
   private csv_loaded: string = "CSV_DATA";
   private dictionary_es: string = "dictionary_es";
-  // private level_es: string = 'level_es';
 
   constructor(private storage: Storage,
     public alertCtrl: AlertController,
@@ -221,7 +220,7 @@ export class VocabProvider {
       }
 
       //set dueDate (for now level * 1hh)
-      card.dueDate = new Date().getTime() + 1000 * 60 * 60 * 24 * card.level; //1 day
+      card.dueDate = new Date().getTime() + 1000 * 60 * 60 * 18 * card.level; //18h
 
       //save
       this.storeDict();
