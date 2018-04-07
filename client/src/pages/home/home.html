@@ -9,17 +9,27 @@
   <div class="center-content">
 
 
-    <h1>Welcome to your vocabulary app! </h1>
+    <h1 class="primarycolor">Welcome to your vocabulary app! </h1>
 
-    <h2>Ready to start learning?</h2>
+    <h2 class="primarycolor">Ready to start learning?</h2>
 
-    <!-- <button ion-button (click)='startStudy();'>Study vocabulary</button> <br/>-->
-    <!-- <button ion-button (click)="startStudy('Spanish')">Spanish</button> <br/>
-    <button ion-button outline (click)="addNewLanguage()">Add new language</button> -->
+    <!-- <button block ion-button (click)="startLearning()">Learn</button>
+    <button block ion-button (click)="showProgress()">Show Progress</button> -->
 
-    <button block ion-button (click)="startLearning()">Learn</button>
-    <button block ion-button (click)="showProgress()">Show Progress</button>
   </div>
+
+  <ion-card (click)="startLearning()">
+    <ion-card-content>
+      <h1 class="white">Learn</h1>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card (click)="showProgress()">
+    <ion-card-content>
+      <h1 class="white">Show Progress</h1>
+    </ion-card-content>
+  </ion-card>
+
 
   <ion-fab right bottom>
     <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>

@@ -125,7 +125,7 @@ export class StudyPhasePage {
   // Show other side of card
   flip() {
 
-    let card = document.getElementsByClassName("card")[0];
+    let card = document.getElementsByClassName("vocCard")[0];
     card.classList.toggle("flipped");
     this.seeBackside = !this.seeBackside;
   }

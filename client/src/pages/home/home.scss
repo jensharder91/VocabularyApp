@@ -1,8 +1,19 @@
 page-home {
+  .center-content {
+    text-align: center;
+    padding: 70px 0;
+  }
 
-}
+  ion-card-content {
+    background-color: map-get($colors, primary);
+    text-align: center;
+  }
 
-.center-content {
-  text-align: center;
-  padding: 70px 0;
+  .white {
+    color: white;
+  }
+
+  .primarycolor {
+    color: map-get($colors, primary);
+  }
 }
