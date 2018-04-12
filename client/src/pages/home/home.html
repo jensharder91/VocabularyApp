@@ -9,9 +9,7 @@
 
 <ion-content>
 
-  <div class="center-content">
-
-
+  <div id="titlecard" class="center-content">
 
     <h1 *ngIf="!vocabProvider.getUserName()" class="primarycolor">Welcome to your vocabulary app!</h1>
     <h1 *ngIf="vocabProvider.getUserName()" class="primarycolor">Hi {{vocabProvider.getUserName()}}!</h1>
@@ -23,28 +21,15 @@
 
   </div>
 
-  <ion-card (click)="startLearning()">
-    <ion-card-content class="button_card">
-      <ion-icon class="button_icon" name="play"></ion-icon><span class="button_title">Learn</span><br />{{vocabProvider.getCardsToLearn().length}} cards are due
-    </ion-card-content>
-  </ion-card>
+  <ion-item>
+    <ion-label>Language</ion-label>
+    <ion-select class="languageSelect" [(ngModel)]="language" interface="popover">
+      <ion-option value="Spanish">Spanish</ion-option>
+    </ion-select>
+  </ion-item>
 
-  <ion-card (click)="showProgress()">
-    <ion-card-content class="button_card">
-      <ion-icon class="button_icon" name="eye"></ion-icon><span class="button_title">Show Progress</span>
-    </ion-card-content>
-  </ion-card>
-
-
-  <ion-fab right bottom>
-    <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>
-    <ion-fab-list side="left">
-      <!-- <button ion-fab (click)='showAllVocabulary();'><ion-icon name="book"></ion-icon></button> <br/> -->
-      <button ion-fab (click)='loadCsvToDict()'><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button> <br/>
-      <button ion-fab (click)="createCard();"><ion-icon name="add"></ion-icon></button>
-      <button ion-fab color="danger" (click)='resetAll();'><ion-icon name="trash"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
-
+  <button ion-button full (click)="start()" [disabled]="language == null">
+    <ion-icon name="play"></ion-icon>&ensp;&ensp;Start
+  </button>
 
 </ion-content>
