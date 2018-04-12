@@ -15,12 +15,14 @@ import { HomePage } from "../pages/home/home";
 import { SettingsPage } from "../pages/settings/settings";
 import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
+import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
 
 @NgModule({
   declarations: [
     MyApp,
     OverviewPage,
     StudyPhasePage,
+    SelectStudyPage,
     HomePage,
     SettingsPage,
     VocabularyListPage
@@ -36,6 +38,7 @@ import { HttpModule } from "@angular/http";
     MyApp,
     OverviewPage,
     StudyPhasePage,
+    SelectStudyPage,
     HomePage,
     SettingsPage,
     VocabularyListPage
