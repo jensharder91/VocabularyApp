@@ -17,20 +17,23 @@ page-studyPhase {
     width: 95%;
     height: 50%;
     position: relative;
-    margin: auto;
-    padding: 80px 0;
-    margin-top: 30px;
+    text-align: center;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     -webkit-perspective: 800px;
     -moz-perspective: 800px;
     -o-perspective: 800px;
     perspective: 800px;
+    box-sizing: border-box;
   }
 
   .vocCard {
     width: 100%;
     height: 100%;
     position: absolute;
-    margin: auto;
+    //margin: auto;
     border-radius: 25px;
     -webkit-transition: -webkit-transform 1s;
     -moz-transition: -moz-transform 1s;
@@ -41,6 +44,7 @@ page-studyPhase {
     -o-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-transform-origin: 50% 50%;
+    box-sizing: border-box;
   }
 
   .vocCard div {
@@ -48,9 +52,8 @@ page-studyPhase {
     height: 100%;
     width: 100%;
     border-radius: 25px;
-    border: 2px solid map-get($colors, primary);
+    border: 2px solid map-get($colors, secondary);
     line-height: 260px;
-    padding: 70px 0;
     color: map-get($colors, primary);
     text-align: center;
     font-weight: bold;
@@ -60,12 +63,27 @@ page-studyPhase {
     -moz-backface-visibility: hidden;
     -o-backface-visibility: hidden;
     backface-visibility: hidden;
+    box-sizing: border-box;
+  }
+
+  .vocCard span {
+    //height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    word-break: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
   }
 
   .vocCard .front {}
 
   .vocCard .back {
-    background-color: map-get($colors, primary);
+    background-color: map-get($colors, secondary);
     color: white;
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);

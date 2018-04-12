@@ -10,19 +10,20 @@
 
 <ion-content class="card-background-page">
 
-  <img src={{getProgressImage(currentCard.level)}} alt="Level {{currentCard.level}}" height="42" width="42" class="levelIndicator">
+  <!--Move image to navbar to save screen space-->
+  <!--<img src={{getProgressImage(currentCard.level)}} alt="Level {{currentCard.level}}" height="42" width="42" class="levelIndicator">-->
 
   <!-- Vocabulary vocCard -->
   <div class="container">
-    <div class="vocCard" (click)="flip()">
-      <div class="front">
-          <h1>{{ frontCard }}</h1>
-      </div>
-      <div class="back">
-        <h1>{{ backCard }}</h1>
-      </div>
+  <div class="vocCard" (click)="flip()">
+    <div class="front">
+      <span>{{ frontCard }}</span>
+    </div>
+    <div class="back">
+      <span>{{ backCard }}</span>
     </div>
   </div>
+</div>
 
  </ion-content>
 
@@ -46,7 +47,7 @@
         </button>
       </ion-col>
       <ion-col text-right>
-        <button id="known" ion-button color="secondary" icon-start (click)="showVocab('known')" [disabled]="!seeBackside">
+        <button id="known" ion-button color="correct" icon-start (click)="showVocab('known')" [disabled]="!seeBackside">
           <ion-icon name='checkmark'></ion-icon>
           Correct
         </button>
