@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{language}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content text-center>
+
+  <h1 class="primarycolor">What would you like to study today?</h1>
+
+  <!-- Place holder: button should be placed inside of pie chart.
+  Also, pie chart should reflect overall level/progress in studies -->
+  <div class="pie"></div>
+
+  <!--<button ion-button full (click)="startLearningVoc()" [disabled]="vocabProvider.getCardsToLearn().length == 0">
+    <ion-icon name="play"></ion-icon>&ensp;&ensp;Study Vocabulary
+  </button>-->
+
+  <button ion-button full (click)="showProgressVoc()">
+    Vocabulary
+  </button>
+
+  <!-- Place holder: button should be placed inside of pie chart.
+  Also, pie chart should reflect overall level/progress in studies -->
+  <div class="pie"></div>
+
+  <!--<button ion-button full>
+    <ion-icon name="play"></ion-icon>&ensp;&ensp;Study Grammar
+  </button>-->
+
+  <button ion-button full>
+    Grammar
+  </button>
+
+  <ion-fab right bottom>
+    <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <!-- <button ion-fab (click)='showAllVocabulary();'><ion-icon name="book"></ion-icon></button> <br/> -->
+      <button ion-fab (click)='loadCsvToDict()'><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button> <br/>
+      <button ion-fab (click)="createCard();"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="danger" (click)='resetAll();'><ion-icon name="trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>
+
+
