@@ -1,4 +1,5 @@
 <div class="circleview-container">
   <img *ngIf="myImage" src="{{myImage}}" class="circleview-image">
+  <img *ngIf="!myImage" src="assets/imgs/blank.svg" class="circleview-image">
   <span class="circleview-text">{{myText}}</span>
 </div>

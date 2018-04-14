@@ -6,9 +6,9 @@ circleview-component {
     height: 100px;
     margin: 0 10px;
     position: relative;
-    border-radius: 50%;
-    border: 2px solid map-get($colors, primary);
-    box-shadow: 6px 6px 4px map-get($colors, primary);
+    // border-radius: 50%;
+    // border: 2px solid map-get($colors, primary);
+    // box-shadow: 6px 6px 4px map-get($colors, primary);
   }
 
   .circleview-text {
@@ -27,9 +27,12 @@ circleview-component {
   }
 
   .circleview-image {
-    width: inherit;
-    height: inherit;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
+    background-color: map-get($colors, primary);
+    border: 2px solid map-get($colors, primary);
+    box-shadow: 6px 6px 4px map-get($colors, primary);
   }
 }
