@@ -15,7 +15,7 @@
    version="1.1"
    id="svg902"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="progress2.svg">
+   sodipodi:docname="progress3.svg">
   <defs
      id="defs896" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-710"
+     inkscape:cx="-85.714286"
      inkscape:cy="560"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,18 +54,19 @@
      id="layer1"
      transform="translate(0,108.19)">
     <g
-       id="g819">
+       id="g1511"
+       transform="translate(562.42834,-101.29738)">
       <circle
          r="202.59525"
-         cy="94.404877"
-         cx="202.595"
+         cy="195.70226"
+         cx="-359.83334"
          id="circle4564"
          style="opacity:1;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
       <path
          inkscape:connector-curvature="0"
          id="circle4549"
-         d="M 202.59485,-108.19038 V 297.00039 A 202.59524,202.59524 0 0 0 405.19024,94.40501 202.59524,202.59524 0 0 0 202.59485,-108.19038 Z"
-         style="opacity:1;fill:#0e4375;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
+         d="M -359.83349,-6.8930016 V 398.29777 A 202.59524,202.59524 0 0 0 -157.2381,195.70239 202.59524,202.59524 0 0 0 -359.83349,-6.8930016 Z"
+         style="opacity:1;fill:#fff800;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
     </g>
   </g>
 </svg>
