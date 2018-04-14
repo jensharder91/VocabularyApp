@@ -10,26 +10,21 @@
 <ion-content>
 
   <div id="titlecard" class="center-content">
-
     <h1 *ngIf="!vocabProvider.getUserName()" class="primarycolor">Welcome to your vocabulary app!</h1>
     <h1 *ngIf="vocabProvider.getUserName()" class="primarycolor">Hi {{vocabProvider.getUserName()}}!</h1>
     <h2 class="primarycolor">Ready to start learning?</h2>
-
-
-    <!-- <button block ion-button (click)="startLearning()">Learn</button>
-    <button block ion-button (click)="showProgress()">Show Progress</button> -->
-
   </div>
 
-  <ion-item>
-    <ion-label>Language</ion-label>
-    <ion-select class="languageSelect" [(ngModel)]="language" interface="popover">
-      <ion-option value="Spanish">Spanish</ion-option>
-    </ion-select>
-  </ion-item>
+  <div class="scroll-container">
+    <ion-icon name="arrow-dropleft" class="scroll-indicator_left"></ion-icon>
+    <ion-icon name="arrow-dropright" class="scroll-indicator_right"></ion-icon>
 
-  <button ion-button full (click)="start()" [disabled]="language == null">
-    <ion-icon name="play"></ion-icon>&ensp;&ensp;Start
-  </button>
+    <ion-scroll scrollX class="scroll-bar">
+      <div class="scroll-item" *ngFor="let language of languages" (click)="start(language.key)">
+        <img [hidden]="!language.displayImage" src="assets/imgs/{{language.displayImage}}" class="language-image" width="300" height="300">
+        <span class="language-text">{{language.displayName}}</span>
+      </div>
+    </ion-scroll>
+  </div>
 
 </ion-content>

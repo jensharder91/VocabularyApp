@@ -2,41 +2,77 @@ page-home {
   .center-content {
     text-align: center;
     padding: 10vh 0;
-    // margin: 10px 10px 20px 10px;
-    // box-shadow: 0px 8px 8px map-get($colors, primary);
-    // border: 1px solid map-get($colors, primary);
-  }
-
-  .button_card {
-    background-color: map-get($colors, primary);
-    text-align: center;
-    color: white;
-  }
-
-  .button_title {
-    color: white;
-    font-size: 2.4rem;
   }
 
   .primarycolor {
     color: map-get($colors, primary);
   }
 
-  .header_card {
-    min-height: 30vh;
+  .scroll-indicator_left {
+    vertical-align: middle;
+    line-height: 150px;
+    left: 0;
+    opacity: 0.7;
+    position: absolute;
+    height: inherit;
+    font-size: 50px;
+    z-index: 5;
+    color: map-get($colors, primary);
+    text-shadow: -4px 0 10px map-get($colors, light), 0 4px 10px map-get($colors, light), 4px 0 10px map-get($colors, light), 0 -4px 10px map-get($colors, light);
   }
 
-  .button_icon {
-    color: white;
-    margin-right: 15px;
+  .scroll-indicator_right {
+    vertical-align: middle;
+    line-height: 150px;
+    right: 0;
+    opacity: 0.7;
+    position: absolute;
+    height: inherit;
+    font-size: 50px;
+    z-index: 5;
+    color: map-get($colors, primary);
+    text-shadow: -4px 0 10px map-get($colors, light), 0 4px 10px map-get($colors, light), 4px 0 10px map-get($colors, light), 0 -4px 10px map-get($colors, light);
   }
 
-  .languageSelect{
-    max-width: 100% !important;
+  .scroll-bar {
+    height: 160px;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0 20px;
   }
 
-  .radio .radio-icon {
-    display: none;
+  .scroll-item {
+    //item
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 0 10px;
+    position: relative;
+    border-radius: 50%;
+    // border: 2px solid map-get($colors, secondary);
+    box-shadow: 6px 6px 4px map-get($colors, primary);
   }
 
+  .language-text {
+    //text
+    color: map-get($colors, light);
+    text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
+    // color:  map-get($colors, light);
+    // background-color: map-get($colors, primary);
+    font-size: xx-large;
+    //center
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .language-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 }
