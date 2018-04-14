@@ -1,0 +1,38 @@
+horizontalscroll-component {
+  .scroll-container {
+    margin: 0 10px;
+  }
+
+  .scroll-indicator_left {
+    vertical-align: middle;
+    line-height: 150px;
+    left: 10px;
+    opacity: 0.4;
+    position: absolute;
+    height: inherit;
+    font-size: 50px;
+    z-index: 5;
+    color: map-get($colors, primary);
+    text-shadow: -4px 0 10px map-get($colors, light), 0 4px 10px map-get($colors, light), 4px 0 10px map-get($colors, light), 0 -4px 10px map-get($colors, light);
+  }
+
+  .scroll-indicator_right {
+    vertical-align: middle;
+    line-height: 150px;
+    right: 10px;
+    opacity: 0.4;
+    position: absolute;
+    height: inherit;
+    font-size: 50px;
+    z-index: 5;
+    color: map-get($colors, primary);
+    text-shadow: -4px 0 10px map-get($colors, light), 0 4px 10px map-get($colors, light), 4px 0 10px map-get($colors, light), 0 -4px 10px map-get($colors, light);
+  }
+
+  .scroll-bar {
+    height: 160px;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0 20px;
+  }
+}

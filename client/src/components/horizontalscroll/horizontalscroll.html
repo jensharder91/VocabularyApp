@@ -1,0 +1,8 @@
+<div class="scroll-container">
+  <ion-icon name="arrow-dropleft" class="scroll-indicator_left"></ion-icon>
+  <ion-icon name="arrow-dropright" class="scroll-indicator_right"></ion-icon>
+
+  <ion-scroll scrollX class="scroll-bar">
+    <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.key)" [text]="item.text" [image]="item.image"></circleview-component>
+  </ion-scroll>
+</div>

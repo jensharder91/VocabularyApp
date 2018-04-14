@@ -17,6 +17,10 @@ import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
 import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
 
+import {CircleviewComponent} from '../components/circleview/circleview';
+import {HorizontalscrollComponent} from '../components/horizontalscroll/horizontalscroll';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,7 +29,9 @@ import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
     SelectStudyPage,
     HomePage,
     SettingsPage,
-    VocabularyListPage
+    VocabularyListPage,
+    CircleviewComponent,
+    HorizontalscrollComponent
   ],
   imports: [
     BrowserModule,

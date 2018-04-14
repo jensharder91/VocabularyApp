@@ -1,0 +1,34 @@
+circleview-component {
+  .circleview-container {
+    //item
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 0 10px;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 6px 6px 4px map-get($colors, primary);
+  }
+
+  .circleview-text {
+    //text
+    color: map-get($colors, light);
+    text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
+    font-size: xx-large;
+    //center
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: inherit;
+  }
+
+  .circleview-image {
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
