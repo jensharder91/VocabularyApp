@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="vocapp_logo.svg"
+   inkscape:export-filename="C:\Projekte\VocabularyApp-Jens\VocabularyApp\docs\logo\vocapp-logo-3.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="433.10247"
+     inkscape:cy="702.61332"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1003"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:0.01000001;fill:#333333;stroke:#808080;stroke-width:11.21833324;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect815"
+       width="120.19643"
+       height="66.901787"
+       x="36.285713"
+       y="76.059242"
+       rx="3.9999974"
+       ry="3.96875" />
+    <rect
+       style="opacity:1;fill:#0044aa;stroke:#808080;stroke-width:0.51576746;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect817-8-9-0-4"
+       width="78.254593"
+       height="54.441971"
+       x="-10.879762"
+       y="115.90275"
+       rx="4.8147783"
+       ry="4.9327207"
+       transform="rotate(-30.187541)" />
+    <rect
+       style="opacity:1;fill:#aaccff;stroke:#808080;stroke-width:0.51576746;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect817-8-9-0"
+       width="78.254593"
+       height="54.441967"
+       x="36.367912"
+       y="97.610123"
+       rx="4.8147783"
+       ry="4.9327207"
+       transform="rotate(-10.187541)" />
+    <rect
+       style="opacity:1;fill:#f9f9f9;stroke:#808080;stroke-width:0.51576746;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect817-8-9"
+       width="78.254593"
+       height="54.441967"
+       x="56.897667"
+       y="82.60405"
+       rx="4.8147783"
+       ry="4.9327207"
+       transform="rotate(-0.18754068)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:25.89790535px;line-height:1.25;font-family:'Always In My Heart';-inkscape-font-specification:'Always In My Heart, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.13488512"
+       x="69.720413"
+       y="104.03981"
+       id="text851"
+       transform="scale(0.90730854,1.1021609)"><tspan
+         sodipodi:role="line"
+         id="tspan849"
+         x="69.720413"
+         y="104.03981"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:25.89790535px;font-family:'Always In My Heart';-inkscape-font-specification:'Always In My Heart, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0044aa;fill-opacity:1;stroke-width:0.13488512">VocApp</tspan></text>
+  </g>
+</svg>
