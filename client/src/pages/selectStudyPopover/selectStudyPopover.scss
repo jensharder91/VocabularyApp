@@ -1,0 +1,20 @@
+page-selectStudyPopover {
+  .popoverBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: map-get($colors, primary);
+    border: 2px solid map-get($colors, primary);
+  }
+
+  .no-scroll .scroll-content{
+    overflow: hidden;
+  }
+
+  .center-content {
+    text-align: center;
+    padding: 10vh 0;
+  }
+}
+

@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{cardDeckTitle}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="no-scroll center-content">
+
+  <button ion-button class="popoverBtn" (click)="showCardDeck(cardDeckId)"><ion-icon name="eye"></ion-icon></button>
+  <button ion-button class="popoverBtn" (click)="studyCardDeck(cardDeckId)"><ion-icon name="glasses"></ion-icon></button>
+  <button ion-button class="popoverBtn" (click)="showRules(cardDeckId)"><ion-icon name="bulb"></ion-icon></button>
+
+</ion-content>

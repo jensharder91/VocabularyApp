@@ -1,6 +1,9 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Vocabulary List</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vocabulary List {{cardDeckTitle}}</ion-title>
 
     <ion-buttons end clear>
       <button ion-button large (click)="addCard()">

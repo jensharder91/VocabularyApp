@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import { SelectStudyPage } from "../selectStudy/selectStudy";
@@ -17,14 +17,10 @@ export class HomePage {
     { key: "Spanish", text: "ESP", image: "assets/imgs/spain.svg" },
     { key: "Test", text: "TEST", image: "" },
     { key: "Test2", text: "TEST2", image: "assets/imgs/gb.svg" },
-    { key: "German", text: "DEU", image: "assets/imgs/german.svg" }
+    { key: "German", text: "GER", image: "assets/imgs/german.svg" }
   ];
 
-  constructor(public alertCtrl: AlertController,
-    public navCtrl: NavController,
-    private toastCtrl: ToastController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
+  constructor(public navCtrl: NavController,
     public vocabProvider: VocabProvider) {
 
   }

@@ -4,27 +4,28 @@ import { VocabProvider } from "../../providers/vocab/vocab";
 import { Card } from '../../../model/card';
 
 @Component({
-  selector: 'page-overview',
+  selector: 'page-vocabularyList',
   templateUrl: 'vocabularyList.html'
 })
 
 export class VocabularyListPage {
 
   dict: Card[] = [];
-  private level: number;
+  private cardDeckId: number;
+  private cardDeckTitle: String;
 
   listLowerLimit = 0;
   listUpperLimit = 10;
 
   constructor(public alertCtrl: AlertController,
-    public navCtrl: NavController,
     public navParams: NavParams,
     public vocabProvider: VocabProvider) {
 
-    this.level = this.navParams.get('level');
+    this.cardDeckId = this.navParams.get('cardDeckId');
+    this.cardDeckTitle = this.navParams.get('cardDeckTitle');
 
-    if (this.level != null && this.level != undefined) {
-      this.dict = this.vocabProvider.getCardDeckForLevel(this.level);
+    if (this.cardDeckId != null && this.cardDeckId != undefined) {
+      this.dict = this.vocabProvider.getCardDeckForId(this.cardDeckId);
     } else {
       this.dict = this.vocabProvider.getCardDeckAll();
     }
@@ -46,8 +47,8 @@ export class VocabularyListPage {
 
     this.vocabProvider.deleteCard(card);
     //update list
-    if (this.level != null && this.level != undefined) {
-      this.dict = this.vocabProvider.getCardDeckForLevel(this.level);
+    if (this.cardDeckId != null && this.cardDeckId != undefined) {
+      this.dict = this.vocabProvider.getCardDeckForId(this.cardDeckId);
     } else {
       this.dict = this.vocabProvider.getCardDeckAll();
     }

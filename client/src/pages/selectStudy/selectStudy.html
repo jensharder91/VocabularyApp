@@ -9,10 +9,30 @@
 
 <ion-content text-center>
 
-  <h1 class="primarycolor">What would you like to study today?</h1>
+  <div padding>
+    <ion-segment [(ngModel)]="studyType">
+      <ion-segment-button value="vocabulary">
+        Vocabulary
+      </ion-segment-button>
+      <ion-segment-button value="grammar">
+        Grammar
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-<horizontalscroll-component [items]="topics" (clickEvent)="selected($event)"></horizontalscroll-component>
-<horizontalscroll-component [items]="levels" (clickEvent)="selected($event)"></horizontalscroll-component>
+  <div [ngSwitch]="studyType">
+    <div *ngSwitchCase="'vocabulary'">
+      <button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button>
+      <horizontalscroll-component [items]="topics" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
+      <horizontalscroll-component [items]="levels" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
+    </div>
+
+    <div *ngSwitchCase="'grammar'">
+      <button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button>
+      <horizontalscroll-component [items]="topics" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
+      <horizontalscroll-component [items]="levels" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
+    </div>
+  </div>
 
   <ion-fab right bottom>
     <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>

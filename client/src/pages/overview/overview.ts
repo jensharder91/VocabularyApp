@@ -24,7 +24,7 @@ export class OverviewPage {
   }
 
   getCardsOfLevel(level: number): Card[] {
-    return this.vocabProvider.getCardDeckForLevel(level);
+    return this.vocabProvider.getCardDeckForId(level);
   }
 
   getCardsAll(): Card[] {

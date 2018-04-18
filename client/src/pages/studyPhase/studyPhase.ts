@@ -17,7 +17,7 @@ export class StudyPhasePage {
   currentCardDeck: Card[];
   private seeBackside: boolean = false;
   private repeatLevel:boolean = false;
-  private level:number;
+  private cardDeckId:number;
 
   input_value: String;
 
@@ -28,9 +28,9 @@ export class StudyPhasePage {
     public navParams: NavParams,
     public vocabProvider: VocabProvider) {
 
-    this.level = navParams.get('level');
-    if (this.level != null && this.level != undefined) {
-      this.currentCardDeck = this.vocabProvider.getCardDeckForLevel(this.level);
+    this.cardDeckId = navParams.get('cardDeckId');
+    if (this.cardDeckId != null && this.cardDeckId != undefined) {
+      this.currentCardDeck = this.vocabProvider.getCardDeckForId(this.cardDeckId);
       this.repeatLevel = true;
     }
     else {

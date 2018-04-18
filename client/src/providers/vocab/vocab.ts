@@ -222,13 +222,15 @@ export class VocabProvider {
     return this.dict;
   }
 
-  // Getting the card decks based on the level chosen by the user.
-  getCardDeckForLevel(level: number): Card[] {
+  // Getting the card decks based on the ID (level or topic) chosen by the user.
+  getCardDeckForId(id: number): Card[] {
 
     let result: Card[] = [];
 
     this.dict.forEach((card: Card) => {
-      if (card.level == level) {
+      // todo: add list of cardDeckIds to Card model
+      // (one card can belong to several decks)
+      if (card.level == id) {
         result.push(card);
       }
     });
