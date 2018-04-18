@@ -15,7 +15,7 @@ circleview-component {
     //text
     color: map-get($colors, light);
     text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
-    font-size: x-large;
+    //font-size: x-large;
     //center
     text-align: center;
     vertical-align: middle;
@@ -33,6 +33,6 @@ circleview-component {
     object-fit: cover;
     background-color: map-get($colors, primary);
     border: 2px solid map-get($colors, primary);
-    box-shadow: 6px 6px 4px map-get($colors, primary);
+    //box-shadow: 6px 6px 4px map-get($colors, primary);
   }
 }
