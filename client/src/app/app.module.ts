@@ -19,6 +19,7 @@ import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
 
 import {CircleviewComponent} from '../components/circleview/circleview';
 import {HorizontalscrollComponent} from '../components/horizontalscroll/horizontalscroll';
+import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPopover";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {HorizontalscrollComponent} from '../components/horizontalscroll/horizont
     OverviewPage,
     StudyPhasePage,
     SelectStudyPage,
+    SelectStudyPopoverPage,
     HomePage,
     SettingsPage,
     VocabularyListPage,
@@ -45,6 +47,7 @@ import {HorizontalscrollComponent} from '../components/horizontalscroll/horizont
     OverviewPage,
     StudyPhasePage,
     SelectStudyPage,
+    SelectStudyPopoverPage,
     HomePage,
     SettingsPage,
     VocabularyListPage
