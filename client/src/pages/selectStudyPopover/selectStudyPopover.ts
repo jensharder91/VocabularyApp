@@ -4,7 +4,7 @@ import {ToastController, ViewController, App, NavParams} from 'ionic-angular';
 import { Card } from "../../../model/card";
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
-import {VocabularyListPage} from "../vocabularyList/vocabularyList";
+import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 
 @Component({
   selector: 'page-selectStudyPopover',

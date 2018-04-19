@@ -22,19 +22,19 @@ export class SelectStudyPage {
 
   // topic keys are 2 digits or more
   private topics = [
-    { key: 11, text: "Animals", image: "" },
-    { key: 12, text: "Holidays", image: "" },
-    { key: 13, text: "TEST", image: "" }
+    { key: 11, text: "Animals", image: "assets/imgs/topic/topics_animals.png", amount: "-1" },
+    { key: 12, text: "Holidays", image: "assets/imgs/topic/topics_holidays.png", amount: "-1" },
+    { key: 13, text: "TEST", image: "", amount: "-1" }
   ];
 
   // level ids start with 0
   private levels = [
-    { key: 0, text: "Level 1", image: "assets/imgs/progress/progress0.svg" },
-    { key: 1, text: "Level 2", image: "assets/imgs/progress/progress1.svg" },
-    { key: 2, text: "Level 3", image: "assets/imgs/progress/progress2.svg" },
-    { key: 3, text: "Level 4", image: "assets/imgs/progress/progress3.svg" },
-    { key: 4, text: "Level 5", image: "assets/imgs/progress/progress4.svg" },
-    { key: 5, text: "Level 6", image: "assets/imgs/progress/progress5.svg" }
+    { key: 0, text: "Level 1", image: "assets/imgs/level/level_1.png", amount: "-1" },
+    { key: 1, text: "Level 2", image: "assets/imgs/level/level_2.png", amount: "-1" },
+    { key: 2, text: "Level 3", image: "assets/imgs/level/level_3.png", amount: "-1" },
+    { key: 3, text: "Level 4", image: "assets/imgs/level/level_4.png", amount: "-1" },
+    { key: 4, text: "Level 5", image: "assets/imgs/level/level_5.png", amount: "-1" },
+    { key: 5, text: "Level 6", image: "assets/imgs/level/level_6.png", amount: "-1" }
   ];
 
   constructor(public alertCtrl: AlertController,
@@ -46,6 +46,21 @@ export class SelectStudyPage {
     private popoverCtrl: PopoverController) {
 
     this.language = navParams.get('language');
+
+    this.updateDeckSize();
+  }
+
+  updateDeckSize() {
+
+    // get amount of cards for each deck
+    Object.keys(this.levels).forEach(i => {
+      let cardDeck: Card[] = this.vocabProvider.getCardDeckForId(this.levels[i].key);
+      this.levels[i].amount = cardDeck.length;
+    });
+    Object.keys(this.topics).forEach(i => {
+      let cardDeck: Card[] = this.vocabProvider.getCardDeckForId(this.topics[i].key);
+      this.topics[i].amount = cardDeck.length;
+    });
   }
 
   studyDueCards() {
@@ -65,6 +80,7 @@ export class SelectStudyPage {
   }
 
   presentPopover(event: any) {
+    // get title for popover
     let cardDeckTitle = null;
     if (event > 9) { // topic chosen
       Object.keys(this.topics).forEach(i => {
@@ -119,14 +135,36 @@ export class SelectStudyPage {
   }
 
   resetAll() {
-    this.vocabProvider.clearStorage();
+
+    let prompt = this.alertCtrl.create({
+      title: 'Deleting all cards',
+      message: "Are you sure that you want to remove all cards?",
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+            this.vocabProvider.clearStorage();
+            this.updateDeckSize();
+          }
+        }
+      ]
+    });
+
+    prompt.present();
   }
 
   public loadCsvToDict() {
     this.vocabProvider.addTenVocs();
+    this.updateDeckSize();
   }
 
-  showProgressVoc() {
+  showProgress() {
     this.navCtrl.setRoot(OverviewPage);
   }
 

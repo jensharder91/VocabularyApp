@@ -33,7 +33,8 @@ export class OverviewPage {
 
   getProgressImage(level: number): string {
     if (!level) level = 0;
-    return "assets/imgs/progress/progress" + level + ".svg";
+    return "assets/imgs/level/level_" + level + ".png";
+    // return "assets/imgs/progress/progress" + level + ".svg";
   }
 
   getNumbersOfCards(arr, value) {

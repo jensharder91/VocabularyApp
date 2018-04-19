@@ -6,12 +6,27 @@ circleview-component {
     height: 100px;
     margin: 0 10px;
     position: relative;
-    // border-radius: 50%;
+    //border-radius: 50%;
     // border: 2px solid map-get($colors, primary);
-    // box-shadow: 6px 6px 4px map-get($colors, primary);
+    //box-shadow: 6px 6px 4px map-get($colors, primary);
   }
 
   .circleview-text {
+    //text
+    color: map-get($colors, light);
+    text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
+    font-size: large;
+    //center
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: inherit;
+  }
+
+  .circleview-subtext {
     //text
     color: map-get($colors, light);
     text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
@@ -19,7 +34,7 @@ circleview-component {
     //center
     text-align: center;
     vertical-align: middle;
-    line-height: 100px;
+    line-height: 165px;
     left: 0;
     top: 0;
     position: absolute;
@@ -33,6 +48,6 @@ circleview-component {
     object-fit: cover;
     background-color: map-get($colors, primary);
     border: 2px solid map-get($colors, primary);
-    //box-shadow: 6px 6px 4px map-get($colors, primary);
+    box-shadow: 2px 2px 4px map-get($colors, primary);
   }
 }

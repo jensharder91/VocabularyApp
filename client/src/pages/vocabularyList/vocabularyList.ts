@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { Card } from '../../../model/card';
 

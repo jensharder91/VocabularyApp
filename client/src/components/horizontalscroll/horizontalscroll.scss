@@ -35,4 +35,13 @@ horizontalscroll-component {
     white-space: nowrap;
     margin: 0 20px;
   }
+
+  .btn {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: map-get($colors, primary);
+    border: 2px solid map-get($colors, primary);
+  }
 }

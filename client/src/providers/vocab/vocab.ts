@@ -191,29 +191,9 @@ export class VocabProvider {
 
   clearStorage() {
 
-    let prompt = this.alertCtrl.create({
-      title: 'Deleting all cards',
-      message: "Are you sure that you want to remove all cards?",
-      buttons: [
-        {
-          text: 'No',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Yes',
-          handler: data => {
-
-            this.dict = [];
-            this.csvLoaded = null;
-            this.storeDict();
-          }
-        }
-      ]
-    });
-
-    prompt.present();
+    this.dict = [];
+    this.csvLoaded = null;
+    this.storeDict();
   }
 
   // Getting all cards
