@@ -29,12 +29,12 @@ export class SelectStudyPage {
 
   // level ids start with 0
   private levels = [
-    { key: 0, text: "Level 1", image: "assets/imgs/level/level_1.png", amount: "-1" },
-    { key: 1, text: "Level 2", image: "assets/imgs/level/level_2.png", amount: "-1" },
-    { key: 2, text: "Level 3", image: "assets/imgs/level/level_3.png", amount: "-1" },
-    { key: 3, text: "Level 4", image: "assets/imgs/level/level_4.png", amount: "-1" },
-    { key: 4, text: "Level 5", image: "assets/imgs/level/level_5.png", amount: "-1" },
-    { key: 5, text: "Level 6", image: "assets/imgs/level/level_6.png", amount: "-1" }
+    { key: 0, text: "Level 1", image: "assets/imgs/level/level_0.png", amount: "-1" },
+    { key: 1, text: "Level 2", image: "assets/imgs/level/level_1.png", amount: "-1" },
+    { key: 2, text: "Level 3", image: "assets/imgs/level/level_2.png", amount: "-1" },
+    { key: 3, text: "Level 4", image: "assets/imgs/level/level_3.png", amount: "-1" },
+    { key: 4, text: "Level 5", image: "assets/imgs/level/level_4.png", amount: "-1" },
+    { key: 5, text: "Level 6", image: "assets/imgs/level/level_5.png", amount: "-1" }
   ];
 
   constructor(public alertCtrl: AlertController,
