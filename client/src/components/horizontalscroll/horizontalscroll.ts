@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export interface Item{
-  key:string;
-  text:string;
+  name:string;
+  shortName:string;
   image?:string;
 }
 

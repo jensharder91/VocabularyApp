@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Card } from '../../model/card';
 import { VocabProvider } from "../providers/vocab/vocab";
 
+import{StartPage} from '../pages/start/start';
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase'
@@ -16,7 +17,7 @@ import { OverviewPage } from '../pages/overview/overview'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = StartPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -35,8 +36,12 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
+      return this.vocabProvider.login();
+    }).then(()=>{
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.nav.setRoot(HomePage);
     });
   }
 

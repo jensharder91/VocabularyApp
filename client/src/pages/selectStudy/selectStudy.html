@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{language}}</ion-title>
+    <ion-title>{{language.name}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -23,7 +23,7 @@
   <div [ngSwitch]="studyType">
     <div *ngSwitchCase="'vocabulary'">
       <button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button>
-      <horizontalscroll-component [items]="topics" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
+      <horizontalscroll-component [items]="language.topics" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
       <horizontalscroll-component [items]="levels" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
     </div>
 

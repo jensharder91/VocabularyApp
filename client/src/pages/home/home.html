@@ -10,15 +10,15 @@
 <ion-content>
 
   <ion-card id="titlecard" class="center-content headercard">
-    <h1 *ngIf="!vocabProvider.getUserName()" class="headercolor">Welcome to your vocabulary app!</h1>
-    <h1 *ngIf="vocabProvider.getUserName()" class="headercolor">Hi {{vocabProvider.getUserName()}}!</h1>
+    <h1 *ngIf="!user.userName" class="headercolor">Welcome to your vocabulary app!</h1>
+    <h1 *ngIf="user.userName" class="headercolor">Hi {{user.userName}}!</h1>
     <h2 class="headercolor">Ready to start learning?</h2>
   </ion-card>
 
-  <horizontalscroll-component [items]="languages" (clickEvent)="start($event)"></horizontalscroll-component>
+  <horizontalscroll-component [items]="user.languages" (clickEvent)="start($event)"></horizontalscroll-component>
 
 
   <!-- Test -->
-  <languageselect-component [lang1_text]="languages[0].text" [lang2_text]="languages[1].text" [lang1_image]="languages[0].image" [lang2_image]="languages[1].image"></languageselect-component>
+  <!-- <languageselect-component [lang1_text]="user.languages[0].text" [lang2_text]="user.languages[1].text" [lang1_image]="user.languages[0].image" [lang2_image]="user.languages[1].image"></languageselect-component> -->
 
 </ion-content>

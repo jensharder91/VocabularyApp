@@ -30,7 +30,7 @@ export class StudyPhasePage {
 
     this.cardDeckId = navParams.get('cardDeckId');
     if (this.cardDeckId != null && this.cardDeckId != undefined) {
-      this.currentCardDeck = this.vocabProvider.getCardDeckForId(this.cardDeckId);
+      // this.currentCardDeck = this.vocabProvider.getCardDeckForId(this.cardDeckId);
       this.repeatLevel = true;
     }
     else {

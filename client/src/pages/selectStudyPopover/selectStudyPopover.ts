@@ -26,40 +26,40 @@ export class SelectStudyPopoverPage {
   }
 
   showCardDeck(cardDeckId: number) {
-    let curCards: Card[] = this.vocabProvider.getCardDeckForId(cardDeckId);
+    // let curCards: Card[] = this.vocabProvider.getCardDeckForId(cardDeckId);
 
-    if (curCards.length > 0) {
-      this.app.getRootNav().setRoot(VocabularyListPage, {
-        cardDeckId: this.cardDeckId,
-        cardDeckTitle: this.cardDeckTitle
-      });
-    } else {
-      this.toastCtrl.create({
-        message: 'No cards in vocabulary list.',
-        duration: 3000,
-        position: 'bottom'
-      }).present();
-    }
-
-    this.viewCtrl.dismiss();
+    // if (curCards.length > 0) {
+    //   this.app.getRootNav().setRoot(VocabularyListPage, {
+    //     cardDeckId: this.cardDeckId,
+    //     cardDeckTitle: this.cardDeckTitle
+    //   });
+    // } else {
+    //   this.toastCtrl.create({
+    //     message: 'No cards in vocabulary list.',
+    //     duration: 3000,
+    //     position: 'bottom'
+    //   }).present();
+    // }
+    //
+    // this.viewCtrl.dismiss();
   }
 
   studyCardDeck(cardDeckId: number) {
-    let curCards: Card[] =  this.vocabProvider.getCardDeckForId(cardDeckId);
-
-    if (curCards.length > 0) {
-      this.app.getRootNav().setRoot(StudyPhasePage, {
-        cardDeckId: this.cardDeckId
-      });
-    } else {
-      this.toastCtrl.create({
-        message: 'No cards for learning left! Try again later.',
-        duration: 3000,
-        position: 'bottom'
-      }).present();
-    }
-
-    this.viewCtrl.dismiss();
+    // let curCards: Card[] =  this.vocabProvider.getCardDeckForId(cardDeckId);
+    //
+    // if (curCards.length > 0) {
+    //   this.app.getRootNav().setRoot(StudyPhasePage, {
+    //     cardDeckId: this.cardDeckId
+    //   });
+    // } else {
+    //   this.toastCtrl.create({
+    //     message: 'No cards for learning left! Try again later.',
+    //     duration: 3000,
+    //     position: 'bottom'
+    //   }).present();
+    // }
+    //
+    // this.viewCtrl.dismiss();
   }
 
   showRules(cardDeckId: number) {
