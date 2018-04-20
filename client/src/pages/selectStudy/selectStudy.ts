@@ -79,7 +79,7 @@ export class SelectStudyPage {
     }
   }
 
-  presentPopover(event: any) {
+  presentTopicPopover(topic: any) {
     // get title for popover
     // let cardDeckTitle = null;
     // if (event > 9) { // topic chosen
@@ -96,9 +96,13 @@ export class SelectStudyPage {
     //   });
     // }
 
-    let popover = this.popoverCtrl.create(SelectStudyPopoverPage,
-      {cardDeckId: event, cardDeckTitle: event});
-    popover.present();
+    this.popoverCtrl.create(SelectStudyPopoverPage,
+      { topic: topic, mode: "topic" }).present();
+  }
+
+  presentLevelPopover(level: number) {
+    this.popoverCtrl.create(SelectStudyPopoverPage,
+      { level: level, mode: "levels" }).present();
   }
 
   // createCard() {

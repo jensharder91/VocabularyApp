@@ -8,5 +8,16 @@ page-selectStudy {
     background-color: map-get($colors, primary);
     border: 2px solid map-get($colors, primary);
   }
-}
 
+  .item-divider-md{
+    padding: 0;
+    margin: 0;
+    background-color: map-get($colors, secondary);
+    color: map-get($colors, light);
+    font-size: 150%;
+  }
+
+  .center{
+    text-align: center;
+  }
+}

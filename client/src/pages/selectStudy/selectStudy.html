@@ -22,15 +22,50 @@
 
   <div [ngSwitch]="studyType">
     <div *ngSwitchCase="'vocabulary'">
-      <button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button>
-      <horizontalscroll-component [items]="language.topics" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
-      <horizontalscroll-component [items]="levels" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
+      <ion-list no-lines>
+        <!-- <ion-item><button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button></ion-item> -->
+        <ion-item-divider>
+          Study due cards
+        </ion-item-divider>
+        <ion-item class="center">
+          <circleview-component text="Study" [subtext]="vocabProvider.getCardsToLearn().length" (click)="studyDueCards()"></circleview-component>
+        </ion-item>
+        <ion-item-divider>
+          Topics
+        </ion-item-divider>
+        <ion-item>
+          <horizontalscroll-component mode="topics" [items]="language.topics" (clickEvent)="presentTopicPopover($event)"></horizontalscroll-component>
+        </ion-item>
+        <ion-item-divider>
+          Levels
+        </ion-item-divider>
+        <ion-item>
+          <horizontalscroll-component mode="levels" (clickEvent)="presentLevelPopover($event)"></horizontalscroll-component>
+        </ion-item>
+      </ion-list>
     </div>
 
     <div *ngSwitchCase="'grammar'">
-      <button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button>
-      <horizontalscroll-component [items]="topics" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
-      <horizontalscroll-component [items]="levels" (clickEvent)="presentPopover($event)"></horizontalscroll-component>
+      <ion-list>
+        <ion-item-divider>
+          Study due cards
+        </ion-item-divider>
+        <ion-item class="center">
+          <circleview-component text="Study" (click)="studyDueCards()"></circleview-component>
+        </ion-item>
+        <ion-item-divider>
+          Topics
+        </ion-item-divider>
+        <ion-item>
+          <horizontalscroll-component mode="topics" [items]="topics" (clickEvent)="presentTopicPopover($event)"></horizontalscroll-component>
+        </ion-item>
+        <ion-item-divider>
+          Levels
+        </ion-item-divider>
+        <ion-item>
+          <horizontalscroll-component mode="levels" (clickEvent)="presentLevelPopover($event)"></horizontalscroll-component>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
 

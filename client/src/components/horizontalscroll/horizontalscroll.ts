@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { VocabProvider } from "../../providers/vocab/vocab";
 
 export interface Item{
   name:string;
@@ -14,9 +15,10 @@ export interface Item{
 export class HorizontalscrollComponent {
 
   @Input("items") myItems:Item[];
+  @Input("mode") mode:string;
   @Output() clickEvent = new EventEmitter();
 
-  constructor() {
+  constructor(public vocabProvider: VocabProvider) {
 
   }
 

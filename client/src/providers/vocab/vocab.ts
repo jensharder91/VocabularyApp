@@ -269,10 +269,10 @@ export class VocabProvider {
 
     this.currentLanguage.topics.forEach((myTopic)=>{
       if(topic == myTopic.name){
-        return myTopic.cards;
+        result = myTopic.cards;
       }
     });
-    return [];
+    return result;
   }
 
   //get all cards which we need to learn right known

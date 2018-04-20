@@ -1,6 +1,8 @@
 horizontalscroll-component {
   .scroll-container {
-    margin: 0 10px;
+    // margin: 15px 0;
+    // padding: 10px 10px;
+    // background-color: rgba(26,123,211, 0.3);
   }
 
   .scroll-indicator_left {
@@ -30,7 +32,7 @@ horizontalscroll-component {
   }
 
   .scroll-bar {
-    height: 160px;
+    height: 103px;
     text-align: center;
     white-space: nowrap;
     margin: 0 20px;

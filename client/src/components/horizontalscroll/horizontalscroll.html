@@ -3,7 +3,15 @@
   <ion-icon name="arrow-dropright" class="scroll-indicator_right"></ion-icon>
 
   <ion-scroll scrollX class="scroll-bar">
-    <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [subtext]="item.amount" [image]="item.image"></circleview-component>
+    <div *ngIf="mode=='languages'">
+      <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [image]="item.image"></circleview-component>
+    </div>
+    <div *ngIf="mode=='topics'">
+      <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [subtext]="vocabProvider.getCardDeckForTopic(item.name).length" image="assets/imgs/topic/topic.png"></circleview-component>
+    </div>
     <!-- <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.key)" [subtext]="item.amount" [image]="item.image"></circleview-component> -->
+    <div *ngIf="mode=='levels'">
+      <circleview-component *ngFor="let i of [1, 2, 3, 4, 5, 6]" (click)="itemClick(i)" [subtext]="vocabProvider.getCardDeckForLevel(i -1).length" image="assets/imgs/level/level_{{i}}.png"></circleview-component>
+    </div>
   </ion-scroll>
 </div>

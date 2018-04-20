@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ToastController, ViewController, App, NavParams} from 'ionic-angular';
+import { ToastController, ViewController, App, NavParams } from 'ionic-angular';
 
 import { Card } from "../../../model/card";
 import { VocabProvider } from "../../providers/vocab/vocab";
@@ -12,17 +12,23 @@ import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 })
 export class SelectStudyPopoverPage {
 
-  cardDeckId: number = -1;
-  cardDeckTitle: String = null;
+  private mode: string;
+  private topic: string;
+  private level: number;
 
   constructor(protected app: App,
-              private toastCtrl: ToastController,
-              private navParams: NavParams,
-              private viewCtrl: ViewController,
-              private vocabProvider: VocabProvider) {
+    private toastCtrl: ToastController,
+    private navParams: NavParams,
+    private viewCtrl: ViewController,
+    private vocabProvider: VocabProvider) {
 
-    this.cardDeckId = this.navParams.get('cardDeckId');
-    this.cardDeckTitle = this.navParams.get('cardDeckTitle');
+    this.level = this.navParams.get('level');
+    this.topic = this.navParams.get('topic');
+    this.mode = this.navParams.get('mode');
+    console.log("popup");
+    console.log(this.mode);
+    console.log(this.topic);
+    console.log(this.level);
   }
 
   showCardDeck(cardDeckId: number) {
