@@ -18,6 +18,7 @@ import { HttpModule } from "@angular/http";
 import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
 
 import {CircleviewComponent} from '../components/circleview/circleview';
+import {LanguageSelectComponent} from '../components/languageselect/languageselect';
 import {HorizontalscrollComponent} from '../components/horizontalscroll/horizontalscroll';
 import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPopover";
 
@@ -33,6 +34,7 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     SettingsPage,
     VocabularyListPage,
     CircleviewComponent,
+    LanguageSelectComponent,
     HorizontalscrollComponent
   ],
   imports: [

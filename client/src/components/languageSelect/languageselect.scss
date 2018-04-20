@@ -1,0 +1,61 @@
+languageselect-component {
+  .circleview-container {
+    //item
+    display: inline-block;
+    width: 105px;
+    height: 105px;
+    margin: 0 10px;
+    position: relative;
+    background-color: map-get($colors, primary);
+    border: 2px solid map-get($colors, primary);
+    border-radius: 50%;
+    // border: 2px solid map-get($colors, primary);
+    //box-shadow: 6px 6px 4px map-get($colors, primary);
+  }
+
+  .circleview-text-1 {
+    //text
+    color: map-get($colors, light);
+    text-shadow: -4px 0 5px map-get($colors, primary), 0 4px 5px map-get($colors, primary), 4px 0 5px map-get($colors, primary), 0 -4px 5px map-get($colors, primary);
+    font-size: large;
+    font-weight: bold;
+    left: 20px;
+    top: 20px;
+    position: absolute;
+  }
+
+  .circleview-text-2 {
+    //text
+    color: map-get($colors, light);
+    text-shadow: -4px 0 5px map-get($colors, primary), 0 4px 5px map-get($colors, primary), 4px 0 5px map-get($colors, primary), 0 -4px 5px map-get($colors, primary);
+    font-size: large;
+    font-weight: bold;
+    right: 20px;
+    bottom: 20px;
+    position: absolute;
+  }
+
+  .circleview-image-1 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    // box-shadow: 2px 2px 4px map-get($colors, primary);
+    left: 0;
+    top: 0;
+    position: absolute;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  }
+
+  .circleview-image-2 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    // box-shadow: 2px 2px 4px map-get($colors, primary);
+    left: 0;
+    top: 0;
+    position: absolute;
+    clip-path: polygon(100% 100%, 100% 0%, 0% 100%);
+  }
+}
