@@ -11,14 +11,14 @@
 <ion-content padding class="no-scroll center-content">
 
   <div *ngIf="mode=='topic'">
-    <button ion-button class="popoverBtn" (click)="showCardDeck(cardDeckId)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="eye"></ion-icon></button>
-    <button ion-button class="popoverBtn" (click)="studyCardDeck(cardDeckId)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="play"></ion-icon></button>
-    <button ion-button class="popoverBtn" (click)="showRules(cardDeckId)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="bulb"></ion-icon></button>
+    <button ion-button class="popoverBtn" (click)="showTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="eye"></ion-icon></button>
+    <button ion-button class="popoverBtn" (click)="studyTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="play"></ion-icon></button>
+    <!-- <button ion-button class="popoverBtn" (click)="showRules(cardDeckId)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="bulb"></ion-icon></button> -->
   </div>
   <div *ngIf="mode=='levels'">
-    <button ion-button class="popoverBtn" (click)="showCardDeck(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"><ion-icon name="eye"></ion-icon></button>
-    <button ion-button class="popoverBtn" (click)="studyCardDeck(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"><ion-icon name="play"></ion-icon></button>
-    <button ion-button class="popoverBtn" (click)="showRules(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"><ion-icon name="bulb"></ion-icon></button>
+    <button ion-button class="popoverBtn" (click)="showLevelCardDeck(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"><ion-icon name="eye"></ion-icon></button>
+    <button ion-button class="popoverBtn" (click)="studyLevelCardDeck(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"><ion-icon name="play"></ion-icon></button>
+    <!-- <button ion-button class="popoverBtn" (click)="showRules(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"><ion-icon name="bulb"></ion-icon></button> -->
   </div>
 
 </ion-content>

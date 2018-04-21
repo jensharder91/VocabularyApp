@@ -47,7 +47,7 @@ export class VocabProvider {
 
     // get boolean flag on csv loaded status
     this.storage.get(this.csv_loaded).then((val: Card[]) => {
-      if (val != null) {
+      if (val != null && val.length > 0) {
         this.csvLoaded = val;
       } else {
         this.importCSV();

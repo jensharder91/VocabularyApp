@@ -16,8 +16,11 @@ export class StudyPhasePage {
   backCard: String;
   currentCardDeck: Card[];
   private seeBackside: boolean = false;
-  private repeatLevel:boolean = false;
-  private cardDeckId:number;
+  private repeatLevel: boolean = false;
+
+  private mode: string;
+  private topic: string;
+  private level: number;
 
   input_value: String;
 
@@ -28,15 +31,22 @@ export class StudyPhasePage {
     public navParams: NavParams,
     public vocabProvider: VocabProvider) {
 
-    this.cardDeckId = navParams.get('cardDeckId');
-    if (this.cardDeckId != null && this.cardDeckId != undefined) {
-      // this.currentCardDeck = this.vocabProvider.getCardDeckForId(this.cardDeckId);
+    this.level = this.navParams.get('level');
+    this.topic = this.navParams.get('topic');
+    this.mode = this.navParams.get('mode');
+
+    if (this.mode == "topic") {
+      this.currentCardDeck = this.vocabProvider.getCardDeckForTopic(this.topic);
       this.repeatLevel = true;
+    } else if (this.mode == "levels") {
+      this.currentCardDeck = this.vocabProvider.getCardDeckForLevel(this.level - 1);
+      this.repeatLevel = true;
+    } else {
+      this.currentCardDeck = this.vocabProvider.getCardDeckAll();
     }
-    else {
-      this.currentCardDeck = this.vocabProvider.getCardsToLearn();
-      this.repeatLevel = false;
-    }
+
+
+    this.counter = 0;
     this.currentCardDeck = this.shuffle(this.currentCardDeck);
     this.currentCard = this.currentCardDeck[this.counter];
     this.randCardSide();
@@ -44,7 +54,7 @@ export class StudyPhasePage {
 
   getProgressImage(level: number): string {
     if (!level) level = 0;
-    return "assets/imgs/progress/progress" + level + ".svg";
+    return "assets/imgs/level/level_" + level + ".png";
   }
 
   showVocab(id) {

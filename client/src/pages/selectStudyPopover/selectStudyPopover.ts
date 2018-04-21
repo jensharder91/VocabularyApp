@@ -25,47 +25,64 @@ export class SelectStudyPopoverPage {
     this.level = this.navParams.get('level');
     this.topic = this.navParams.get('topic');
     this.mode = this.navParams.get('mode');
-    console.log("popup");
-    console.log(this.mode);
-    console.log(this.topic);
-    console.log(this.level);
   }
 
-  showCardDeck(cardDeckId: number) {
-    // let curCards: Card[] = this.vocabProvider.getCardDeckForId(cardDeckId);
-
-    // if (curCards.length > 0) {
-    //   this.app.getRootNav().setRoot(VocabularyListPage, {
-    //     cardDeckId: this.cardDeckId,
-    //     cardDeckTitle: this.cardDeckTitle
-    //   });
-    // } else {
-    //   this.toastCtrl.create({
-    //     message: 'No cards in vocabulary list.',
-    //     duration: 3000,
-    //     position: 'bottom'
-    //   }).present();
-    // }
-    //
-    // this.viewCtrl.dismiss();
+  showTopicCardDeck(topic: string) {
+    let curCards: Card[] = this.vocabProvider.getCardDeckForTopic(topic);
+    this.showCards(curCards);
   }
 
-  studyCardDeck(cardDeckId: number) {
-    // let curCards: Card[] =  this.vocabProvider.getCardDeckForId(cardDeckId);
-    //
-    // if (curCards.length > 0) {
-    //   this.app.getRootNav().setRoot(StudyPhasePage, {
-    //     cardDeckId: this.cardDeckId
-    //   });
-    // } else {
-    //   this.toastCtrl.create({
-    //     message: 'No cards for learning left! Try again later.',
-    //     duration: 3000,
-    //     position: 'bottom'
-    //   }).present();
-    // }
-    //
-    // this.viewCtrl.dismiss();
+  showLevelCardDeck(level: number) {
+    let curCards: Card[] = this.vocabProvider.getCardDeckForLevel(level - 1);
+    this.showCards(curCards);
+  }
+
+  showCards(curCards: Card[]) {
+    this.viewCtrl.dismiss().then(() => {
+      if (curCards.length > 0) {
+        this.app.getRootNav().setRoot(VocabularyListPage, {
+          mode: this.mode,
+          topic: this.topic,
+          level: this.level
+        });
+      } else {
+        this.toastCtrl.create({
+          message: 'No cards in vocabulary list.',
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+      }
+
+    });
+  }
+
+  studyTopicCardDeck(topic: string) {
+    let curCards: Card[] = this.vocabProvider.getCardDeckForTopic(topic);
+    this.studyCards(curCards);
+  }
+
+  studyLevelCardDeck(level: number) {
+    let curCards: Card[] = this.vocabProvider.getCardDeckForLevel(level - 1);
+    this.studyCards(curCards);
+  }
+
+  studyCards(curCards: Card[]) {
+    this.viewCtrl.dismiss().then(() => {
+      if (curCards.length > 0) {
+        this.app.getRootNav().setRoot(StudyPhasePage, {
+          mode: this.mode,
+          topic: this.topic,
+          level: this.level
+        });
+      } else {
+        this.toastCtrl.create({
+          message: 'No cards for learning left! Try again later.',
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+      }
+
+    });
   }
 
   showRules(cardDeckId: number) {

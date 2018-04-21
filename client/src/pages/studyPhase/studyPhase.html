@@ -4,7 +4,14 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title *ngIf="repeatLevel">Repeating Level {{level + 1}}</ion-title>
-    <ion-title *ngIf="!repeatLevel">Learning</ion-title>
+    <ion-title *ngIf="!repeatLevel">
+      Learning
+    </ion-title>
+    <ion-buttons end>
+      <!-- <button ion-button clear> -->
+        <img src={{getProgressImage(currentCard.level+1)}} alt="Level {{currentCard.level +1}}" height="40" width="40" class="levelIndicator">
+      <!-- </button> -->
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

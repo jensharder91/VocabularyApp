@@ -11,8 +11,11 @@ import { Card } from '../../../model/card';
 export class VocabularyListPage {
 
   dict: Card[] = [];
-  private cardDeckId: number;
   private cardDeckTitle: String;
+
+  private mode: string;
+  private topic: string;
+  private level: number;
 
   listLowerLimit = 0;
   listUpperLimit = 10;
@@ -21,14 +24,20 @@ export class VocabularyListPage {
     public navParams: NavParams,
     public vocabProvider: VocabProvider) {
 
-    this.cardDeckId = this.navParams.get('cardDeckId');
-    this.cardDeckTitle = this.navParams.get('cardDeckTitle');
+    this.level = this.navParams.get('level');
+    this.topic = this.navParams.get('topic');
+    this.mode = this.navParams.get('mode');
 
-    // if (this.cardDeckId != null && this.cardDeckId != undefined) {
-    //   this.dict = this.vocabProvider.getCardDeckForId(this.cardDeckId);
-    // } else {
-    //   this.dict = this.vocabProvider.getCardDeckAll();
-    // }
+    if (this.mode == "topic") {
+      this.dict = this.vocabProvider.getCardDeckForTopic(this.topic);
+      this.cardDeckTitle = this.topic;
+    } else if (this.mode == "levels") {
+      this.dict = this.vocabProvider.getCardDeckForLevel(this.level - 1);
+      this.cardDeckTitle = "" + this.level;
+    } else {
+      this.dict = this.vocabProvider.getCardDeckAll();
+      this.cardDeckTitle = "All Cards";
+    }
 
     this.listLowerLimit = 0;
     this.listUpperLimit = 10;
@@ -40,7 +49,7 @@ export class VocabularyListPage {
 
   getProgressImage(level: number): string {
     if (!level) level = 0;
-    return "assets/imgs/progress/progress" + level + ".svg";
+    return "assets/imgs/level/level_" + (level + 1) + ".png";
   }
 
   deleteCard(card: any) {
