@@ -11,17 +11,24 @@
   <ion-content>
     <ion-list no-lines>
       <button menuClose ion-item (click)="openHomePage()">
-        <ion-icon class="menu_icon" name="home"></ion-icon><span class="menu_item">Home</span>
+        <ion-icon class="menu_main_icon" name="home"></ion-icon><span class="menu_main_item">Home</span>
       </button>
-      <button menuClose ion-item (click)="startLearning()">
-        <!-- <ion-icon class="menu_icon" name="play"></ion-icon><span class="menu_item">Study Due Cards</span> <ion-badge item-end>{{vocabProvider.getCardsToLearn().length}}</ion-badge> -->
-        ...
+      <div *ngIf="vocabProvider.getCurrentLanguage().id">
+        <button menuClose ion-item (click)="openSelectStudyPage()">
+        <ion-icon class="menu_main_icon" name="book"></ion-icon><span class="menu_main_item">{{vocabProvider.getCurrentLanguage().shortName1}} / {{vocabProvider.getCurrentLanguage().shortName2}}</span>
       </button>
-      <button menuClose ion-item (click)="showProgress()">
-        <ion-icon class="menu_icon" name="stats"></ion-icon><span class="menu_item">Show Progress</span>
+        <button menuClose ion-item (click)="startLearning()">
+        <ion-icon class="menu_icon" name="play"></ion-icon><span class="menu_item">Study Due Cards</span> <ion-badge item-end>{{vocabProvider.getCardsToLearn().length}}</ion-badge>
       </button>
+      <button menuClose ion-item (click)="showAllCards()">
+      <ion-icon class="menu_icon" name="eye"></ion-icon><span class="menu_item">Show all cards</span>
+    </button>
+    <!-- <button menuClose ion-item (click)="showProgress()">
+    <ion-icon class="menu_icon" name="stats"></ion-icon><span class="menu_item">Show Progress</span>
+  </button> -->
+      </div>
       <button menuClose ion-item (click)="openSettingsPage()">
-        <ion-icon class="menu_icon" name="settings"></ion-icon><span class="menu_item">Settings</span>
+        <ion-icon class="menu_main_icon" name="settings"></ion-icon><span class="menu_main_item">Settings</span>
       </button>
     </ion-list>
   </ion-content>

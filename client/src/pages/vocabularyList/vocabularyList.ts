@@ -64,38 +64,38 @@ export class VocabularyListPage {
 
   }
 
-  changeCard(card: any) {
+  changeCard(card: Card) {
 
-    // let prompt = this.alertCtrl.create({
-    //   title: 'Change card',
-    //   message: "Enter your modifications!",
-    //   inputs: [
-    //     {
-    //       name: 'front',
-    //       value: card.frontSide
-    //     },
-    //     {
-    //       name: 'back',
-    //       value: card.backSide
-    //     },
-    //   ],
-    //   buttons: [
-    //     {
-    //       text: 'Cancel',
-    //       handler: data => {
-    //         console.log('Cancel clicked');
-    //       }
-    //     },
-    //     {
-    //       text: 'Save',
-    //       handler: data => {
-    //         this.vocabProvider.changeCard(card, data.front, data.back);
-    //       }
-    //     }
-    //   ]
-    // });
-    //
-    // prompt.present();
+    let prompt = this.alertCtrl.create({
+      title: 'Change card',
+      message: "Enter your modifications!",
+      inputs: [
+        {
+          name: 'front',
+          value: card.frontSide
+        },
+        {
+          name: 'back',
+          value: card.backSide
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.vocabProvider.changeCard(card, data.front, data.back);
+          }
+        }
+      ]
+    });
+
+    prompt.present();
   }
 
   addCard() {

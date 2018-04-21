@@ -1,15 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform,ToastController } from 'ionic-angular';
+import { Nav, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Card } from '../../model/card';
 import { VocabProvider } from "../providers/vocab/vocab";
 
-import{StartPage} from '../pages/start/start';
+import { StartPage } from '../pages/start/start';
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase'
 import { OverviewPage } from '../pages/overview/overview'
+import { SelectStudyPage } from '../pages/selectStudy/selectStudy';
+import { VocabularyListPage } from '../pages/vocabularyList/vocabularyList';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +21,7 @@ export class MyApp {
 
   rootPage: any = StartPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public vocabProvider: VocabProvider, private toastCtrl: ToastController) {
     this.initializeApp();
@@ -38,15 +40,23 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
       return this.vocabProvider.login();
-    }).then(()=>{
+    }).then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      console.log("logged in");
       this.nav.setRoot(HomePage);
+    }).catch(() => {
+      //error -> not logged in?
+      console.log("error -> not logged in?");
     });
   }
 
   openHomePage() {
     this.nav.setRoot(HomePage);
+  }
+
+  openSelectStudyPage() {
+    this.nav.setRoot(SelectStudyPage);
   }
 
   openSettingsPage() {
@@ -55,6 +65,10 @@ export class MyApp {
 
   showProgress() {
     this.nav.setRoot(OverviewPage);
+  }
+
+  showAllCards() {
+    this.nav.setRoot(VocabularyListPage);
   }
 
   startLearning() {

@@ -2,7 +2,19 @@
   color: map-get($colors, primary);
 }
 
+.menu_main_item{
+  color: map-get($colors, primary);
+  font-size: 150%;
+}
+
+.menu_main_icon{
+  margin-right: 15px;
+  font-size: 150%;
+  color: map-get($colors, primary);
+}
+
 .menu_icon{
   margin-right: 15px;
+  margin-left: 25px;
   color: map-get($colors, primary);
 }

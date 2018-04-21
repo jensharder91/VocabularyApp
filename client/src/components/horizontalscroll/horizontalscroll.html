@@ -4,7 +4,8 @@
 
   <ion-scroll scrollX class="scroll-bar">
     <div *ngIf="mode=='languages'">
-      <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [image]="item.image"></circleview-component>
+      <!-- <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [image]="item.image"></circleview-component> -->
+      <languageselect-component *ngFor="let item of myItems" (click)="itemClick(item.id)" [lang1_text]="item.shortName1" [lang2_text]="item.shortName2" [lang1_image]="item.image1" [lang2_image]="item.image2"></languageselect-component>
     </div>
     <div *ngIf="mode=='topics'">
       <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [subtext]="vocabProvider.getCardDeckForTopic(item.name).length" image="assets/imgs/topic/topic.png"></circleview-component>

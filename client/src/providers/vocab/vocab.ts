@@ -5,28 +5,32 @@ import { Card } from '../../../model/card';
 import * as papa from 'papaparse';
 import { Http } from "@angular/http";
 
-export interface User{
-  userName:string;
+export interface User {
+  userName: string;
   languages: Language[];
 }
 
-export interface Language{
-  name:string;
-  shortName:string;
-  image:string;
+export interface Language {
+  id: number;
+  name1: string;
+  shortName1: string;
+  image1: string;
+  name2: string;
+  shortName2: string;
+  image2: string;
   topics: Topic[];
 }
 
-export interface Topic{
-  name:string;
+export interface Topic {
+  name: string;
   cards: Card[];
 }
 
 @Injectable()
 export class VocabProvider {
 
-  private user:User;
-  private currentLanguage:Language;
+  private user: User;
+  private currentLanguage: Language;
 
   // private dict: Card[] = [];
   private csvLoaded: Card[] = [];
@@ -38,7 +42,7 @@ export class VocabProvider {
   private dictionary_es: string = "dictionary_es";
   private user_name: string = "USER_NAME";
 
-  private APP_USER:string ="APP_USER";
+  private APP_USER: string = "APP_USER";
 
   constructor(private storage: Storage,
     public alertCtrl: AlertController,
@@ -55,48 +59,47 @@ export class VocabProvider {
     });
   }
 
-  login():Promise<any>{
-    return new Promise((resolve, reject)=>{
+  login(): Promise<any> {
+    return new Promise((resolve, reject) => {
       this.storage.get(this.APP_USER).then((myUser: User) => {
         if (myUser != null) {
           this.user = myUser;
           resolve();
         } else {
-          this.mockUser().then(()=>{
+          this.mockUser().then(() => {
             return this.saveUser();
           });
         }
-      }).catch(()=>{
+      }).catch(() => {
         reject();
       });
     });
   }
 
-  mockUser():Promise<any>{
-    return new Promise((resolve, reject)=>{
-    this.storage.get(this.user_name).then((name:string)=>{
-      let myUserName = "No name";
-      if(name){
-        myUserName = name;
-      }
-      this.storage.get(this.dictionary_es).then((val) => {
-        let topic:Topic = <Topic>{name: "Vocabulary", cards: []};
-        if (val != null) {
-          topic.cards = val;
+  mockUser(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.storage.get(this.user_name).then((name: string) => {
+        let myUserName = "No name";
+        if (name) {
+          myUserName = name;
         }
-        let lamguage: Language = <Language>{name:"Spanish", shortName:"ESP", topics: [topic], image: "assets/imgs/spain.svg"};
-        this.user = <User>{userName: myUserName, languages: [lamguage]};
-        resolve();
-      });
-    }).catch((err)=>{console.log("mockUser failed"); reject();});
-    })
-
+        this.storage.get(this.dictionary_es).then((val) => {
+          let topic: Topic = <Topic>{ name: "Vocabulary", cards: [] };
+          if (val != null) {
+            topic.cards = val;
+          }
+          let lamguage: Language = <Language>{ id: 1, name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/gb.svg", topics: [topic] };
+          this.user = <User>{ userName: myUserName, languages: [lamguage] };
+          resolve();
+        });
+      }).catch((err) => { console.log("mockUser failed"); reject(); });
+    });
   }
 
   saveUserName(myUserName: string) {
     //set userName
     this.user.userName = myUserName;
-    this.storage.set(this.user_name, myUserName);
+    this.saveUser();
   }
 
   getUserName(): string {
@@ -107,20 +110,25 @@ export class VocabProvider {
     }
   }
 
-  getUser():User{
+  getUser(): User {
     return this.user;
   }
 
-  setCurrentLanguage(name:string){
-    this.user.languages.forEach((myLanguage)=>{
-      if(myLanguage.name == name){
+  setCurrentLanguage(id: number) {
+    this.user.languages.forEach((myLanguage) => {
+      if (myLanguage.id == id) {
         this.currentLanguage = myLanguage;
       }
     });
   }
 
-  getCurrentLanguage():Language{
-    return this.currentLanguage;
+  getCurrentLanguage(): Language {
+    if (this.currentLanguage) {
+      return this.currentLanguage;
+    }
+    else {
+      return <Language>{};
+    }
   }
 
   // createCard(frontSideValue: string, backSideValue: string) {
@@ -204,16 +212,19 @@ export class VocabProvider {
   //
   //   prompt.present();
   // }
-  //
-  // changeCard(card: any, frontSideValue, backSideValue) {
-  //
-  //   let index = this.dict.indexOf(card);
-  //   this.dict[index].frontSide = frontSideValue;
-  //   this.dict[index].backSide = backSideValue;
-  //
-  //   this.storeDict();
-  //
-  // }
+
+  changeCard(card: Card, frontSideValue: string, backSideValue: string) {
+
+    // let index = this.dict.indexOf(card);
+    // this.dict[index].frontSide = frontSideValue;
+    // this.dict[index].backSide = backSideValue;
+
+    card.frontSide = frontSideValue;
+    card.backSide = backSideValue;
+
+    this.saveUser();
+
+  }
 
   // deleteCard(card: any) {
   //
@@ -238,8 +249,8 @@ export class VocabProvider {
 
     let allCards: Card[] = [];
 
-    this.currentLanguage.topics.forEach((topic)=>{
-      topic.cards.forEach((card)=>{
+    this.currentLanguage.topics.forEach((topic) => {
+      topic.cards.forEach((card) => {
         allCards.push(card);
       });
     });
@@ -252,9 +263,9 @@ export class VocabProvider {
 
     let result: Card[] = [];
 
-    this.currentLanguage.topics.forEach((topic)=>{
-      topic.cards.forEach((card)=>{
-        if(level == card.level){
+    this.currentLanguage.topics.forEach((topic) => {
+      topic.cards.forEach((card) => {
+        if (level == card.level) {
           result.push(card);
         }
       });
@@ -267,8 +278,8 @@ export class VocabProvider {
 
     let result: Card[] = [];
 
-    this.currentLanguage.topics.forEach((myTopic)=>{
-      if(topic == myTopic.name){
+    this.currentLanguage.topics.forEach((myTopic) => {
+      if (topic == myTopic.name) {
         result = myTopic.cards;
       }
     });
@@ -279,19 +290,20 @@ export class VocabProvider {
   getCardsToLearn() {
     let result: Card[] = [];
 
-    this.currentLanguage.topics.forEach((topic)=>{
-      topic.cards.forEach((card)=>{
-        if (card.dueDate <= new Date().getTime()) {
-          result.push(card);
-        }
+    if (this.currentLanguage) {
+      this.currentLanguage.topics.forEach((topic) => {
+        topic.cards.forEach((card) => {
+          if (card.dueDate <= new Date().getTime()) {
+            result.push(card);
+          }
+        });
       });
-    });
-
+    }
     return result;
   }
 
-  saveUser():Promise<any> {
-    return new Promise((resolve, reject)=>{
+  saveUser(): Promise<any> {
+    return new Promise((resolve, reject) => {
       let promises = [];
 
       // store dict
@@ -349,8 +361,8 @@ export class VocabProvider {
 
       this.http.get(url)
         .subscribe(
-        data => this.extractData(data, resolve),
-        err => { console.log("Error with csv"); reject(); }
+          data => this.extractData(data, resolve),
+          err => { console.log("Error with csv"); reject(); }
         );
     });
 
@@ -396,10 +408,10 @@ export class VocabProvider {
       max = this.csvLoaded.length;
     }
 
-    let currentTopic:Topic = {name: "Mock", cards: []};
+    let currentTopic: Topic = { name: "Mock", cards: [] };
 
-    this.currentLanguage.topics.forEach((myTopic)=>{
-      if(myTopic.name == "Vocabulary"){
+    this.currentLanguage.topics.forEach((myTopic) => {
+      if (myTopic.name == "Vocabulary") {
         currentTopic = myTopic;
       }
     });

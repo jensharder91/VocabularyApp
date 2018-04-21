@@ -3,13 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{language.name}}</ion-title>
+    <ion-title>{{language.shortName1}} / {{language.shortName2}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content text-center>
 
-  <div padding>
+  <!-- For grammar user later on -->
+  <!-- <div padding>
     <ion-segment [(ngModel)]="studyType">
       <ion-segment-button value="vocabulary">
         Vocabulary
@@ -18,7 +19,7 @@
         Grammar
       </ion-segment-button>
     </ion-segment>
-  </div>
+  </div> -->
 
   <div [ngSwitch]="studyType">
     <div *ngSwitchCase="'vocabulary'">

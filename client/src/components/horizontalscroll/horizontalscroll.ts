@@ -22,7 +22,7 @@ export class HorizontalscrollComponent {
 
   }
 
-  itemClick(key:string){
+  itemClick(key:any){
     this.clickEvent.emit(key);
   }
 

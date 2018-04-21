@@ -1,6 +1,8 @@
 languageselect-component {
   .circleview-container {
-    //item
+    // //item
+    // width: 105px;
+    // height: 105px;
     display: inline-block;
     width: 105px;
     height: 105px;
@@ -9,8 +11,7 @@ languageselect-component {
     background-color: map-get($colors, primary);
     border: 2px solid map-get($colors, primary);
     border-radius: 50%;
-    // border: 2px solid map-get($colors, primary);
-    //box-shadow: 6px 6px 4px map-get($colors, primary);
+    // //box-shadow: 6px 6px 4px map-get($colors, primary);
   }
 
   .circleview-text-1 {

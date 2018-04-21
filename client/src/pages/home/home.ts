@@ -31,8 +31,8 @@ export class HomePage {
 
   protected language: String;
 
-  start(name: string) {
-    this.vocabProvider.setCurrentLanguage(name);
+  start(id: number) {
+    this.vocabProvider.setCurrentLanguage(id);
     this.navCtrl.setRoot(SelectStudyPage);
   }
 }
