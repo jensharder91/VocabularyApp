@@ -14,7 +14,7 @@
    viewBox="0 0 405.19 405.19"
    version="1.1"
    id="svg902"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="progress2.svg">
   <defs
      id="defs896" />
@@ -26,15 +26,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-710"
+     inkscape:cx="221.42499"
      inkscape:cy="560"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g819"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-height="1003"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata899">
@@ -65,7 +65,7 @@
          inkscape:connector-curvature="0"
          id="circle4549"
          d="M 202.59485,-108.19038 V 297.00039 A 202.59524,202.59524 0 0 0 405.19024,94.40501 202.59524,202.59524 0 0 0 202.59485,-108.19038 Z"
-         style="opacity:1;fill:#0e4375;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
+         style="opacity:1;fill:#0044aa;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
     </g>
   </g>
 </svg>

@@ -13,11 +13,11 @@ import { SelectStudyPage } from "../selectStudy/selectStudy";
 export class HomePage {
 
   private languages = [
-    { key: "English", text: "ENG", image: "assets/imgs/gb.svg" },
-    { key: "Spanish", text: "ESP", image: "assets/imgs/spain.svg" },
+    { key: "English", text: "ENG", image: "assets/imgs/home/gb.svg" },
+    { key: "Spanish", text: "ESP", image: "assets/imgs/home/spain.svg" },
     { key: "Test", text: "TEST", image: "" },
-    { key: "Test2", text: "TEST2", image: "assets/imgs/gb.svg" },
-    { key: "German", text: "GER", image: "assets/imgs/german.svg" }
+    { key: "Test2", text: "TEST2", image: "assets/imgs/home/gb.svg" },
+    { key: "German", text: "GER", image: "assets/imgs/home/german.svg" }
   ];
 
   constructor(public navCtrl: NavController,

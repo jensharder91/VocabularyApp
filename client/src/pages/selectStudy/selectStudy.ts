@@ -22,19 +22,19 @@ export class SelectStudyPage {
 
   // topic keys are 2 digits or more
   private topics = [
-    { key: 11, text: "", image: "assets/imgs/topic/topics_animals.png", amount: "-1" },
-    { key: 12, text: "", image: "assets/imgs/topic/topics_holidays.png", amount: "-1" },
-    { key: 13, text: "", image: "", amount: "-1" }
+    { key: 11, text: "Holidays", image: "assets/imgs/selectStudy/topic.png", amount: "-1" },
+    { key: 12, text: "Animals", image: "assets/imgs/selectStudy/topic.png", amount: "-1" },
+    { key: 13, text: "Test", image: "assets/imgs/selectStudy/topic.png", amount: "-1" }
   ];
 
   // level ids start with 0
   private levels = [
-    { key: 0, text: "", image: "assets/imgs/level/level_0.png", amount: "-1" },
-    { key: 1, text: "", image: "assets/imgs/level/level_1.png", amount: "-1" },
-    { key: 2, text: "", image: "assets/imgs/level/level_2.png", amount: "-1" },
-    { key: 3, text: "", image: "assets/imgs/level/level_3.png", amount: "-1" },
-    { key: 4, text: "", image: "assets/imgs/level/level_4.png", amount: "-1" },
-    { key: 5, text: "", image: "assets/imgs/level/level_5.png", amount: "-1" }
+    { key: 0, text: "1", image: "assets/imgs/selectStudy/level.png", amount: "-1" },
+    { key: 1, text: "2", image: "assets/imgs/selectStudy/level.png", amount: "-1" },
+    { key: 2, text: "3", image: "assets/imgs/selectStudy/level.png", amount: "-1" },
+    { key: 3, text: "4", image: "assets/imgs/selectStudy/level.png", amount: "-1" },
+    { key: 4, text: "5", image: "assets/imgs/selectStudy/level.png", amount: "-1" },
+    { key: 5, text: "6", image: "assets/imgs/selectStudy/level.png", amount: "-1" }
   ];
 
   constructor(public alertCtrl: AlertController,
