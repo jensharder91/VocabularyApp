@@ -25,11 +25,12 @@
     <div *ngSwitchCase="'vocabulary'">
       <ion-list no-lines>
         <!-- <ion-item><button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button></ion-item> -->
-        <ion-item-divider>
+        <!-- <ion-item-divider>
           Study due cards
-        </ion-item-divider>
+        </ion-item-divider> -->
         <ion-item class="center">
           <circleview-component text="Study" [subtext]="vocabProvider.getCardsToLearn().length" (click)="studyDueCards()"></circleview-component>
+          <circleview-component text="Show all" (click)="showAllCards()"></circleview-component>
         </ion-item>
         <ion-item-divider>
           Topics
@@ -46,13 +47,14 @@
       </ion-list>
     </div>
 
-    <div *ngSwitchCase="'grammar'">
+    <!-- <div *ngSwitchCase="'grammar'">
       <ion-list>
         <ion-item-divider>
           Study due cards
         </ion-item-divider>
         <ion-item class="center">
           <circleview-component text="Study" (click)="studyDueCards()"></circleview-component>
+          <circleview-component text="Show all" (click)="showAllCards()"></circleview-component>
         </ion-item>
         <ion-item-divider>
           Topics
@@ -67,17 +69,16 @@
           <horizontalscroll-component mode="levels" (clickEvent)="presentLevelPopover($event)"></horizontalscroll-component>
         </ion-item>
       </ion-list>
-    </div>
+    </div> -->
   </div>
 
-  <ion-fab right bottom>
+  <!-- <ion-fab right bottom>
     <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>
     <ion-fab-list side="left">
-      <!-- <button ion-fab (click)='showAllVocabulary();'><ion-icon name="book"></ion-icon></button> <br/> -->
       <button ion-fab (click)='loadCsvToDict()'><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button> <br/>
       <button ion-fab (click)="createCard();"><ion-icon name="add"></ion-icon></button>
       <button ion-fab color="danger" (click)='resetAll();'><ion-icon name="trash"></ion-icon></button>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab> -->
 
 </ion-content>

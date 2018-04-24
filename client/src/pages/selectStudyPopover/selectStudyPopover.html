@@ -13,6 +13,7 @@
   <div *ngIf="mode=='topic'">
     <button ion-button class="popoverBtn" (click)="showTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="eye"></ion-icon></button>
     <button ion-button class="popoverBtn" (click)="studyTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="play"></ion-icon></button>
+    <button ion-button class="popoverBtn" (click)='loadCsvToDict(topic)'><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button>
     <!-- <button ion-button class="popoverBtn" (click)="showRules(cardDeckId)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="bulb"></ion-icon></button> -->
   </div>
   <div *ngIf="mode=='levels'">

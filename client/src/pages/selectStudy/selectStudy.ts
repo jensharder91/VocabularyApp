@@ -9,6 +9,7 @@ import { VocabProvider, Language } from "../../providers/vocab/vocab";
 import { OverviewPage } from "../overview/overview";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { SelectStudyPopoverPage } from "../selectStudyPopover/selectStudyPopover";
+import {VocabularyListPage} from'../vocabularyList/vocabularyList';
 
 @Component({
   selector: 'page-selectStudy',
@@ -62,6 +63,10 @@ export class SelectStudyPage {
   //     this.topics[i].amount = cardDeck.length;
   //   });
   // }
+
+  showAllCards(){
+    this.navCtrl.setRoot(VocabularyListPage);
+  }
 
   studyDueCards() {
     let curCards: Card[] = this.vocabProvider.getCardsToLearn();
@@ -163,10 +168,10 @@ export class SelectStudyPage {
   //   prompt.present();
   // }
 
-  public loadCsvToDict() {
-    this.vocabProvider.addTenVocs();
-    // this.updateDeckSize();
-  }
+  // public loadCsvToDict() {
+  //   this.vocabProvider.addTenVocs();
+  //   // this.updateDeckSize();
+  // }
 
   showProgress() {
     this.navCtrl.setRoot(OverviewPage);

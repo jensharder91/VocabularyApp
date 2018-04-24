@@ -24,6 +24,8 @@ export interface Language {
 export interface Topic {
   name: string;
   cards: Card[];
+  waitingCards: Card[];
+  csvStringUrl: string;
 }
 
 @Injectable()
@@ -33,7 +35,7 @@ export class VocabProvider {
   private currentLanguage: Language;
 
   // private dict: Card[] = [];
-  private csvLoaded: Card[] = [];
+  // private csvLoaded: Card[] = [];
   private MAX_LEVEL = 5;
   // private userName: string;
 
@@ -50,13 +52,13 @@ export class VocabProvider {
     public http: Http) {
 
     // get boolean flag on csv loaded status
-    this.storage.get(this.csv_loaded).then((val: Card[]) => {
-      if (val != null && val.length > 0) {
-        this.csvLoaded = val;
-      } else {
-        this.importCSV();
-      }
-    });
+    // this.storage.get(this.csv_loaded).then((val: Card[]) => {
+    //   if (val != null && val.length > 0) {
+    //     this.csvLoaded = val;
+    //   } else {
+    //     this.importCSV();
+    //   }
+    // });
   }
 
   login(): Promise<any> {
@@ -84,12 +86,13 @@ export class VocabProvider {
           myUserName = name;
         }
         this.storage.get(this.dictionary_es).then((val) => {
-          let topic: Topic = <Topic>{ name: "Vocabulary", cards: [] };
+          let topic: Topic = <Topic>{ name: "Vocabulary", cards: [], waitingCards: [], csvStringUrl: "assets/data/test.csv" };
           if (val != null) {
             topic.cards = val;
           }
           let lamguage: Language = <Language>{ id: 1, name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic] };
           this.user = <User>{ userName: myUserName, languages: [lamguage] };
+          this.importCSV();
           resolve();
         });
       }).catch((err) => { console.log("mockUser failed"); reject(); });
@@ -310,7 +313,7 @@ export class VocabProvider {
       promises.push(this.storage.set(this.APP_USER, this.user));
 
       //set csvLoaded
-      promises.push(this.storage.set(this.csv_loaded, this.csvLoaded));
+      // promises.push(this.storage.set(this.csv_loaded, this.csvLoaded));
 
       Promise.all(promises).then(resolve, reject);
     });
@@ -356,28 +359,46 @@ export class VocabProvider {
 
   public importCSV(): Promise<any> {
 
-    return new Promise((resolve, reject) => {
-      let url: string = 'assets/data/test.csv';
+    let allLoaded = [];
 
-      this.http.get(url)
-        .subscribe(
-          data => this.extractData(data, resolve),
-          err => { console.log("Error with csv"); reject(); }
-        );
-    });
+    this.user.languages.forEach((language) => {
+      language.topics.forEach((topic) => {
+        allLoaded.push(new Promise((resolve, reject) => {
+          // let url: string = 'assets/data/test.csv';
+
+          this.http.get(topic.csvStringUrl)
+            .subscribe(
+              data => this.extractData(topic, data, resolve),
+              err => { console.log("Error with csv"); reject(); }
+            );
+        }));
+      })
+    })
+
+    return Promise.all(allLoaded);
+
+    // return new Promise((resolve, reject) => {
+    //   let url: string = 'assets/data/test.csv';
+    //
+    //   this.http.get(url)
+    //     .subscribe(
+    //       data => this.extractData(data, resolve),
+    //       err => { console.log("Error with csv"); reject(); }
+    //     );
+    // });
 
   }
 
-  private extractData(res, resolve) {
+  private extractData(topic, res, resolve) {
     let csvData = res['_body'] || '';
     let parsedData = papa.parse(csvData).data;
 
     parsedData.splice(0, 1);
 
-    this.csvLoaded = [];
+    topic.waitingCards = [];
 
     for (let j = 0; j < parsedData.length; j++) {
-      this.csvLoaded.push({
+      topic.waitingCards.push({
         frontSide: parsedData[j][0],
         backSide: parsedData[j][1],
         level: 0,
@@ -390,36 +411,45 @@ export class VocabProvider {
     resolve();
   }
 
-  public addTenVocs() {
+  public addTenVocs(topicName: string) {
 
-    if (this.csvLoaded == null) {
-      this.importCSV().then(() => {
-        this.addTenVocsNow();
-      })
-    } else {
-      this.addTenVocsNow();
-    }
-  }
-
-  private addTenVocsNow() {
-
-    let max = 10;
-    if (max > this.csvLoaded.length) {
-      max = this.csvLoaded.length;
-    }
-
-    let currentTopic: Topic = { name: "Mock", cards: [] };
-
+    let topic: Topic;
     this.currentLanguage.topics.forEach((myTopic) => {
-      if (myTopic.name == "Vocabulary") {
-        currentTopic = myTopic;
+      if (myTopic.name == topicName) {
+        topic = myTopic;
       }
     });
 
+    if (topic) {
+      if (topic.waitingCards == null) {
+        this.importCSV().then(() => {
+          this.addTenVocsNow(topic);
+        })
+      } else {
+        this.addTenVocsNow(topic);
+      }
+    }
+  }
+
+  private addTenVocsNow(topic:Topic) {
+
+    let max = 10;
+    if (max > topic.waitingCards.length) {
+      max = topic.waitingCards.length;
+    }
+
+    // let currentTopic: Topic = { name: "Mock", cards: [] };
+
+    // this.currentLanguage.topics.forEach((myTopic) => {
+    //   if (myTopic.name == "Vocabulary") {
+    //     currentTopic = myTopic;
+    //   }
+    // });
+
     for (let i = 0; i < max; i++) {
-      let card: Card = this.csvLoaded[0];//get the first item
-      this.csvLoaded.splice(0, 1);//delete the first items
-      currentTopic.cards.push(card);
+      let card: Card = topic.waitingCards[0];//get the first item
+      topic.waitingCards.splice(0, 1);//delete the first items
+      topic.cards.push(card);
     }
 
     this.saveUser();
