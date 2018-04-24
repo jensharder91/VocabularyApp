@@ -14,9 +14,37 @@ circleview-component {
   .circleview-text {
     //text
     color: map-get($colors, light);
-    text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
+    // text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
+    // text-shadow: -2px 0 1px map-get($colors, primary), 0 2px 1px map-get($colors, primary), 2px 0 1px map-get($colors, primary), 0 -2px 1px map-get($colors, primary);
+    text-shadow:
+    /* first layer at 1px */
+    -1px -1px 0px map-get($colors, primary),
+     0px -1px 0px map-get($colors, primary),
+     1px -1px 0px map-get($colors, primary),
+    -1px  0px 0px map-get($colors, primary),
+     1px  0px 0px map-get($colors, primary),
+    -1px  1px 0px map-get($colors, primary),
+     0px  1px 0px map-get($colors, primary),
+     1px  1px 0px map-get($colors, primary),
+    /* second layer at 2px */
+    -2px -2px 0px map-get($colors, primary),
+    -1px -2px 0px map-get($colors, primary),
+     0px -2px 0px map-get($colors, primary),
+     1px -2px 0px map-get($colors, primary),
+     2px -2px 0px map-get($colors, primary),
+     2px -1px 0px map-get($colors, primary),
+     2px  0px 0px map-get($colors, primary),
+     2px  1px 0px map-get($colors, primary),
+     2px  2px 0px map-get($colors, primary),
+     1px  2px 0px map-get($colors, primary),
+     0px  2px 0px map-get($colors, primary),
+    -1px  2px 0px map-get($colors, primary),
+    -2px  2px 0px map-get($colors, primary),
+    -2px  1px 0px map-get($colors, primary),
+    -2px  0px 0px map-get($colors, primary),
+    -2px -1px 0px map-get($colors, primary);
     //font-size: large;
-    //font-weight: bold;
+    // font-weight: bold;
     //center
     text-align: center;
     vertical-align: middle;
@@ -30,7 +58,34 @@ circleview-component {
   .circleview-subtext {
     //text
     color: map-get($colors, light);
-    text-shadow: -2px 0 1px map-get($colors, primary), 0 2px 1px map-get($colors, primary), 2px 0 1px map-get($colors, primary), 0 -2px 1px map-get($colors, primary);
+    // text-shadow: -2px 0 1px map-get($colors, primary), 0 2px 1px map-get($colors, primary), 2px 0 1px map-get($colors, primary), 0 -2px 1px map-get($colors, primary);
+    text-shadow:
+    /* first layer at 1px */
+    -1px -1px 0px map-get($colors, primary),
+     0px -1px 0px map-get($colors, primary),
+     1px -1px 0px map-get($colors, primary),
+    -1px  0px 0px map-get($colors, primary),
+     1px  0px 0px map-get($colors, primary),
+    -1px  1px 0px map-get($colors, primary),
+     0px  1px 0px map-get($colors, primary),
+     1px  1px 0px map-get($colors, primary),
+    /* second layer at 2px */
+    -2px -2px 0px map-get($colors, primary),
+    -1px -2px 0px map-get($colors, primary),
+     0px -2px 0px map-get($colors, primary),
+     1px -2px 0px map-get($colors, primary),
+     2px -2px 0px map-get($colors, primary),
+     2px -1px 0px map-get($colors, primary),
+     2px  0px 0px map-get($colors, primary),
+     2px  1px 0px map-get($colors, primary),
+     2px  2px 0px map-get($colors, primary),
+     1px  2px 0px map-get($colors, primary),
+     0px  2px 0px map-get($colors, primary),
+    -1px  2px 0px map-get($colors, primary),
+    -2px  2px 0px map-get($colors, primary),
+    -2px  1px 0px map-get($colors, primary),
+    -2px  0px 0px map-get($colors, primary),
+    -2px -1px 0px map-get($colors, primary);
     //font-weight: bold;
     //font-size: 150%;
     //center

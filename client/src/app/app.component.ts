@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Card } from '../../model/card';
 import { VocabProvider } from "../providers/vocab/vocab";
 
-import { StartPage } from '../pages/start/start';
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase'
@@ -19,7 +18,7 @@ import { VocabularyListPage } from '../pages/vocabularyList/vocabularyList';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = StartPage;
+  rootPage: any = SettingsPage;
 
   pages: Array<{ title: string, component: any }>;
 

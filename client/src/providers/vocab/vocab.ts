@@ -88,7 +88,7 @@ export class VocabProvider {
           if (val != null) {
             topic.cards = val;
           }
-          let lamguage: Language = <Language>{ id: 1, name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/gb.svg", topics: [topic] };
+          let lamguage: Language = <Language>{ id: 1, name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic] };
           this.user = <User>{ userName: myUserName, languages: [lamguage] };
           resolve();
         });
@@ -103,7 +103,7 @@ export class VocabProvider {
   }
 
   getUserName(): string {
-    if (this.user.userName) {
+    if (this.user && this.user.userName) {
       return this.user.userName;
     } else {
       return "";
