@@ -29,7 +29,9 @@ export class HomePage {
       this.user = vocabProvider.getUser();
   }
 
-  protected language: String;
+  ionViewWillEnter(){
+    this.vocabProvider.setCurrentLanguage(-1);
+  }
 
   start(id: number) {
     this.vocabProvider.setCurrentLanguage(id);

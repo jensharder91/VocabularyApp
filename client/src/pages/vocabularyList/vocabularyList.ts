@@ -28,6 +28,17 @@ export class VocabularyListPage {
     this.topic = this.navParams.get('topic');
     this.mode = this.navParams.get('mode');
 
+    this.getCards();
+
+    this.listLowerLimit = 0;
+    this.listUpperLimit = 10;
+
+    if (this.listUpperLimit >= this.dict.length) {
+      this.listUpperLimit = this.dict.length;
+    }
+  }
+
+  getCards() {
     if (this.mode == "topic") {
       this.dict = this.vocabProvider.getCardDeckForTopic(this.topic);
       this.cardDeckTitle = this.topic;
@@ -38,13 +49,6 @@ export class VocabularyListPage {
       this.dict = this.vocabProvider.getCardDeckAll();
       this.cardDeckTitle = "All Cards";
     }
-
-    this.listLowerLimit = 0;
-    this.listUpperLimit = 10;
-
-    if (this.listUpperLimit >= this.dict.length) {
-      this.listUpperLimit = this.dict.length;
-    }
   }
 
   getProgressImage(level: number): string {
@@ -54,13 +58,9 @@ export class VocabularyListPage {
 
   deleteCard(card: any) {
 
-    // this.vocabProvider.deleteCard(card);
-    // //update list
-    // if (this.cardDeckId != null && this.cardDeckId != undefined) {
-    //   this.dict = this.vocabProvider.getCardDeckForId(this.cardDeckId);
-    // } else {
-    //   this.dict = this.vocabProvider.getCardDeckAll();
-    // }
+    this.vocabProvider.deleteCard(this.topic, card);
+    //update list
+    this.getCards();
 
   }
 
@@ -100,36 +100,36 @@ export class VocabularyListPage {
 
   addCard() {
 
-    // let prompt = this.alertCtrl.create({
-    //   title: 'Create New Card',
-    //   message: "Enter a new vocabulary!",
-    //   inputs: [
-    //     {
-    //       name: 'front',
-    //       placeholder: 'Front'
-    //     },
-    //     {
-    //       name: 'back',
-    //       placeholder: 'Back'
-    //     },
-    //   ],
-    //   buttons: [
-    //     {
-    //       text: 'Cancel',
-    //       handler: data => {
-    //         console.log('Cancel clicked');
-    //       }
-    //     },
-    //     {
-    //       text: 'Save',
-    //       handler: data => {
-    //         this.vocabProvider.createCard(data.front, data.back);
-    //       }
-    //     }
-    //   ]
-    // });
-    //
-    // prompt.present();
+    let prompt = this.alertCtrl.create({
+      title: 'Create New Card',
+      message: "Enter a new vocabulary!",
+      inputs: [
+        {
+          name: 'front',
+          placeholder: 'Front'
+        },
+        {
+          name: 'back',
+          placeholder: 'Back'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.vocabProvider.createCard(this.topic, data.front, data.back);
+          }
+        }
+      ]
+    });
+
+    prompt.present();
   }
 
   showNextList() {

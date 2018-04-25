@@ -118,6 +118,7 @@ export class VocabProvider {
   }
 
   setCurrentLanguage(id: number) {
+    this.currentLanguage = null;
     this.user.languages.forEach((myLanguage) => {
       if (myLanguage.id == id) {
         this.currentLanguage = myLanguage;
@@ -134,118 +135,59 @@ export class VocabProvider {
     }
   }
 
-  // createCard(frontSideValue: string, backSideValue: string) {
-  //
-  //   let card: Card = {
-  //     frontSide: frontSideValue,
-  //     backSide: backSideValue,
-  //     level: 0,
-  //     dueDate: new Date().getTime()
-  //   };
-  //
-  //   this.addCard(card);
-  // }
+  createCard(topicString: string, frontSideValue: string, backSideValue: string) {
 
-  // addCard(card: Card) {
-  //
-  //   if (card.frontSide != null && card.backSide != null) {
-  //     if (card.level == null) {
-  //       card.level = 0;
-  //     }
-  //
-  //     if (!this.cardExists(card)) {
-  //       this.dict.push(card);
-  //       // store dict
-  //       this.storeDict();
-  //     } else {
-  //
-  //       this.promptCardExists(card);
-  //     }
-  //   }
-  // }
-  //
-  // private forceAddCard(card: any) {
-  //
-  //   if (card.frontSide != null && card.backSide != null) {
-  //     if (card.level == null) {
-  //       card.level = 0;
-  //     }
-  //
-  //     this.dict.push(card);
-  //     // store dict
-  //     this.storeDict();
-  //   }
-  // }
-  //
-  // cardExists(card: any) {
-  //
-  //   if (card != null) {
-  //     for (let existingCard of this.dict) {
-  //
-  //       if (card.frontSide == existingCard.frontSide
-  //         && card.backSide == existingCard.backSide) {
-  //         return true;
-  //       }
-  //     }
-  //   }
-  //
-  //   return false;
-  // }
-  //
-  // promptCardExists(card: any) {
-  //
-  //   let prompt = this.alertCtrl.create({
-  //     title: 'Card already exists',
-  //     message: "Do you want to add the card \"" + card.frontSide + " - " + card.backSide + "\" anyways?",
-  //     buttons: [
-  //       {
-  //         text: 'No',
-  //         handler: data => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       },
-  //       {
-  //         text: 'Yes',
-  //         handler: data => {
-  //           this.forceAddCard(card);
-  //         }
-  //       }
-  //     ]
-  //   });
-  //
-  //   prompt.present();
-  // }
+    let card: Card = {
+      frontSide: frontSideValue,
+      backSide: backSideValue,
+      level: 0,
+      dueDate: new Date().getTime()
+    };
+
+    let topic: Topic;
+
+    if (this.currentLanguage) {
+      this.currentLanguage.topics.forEach((myTopic) => {
+        if (topicString == myTopic.name) {
+          topic = myTopic;
+        }
+      });
+    }
+
+    if (topic && frontSideValue && backSideValue) {
+      topic.cards.push(card);
+      this.saveUser();
+    }
+  }
 
   changeCard(card: Card, frontSideValue: string, backSideValue: string) {
-
-    // let index = this.dict.indexOf(card);
-    // this.dict[index].frontSide = frontSideValue;
-    // this.dict[index].backSide = backSideValue;
 
     card.frontSide = frontSideValue;
     card.backSide = backSideValue;
 
     this.saveUser();
-
   }
 
-  // deleteCard(card: any) {
-  //
-  //   let index = this.dict.indexOf(card);
-  //   if (index > -1) {
-  //     this.dict.splice(index, 1);
-  //   }
-  //
-  //   // store dict
-  //   this.storeDict();
-  // }
+  deleteCard(topicString: string, card: Card) {
 
-  // clearStorage() {
-  //
-  //   this.dict = [];
-  //   this.csvLoaded = null;
-  //   this.saveUser();
-  // }
+    let topic: Topic;
+
+    if (this.currentLanguage) {
+      this.currentLanguage.topics.forEach((myTopic) => {
+        if (topicString == myTopic.name) {
+          topic = myTopic;
+        }
+      });
+    }
+
+    if (topic) {
+      let index = topic.cards.indexOf(card);
+      if (index > -1) {
+        topic.cards.splice(index, 1);
+      }
+      this.saveUser();
+    }
+  }
 
   // Getting all cards from the current language
   getCardDeckAll(): Card[] {
@@ -265,14 +207,15 @@ export class VocabProvider {
   getCardDeckForLevel(level: number): Card[] {
 
     let result: Card[] = [];
-
-    this.currentLanguage.topics.forEach((topic) => {
-      topic.cards.forEach((card) => {
-        if (level == card.level) {
-          result.push(card);
-        }
+    if (this.currentLanguage) {
+      this.currentLanguage.topics.forEach((topic) => {
+        topic.cards.forEach((card) => {
+          if (level == card.level) {
+            result.push(card);
+          }
+        });
       });
-    });
+    }
     return result;
   }
 
@@ -280,12 +223,13 @@ export class VocabProvider {
   getCardDeckForTopic(topic: string): Card[] {
 
     let result: Card[] = [];
-
-    this.currentLanguage.topics.forEach((myTopic) => {
-      if (topic == myTopic.name) {
-        result = myTopic.cards;
-      }
-    });
+    if (this.currentLanguage) {
+      this.currentLanguage.topics.forEach((myTopic) => {
+        if (topic == myTopic.name) {
+          result = myTopic.cards;
+        }
+      });
+    }
     return result;
   }
 
@@ -431,7 +375,7 @@ export class VocabProvider {
     }
   }
 
-  private addTenVocsNow(topic:Topic) {
+  private addTenVocsNow(topic: Topic) {
 
     let max = 10;
     if (max > topic.waitingCards.length) {
