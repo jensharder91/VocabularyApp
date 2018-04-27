@@ -11,6 +11,7 @@ import { StudyPhasePage } from '../pages/studyPhase/studyPhase'
 import { OverviewPage } from '../pages/overview/overview'
 import { SelectStudyPage } from '../pages/selectStudy/selectStudy';
 import { VocabularyListPage } from '../pages/vocabularyList/vocabularyList';
+import { ManageTopicsPage } from '../pages/manageTopics/manageTopics';
 
 @Component({
   templateUrl: 'app.html'
@@ -64,6 +65,10 @@ export class MyApp {
 
   showProgress() {
     this.nav.setRoot(OverviewPage);
+  }
+
+  manageTopics() {
+    this.nav.setRoot(ManageTopicsPage);
   }
 
   showAllCards() {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { Card } from '../../../model/card';
-import { HomePage } from "../home/home";
+import { SelectStudyPage } from "../selectStudy/selectStudy";
 
 @Component({
   selector: 'page-studyPhase',
@@ -89,7 +89,7 @@ export class StudyPhasePage {
           {
             text: 'Go Back',
             handler: data => {
-              this.navCtrl.setRoot(HomePage);
+              this.navCtrl.setRoot(SelectStudyPage);
             }
           }
         ]

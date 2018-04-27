@@ -12,6 +12,8 @@ import { VocabProvider } from '../providers/vocab/vocab';
 import { OverviewPage } from '../pages/overview/overview';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { HomePage } from "../pages/home/home";
+import { ManageTopicsPage } from "../pages/manageTopics/manageTopics";
+import { ManageLanguagesPage } from "../pages/manageLanguages/manageLanguages";
 import { SettingsPage } from "../pages/settings/settings";
 import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
@@ -31,6 +33,8 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     SelectStudyPage,
     SelectStudyPopoverPage,
     HomePage,
+    ManageTopicsPage,
+    ManageLanguagesPage,
     SettingsPage,
     VocabularyListPage,
     CircleviewComponent,
@@ -51,6 +55,8 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     SelectStudyPage,
     SelectStudyPopoverPage,
     HomePage,
+    ManageTopicsPage,
+    ManageLanguagesPage,
     SettingsPage,
     VocabularyListPage
   ],

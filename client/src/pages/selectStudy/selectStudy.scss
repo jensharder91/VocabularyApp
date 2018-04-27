@@ -8,4 +8,22 @@ page-selectStudy {
     background-color: map-get($colors, primary);
     border: 2px solid map-get($colors, primary);
   }
+
+  .center-content {
+    text-align: center;
+    padding: 10vh 0;
+  }
+
+  .headercolor {
+    color: map-get($colors, light);
+  }
+
+  .headercard{
+    padding: 10vh 0;
+    margin-bottom: 20px;
+  }
+
+  .button-icon{
+    margin-right: 15px;
+  }
 }

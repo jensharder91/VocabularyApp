@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Manage Languages</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content text-center>
+
+<ion-list>
+
+  <ion-item *ngFor="let toggleItem of toggleItems">
+    <ion-label>{{toggleItem.language.shortName1}} / {{toggleItem.language.shortName2}}</ion-label>
+    <ion-toggle [(ngModel)]="toggleItem.state"></ion-toggle>
+  </ion-item>
+
+</ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button clear class="savebutton" (click)="save()">Save</button>
+  </ion-toolbar>
+</ion-footer>

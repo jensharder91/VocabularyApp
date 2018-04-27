@@ -15,10 +15,19 @@
     <h2 class="headercolor">Ready to start learning?</h2>
   </ion-card>
 
-  <horizontalscroll-component mode="languages" [items]="user.languages" (clickEvent)="start($event)"></horizontalscroll-component>
+  <horizontalscroll-component *ngIf="user.languages.length > 0" mode="languages" [items]="user.languages" (clickEvent)="start($event)"></horizontalscroll-component>
+
+  <ion-card *ngIf="user.languages.length == 0" class="center-content headercard">
+      <h1 class="headercolor">Unfortunately you do not have any languages to learn. </h1>
+      <h2 class="headercolor">Just <button ion-button color="secondary" (click)="openManage()"><ion-icon class="button-icon" name="build"></ion-icon>add a language</button> to start learning!</h2>
+  </ion-card>
 
 
   <!-- Test -->
   <!-- <languageselect-component [lang1_text]="user.languages[0].text" [lang2_text]="user.languages[1].text" [lang1_image]="user.languages[0].image" [lang2_image]="user.languages[1].image"></languageselect-component> -->
+
+  <ion-fab right bottom>
+    <button ion-fab (click)="openManage()"><ion-icon name="build"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

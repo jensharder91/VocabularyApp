@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { VocabProvider, User } from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import { SelectStudyPage } from "../selectStudy/selectStudy";
+import { ManageLanguagesPage } from "../manageLanguages/manageLanguages";
+
 
 @Component({
   selector: 'page-home',
@@ -20,20 +22,24 @@ export class HomePage {
   //   { key: "German", text: "GER", image: "assets/imgs/german.svg" }
   // ];
 
-  private user:User = {userName:"Mock", languages:[]};
+  private user: User = { userName: "Mock", languages: [] };
 
   constructor(public navCtrl: NavController,
     public vocabProvider: VocabProvider) {
 
 
-      this.user = vocabProvider.getUser();
+    this.user = vocabProvider.getUser();
   }
 
-  ionViewWillEnter(){
-    this.vocabProvider.setCurrentLanguage(-1);
+  ionViewWillEnter() {
+    this.vocabProvider.setCurrentLanguage("-1");
   }
 
-  start(id: number) {
+  openManage() {
+    this.navCtrl.setRoot(ManageLanguagesPage);
+  }
+
+  start(id: string) {
     this.vocabProvider.setCurrentLanguage(id);
     this.navCtrl.setRoot(SelectStudyPage);
   }

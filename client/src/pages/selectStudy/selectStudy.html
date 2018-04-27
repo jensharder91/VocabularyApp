@@ -23,7 +23,7 @@
 
   <div [ngSwitch]="studyType">
     <div *ngSwitchCase="'vocabulary'">
-      <ion-list no-lines>
+      <ion-list no-lines *ngIf="language.topics.length > 0">
         <!-- <ion-item><button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button></ion-item> -->
         <!-- <ion-item-divider>
           Study due cards
@@ -45,6 +45,11 @@
           <horizontalscroll-component mode="levels" (clickEvent)="presentLevelPopover($event)"></horizontalscroll-component>
         </ion-item>
       </ion-list>
+      <ion-card *ngIf="language.topics.length == 0" id="titlecard" class="center-content headercard">
+
+          <h1 class="headercolor">Unfortunately you do not have any topics to learn. </h1>
+          <h2 class="headercolor">Just <button ion-button color="secondary" (click)="openManage()"><ion-icon class="button-icon" name="build"></ion-icon>add topics</button> to start learning!</h2>
+      </ion-card>
     </div>
 
     <!-- <div *ngSwitchCase="'grammar'">
@@ -79,6 +84,11 @@
       <button ion-fab (click)="createCard();"><ion-icon name="add"></ion-icon></button>
       <button ion-fab color="danger" (click)='resetAll();'><ion-icon name="trash"></ion-icon></button>
     </ion-fab-list>
-  </ion-fab> -->
+  </ion-fab>-->
+
+
+  <ion-fab right bottom>
+    <button ion-fab (click)="openManage()"><ion-icon name="build"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

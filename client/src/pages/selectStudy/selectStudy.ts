@@ -7,6 +7,7 @@ import { Card } from "../../../model/card";
 import { VocabProvider, Language } from "../../providers/vocab/vocab";
 
 import { OverviewPage } from "../overview/overview";
+import { ManageTopicsPage } from "../manageTopics/manageTopics";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { SelectStudyPopoverPage } from "../selectStudyPopover/selectStudyPopover";
 import {VocabularyListPage} from'../vocabularyList/vocabularyList';
@@ -172,6 +173,10 @@ export class SelectStudyPage {
   //   this.vocabProvider.addTenVocs();
   //   // this.updateDeckSize();
   // }
+
+  openManage(){
+    this.navCtrl.setRoot(ManageTopicsPage);
+  }
 
   showProgress() {
     this.navCtrl.setRoot(OverviewPage);

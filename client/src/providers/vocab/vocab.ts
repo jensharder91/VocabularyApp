@@ -11,7 +11,7 @@ export interface User {
 }
 
 export interface Language {
-  id: number;
+  id: string;
   name1: string;
   shortName1: string;
   image1: string;
@@ -22,6 +22,7 @@ export interface Language {
 }
 
 export interface Topic {
+  id: string;
   name: string;
   cards: Card[];
   waitingCards: Card[];
@@ -71,6 +72,8 @@ export class VocabProvider {
           this.mockUser().then(() => {
             return this.saveUser();
           });
+          // this.user = <User>{ userName: "", languages: [] };
+          // this.saveUser();
         }
       }).catch(() => {
         reject();
@@ -86,13 +89,29 @@ export class VocabProvider {
           myUserName = name;
         }
         this.storage.get(this.dictionary_es).then((val) => {
-          let topic: Topic = <Topic>{ name: "Vocabulary", cards: [], waitingCards: [], csvStringUrl: "assets/data/test.csv" };
-          if (val != null) {
-            topic.cards = val;
-          }
-          let lamguage: Language = <Language>{ id: 1, name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic] };
-          this.user = <User>{ userName: myUserName, languages: [lamguage] };
-          this.importCSV();
+          // let topic: Topic = <Topic>{ id: "_extended", name: "Extended", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-extended.csv" };
+          // if (val != null) {
+          //   topic.cards = val;
+          // }
+          // let topic_basic: Topic = <Topic>{ id: "_basic", name: "Basic", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-basic.csv" };
+          // let lamguage: Language = <Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic, topic_basic] };
+          //
+          // let topic_ger: Topic = <Topic>{ id: "_general", name: "General", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-ger.csv" };
+          // let geresp: Language = <Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [topic_ger] };
+          //
+          // let phrases: Topic = <Topic>{ id: "_phrases", name: "phrases", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-useful-phrases.csv" };
+          // let around: Topic = <Topic>{ id: "_around", name: "around", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-getting-around.csv" };
+          // let money: Topic = <Topic>{ id: "_gmoney", name: "money", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-money.csv" };
+          //
+          // let gereng: Language = <Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [phrases, around, money] };
+          //
+          // this.user = <User>{ userName: myUserName, languages: [lamguage, geresp, gereng] };
+          // this.importCSV();
+
+          // this.user = <User>{ userName: myUserName, languages: [<Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] }, <Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [] }, <Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] }] };
+
+          this.user = <User>{ userName: myUserName, languages: [] };
+
           resolve();
         });
       }).catch((err) => { console.log("mockUser failed"); reject(); });
@@ -117,7 +136,7 @@ export class VocabProvider {
     return this.user;
   }
 
-  setCurrentLanguage(id: number) {
+  setCurrentLanguage(id: string) {
     this.currentLanguage = null;
     this.user.languages.forEach((myLanguage) => {
       if (myLanguage.id == id) {
@@ -301,57 +320,45 @@ export class VocabProvider {
   **                       **
   **************************/
 
-  public importCSV(): Promise<any> {
+  public importCsvByTopics(topics: Topic[]) {
 
     let allLoaded = [];
 
-    this.user.languages.forEach((language) => {
-      language.topics.forEach((topic) => {
-        allLoaded.push(new Promise((resolve, reject) => {
-          // let url: string = 'assets/data/test.csv';
+    topics.forEach((topic) => {
+      allLoaded.push(new Promise((resolve, reject) => {
+        // let url: string = 'assets/data/test.csv';
 
-          this.http.get(topic.csvStringUrl)
-            .subscribe(
-              data => this.extractData(topic, data, resolve),
-              err => { console.log("Error with csv"); reject(); }
-            );
-        }));
-      })
+        this.http.get(topic.csvStringUrl)
+          .subscribe(
+            data => this.extractData(topic, data, resolve),
+            err => { console.log("Error with csv"); reject(); }
+          );
+      }));
     })
 
     return Promise.all(allLoaded);
-
-    // return new Promise((resolve, reject) => {
-    //   let url: string = 'assets/data/test.csv';
-    //
-    //   this.http.get(url)
-    //     .subscribe(
-    //       data => this.extractData(data, resolve),
-    //       err => { console.log("Error with csv"); reject(); }
-    //     );
-    // });
-
   }
 
-  private extractData(topic, res, resolve) {
+  private extractData(topic: Topic, res, resolve) {
     let csvData = res['_body'] || '';
     let parsedData = papa.parse(csvData).data;
 
     parsedData.splice(0, 1);
 
-    topic.waitingCards = [];
+    if (!topic.waitingCards || topic.waitingCards.length == 0) {
+      topic.waitingCards = [];
 
-    for (let j = 0; j < parsedData.length; j++) {
-      topic.waitingCards.push({
-        frontSide: parsedData[j][0],
-        backSide: parsedData[j][1],
-        level: 0,
-        dueDate: new Date().getTime()
-      });
+      for (let j = 0; j < parsedData.length; j++) {
+        topic.waitingCards.push({
+          frontSide: parsedData[j][0],
+          backSide: parsedData[j][1],
+          level: 0,
+          dueDate: new Date().getTime()
+        });
+      }
+
+      this.saveUser();
     }
-
-    this.saveUser();
-
     resolve();
   }
 
@@ -366,7 +373,7 @@ export class VocabProvider {
 
     if (topic) {
       if (topic.waitingCards == null) {
-        this.importCSV().then(() => {
+        this.importCsvByTopics([topic]).then(() => {
           this.addTenVocsNow(topic);
         })
       } else {
@@ -390,6 +397,8 @@ export class VocabProvider {
     //   }
     // });
 
+    // topic.waitingCards = this.shuffle(topic.waitingCards);
+
     for (let i = 0; i < max; i++) {
       let card: Card = topic.waitingCards[0];//get the first item
       topic.waitingCards.splice(0, 1);//delete the first items
@@ -407,4 +416,71 @@ export class VocabProvider {
     toast.present();
   }
 
+  getAvaiableContent(languageId: string): Topic[] {
+    if (languageId == "esp-eng") {
+      let topic_extended: Topic = <Topic>{ id: "_extended", name: "Extended", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-extended.csv" };
+      let topic_basic: Topic = <Topic>{ id: "_basic", name: "Basic", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-basic.csv" };
+      // let language_spanish_english: Language = <Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic_extended, topic_basic] };
+      return [topic_basic, topic_extended];
+    }
+    if (languageId == "esp-ger") {
+      let topic_general: Topic = <Topic>{ id: "_general", name: "General", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-ger.csv" };
+      let topic_duolingo: Topic = <Topic>{ id: "_duolingo", name: "Duolingo", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-esp-duolingo.csv" };
+      // let language_spanish_german: Language = <Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [topic_general] };
+      return [topic_general, topic_duolingo];
+    }
+    if (languageId == "ger-eng") {
+      let topic_phrases: Topic = <Topic>{ id: "_phrases", name: "phrases", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-useful-phrases.csv" };
+      let topic_around: Topic = <Topic>{ id: "_around", name: "around", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-getting-around.csv" };
+      let topic_money: Topic = <Topic>{ id: "_gmoney", name: "money", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-money.csv" };
+      // let language_german_english: Language = <Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic_phrases, topic_around, topic_money] };
+      return [topic_phrases, topic_around, topic_money];
+    }
+    return [];
+  }
+
+  addContentToUser(languageId: string, topics: Topic[]) {
+    this.user.languages.forEach(language => {
+      if (language.id == languageId) {
+        language.topics = topics;
+        this.importCsvByTopics(language.topics).then(() => {
+          this.saveUser();
+        });
+      }
+    });
+  }
+
+  getAvaiableLanguages(): Language[] {
+    let languages: Language[] = [];
+    languages.push(<Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] });
+    languages.push(<Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [] });
+    languages.push(<Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] });
+
+    return languages;
+  }
+
+  addLanguagesToUser(languages: Language[]) {
+    this.user.languages = languages;
+    this.saveUser();
+  }
+
+  // Shuffle the order of objects in the array.
+  // shuffle(array) {
+  //
+  //   let m = array.length, t, i;
+  //
+  //   // While there remain elements to shuffle…
+  //   while (m) {
+  //
+  //     // Pick a remaining element…
+  //     i = Math.floor(Math.random() * m--);
+  //
+  //     // And swap it with the current element.
+  //     t = array[m];
+  //     array[m] = array[i];
+  //     array[i] = t;
+  //   }
+  //
+  //   return array;
+  // }
 }
