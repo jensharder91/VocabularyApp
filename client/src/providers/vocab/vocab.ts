@@ -213,11 +213,13 @@ export class VocabProvider {
 
     let allCards: Card[] = [];
 
-    this.currentLanguage.topics.forEach((topic) => {
-      topic.cards.forEach((card) => {
-        allCards.push(card);
+    if (this.currentLanguage) {
+      this.currentLanguage.topics.forEach((topic) => {
+        topic.cards.forEach((card) => {
+          allCards.push(card);
+        });
       });
-    });
+    }
 
     return allCards;
   }
