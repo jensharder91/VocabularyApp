@@ -83,38 +83,38 @@ export class VocabProvider {
 
   mockUser(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.storage.get(this.user_name).then((name: string) => {
-        let myUserName = "No name";
-        if (name) {
-          myUserName = name;
-        }
-        this.storage.get(this.dictionary_es).then((val) => {
-          // let topic: Topic = <Topic>{ id: "_extended", name: "Extended", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-extended.csv" };
-          // if (val != null) {
-          //   topic.cards = val;
-          // }
-          // let topic_basic: Topic = <Topic>{ id: "_basic", name: "Basic", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-basic.csv" };
-          // let lamguage: Language = <Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic, topic_basic] };
-          //
-          // let topic_ger: Topic = <Topic>{ id: "_general", name: "General", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-ger.csv" };
-          // let geresp: Language = <Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [topic_ger] };
-          //
-          // let phrases: Topic = <Topic>{ id: "_phrases", name: "phrases", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-useful-phrases.csv" };
-          // let around: Topic = <Topic>{ id: "_around", name: "around", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-getting-around.csv" };
-          // let money: Topic = <Topic>{ id: "_gmoney", name: "money", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-money.csv" };
-          //
-          // let gereng: Language = <Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [phrases, around, money] };
-          //
-          // this.user = <User>{ userName: myUserName, languages: [lamguage, geresp, gereng] };
-          // this.importCSV();
+      // this.storage.get(this.user_name).then((name: string) => {
+      let myUserName = "No name";
+      if (name) {
+        myUserName = name;
+      }
+      // this.storage.get(this.dictionary_es).then((val) => {
+      // let topic: Topic = <Topic>{ id: "_extended", name: "Extended", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-extended.csv" };
+      // if (val != null) {
+      //   topic.cards = val;
+      // }
+      // let topic_basic: Topic = <Topic>{ id: "_basic", name: "Basic", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng-basic.csv" };
+      // let lamguage: Language = <Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [topic, topic_basic] };
+      //
+      // let topic_ger: Topic = <Topic>{ id: "_general", name: "General", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-ger.csv" };
+      // let geresp: Language = <Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [topic_ger] };
+      //
+      // let phrases: Topic = <Topic>{ id: "_phrases", name: "phrases", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-useful-phrases.csv" };
+      // let around: Topic = <Topic>{ id: "_around", name: "around", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-getting-around.csv" };
+      // let money: Topic = <Topic>{ id: "_gmoney", name: "money", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng-money.csv" };
+      //
+      // let gereng: Language = <Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [phrases, around, money] };
+      //
+      // this.user = <User>{ userName: myUserName, languages: [lamguage, geresp, gereng] };
+      // this.importCSV();
 
-          // this.user = <User>{ userName: myUserName, languages: [<Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] }, <Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [] }, <Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] }] };
+      // this.user = <User>{ userName: myUserName, languages: [<Language>{ id: "esp-eng", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] }, <Language>{ id: "esp-ger", name1: "Spanish", shortName1: "ESP", image1: "assets/imgs/home/spain.svg", name2: "German", shortName2: "GER", image2: "assets/imgs/home/german.svg", topics: [] }, <Language>{ id: "ger-eng", name1: "German", shortName1: "GER", image1: "assets/imgs/home/german.svg", name2: "English", shortName2: "ENG", image2: "assets/imgs/home/gb.svg", topics: [] }] };
 
-          this.user = <User>{ userName: myUserName, languages: [] };
+      this.user = <User>{ userName: myUserName, languages: [] };
 
-          resolve();
-        });
-      }).catch((err) => { console.log("mockUser failed"); reject(); });
+      resolve();
+      // });
+      // }).catch((err) => { console.log("mockUser failed"); reject(); });
     });
   }
 
