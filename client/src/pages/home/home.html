@@ -9,19 +9,27 @@
 
 <ion-content>
 
+  <!--
   <ion-card id="titlecard" class="center-content headercard">
     <h1 *ngIf="!user.userName" class="headercolor">Welcome to your vocabulary app!</h1>
     <h1 *ngIf="user.userName" class="headercolor">Hi {{user.userName}}!</h1>
     <h2 class="headercolor">Ready to start learning?</h2>
-  </ion-card>
+  </ion-card>-->
+
+  <div class="header-container center-content">
+    <img src="assets/imgs/home/vocapp_logo_color_blank.svg">
+    <h1 *ngIf="!user.userName" class="headertext-1">Welcome to your vocabulary app!</h1>
+    <h1 *ngIf="user.userName" class="headertext-1">Hi {{user.userName}}!</h1>
+    <h2 class="headertext-2">Ready to start learning?</h2>
+  </div>
 
   <horizontalscroll-component *ngIf="user.languages.length > 0" mode="languages" [items]="user.languages" (clickEvent)="start($event)"></horizontalscroll-component>
 
-  <ion-card *ngIf="user.languages.length == 0" class="center-content headercard">
-      <h1 class="headercolor">Unfortunately you do not have any languages to learn. </h1>
-      <h2 class="headercolor">Just <button ion-button color="secondary" (click)="openManage()"><ion-icon class="button-icon" name="build"></ion-icon>add a language</button> to start learning!</h2>
-  </ion-card>
-
+  <div *ngIf="user.languages.length == 0" class="center-content">
+    <h3 class="headertext">You do not have any languages to learn. </h3>
+    <img class="no-content-image" src="assets/imgs/selectStudy/noContent.svg"><br/>
+    <button ion-button color="secondary" (click)="openManage()"><ion-icon class="button-icon" name="add"></ion-icon>&ensp;&ensp;Add language</button>
+  </div>
 
   <!-- Test -->
   <!-- <languageselect-component [lang1_text]="user.languages[0].text" [lang2_text]="user.languages[1].text" [lang1_image]="user.languages[0].image" [lang2_image]="user.languages[1].image"></languageselect-component> -->

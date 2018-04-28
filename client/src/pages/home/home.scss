@@ -1,15 +1,46 @@
 page-home {
   .center-content {
     text-align: center;
-    padding: 10vh 0;
+    padding: 2vh 0;
   }
 
-  .headercolor {
-    color: map-get($colors, light);
+  .header-container{
+    display: inline-block;
+    margin: 0 10px;
+    position: relative;
+    text-align: center;
+    width: 100%;
   }
 
   .headercard{
     padding: 10vh 0;
     margin-bottom: 20px;
+  }
+
+  .headertext-1 {
+    color: map-get($colors, primary);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 250px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: inherit;
+  }
+
+  .headertext-2 {
+    color: map-get($colors, primary);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 400px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: inherit;
+  }
+
+  .no-content-image{
+    width: 200px;
+    height: 200px;
   }
 }

@@ -14,8 +14,8 @@ page-selectStudy {
     padding: 10vh 0;
   }
 
-  .headercolor {
-    color: map-get($colors, light);
+  .headertext {
+    color: map-get($colors, primary);
   }
 
   .headercard{
@@ -25,5 +25,10 @@ page-selectStudy {
 
   .button-icon{
     margin-right: 15px;
+  }
+
+  .no-content-image{
+    width: 200px;
+    height: 200px;
   }
 }

@@ -53,7 +53,7 @@ export class VocabularyListPage {
 
   getProgressImage(level: number): string {
     if (!level) level = 0;
-    return "assets/imgs/level/level_" + (level + 1) + ".png";
+    return "assets/imgs/level/level_" + (level + 1) + ".svg";
   }
 
   deleteCard(card: any) {

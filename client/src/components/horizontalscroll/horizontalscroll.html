@@ -8,11 +8,11 @@
       <languageselect-component *ngFor="let item of myItems" (click)="itemClick(item.id)" [lang1_text]="item.shortName1" [lang2_text]="item.shortName2" [lang1_image]="item.image1" [lang2_image]="item.image2"></languageselect-component>
     </div>
     <div *ngIf="mode=='topics'">
-      <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [subtext]="vocabProvider.getCardDeckForTopic(item.name).length" image="assets/imgs/topic/topic.png"></circleview-component>
+      <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.name)" [text]="item.name" [subtext]="vocabProvider.getCardDeckForTopic(item.name).length" image="assets/imgs/topic/topic.svg"></circleview-component>
     </div>
     <!-- <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.key)" [subtext]="item.amount" [image]="item.image"></circleview-component> -->
     <div *ngIf="mode=='levels'">
-      <circleview-component *ngFor="let i of [1, 2, 3, 4, 5, 6]" (click)="itemClick(i)" [subtext]="vocabProvider.getCardDeckForLevel(i -1).length" image="assets/imgs/level/level_{{i}}.png"></circleview-component>
+      <circleview-component *ngFor="let i of [1, 2, 3, 4, 5, 6]" (click)="itemClick(i)" [text]="i" [subtext]="vocabProvider.getCardDeckForLevel(i -1).length" image="assets/imgs/level/level_{{i}}.svg"></circleview-component>
     </div>
   </ion-scroll>
 </div>

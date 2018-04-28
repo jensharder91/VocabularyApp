@@ -52,7 +52,7 @@ page-studyPhase {
     height: 100%;
     width: 100%;
     border-radius: 25px;
-    border: 2px solid map-get($colors, secondary);
+    border: 2px solid map-get($colors, third);
     line-height: 260px;
     color: map-get($colors, primary);
     text-align: center;
@@ -83,7 +83,7 @@ page-studyPhase {
   .vocCard .front {}
 
   .vocCard .back {
-    background-color: map-get($colors, secondary);
+    background-color: map-get($colors, third);
     color: white;
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);

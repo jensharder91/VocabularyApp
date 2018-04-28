@@ -28,28 +28,31 @@
         <!-- <ion-item-divider>
           Study due cards
         </ion-item-divider> -->
+        <ion-item-divider style="background-color: #00df53">
+          General
+        </ion-item-divider>
         <ion-item class="center">
-          <circleview-component text="Study" [subtext]="vocabProvider.getCardsToLearn().length" (click)="studyDueCards()"></circleview-component>
-          <circleview-component text="Show all" (click)="showAllCards()"></circleview-component>
+          <circleview-component text="Study" [subtext]="vocabProvider.getCardsToLearn().length" image="assets/imgs/selectStudy/study_due.svg"(click)="studyDueCards()"></circleview-component>
+          <circleview-component text="Show all" [subtext]="vocabProvider.getCardDeckAll().length" image="assets/imgs/selectStudy/showAll.svg" (click)="showAllCards()"></circleview-component>
         </ion-item>
-        <ion-item-divider>
+        <ion-item-divider style="background-color: #ff7400">
           Topics
         </ion-item-divider>
         <ion-item>
           <horizontalscroll-component mode="topics" [items]="language.topics" (clickEvent)="presentTopicPopover($event)"></horizontalscroll-component>
         </ion-item>
-        <ion-item-divider>
-          Levels
+        <ion-item-divider style="background-color: #02b9d2">
+          Level
         </ion-item-divider>
         <ion-item>
           <horizontalscroll-component mode="levels" (clickEvent)="presentLevelPopover($event)"></horizontalscroll-component>
         </ion-item>
       </ion-list>
-      <ion-card *ngIf="language.topics.length == 0" id="titlecard" class="center-content headercard">
-
-          <h1 class="headercolor">Unfortunately you do not have any topics to learn. </h1>
-          <h2 class="headercolor">Just <button ion-button color="secondary" (click)="openManage()"><ion-icon class="button-icon" name="build"></ion-icon>add topics</button> to start learning!</h2>
-      </ion-card>
+      <div *ngIf="language.topics.length == 0" id="titlecard" class="center-content">
+        <h3 class="headertext">You do not have any topics to learn. </h3>
+        <img class="no-content-image" src="assets/imgs/selectStudy/noContent.svg"><br/>
+        <button ion-button color="secondary" (click)="openManage()"><ion-icon class="button-icon" name="add"></ion-icon>&ensp;&ensp;Add topic</button>
+      </div>
     </div>
 
     <!-- <div *ngSwitchCase="'grammar'">

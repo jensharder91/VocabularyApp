@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200.15395mm"
+   height="181.48105mm"
+   viewBox="0 0 200.15395 181.48105"
+   version="1.1"
+   id="svg4540"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="icon.svg">
+  <defs
+     id="defs4534" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-99.714313"
+     inkscape:cy="267.12895"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1003"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4537">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4.8381026,-38.030156)">
+    <rect
+       style="opacity:1;fill:#02b9d2;fill-opacity:1;stroke:#333333;stroke-width:1.12278664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect817-8-9-0-4"
+       width="170.35432"
+       height="118.51606"
+       x="-59.24025"
+       y="104.80396"
+       rx="10.481408"
+       ry="10.738159"
+       transform="rotate(-30.187541)" />
+    <rect
+       style="opacity:1;fill:#ff7400;fill-opacity:1;stroke:#333333;stroke-width:1.12278664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect817-8-9-0"
+       width="170.35432"
+       height="118.51606"
+       x="-4.6919694"
+       y="86.038857"
+       rx="10.481408"
+       ry="10.738159"
+       transform="rotate(-10.187541)" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#333333;stroke-width:1.12278664;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect817-8-9"
+       width="170.35432"
+       height="118.51604"
+       x="19.31584"
+       y="69.855362"
+       rx="10.481408"
+       ry="10.738159"
+       transform="rotate(-0.18754074)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:56.37778091px;line-height:1.25;font-family:'Always In My Heart';-inkscape-font-specification:'Always In My Heart, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.29363471"
+       x="36.153446"
+       y="127.02342"
+       id="text851"
+       transform="scale(0.90730854,1.1021609)"><tspan
+         sodipodi:role="line"
+         id="tspan849"
+         x="36.153446"
+         y="127.02342"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:56.37778091px;font-family:'Always In My Heart';-inkscape-font-specification:'Always In My Heart, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.29363471">VocApp</tspan></text>
+  </g>
+</svg>

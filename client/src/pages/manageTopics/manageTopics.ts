@@ -31,7 +31,8 @@ export class ManageTopicsPage {
         if (toggleItem.topic.id == topic.id) {
           isActiveTopic = true;
         }
-      })
+      });
+
       if (!isActiveTopic) {
         this.toggleItems.push({ state: false, originState: false, topic: topic });
       }
@@ -50,14 +51,14 @@ export class ManageTopicsPage {
     let topicList: string = "";
     deleteTopicList.forEach((topic) => {
       topicList += topic.name + " ";
-    })
+    });
 
     if (deleteTopicList.length == 0) {
       this.saveNow();
     } else {
       this.alertCtrl.create({
         title: 'Warning!',
-        message: 'Topics you disable will be deleted (including your progress!). Are you sure you want to disable the topics: ' + topicList + '?',
+        message: 'The following topics incl. your progress will be removed: ' + topicList + '.',
         buttons: [
           {
             text: 'Cancel',
@@ -67,7 +68,7 @@ export class ManageTopicsPage {
             }
           },
           {
-            text: 'Yes',
+            text: 'Okay',
             handler: () => {
               this.saveNow();
             }

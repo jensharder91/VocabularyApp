@@ -31,7 +31,8 @@ export class ManageLanguagesPage {
         if (toggleItem.language.id == language.id) {
           isActiveLanguage = true;
         }
-      })
+      });
+
       if (!isActiveLanguage) {
         this.toggleItems.push({ state: false, originState: false, language: language });
       }
@@ -50,14 +51,14 @@ export class ManageLanguagesPage {
     let languageList: string = "";
     deleteLanguageList.forEach((language) => {
       languageList += language.shortName1 + "/" + language.shortName2 + "  ";
-    })
+    });
 
     if (deleteLanguageList.length == 0) {
       this.saveNow();
     } else {
       this.alertCtrl.create({
         title: 'Warning!',
-        message: 'Language you disable will be deleted (including your progress in all topics!). Are you sure you want to disable the languages: ' + languageList + '?',
+        message: 'The following languages incl. your progress will be removed: ' + languageList + '.',
         buttons: [
           {
             text: 'Cancel',
@@ -67,7 +68,7 @@ export class ManageLanguagesPage {
             }
           },
           {
-            text: 'Yes',
+            text: 'Okay',
             handler: () => {
               this.saveNow();
             }
