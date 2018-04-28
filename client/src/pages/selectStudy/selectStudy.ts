@@ -10,7 +10,7 @@ import { OverviewPage } from "../overview/overview";
 import { ManageTopicsPage } from "../manageTopics/manageTopics";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { SelectStudyPopoverPage } from "../selectStudyPopover/selectStudyPopover";
-import {VocabularyListPage} from'../vocabularyList/vocabularyList';
+import { VocabularyListPage } from '../vocabularyList/vocabularyList';
 
 @Component({
   selector: 'page-selectStudy',
@@ -65,7 +65,7 @@ export class SelectStudyPage {
   //   });
   // }
 
-  showAllCards(){
+  showAllCards() {
     this.navCtrl.setRoot(VocabularyListPage);
   }
 
@@ -74,7 +74,7 @@ export class SelectStudyPage {
 
     if (curCards.length > 0) {
       this.navCtrl.setRoot(StudyPhasePage, {
-        cards: curCards
+        mode: "due"
       });
     } else {
       this.toastCtrl.create({
@@ -174,7 +174,7 @@ export class SelectStudyPage {
   //   // this.updateDeckSize();
   // }
 
-  openManage(){
+  openManage() {
     this.navCtrl.setRoot(ManageTopicsPage);
   }
 

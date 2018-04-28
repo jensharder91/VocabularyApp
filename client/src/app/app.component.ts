@@ -80,7 +80,7 @@ export class MyApp {
 
     if (curCards.length > 0) {
       this.nav.setRoot(StudyPhasePage, {
-        cards: curCards
+        mode: "due"
       });
     } else {
       this.toastCtrl.create({

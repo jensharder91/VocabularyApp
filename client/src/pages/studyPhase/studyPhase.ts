@@ -41,7 +41,9 @@ export class StudyPhasePage {
     } else if (this.mode == "levels") {
       this.currentCardDeck = this.vocabProvider.getCardDeckForLevel(this.level - 1);
       this.repeatLevel = true;
-    } else {
+    } else if (this.mode == "due"){
+      this.currentCardDeck = this.vocabProvider.getCardsToLearn();
+    }else {
       this.currentCardDeck = this.vocabProvider.getCardDeckAll();
     }
 
