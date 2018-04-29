@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
 import { AlertController, ToastController } from "ionic-angular";
-import { Card } from '../../../model/card';
 import * as papa from 'papaparse';
 import { Http } from "@angular/http";
 
@@ -27,6 +26,14 @@ export interface Topic {
   cards: Card[];
   waitingCards: Card[];
   csvStringUrl: string;
+}
+
+export interface Card {
+  frontSide: string;
+  backSide: string;
+  level: number;
+  nextTimeInverse: boolean;
+  dueDate: number;
 }
 
 @Injectable()
@@ -160,7 +167,8 @@ export class VocabProvider {
       frontSide: frontSideValue,
       backSide: backSideValue,
       level: 0,
-      dueDate: new Date().getTime()
+      dueDate: new Date().getTime(),
+      nextTimeInverse: false
     };
 
     let topic: Topic;
@@ -287,6 +295,13 @@ export class VocabProvider {
 
 
   increaseCardLevel(card: Card) {
+    //next time, learn the opposite backSide
+    if (card.nextTimeInverse) {
+      card.nextTimeInverse = false;
+    } else {
+      card.nextTimeInverse = true;
+    }
+
     //only if it is not to early to study this cards
     if (card.dueDate <= new Date().getTime()) {
       //increase card level
@@ -355,7 +370,8 @@ export class VocabProvider {
           frontSide: parsedData[j][0],
           backSide: parsedData[j][1],
           level: 0,
-          dueDate: new Date().getTime()
+          dueDate: new Date().getTime(),
+          nextTimeInverse: false
         });
       }
 

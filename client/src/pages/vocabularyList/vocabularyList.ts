@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, NavParams } from 'ionic-angular';
-import { VocabProvider } from "../../providers/vocab/vocab";
-import { Card } from '../../../model/card';
+import { VocabProvider, Card } from "../../providers/vocab/vocab";
 
 @Component({
   selector: 'page-vocabularyList',

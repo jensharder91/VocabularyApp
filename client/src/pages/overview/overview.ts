@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { AlertController, LoadingController, NavController } from 'ionic-angular';
 import { StudyPhasePage } from '../studyPhase/studyPhase'
-import { VocabProvider } from "../../providers/vocab/vocab";
+import { VocabProvider, Card } from "../../providers/vocab/vocab";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 import 'rxjs/add/operator/map';
-import { Card } from '../../../model/card';
 
 @Component({
   selector: 'page-overview',

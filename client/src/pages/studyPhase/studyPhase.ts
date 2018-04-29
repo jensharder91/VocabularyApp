@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
-import { VocabProvider } from "../../providers/vocab/vocab";
-import { Card } from '../../../model/card';
+import { VocabProvider, Card } from "../../providers/vocab/vocab";
 import { SelectStudyPage } from "../selectStudy/selectStudy";
 
 @Component({
@@ -51,7 +50,7 @@ export class StudyPhasePage {
     this.counter = 0;
     this.currentCardDeck = this.shuffle(this.currentCardDeck);
     this.currentCard = this.currentCardDeck[this.counter];
-    this.randCardSide();
+    this.chooseCardSide();
   }
 
   getProgressImage(level: number): string {
@@ -104,21 +103,19 @@ export class StudyPhasePage {
 
     this.currentCard = this.currentCardDeck[this.counter];
 
-    this.randCardSide();
+    this.chooseCardSide();
   }
 
-  randCardSide() {
+  chooseCardSide() {
 
     // Randomize which side to show
     if (this.currentCard != null) {
-      let rand = (Math.floor(Math.random() * 6) + 1) % 2;
-      if (rand == 0) {
-        this.frontCard = this.currentCard.frontSide;
-        this.backCard = this.currentCard.backSide;
-
-      } else {
+      if (this.currentCard.nextTimeInverse) {
         this.frontCard = this.currentCard.backSide;
         this.backCard = this.currentCard.frontSide;
+      } else {
+        this.frontCard = this.currentCard.frontSide;
+        this.backCard = this.currentCard.backSide;
       }
 
       this.seeBackside = false;

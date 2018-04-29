@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, PopoverController, ToastController, NavController, NavParams } from 'ionic-angular';
 import { Http } from "@angular/http";
 import 'rxjs/add/operator/map';
-
-import { Card } from "../../../model/card";
-import { VocabProvider, Language } from "../../providers/vocab/vocab";
+import { VocabProvider, Language, Card } from "../../providers/vocab/vocab";
 
 import { OverviewPage } from "../overview/overview";
 import { ManageTopicsPage } from "../manageTopics/manageTopics";
