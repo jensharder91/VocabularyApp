@@ -8,17 +8,12 @@
       Learning
     </ion-title>
     <ion-buttons end>
-      <!-- <button ion-button clear> -->
         <img src={{getProgressImage(currentCard.level+1)}} alt="Level {{currentCard.level +1}}" height="40" width="40" class="levelIndicator">
-      <!-- </button> -->
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="card-background-page">
-
-  <!--Move image to navbar to save screen space-->
-  <!--<img src={{getProgressImage(currentCard.level)}} alt="Level {{currentCard.level}}" height="42" width="42" class="levelIndicator">-->
 
   <!-- Vocabulary vocCard -->
   <div class="container">
@@ -35,9 +30,13 @@
 </ion-content>
 
 <ion-footer>
+  <button class="hideBtn" (click)="showInputfield()">
+    <ion-icon *ngIf="inputfieldVisible" name="arrow-dropdown"></ion-icon>
+    <ion-icon *ngIf="!inputfieldVisible" name="arrow-dropup"></ion-icon>
+  </button>
   <ion-toolbar>
     <!-- Space to enter answer -->
-    <ion-row style="height: 90%;">
+    <ion-row style="height: 90%;" *ngIf="inputfieldVisible">
       <ion-col>
         <div class="inputContainer">
           <h2>

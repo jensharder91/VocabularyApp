@@ -22,6 +22,7 @@ export class StudyPhasePage {
   private level: number;
 
   private myInput: String;
+  private inputfieldVisible: Boolean = true;
 
   counter: number = 0; //Pay attention: Level 1 in the UI is level 0 for the developer due to 0-based array
 
@@ -56,6 +57,11 @@ export class StudyPhasePage {
   getProgressImage(level: number): string {
     if (!level) level = 0;
     return "assets/imgs/level/level_" + level + ".svg";
+  }
+
+  // display or hide input field
+  showInputfield(){
+    this.inputfieldVisible = !this.inputfieldVisible;
   }
 
   showVocab(id) {
