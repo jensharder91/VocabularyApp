@@ -49,9 +49,9 @@
         </ion-item>
       </ion-list>
       <div *ngIf="language.topics.length == 0" id="titlecard" class="center-content">
-        <h3 class="headertext">You do not have any topics to learn. </h3>
+        <h6 class="no-content-text">You do not have<br/> any topics to learn. </h6>
         <img class="no-content-image" src="assets/imgs/selectStudy/noContent.svg"><br/>
-        <button ion-button color="secondary" (click)="openManage()"><ion-icon class="button-icon" name="add"></ion-icon>&ensp;&ensp;Add topic</button>
+        <button ion-button color="secondary" (click)="openManage()"><ion-icon name="add"></ion-icon>&ensp;&ensp;Add topic</button>
       </div>
     </div>
 

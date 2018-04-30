@@ -6,22 +6,18 @@ page-home {
 
   .header-container{
     display: inline-block;
-    margin: 0 10px;
     position: relative;
     text-align: center;
     width: 100%;
-  }
-
-  .headercard{
-    padding: 10vh 0;
-    margin-bottom: 20px;
+    height: 210px;
+    margin: 20px 0 35px 0;
   }
 
   .headertext-1 {
     color: map-get($colors, primary);
     text-align: center;
     vertical-align: middle;
-    line-height: 250px;
+    line-height: 175px;
     left: 0;
     top: 0;
     position: absolute;
@@ -32,15 +28,23 @@ page-home {
     color: map-get($colors, primary);
     text-align: center;
     vertical-align: middle;
-    line-height: 400px;
+    line-height: 225px;
     left: 0;
     top: 0;
     position: absolute;
     width: inherit;
   }
 
+  .no-content-text {
+    color: map-get($colors, primary);
+    text-align: center;
+    vertical-align: middle;
+    width: inherit;
+    background-color: #dcdcdc;
+  }
+
   .no-content-image{
-    width: 200px;
-    height: 200px;
+    width: 125px;
+    height: 125px;
   }
 }
