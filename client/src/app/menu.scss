@@ -9,12 +9,15 @@
 
 .menu_main_icon{
   margin-right: 15px;
+  width: 15px;
   font-size: 150%;
   color: map-get($colors, primary);
 }
 
 .menu_icon{
   margin-right: 15px;
-  margin-left: 25px;
+  margin-left: 15px;
   color: map-get($colors, primary);
+  text-align: center;
+  width: 15px;
 }

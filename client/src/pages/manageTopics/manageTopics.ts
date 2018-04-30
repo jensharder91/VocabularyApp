@@ -25,7 +25,7 @@ export class ManageTopicsPage {
       this.toggleItems.push({ state: true, originState: true, topic: topic });
     });
 
-    vocabProvider.getAvaiableContent(vocabProvider.getCurrentLanguage().id).forEach(topic => {
+    vocabProvider.getAvailableContent(vocabProvider.getCurrentLanguage().id).forEach(topic => {
       let isActiveTopic: boolean = false;
       this.toggleItems.forEach((toggleItem) => {
         if (toggleItem.topic.id == topic.id) {
