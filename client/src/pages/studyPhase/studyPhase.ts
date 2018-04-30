@@ -21,7 +21,7 @@ export class StudyPhasePage {
   private topic: string;
   private level: number;
 
-  input_value: String;
+  private myInput: String;
 
   counter: number = 0; //Pay attention: Level 1 in the UI is level 0 for the developer due to 0-based array
 
@@ -72,7 +72,7 @@ export class StudyPhasePage {
     }
 
     // reset input field
-    this.input_value = null;
+    this.myInput = "";
 
     // show next card
     this.nextCard();
@@ -81,7 +81,6 @@ export class StudyPhasePage {
   nextCard() {
 
     if (this.counter >= this.currentCardDeck.length - 1) {
-
 
       let prompt = this.alertCtrl.create({
         title: 'All done!',
