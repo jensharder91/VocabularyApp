@@ -98,7 +98,6 @@ export class SelectStudyPopoverPage {
     this.viewCtrl.dismiss().then(() => {
       this.vocabProvider.addTenVocs(this.topic);
     });
-    // this.updateDeckSize();
   }
 
 }

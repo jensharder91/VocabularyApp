@@ -24,10 +24,6 @@
   <div [ngSwitch]="studyType">
     <div *ngSwitchCase="'vocabulary'">
       <ion-list no-lines *ngIf="language.topics.length > 0">
-        <!-- <ion-item><button ion-button class="studyBtn" (click)="studyDueCards()">Study<br/>due cards</button></ion-item> -->
-        <!-- <ion-item-divider>
-          Study due cards
-        </ion-item-divider> -->
         <ion-item-divider style="background-color: #00df53">
           General
         </ion-item-divider>
@@ -79,16 +75,6 @@
       </ion-list>
     </div> -->
   </div>
-
-  <!-- <ion-fab right bottom>
-    <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>
-    <ion-fab-list side="left">
-      <button ion-fab (click)='loadCsvToDict()'><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button> <br/>
-      <button ion-fab (click)="createCard();"><ion-icon name="add"></ion-icon></button>
-      <button ion-fab color="danger" (click)='resetAll();'><ion-icon name="trash"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>-->
-
 
   <ion-fab right bottom>
     <button ion-fab (click)="openManage()"><ion-icon name="build"></ion-icon></button>

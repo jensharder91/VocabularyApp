@@ -7,7 +7,6 @@ import { VocabProvider, Card } from "../providers/vocab/vocab";
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase'
-import { OverviewPage } from '../pages/overview/overview'
 import { SelectStudyPage } from '../pages/selectStudy/selectStudy';
 import { VocabularyListPage } from '../pages/vocabularyList/vocabularyList';
 import { ManageTopicsPage } from '../pages/manageTopics/manageTopics';
@@ -60,10 +59,6 @@ export class MyApp {
 
   openSettingsPage() {
     this.nav.setRoot(SettingsPage);
-  }
-
-  showProgress() {
-    this.nav.setRoot(OverviewPage);
   }
 
   manageTopics() {

@@ -9,7 +9,6 @@ import { IonicStorageModule } from "@ionic/storage";
 import { MyApp } from './app.component';
 import { VocabProvider } from '../providers/vocab/vocab';
 
-import { OverviewPage } from '../pages/overview/overview';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { HomePage } from "../pages/home/home";
 import { ManageTopicsPage } from "../pages/manageTopics/manageTopics";
@@ -28,7 +27,6 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
 @NgModule({
   declarations: [
     MyApp,
-    OverviewPage,
     StudyPhasePage,
     SelectStudyPage,
     SelectStudyPopoverPage,
@@ -50,7 +48,6 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    OverviewPage,
     StudyPhasePage,
     SelectStudyPage,
     SelectStudyPopoverPage,
