@@ -259,9 +259,7 @@ export class VocabProvider {
     });
   }
 
-
-
-  increaseCardLevel(card: Card) {
+  increaseCardLevelMax(card: Card, max: number) {
     //next time, learn the opposite backSide
     if (card.nextTimeInverse) {
       card.nextTimeInverse = false;
@@ -269,10 +267,14 @@ export class VocabProvider {
       card.nextTimeInverse = true;
     }
 
+    if (max > this.MAX_LEVEL) {
+      max = this.MAX_LEVEL;
+    }
+
     //only if it is not to early to study this cards
     if (card.dueDate <= new Date().getTime()) {
       //increase card level
-      if (card.level < this.MAX_LEVEL) {
+      if (card.level < max) {
         card.level++;
       }
 
@@ -282,6 +284,10 @@ export class VocabProvider {
       //save
       this.saveUser();
     }
+  }
+
+  increaseCardLevel(card: Card) {
+    this.increaseCardLevelMax(card, this.MAX_LEVEL);
   }
 
   resetCardLevel(card: Card) {

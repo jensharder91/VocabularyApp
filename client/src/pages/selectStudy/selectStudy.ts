@@ -8,6 +8,7 @@ import { ManageTopicsPage } from "../manageTopics/manageTopics";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { SelectStudyPopoverPage } from "../selectStudyPopover/selectStudyPopover";
 import { VocabularyListPage } from '../vocabularyList/vocabularyList';
+import { MemoryPage } from '../memory/memory';
 
 @Component({
   selector: 'page-selectStudy',
@@ -63,6 +64,10 @@ export class SelectStudyPage {
 
   openManage() {
     this.navCtrl.setRoot(ManageTopicsPage);
+  }
+
+  showMemory() {
+    this.navCtrl.setRoot(MemoryPage);
   }
 
 }

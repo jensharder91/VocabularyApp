@@ -17,6 +17,7 @@ import { SettingsPage } from "../pages/settings/settings";
 import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
 import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
+import {MemoryPage} from "../pages/memory/memory";
 
 import {CircleviewComponent} from '../components/circleview/circleview';
 import {LanguageSelectComponent} from '../components/languageselect/languageselect';
@@ -29,6 +30,7 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     MyApp,
     StudyPhasePage,
     SelectStudyPage,
+    MemoryPage,
     SelectStudyPopoverPage,
     HomePage,
     ManageTopicsPage,
@@ -50,6 +52,7 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     MyApp,
     StudyPhasePage,
     SelectStudyPage,
+    MemoryPage,
     SelectStudyPopoverPage,
     HomePage,
     ManageTopicsPage,

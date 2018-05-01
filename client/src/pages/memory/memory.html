@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Memory</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="memoryCards.length > 0">
+    <ion-row *ngFor="let rowNumber of [1, 2, 3]">
+      <ion-col col-4 *ngFor="let colNumber of [1, 2, 3]" (click)="clickCard(3*(rowNumber-1)+colNumber)">
+        <div [ngClass]="{'selected': getMemoryCard(3*(rowNumber-1)+colNumber).selected && !getMemoryCard(3*(rowNumber-1)+colNumber).dummy, 'notSelected': !getMemoryCard(3*(rowNumber-1)+colNumber).selected && !getMemoryCard(3*(rowNumber-1)+colNumber).dummy, 'box': true}">
+          <div [hidden]="getMemoryCard(3*(rowNumber-1)+colNumber).dummy" class="circle-text">
+            <div *ngIf="getMemoryCard(3*(rowNumber-1)+colNumber).showFront" class="center-text">
+              {{getMemoryCard(3*(rowNumber-1)+colNumber).card.frontSide}}
+            </div>
+            <div *ngIf="!getMemoryCard(3*(rowNumber-1)+colNumber).showFront" class="center-text">
+              {{getMemoryCard(3*(rowNumber-1)+colNumber).card.backSide}}
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
