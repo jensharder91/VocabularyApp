@@ -187,7 +187,6 @@ export class StudyPhasePage {
 
       // if second string is longer than the first, mark difference with underscores
       if (string2.length > string1.length){
-        console.log("String2 " + string2 + " is " + (string2.length - string1.length) + " chars longer than String 1 " + string1);
         for (let i = 0; i < (string2.length - string1.length); i++){
           let newSpan = document.createElement('span');
           newSpan.style.color = "#f0513c";
