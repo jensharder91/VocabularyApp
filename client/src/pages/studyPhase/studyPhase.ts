@@ -156,7 +156,11 @@ export class StudyPhasePage {
     card.classList.toggle("flipped");
     this.seeBackside = !this.seeBackside;
 
-    this.stringDiff(this.backCard, this.myInput);
+    if (card.classList.contains("flipped")) {
+      this.stringDiff(this.backCard, this.myInput);
+    } else {
+      this.stringDiff(this.frontCard, this.myInput);
+    }
   }
 
   // mark differences between two strings
