@@ -11,8 +11,8 @@ import { SelectStudyPage } from "../selectStudy/selectStudy";
 export class StudyPhasePage {
 
   currentCard: Card;
-  frontCard: String;
-  backCard: String;
+  frontCard: string;
+  backCard: string;
   currentCardDeck: Card[];
   private seeBackside: boolean = false;
   private repeatLevel: boolean = false;
@@ -21,8 +21,8 @@ export class StudyPhasePage {
   private topic: string;
   private level: number;
 
-  private myInput: String;
-  private inputfieldVisible: Boolean = true;
+  private myInput: string = "";
+  private inputfieldVisible: boolean = true;
 
   counter: number = 0; //Pay attention: Level 1 in the UI is level 0 for the developer due to 0-based array
 
@@ -109,6 +109,8 @@ export class StudyPhasePage {
     this.currentCard = this.currentCardDeck[this.counter];
 
     this.chooseCardSide();
+
+    this.resetSolution();
   }
 
   chooseCardSide() {
@@ -153,5 +155,57 @@ export class StudyPhasePage {
     let card = document.getElementsByClassName("vocCard")[0];
     card.classList.toggle("flipped");
     this.seeBackside = !this.seeBackside;
+
+    this.stringDiff(this.backCard, this.myInput);
+  }
+
+  // mark differences between two strings
+  stringDiff(string1: string, string2: string){
+
+    if (this.seeBackside) {
+
+      // HTML element to write solution
+      let span = document.getElementById("solution");
+      span.innerHTML = '';
+
+      // Parse first string and compare with second string character wise
+      let i = 0;
+      string1.split('').forEach(function (elem) {
+        let newSpan = document.createElement('span');
+        if (elem != string2[i]) {
+          // mark differences in red
+          newSpan.style.color = "#f0513c";
+          newSpan.style.textDecoration = "underline";
+        } else {
+          newSpan.style.color = "#00df53";
+        }
+
+        newSpan.innerHTML = elem;
+        span.appendChild(newSpan);
+        i++;
+      });
+
+      // if second string is longer than the first, mark difference with underscores
+      if (string2.length > string1.length){
+        console.log("String2 " + string2 + " is " + (string2.length - string1.length) + " chars longer than String 1 " + string1);
+        for (let i = 0; i < (string2.length - string1.length); i++){
+          let newSpan = document.createElement('span');
+          newSpan.style.color = "#f0513c";
+          newSpan.innerHTML = "&ensp;";
+          newSpan.style.textDecoration = "underline";
+          span.appendChild(newSpan);
+        }
+      }
+
+    } else {
+
+      this.resetSolution();
+    }
+  }
+
+  // reset HTML field for solution display
+  resetSolution(){
+    let span = document.getElementById("solution");
+    span.innerHTML = '&ensp;';
   }
 }

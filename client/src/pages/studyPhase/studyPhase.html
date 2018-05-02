@@ -19,10 +19,10 @@
   <div class="container">
     <div class="vocCard" (click)="flip()">
       <div class="front">
-        <span>{{ frontCard }}</span>
+        <span id="frontCard">{{ frontCard }}</span>
       </div>
       <div class="back">
-        <span>{{ backCard }}</span>
+        <span id="backCard">{{ backCard }}</span>
       </div>
     </div>
   </div>
@@ -40,7 +40,8 @@
       <ion-col>
         <div class="inputContainer">
           <h2>
-            <ion-input text-wrap text-center placeholder="Type your answer here..." [(ngModel)]="myInput"></ion-input>
+            <ion-input id="myInput" text-wrap text-center placeholder="Type your answer here..." [(ngModel)]="myInput"></ion-input>
+            <span id="solution" class="solutionSpace">&ensp;&ensp;</span>
           </h2>
         </div>
       </ion-col>
