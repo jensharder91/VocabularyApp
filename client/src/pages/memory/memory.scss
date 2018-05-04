@@ -17,6 +17,7 @@ page-memory {
     bottom: 0;
     left: 0;
     right: 0;
+    color: map-get($colors, light);
     // text-align: center;
     // padding: 10%;
     display: flex;

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChildren } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { VocabProvider, Card } from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import { SelectStudyPage } from "../selectStudy/selectStudy";
 import { ManageLanguagesPage } from "../manageLanguages/manageLanguages";
+import { MemoryAnimationService } from './memoryAnimation';
 
 
 export interface MemoryCard {
@@ -20,16 +21,18 @@ export interface MemoryCard {
 })
 
 export class MemoryPage {
+  @ViewChildren('memoryContainer') memoryContainer: any;
 
   private source: Card[] = [];
 
   private activeCards: Card[] = [];
   private memoryCards: MemoryCard[] = [];
   private clickBlocked: boolean = false;
-private dummyCounter:number = 0;
+  private dummyCounter: number = 0;
 
   constructor(public navCtrl: NavController,
-    public vocabProvider: VocabProvider) {
+    public vocabProvider: VocabProvider,
+    private memoryAnimation: MemoryAnimationService) {
 
     this.source = vocabProvider.getCardDeckAll();
 
@@ -56,7 +59,7 @@ private dummyCounter:number = 0;
   getNewMemoryCard(): MemoryCard {
     this.activeCards = this.shuffle(this.activeCards);
     let counter: number = 0;
-    let restarted:boolean = false;
+    let restarted: boolean = false;
     let memoryCardToReturn: MemoryCard;
 
     while (!memoryCardToReturn && this.activeCards.length > 0) {
@@ -84,7 +87,7 @@ private dummyCounter:number = 0;
       counter++;
       if (counter >= this.activeCards.length) {
         counter = 0;
-        if(restarted){
+        if (restarted) {
           if (!memoryCardToReturn) {
             memoryCardToReturn = <MemoryCard>{ card: <Card>{ frontSide: "string", backSide: "string" }, showFront: false, dummy: true };
             this.dummyCounter++;
@@ -128,13 +131,16 @@ private dummyCounter:number = 0;
     if (selectedCards.length == 2) {
       setTimeout(() => {
         this.verify(selectedCards[0], selectedCards[1]);
-      }, 1000)
+      }, 500)
     } else {
       this.clickBlocked = false;
     }
   }
 
   verify(cardA: MemoryCard, cardB: MemoryCard) {
+
+    let indexA = this.memoryCards.indexOf(cardA);
+    let indexB = this.memoryCards.indexOf(cardB);
     if (cardA.card.frontSide == cardB.card.frontSide && cardA.card.backSide == cardB.card.backSide) {
       let indexOfActiveCard: number = -1;
       for (let i = 0; i < this.activeCards.length; i++) {
@@ -148,32 +154,42 @@ private dummyCounter:number = 0;
       //increase level of correct card (ONLY UP TO LEVEL 2)
       this.vocabProvider.increaseCardLevelMax(this.activeCards[indexOfActiveCard], 2);
 
-      //remove card and get new one
-      if (indexOfActiveCard > -1) {
-        this.activeCards.splice(indexOfActiveCard, 1);
-        this.fillActiveCards();
-      }
+      this.memoryAnimation.correctAnimation(this.memoryContainer.toArray()[indexA], this.memoryContainer.toArray()[indexB]).then(() => {
+        //remove card and get new one
+        if (indexOfActiveCard > -1) {
+          this.activeCards.splice(indexOfActiveCard, 1);
+          this.fillActiveCards();
+        }
 
-      let indexA = this.memoryCards.indexOf(cardA);
-      if (indexA > -1) {
-        let newCard: MemoryCard = this.getNewMemoryCard();
-        this.memoryCards.splice(indexA, 1, newCard);
-      }
+        if (indexA > -1) {
+          let newCard: MemoryCard = this.getNewMemoryCard();
+          this.memoryCards.splice(indexA, 1, newCard);
+        }
 
-      let indexB = this.memoryCards.indexOf(cardB);
-      if (indexB > -1) {
-        let newCard: MemoryCard = this.getNewMemoryCard();
-        this.memoryCards.splice(indexB, 1, newCard);
-      }
+        if (indexB > -1) {
+          let newCard: MemoryCard = this.getNewMemoryCard();
+          this.memoryCards.splice(indexB, 1, newCard);
+        }
+
+        this.clickBlocked = false;
+        if (this.dummyCounter > 8) {
+          this.navCtrl.setRoot(SelectStudyPage);
+        }
+      });
+
+
     } else {
-      cardA.selected = false;
-      cardB.selected = false;
+      this.memoryAnimation.wrongAnimation(this.memoryContainer.toArray()[indexA], this.memoryContainer.toArray()[indexB]).then(() => {
+        cardA.selected = false;
+        cardB.selected = false;
+        this.clickBlocked = false;
+      });
     }
 
-    this.clickBlocked = false;
     if (this.dummyCounter > 8) {
       this.navCtrl.setRoot(SelectStudyPage);
     }
+
   }
 
   shuffle(list: Array<any>): Array<any> {

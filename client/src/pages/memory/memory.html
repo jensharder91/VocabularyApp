@@ -12,7 +12,7 @@
   <ion-grid *ngIf="memoryCards.length > 0">
     <ion-row *ngFor="let rowNumber of [1, 2, 3]">
       <ion-col col-4 *ngFor="let colNumber of [1, 2, 3]" (click)="clickCard(3*(rowNumber-1)+colNumber)">
-        <div [ngClass]="{'selected': getMemoryCard(3*(rowNumber-1)+colNumber).selected && !getMemoryCard(3*(rowNumber-1)+colNumber).dummy, 'notSelected': !getMemoryCard(3*(rowNumber-1)+colNumber).selected && !getMemoryCard(3*(rowNumber-1)+colNumber).dummy, 'box': true}">
+        <div #memoryContainer [ngClass]="{'selected': getMemoryCard(3*(rowNumber-1)+colNumber).selected && !getMemoryCard(3*(rowNumber-1)+colNumber).dummy, 'notSelected': !getMemoryCard(3*(rowNumber-1)+colNumber).selected && !getMemoryCard(3*(rowNumber-1)+colNumber).dummy, 'box': true}">
           <div [hidden]="getMemoryCard(3*(rowNumber-1)+colNumber).dummy" class="circle-text">
             <div *ngIf="getMemoryCard(3*(rowNumber-1)+colNumber).showFront" class="center-text">
               {{getMemoryCard(3*(rowNumber-1)+colNumber).card.frontSide}}

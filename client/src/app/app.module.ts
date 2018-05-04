@@ -16,13 +16,14 @@ import { ManageLanguagesPage } from "../pages/manageLanguages/manageLanguages";
 import { SettingsPage } from "../pages/settings/settings";
 import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
-import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
-import {MemoryPage} from "../pages/memory/memory";
+import { SelectStudyPage } from "../pages/selectStudy/selectStudy";
+import { MemoryPage } from "../pages/memory/memory";
+import { MemoryAnimationService } from "../pages/memory/memoryAnimation";
 
-import {CircleviewComponent} from '../components/circleview/circleview';
-import {LanguageSelectComponent} from '../components/languageselect/languageselect';
-import {HorizontalscrollComponent} from '../components/horizontalscroll/horizontalscroll';
-import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPopover";
+import { CircleviewComponent } from '../components/circleview/circleview';
+import { LanguageSelectComponent } from '../components/languageselect/languageselect';
+import { HorizontalscrollComponent } from '../components/horizontalscroll/horizontalscroll';
+import { SelectStudyPopoverPage } from "../pages/selectStudyPopover/selectStudyPopover";
 
 
 @NgModule({
@@ -64,8 +65,9 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     StatusBar,
     SplashScreen,
     VocabProvider,
+    MemoryAnimationService,
     SQLite,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
