@@ -9,6 +9,7 @@
 
 <ion-content>
 
+  <div  class="center-content">
   <ion-grid *ngIf="memoryCards.length > 0">
     <ion-row *ngFor="let rowNumber of [1, 2, 3]">
       <ion-col col-4 *ngFor="let colNumber of [1, 2, 3]" (click)="clickCard(3*(rowNumber-1)+colNumber)">
@@ -27,5 +28,6 @@
     </ion-row>
 
   </ion-grid>
+  </div>
 
 </ion-content>

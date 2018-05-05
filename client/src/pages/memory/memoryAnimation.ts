@@ -54,7 +54,7 @@ export class MemoryAnimationService {
           { opacity: 0.8, transform: 'rotateY(380deg)', offset: 0.7 },
           { opacity: 0.6, transform: 'rotateY(510deg)', offset: 0.8 },
           { opacity: 0.4, transform: 'rotateY(660deg)', offset: 0.9 },
-          { opacity: 0.1, backgroundColor: '#00B221', transform: 'rotateY(850deg)', offset: 1 }
+          { opacity: 0.1, backgroundColor: '#00df53', transform: 'rotateY(850deg)', offset: 1 }
         ], {
             // duration: 1000,
             duration: 1000,
@@ -85,7 +85,7 @@ export class MemoryAnimationService {
           { transform: 'translateX(-10px) translateY(0)', offset: 0.7 },
           { transform: 'translateX(10px) translateY(0)', offset: 0.8 },
           { transform: 'translateX(-10px) translateY(0)', offset: 0.9 },
-          { backgroundColor: 'red', transform: 'translateX(0) translateY(0)', offset: 1 }
+          { backgroundColor: '#f0513c', transform: 'translateX(0) translateY(0)', offset: 1 }
         ], {
             // duration: 1000,
             duration: 500,
