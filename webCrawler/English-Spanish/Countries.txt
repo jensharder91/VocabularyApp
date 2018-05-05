@@ -1,0 +1,27 @@
+defender,to defend
+chino,Chinese
+francés,French
+europeo,European
+internacional,international
+norteamericano,North American
+italiano,Italian
+cubano,Cuban
+británico,British
+mexicano,Mexican
+estadounidense,American (US)
+americano,American, from the Americas
+Italia,Italy
+China,China
+España,Spain
+México,Mexico
+Francia,France
+extranjero,foreign, abroad
+Inglaterra,England
+París,Paris
+Roma,Rome
+Argentina,Argentina
+Europa,Europe
+América,America, the Americas
+argentino,Argentinian
+Alemania,Germany
+alemán,German

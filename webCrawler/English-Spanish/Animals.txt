@@ -1,0 +1,19 @@
+vegetariano,vegetarian
+el animal,the animal
+la araña,the spider
+el caballo,the horse
+el cangrejo,the crab
+el elefante,the elephant
+el gato,the cat
+el oso,the bear
+el pájaro,the bird
+el pato,the duck
+el perro,the dog
+el pingüino,the penguin
+la tortuga,the turtle
+el ratón,the mouse
+el cerdo,the pig
+el toro,the bull
+el mono,the monkey
+el conejo,the rabbit
+el león,the lion

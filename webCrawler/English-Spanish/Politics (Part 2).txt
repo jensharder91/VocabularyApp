@@ -1,0 +1,24 @@
+la campaña,the campaign
+la democracia,the democracy
+la república,the republic
+la política,politics
+la oposición,the opposition
+el socialista,the socialist
+el discurso,the speech
+la declaración,the statement
+el organismo,the organism, the organization (masc.)
+el alcalde,the mayor
+la constitución,the constitution
+el líder,the leader
+la violencia,the violence
+la presidencia,the presidency
+el presupuesto,the budget, the estimate
+el candidato,the candidate
+la estrategia,the strategy
+federal,federal
+el conflicto,the conflict
+el diálogo,the conversation, the talks (d..)
+la independencia,the independence
+la federación,the federation
+la corrupción,the corruption
+la cooperación,the cooperation

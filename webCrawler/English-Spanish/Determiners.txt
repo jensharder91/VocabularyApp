@@ -1,0 +1,15 @@
+volver,to return (v..)
+alguno,some
+ambos,both
+aquel,that (over there)
+cada,each
+cualquier,any
+cuantos,a few (c..)
+ese,that
+este,this
+mucho,a lot, much
+ninguno,no (not one)
+otro,other
+poco,few, little (p..)
+todo,all
+uno,one

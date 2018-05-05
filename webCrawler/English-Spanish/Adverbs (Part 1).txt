@@ -1,0 +1,25 @@
+uno,one
+absolutamente,absolutely
+actualmente,currently
+adelante,forward
+además,besides
+ahora,now
+allí,there
+alrededor,around
+anteriormente,previously
+antes,before
+apenas,hardly
+aproximadamente,approximately
+aquí,here
+así,like that
+aún,still (a..)
+bastante,enough, quite (b..)
+bien,well
+casi,almost
+completamente,completely
+debajo,underneath
+definitivamente,definitely
+demasiado,too much
+despacio,slowly (d..)
+después,after
+dónde,where

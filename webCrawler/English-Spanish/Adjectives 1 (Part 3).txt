@@ -1,0 +1,22 @@
+principal,main
+profesional,professional
+propio,own
+próximo,next
+público,public
+rápido,fast
+real,real
+reciente,recent
+responsable,responsible
+rico,rich
+seguro,safe
+siguiente,following
+simple,simple (si..)
+solo,alone
+sólo,only (s..o)
+suficiente,enough (s..)
+tanto,so much
+tradicional,traditional
+último,last (final)
+único,only, unique
+útil,useful
+viejo,old (v..)

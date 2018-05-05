@@ -1,0 +1,24 @@
+suponer,to suppose
+el pasto,the pasture, the lawn, the grass
+el mar,the sea
+la flor,the flower
+el calor,the heat
+el árbol,the tree
+la luna,the moon
+el mundo,the world
+el volcán,the volcano
+el fuego,the fire
+la tierra,the earth
+la lluvia,the rain
+el sol,the sun
+el río,the river
+el cielo,the sky
+la madera,the wood
+el campo,the field
+la naturaleza,nature
+la especie,the species
+la evolución,evolution
+el aire,the air
+la luz,the light
+el planeta,the planet
+la piedra,the stone

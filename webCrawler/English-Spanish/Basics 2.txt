@@ -1,0 +1,13 @@
+la tarde,the afternoon
+la carta,the letter (mail)
+el diario,the newspaper (d..)
+ellos,they
+escribir,to write
+leer,to read
+el libro,the book
+nosotros,we
+la persona,the person
+somos,we are
+son,you (plural), they are (permanent)
+ustedes,you all (plural, formal)
+el vino,the wine

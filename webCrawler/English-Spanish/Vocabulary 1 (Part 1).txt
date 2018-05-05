@@ -1,0 +1,23 @@
+el premio,the prize
+el tiempo,time, the weather (t..)
+la edad,the age
+el grupo,the group
+el tipo,the type, the guy
+el proceso,the process
+la realidad,reality
+el cambio,the change
+la obra,the work (of art)
+la información,the information
+el nombre,the name
+la verdad,the truth
+la acción,the action
+el servicio,the service
+la producción,the production
+la paz,peace
+el sector,the sector
+la imagen,the image
+el movimiento,the movement
+la actividad,the activity
+la posibilidad,the possibility
+el código,the code (masc.)
+la capacidad,the capacity

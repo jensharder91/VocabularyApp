@@ -1,0 +1,22 @@
+estáis,you (plural) are (temporary)
+el restaurante,the restaurant
+la playa,the beach
+el hotel,the hotel
+el jardín,the garden
+el aeropuerto,the airport
+la calle,the street
+dónde,where
+el café,the coffee
+la ciudad,the city
+la casa,the home, house (c..)
+el castillo,the castle
+el lugar,the place (l..)
+el país,the country
+la zona,the area (z..)
+la comunidad,the community
+la universidad,the university
+el banco,the bank, the bench
+la plaza,the (city) square
+la región,the region
+la escuela,the school (e..)
+el cuarto,the room (c..)

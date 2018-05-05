@@ -1,0 +1,35 @@
+doble,double
+gustar,to like
+llover,to rain
+siquiera,at least, even
+dejar,to leave (d..)
+pasar,to pass, to happen (p..)
+recién,just
+poner,to put
+explicar,to explain
+preguntar,to ask (pr..)
+salir,to leave (s..)
+pedir,to ask for, to request (pe..)
+recibir,to receive
+decidir,to decide
+lograr,to achieve, to reach (l..)
+ocurrir,to happen (o..)
+responder,to respond, reply (r..)
+llamar,to call
+ganar,to win, to earn
+perder,to lose
+terminar,to finish (t..)
+iniciar,to begin (i..)
+caer,to fall
+conseguir,to get
+permitir,to allow
+obtener,to obtain
+contestar,to answer (c..)
+alcanzar,to reach (a..)
+sacar,to take out
+negar,to deny
+considerar,to consider
+intentar,to try (i..)
+insistir,to insist
+ofrecer,to offer
+hace,ago

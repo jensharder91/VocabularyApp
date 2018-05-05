@@ -1,0 +1,21 @@
+la campana,the bell
+el celular,the mobile phone
+el coche,the car (c..)
+la columna,the column
+la computadora,the computer
+la copa,the cup (c..)
+la cosa,the thing
+el dinero,the money
+el documento,the document
+el dólar,the dollar
+la foto,the photo (..o)
+la fuente,the source, the fountain
+la lista,the list
+la llave,the key (l..)
+la maleta,the suitcase
+el mapa,the map
+la máquina,the machine
+la mochila,the backpack
+la moneda,the coin, the currency
+la moto,the motorcycle
+el motor,the motor

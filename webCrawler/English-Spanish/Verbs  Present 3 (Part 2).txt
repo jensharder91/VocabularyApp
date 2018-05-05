@@ -1,0 +1,19 @@
+gastar,to spend
+afectar,to affect, to upset, to damage
+mejorar,to improve
+desear,to desire (d..)
+observar,to observe
+consultar,to consult
+volar,to fly
+crear,to create
+creer,to think, to believe (c..)
+reservar,to reserve
+expresar,to express
+reconocer,to recognize
+interesarse,to take an interest, to become interested
+costar,to cost, to be worth (c..)
+manejar,to handle, to drive
+ocupar,to occupy
+cortar,to cut (c..)
+trabajar,to work
+rechazar,to reject

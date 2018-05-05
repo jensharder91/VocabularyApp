@@ -1,0 +1,16 @@
+el jugo,the juice
+el limón,the lemon
+el menú,the menu
+la naranja,the orange
+la papa,the potato
+la pasta,the pasta
+el pescado,the fish
+el pollo,the chicken
+el queso,the cheese
+la sal,the salt
+la salsa,the salsa
+la sopa,the soup
+el té,the tea
+el tomate,the tomato
+el vegetal,the vegetable
+vegetariano,vegetarian

@@ -1,0 +1,17 @@
+santo,holy
+el teatro,the theater
+el estilo,the style
+la literatura,the literature
+la poesía,the poetry, the poem
+el cine,the movie theater
+la música,the music
+el ritmo,the rhythm
+el sonido,the sound
+el arte,the art
+la moda,the fashion
+el violín,the violin
+la flauta,the flute
+el instrumento,the instrument
+el concierto,the concert
+la orquesta,the orchestra
+la ópera,the opera

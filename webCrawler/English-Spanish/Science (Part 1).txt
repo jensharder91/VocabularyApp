@@ -1,0 +1,20 @@
+el arresto,the arrest
+la energía,the energy
+la medida,the measurement
+el análisis,the analysis
+la línea,the line
+el punto,the dot, the period
+la materia,the matter, the substance
+la función,the function
+la ciencia,science
+la superficie,the surface
+la tecnología,the technology
+el concepto,the concept
+la teoría,the theory
+la física,phsyics
+la técnica,the technique
+el técnico,the technician
+el elemento,the element
+la velocidad,the speed
+la temperatura,the temperature
+la masa,the mass, the dough

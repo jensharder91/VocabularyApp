@@ -1,0 +1,22 @@
+el descenso,the drop, the descent
+la mano,the hand
+el brazo,the arm
+el pie,the foot
+el ojo,the eye
+el cuerpo,the body (alive)
+el dedo,the finger, the toe
+la pierna,the leg
+la boca,the mouth
+la cabeza,the head
+la espalda,the back
+la cara,the face
+el cuello,the neck
+el labio,the lip
+el oído,the ear
+la piel,the skin
+la lengua,the tongue, the language (fem.)
+el pecho,the chest
+el pelo,the hair
+el frente,the front
+la frente,the forehead
+la nariz,the nose

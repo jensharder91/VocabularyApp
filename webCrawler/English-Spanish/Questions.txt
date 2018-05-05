@@ -1,0 +1,11 @@
+naranja,orange
+qué,what? (q..)
+por qué,why?
+porque,because
+cuáles,which (plural)
+quién,who?
+cómo,how?
+cuánto,how much?
+cuándo,when?
+la pregunta,the question
+cuál,what (c..), which (sing.)

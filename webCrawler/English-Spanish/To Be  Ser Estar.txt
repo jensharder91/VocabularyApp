@@ -1,0 +1,13 @@
+Spanish,English
+soy,I am (permanent)
+eres,you (singular) are (permanent)
+es,he, she, it is; you (formal) are (permanent)
+somos,we are (permanent)
+son,you (plural), they are (permanent)
+sois,you (plural) are (permanent)
+estoy,I am (temporary)
+estás,you (singular) are (temporary)
+está,he, she, it is; you (formal) are (temporary)
+estamos,we are (temporary)
+están,you (formal), they are (temporary)
+estáis,you (plural) are (temporary)

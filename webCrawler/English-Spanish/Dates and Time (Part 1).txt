@@ -1,0 +1,26 @@
+el trabajo,the job
+abril,April
+agosto,August
+el año,the year
+anoche,last night
+ayer,yesterday
+el calendario,the calender
+la cita,the appointment
+el cumpleaños,the birthday
+desde,since
+el día,the day
+diciembre,December
+domingo,Sunday
+enero,January
+la estación,the season (e..)
+febrero,February
+la fecha,the date
+la fiesta,the party
+hasta,until
+la hora,the hour
+hoy,today
+el invierno,the winter
+jueves,Thursday
+julio,July
+junio,June
+lunes,Monday

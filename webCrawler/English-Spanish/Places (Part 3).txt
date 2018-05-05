@@ -1,0 +1,22 @@
+la hacienda,the ranch
+la carretera,the road
+el salón,the living room (s..) (masc.)
+la patria,the homeland
+el festival,the festival
+la torre,the tower
+el hogar,the home (h..)
+la frontera,the border
+el patio,the backyard
+la pista,the track, the clue
+la avenida,the avenue
+el continente,the continent
+el bar,the bar
+la esquina,the corner
+la biblioteca,the library, the bookcase
+la ruta,the route
+la colonia,the colony
+oeste,west
+la galería,the gallery
+la agencia,the agency
+la distancia,the distance
+la capital,the capital (main city)

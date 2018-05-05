@@ -1,0 +1,20 @@
+yo,I
+adiós,goodbye
+disculpe,excuse me (d..)
+por favor,please
+buenos días,good morning
+gracias,thank you
+hola,hello
+no,no
+buenas noches,good night
+buenas tardes,good afternoon
+sí,yes
+mucho gusto,nice to meet you
+de nada,you&#39;re welcome
+lo siento,I&#39;m sorry
+hablar,to speak
+perdón,excuse me, sorry (p..)
+inglés,English
+nada,nothing
+español,Spanish
+la tarde,the afternoon

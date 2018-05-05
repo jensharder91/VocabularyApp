@@ -1,0 +1,24 @@
+herir,to wound
+la sonrisa,the smile
+el amor,love
+la amistad,friendship
+feliz,happy
+la tensión,the tension
+la alegría,joy, happiness (a..)
+la felicidad,happiness (f..)
+la soledad,loneliness
+la esperanza,hope
+la personalidad,the personality
+el miedo,fear (m..)
+el dolor,the pain
+la sorpresa,the surprise
+el temor,fear (t..)
+la celebración,the celebration
+la curiosidad,curiosity
+triste,sad
+el deseo,the desire
+nervioso,nervous
+el humor,the mood
+la satisfacción,the satisfaction
+el sentimiento,the feeling
+el placer,pleasure

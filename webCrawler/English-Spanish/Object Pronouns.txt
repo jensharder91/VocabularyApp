@@ -1,0 +1,11 @@
+el adulto,the adult
+me,me, to me
+te,you (singular), to you (singular)
+le,to him, to her, to it, to you (usted)
+les,to them, to you (ustedes)
+nos,us, to us
+os,you (plural), to you (plural)
+lo,him, it, you (usted)
+la,her, it, you (usted)
+los,them, you (ustedes) (masc.)
+las,them, you (ustedes) (fem.)

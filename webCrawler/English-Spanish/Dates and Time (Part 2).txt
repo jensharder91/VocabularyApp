@@ -1,0 +1,27 @@
+lunes,Monday
+la madrugada,the dawn
+mañana,tomorrow
+martes,Tuesday
+marzo,March
+mayo,May
+el mediodía,the noon
+el mes,the month
+miércoles,Wednesday
+el minuto,the minute
+el momento,the moment
+la noche,the night
+noviembre,November
+octubre,October
+la primavera,the spring
+un rato,a while
+sábado,Saturday
+el segundo,the second
+la semana,the week
+septiembre,September
+la temporada,the season (t..)
+las vacaciones,the vacations
+a veces,sometimes
+el verano,the summer
+una vez,once
+la vez,the time (v..)
+viernes,Friday

@@ -1,0 +1,19 @@
+lejos,far
+quizá,perhaps
+rápidamente,quickly
+realmente,really
+recientemente,recently
+relativamente,relatively
+seguramente,certainly
+siempre,always
+simplemente,simply
+solamente,only, just (s..mente)
+por supuesto,of course
+también,also, too
+tampoco,neither (t..)
+tan,so, as (much)
+tanto,so much
+todavía,still (t..)
+totalmente,totally
+únicamente,only (solely) (ú..)
+ya,already

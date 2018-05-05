@@ -1,0 +1,22 @@
+viernes,Friday
+barato,cheap
+bilingüe,bilingual
+bonito,pretty
+bueno,good
+capaz,able
+caro,expensive
+cierto,true (c..)
+claro,clear
+diferente,different
+distinto,distinct
+duro,hard
+familiar,family, friendly, familiar
+feo,ugly
+final,final
+fuerte,strong
+histórico,historical
+importante,important
+imposible,impossible
+inteligente,intelligent
+joven,young
+junto,together

@@ -1,0 +1,22 @@
+la ventana,the window
+el abogado,the lawyer
+el actor,the actor
+el agente,the agent
+el artista,the artist
+el atleta,the athlete
+el autor,the author
+el cajero,the cashier
+el capitán,the captain
+el carpintero,the carpenter
+el cocinero,the cook
+el comandante,the commander
+el conductor,the driver
+el coronel,the colonel
+el doctor,the doctor (d..)
+el dueño,the owner
+el empleado,the employee
+el empresario,the businessman
+el enfermero,the nurse
+la especialidad,the specialty
+el especialista,the specialist
+el estudiante,the student

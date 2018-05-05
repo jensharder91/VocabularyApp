@@ -1,0 +1,15 @@
+el hielo,the ice
+el abuelo,the grandfather
+el bebé,the baby
+el esposo,the husband (e..)
+la familia,the family
+el hermano,the brother
+el hijo,the son
+la madre,the mother
+la mamá,the mom
+el marido,the husband (m..)
+el novio,the boyfriend
+el padre,the father
+el papá,the dad
+el primo,the cousin
+el tío,the uncle

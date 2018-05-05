@@ -1,0 +1,19 @@
+el tío,the uncle
+a,to
+al,to the
+acerca,about (on the subject of)
+bajo,under
+cerca,near
+con,with
+contra,against
+de,of
+del,of the
+durante,during
+en,in
+entre,among, between
+hacia,towards
+para,for
+según,according to
+sin,without
+sobre,on, about (s..)
+por,on (p..)

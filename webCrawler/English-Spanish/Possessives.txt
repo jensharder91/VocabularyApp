@@ -1,0 +1,8 @@
+el león,the lion
+mi,my
+tu,your
+su,his / her / your (ud.)
+nuestro,our
+mío,mine
+tuyo,yours
+suyo,his / hers / yours (ud.)

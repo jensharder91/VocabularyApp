@@ -1,0 +1,26 @@
+tocar,to touch
+si,if
+aunque,although, even though
+mientras,while
+y,and
+ni,nor
+o,or
+que,that (conj.)
+pero,but (p..)
+sino,but (s..)
+el aceite,the oil
+la ensalada,the salad
+el ajo,the garlic
+la mantequilla,the butter
+la zanahoria,the carrot
+la lechuga,the lettuce
+la uva,the grape
+la piña,the pineapple
+el pastel,the cake
+el banano,the banana
+la pimienta,the pepper
+el hongo,the mushroom, the fungus
+el atún,the tuna
+el maíz,the corn
+el pavo,the turkey
+el hielo,the ice
