@@ -170,45 +170,52 @@ export class StudyPhasePage {
 
       // HTML element to write solution
       let span = document.getElementById("solution");
-      span.innerHTML = '';
+      if (span != null) {
+        console.log("im here");
+        span.innerHTML = '';
+        console.log(string1);
+        console.log(string2);
 
-      // Parse first string and compare with second string character wise
-      let i = 0;
-      string1.split('').forEach(function (elem) {
-        let newSpan = document.createElement('span');
-        if (elem != string2[i]) {
-          // mark differences in red
-          newSpan.style.color = "#f0513c";
-          newSpan.style.textDecoration = "underline";
-        } else {
-          newSpan.style.color = "#00df53";
-        }
-
-        newSpan.innerHTML = elem;
-        span.appendChild(newSpan);
-        i++;
-      });
-
-      // if second string is longer than the first, mark difference with underscores
-      if (string2.length > string1.length){
-        for (let i = 0; i < (string2.length - string1.length); i++){
+        // Parse first string and compare with second string character wise
+        let i = 0;
+        string1.split('').forEach(function (elem) {
           let newSpan = document.createElement('span');
-          newSpan.style.color = "#f0513c";
-          newSpan.innerHTML = "&ensp;";
-          newSpan.style.textDecoration = "underline";
+          if (elem != string2[i]) {
+            // mark differences in red
+            newSpan.style.color = "#f0513c";
+            newSpan.style.textDecoration = "underline";
+          } else {
+            newSpan.style.color = "#00df53";
+          }
+
+          newSpan.innerHTML = elem;
           span.appendChild(newSpan);
+          i++;
+        });
+
+        // if second string is longer than the first, mark difference with underscores
+        if (string2.length > string1.length) {
+          for (let i = 0; i < (string2.length - string1.length); i++) {
+            let newSpan = document.createElement('span');
+            newSpan.style.color = "#f0513c";
+            newSpan.innerHTML = "&ensp;";
+            newSpan.style.textDecoration = "underline";
+            span.appendChild(newSpan);
+          }
         }
+
+      } else {
+
+        this.resetSolution();
       }
-
-    } else {
-
-      this.resetSolution();
     }
   }
 
   // reset HTML field for solution display
   resetSolution(){
     let span = document.getElementById("solution");
-    span.innerHTML = '&ensp;';
+    if (span != null){
+      span.innerHTML = '&ensp;';
+    }
   }
 }
