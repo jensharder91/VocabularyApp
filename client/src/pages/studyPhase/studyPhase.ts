@@ -164,7 +164,7 @@ export class StudyPhasePage {
     }
   }
 
-  // mark differences between two strings
+  // Mark differences between two strings
   markStringDiff(string1: string, string2: string){
 
     if (this.seeBackside) {
