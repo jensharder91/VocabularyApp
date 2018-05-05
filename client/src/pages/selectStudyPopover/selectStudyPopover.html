@@ -14,7 +14,7 @@
     <button ion-button class="popoverBtn" (click)="showTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="eye"></ion-icon></button>
     <button ion-button class="popoverBtn" (click)="studyTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"><ion-icon name="play"></ion-icon></button>
     <button *ngIf="vocabProvider.getTopicByName(topic).waitingCards.length < 1" ion-button class="popoverBtn" (click)='addVocabulary(topic)'><ion-icon name="add"></ion-icon></button>
-    <button *ngIf="vocabProvider.getTopicByName(topic).waitingCards.length > 0" ion-button class="popoverBtn" (click)='loadCsvToDict(topic)'><ion-icon name="download" style="transform: rotate(180deg);"></ion-icon></button>
+    <button *ngIf="vocabProvider.getTopicByName(topic).waitingCards.length > 0" ion-button class="popoverBtn" (click)='loadCsvToDict(topic)'><img class="buttonIcon" src="assets/imgs/addCards.png"></button>
   </div>
   <div *ngIf="mode=='levels'">
     <button ion-button class="popoverBtn" (click)="showLevelCardDeck(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"><ion-icon name="eye"></ion-icon></button>
