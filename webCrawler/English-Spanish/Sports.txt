@@ -1,0 +1,14 @@
+deber,to have to, must, to owe
+el jugador,the player
+el torneo,the tournament
+el estadio,the stadium
+el equipo,the team, the equipment
+el fútbol,soccer
+el ejercicio,the exercise
+el deporte,the sport
+el campeón,the champion
+la carrera,the career, the race
+el campeonato,the championship
+la liga,the league
+el gol,the goal
+el descenso,the drop, the descent

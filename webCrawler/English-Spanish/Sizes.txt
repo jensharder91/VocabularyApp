@@ -1,0 +1,9 @@
+por,on (p..)
+alto,tall (a..)
+bajo,low, short (b..)
+corto,short (c..)
+enorme,huge
+grande,big
+largo,long
+pequeño,small
+el tamaño,the size

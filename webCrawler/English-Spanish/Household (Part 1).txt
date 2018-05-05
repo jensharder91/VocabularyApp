@@ -1,0 +1,21 @@
+el tamaño,the size
+el baño,the bathroom
+la cama,the bed
+la cartera,the wallet / the purse
+el cepillo,the brush
+la cocina,the kitchen
+la cuchara,the spoon
+el cuchillo,the knife
+la cuna,the crib
+el dormitorio,the bedroom
+la escalera,the ladder
+el escritorio,the desk
+el espejo,the mirror
+la esponja,the sponge
+la habitación,the room (h..)
+el horno,the oven
+el jabón,the soap
+la lámpara,the lamp
+la lavadora,the washing machine
+limpiar,to clean
+la mesa,the table

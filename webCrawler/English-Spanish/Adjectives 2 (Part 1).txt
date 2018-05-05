@@ -1,0 +1,23 @@
+alemán,German
+sucio,dirty
+limpio,clean
+abierto,open
+enfermo,sick
+cansado,tired
+regular,regular
+disponible,available
+perdido,lost
+especial,special
+universal,universal
+intelectual,intellectual
+interesante,interesting
+amplio,wide, spacious, ample
+máximo,maximum
+ideal,ideal
+extraño,strange
+común,common
+moderno,modern
+numeroso,numerous
+independiente,independent
+lógico,logical
+nacional,national

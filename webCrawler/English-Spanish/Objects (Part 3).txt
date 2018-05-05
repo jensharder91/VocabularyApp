@@ -1,0 +1,20 @@
+el motor,the motor
+la nota,the note
+el objeto,the object
+la página,the page
+la pantalla,the screen
+el papel,the paper
+el periódico,the newspaper (p..)
+la pieza,the piece
+la pluma,the feather, the pen
+el polvo,the powder, the dust
+el puente,the bridge
+la radio,the radio
+la regla,the rule, the ruler
+el reloj,the clock
+la revista,the magazine
+la rueda,the wheel
+la tarjeta,the card
+las tijeras,the scissors
+el tren,the train
+el vehículo,the vehicle

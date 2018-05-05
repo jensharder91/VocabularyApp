@@ -1,0 +1,27 @@
+eficaz,efficient, effective
+famoso,famous
+particular,particular
+conveniente,convenient
+previo,previous
+negativo,negative
+pendiente,pending
+elevado,high, tall, elevated (e..)
+escaso,scarce
+brillante,bright, shiny, sparkling, brilliant
+básico,basic
+difícil,difficult
+privado,private
+perfecto,perfect
+vivo,alive
+ácido,bitter, sour, acidic
+mínimo,minimum, minimal
+libre,free (at liberty, available)
+legal,legal
+débil,weak, faint, dim
+formal,formal
+presente,present (of place)
+femenino,feminine
+igual,equal, same (i..)
+tranquilo,quiet, calm, peaceful
+sencillo,simple, easy, straightforward (se..)
+múltiple,multiple

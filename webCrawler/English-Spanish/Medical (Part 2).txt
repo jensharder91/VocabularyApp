@@ -1,0 +1,21 @@
+la nariz,the nose
+el estómago,the stomach
+la salud,the health
+salud,cheers, bless you
+doler,to hurt
+el tratamiento,the treatment
+el hombro,the shoulder
+la sangre,the blood
+la rodilla,the knee
+el codo,the elbow
+la enfermedad,the disease
+el corazón,the heart
+el riesgo,the risk
+el médico,the doctor (m..)
+la emergencia,the emergency
+la ambulancia,the ambulance
+la operación,the operation
+la dosis,the dose
+la presión,the pressure
+la medicina,the medicine
+el paciente,the patient

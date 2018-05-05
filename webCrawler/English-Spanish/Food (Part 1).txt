@@ -1,0 +1,16 @@
+el vino,the wine
+el almuerzo,the lunch
+el arroz,the rice
+el azúcar,the sugar
+la carne,the meat
+la cebolla,the onion
+la cena,the dinner
+la cerveza,the beer
+cocinar,to cook
+la comida,the food
+el desayuno,the breakfast
+el emparedado,the sandwich
+la fresa,the strawberry
+la fruta,the fruit
+el huevo,the egg
+el jugo,the juice

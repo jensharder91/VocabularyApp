@@ -1,0 +1,27 @@
+la capital,the capital (main city)
+el amigo,the friend
+la persona,the person
+la gente,the people
+señora,Mrs.
+la población,the population
+la cultura,the culture
+el trabajador,the worker
+la revolución,the revolution
+el ciudadano,the citizen
+el vecino,the neighbor
+el compañero,the colleague, the partner
+la audiencia,the audience
+la pareja,the couple
+el matrimonio,the marriage
+la victima,the victim
+el individuo,the individual
+el turismo,the tourism
+la humanidad,the humanity
+el enemigo,the enemy
+la costumbre,the custom, the habit
+la chica,the girl (c..)
+el campesino,the peasant
+la feria,the fair
+el caballero,the gentleman
+el testigo,the witness
+el adulto,the adult

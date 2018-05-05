@@ -1,0 +1,23 @@
+junto,together
+justo,fair
+listo,smart, clever, ready
+local,local
+malo,bad
+mayor,older
+mejor,better
+menor,younger (ex. the younger brother)
+mismo,same (m..)
+natural,natural
+necesario,necessary
+normal,normal
+nuevo,new
+pasado,past
+peor,worst
+personal,personal
+plano,flat
+pobre,poor
+popular,popular
+posible,possible
+positivo,positive
+primero,first
+principal,main

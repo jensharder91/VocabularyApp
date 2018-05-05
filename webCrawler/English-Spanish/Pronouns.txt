@@ -1,0 +1,6 @@
+múltiple,multiple
+algo,something
+alguien,someone
+conmigo,with me
+nadie,nobody
+varios,several

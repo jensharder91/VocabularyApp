@@ -1,0 +1,11 @@
+odiar,to hate
+alquilar,to rent
+despertar,to wake up
+evitar,to avoid, to prevent
+mantener,to maintain, to support, to hold
+cambiar,to change
+establecer,to establish
+resolver,to solve, to resolve
+producir,to produce
+morir,to die
+partir,to cut (p..)

@@ -1,0 +1,21 @@
+ya,already
+el alcohol,the alcohol
+el aparato,the apparatus
+el arma,the gun
+el auto,the car (a..)
+el autobús,the bus
+el avión,the airplane
+la bandera,the flag
+el barco,the ship
+la batería,the battery
+la bicicleta,the bicycle
+la bola,the ball
+el bolígrafo,the pen (b..)
+la bolsa,the bag
+la bomba,the bomb
+la botella,the bottle
+la cadena,the chain
+la caja,the box, the cash register
+la cámara,the camera
+la llave,the key (l..)
+la campana,the bell

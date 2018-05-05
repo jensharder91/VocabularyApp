@@ -1,0 +1,19 @@
+el fracaso,the failure
+participar,to participate
+construir,to build
+actuar,to act
+matar,to kill
+analizar,to analyze
+colocar,to place
+vender,to sell
+subir,to go up, to climb, to get on
+definir,to define
+comprobar,to check, to prove
+asumir,to assume
+cubrir,to cover
+atender,to look after, to attend to
+impedir,to prevent
+romper,to break
+eliminar,to remove, to eliminate
+existir,to exist
+deber,to have to, must, to owe

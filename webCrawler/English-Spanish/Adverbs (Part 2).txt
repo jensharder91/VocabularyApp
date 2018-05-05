@@ -1,0 +1,27 @@
+dónde,where
+entonces,then (e..)
+especialmente,especially
+exactamente,exactly
+fácilmente,easily
+general,general
+generalmente,usually
+igualmente,equally, likewise
+inmediatamente,immediately
+jamás,never (j..)
+lentamente,slowly (l..)
+luego,then, later (l..)
+más,more
+menos,less
+muy,very
+naturalmente,naturally
+necesariamente,necessarily
+normalmente,normally
+nuevamente,again
+nunca,never (n..)
+perfectamente,perfectly
+posiblemente,possibly
+prácticamente,practically
+principalmente,principally
+probablemente,probably
+pronto,soon
+lejos,far

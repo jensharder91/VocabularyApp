@@ -1,0 +1,30 @@
+el paso,the step
+sumar,to sum, to add (s..)
+la historia,the history
+el ejemplo,the example
+el problema,the problem
+el nivel,the level
+la educación,the education
+el colegio,the school (c..)
+el estudio,the study, the studio
+la respuesta,the response
+el título,the title, the degree (t..)
+el grado,the degree (g..)
+el material,the material
+el curso,the course (c..)
+el capítulo,the chapter
+la clase,the class
+la tarea,the task, the chore, the homework
+el juego,the game
+la ausencia,the absence
+la lectura,the reading
+la inteligencia,intelligence
+la sección,the section
+el conocimiento,knowledge
+la discusión,the discussion, the argument
+la academia,the academy
+la facultad,the faculty
+la explicación,the explanation
+el tema,the theme, the topic, the subject
+la solución,the solution
+el premio,the prize

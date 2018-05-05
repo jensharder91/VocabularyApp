@@ -1,0 +1,24 @@
+la negociación,the negotiation
+la prensa,the press
+el artículo,the article
+la palabra,the word
+la voz,the voice
+la comunicación,the communication
+la conversación,the conversation (c..)
+el lenguaje,the language (masc.)
+la noticia,the news
+la llamada,the call
+el secreto,the secret
+el contacto,the contact
+el grito,the shout, the scream
+el mensaje,the message
+el argumento,the argument, the plot
+la entrevista,the interview
+la publicidad,the advertising, the publicity
+el internet,the internet (i..)
+el silencio,the silence
+la estampilla,the stamp
+el comentario,the comment, the essay
+la postal,the postcard
+la frase,the sentence, the phrase
+el editorial,the editorial

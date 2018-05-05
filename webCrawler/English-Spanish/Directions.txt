@@ -1,0 +1,21 @@
+varios,several
+la izquierda,the left
+la derecha,the right (direction)
+el lado,the side
+el centro,the center
+la posición,the position
+la entrada,the entrance
+el exterior,the outside
+la salida,the exit
+la llegada,the arrival
+la búsqueda,the search
+el tráfico,the traffic
+la orientación,the orientation
+el viaje,the trip, the journey
+el fin,the end (f..)
+la dirección,the direction, the address
+la señal,the sign, the signal (fem.)
+el rumbo,the course (r..)
+el norte,the north
+el sur,the south
+el paso,the step

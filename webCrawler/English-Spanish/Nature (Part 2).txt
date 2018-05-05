@@ -1,0 +1,23 @@
+la piedra,the stone
+el universo,the universe
+la hoja,the leaf, the sheet (of paper)
+el gas,the gas
+la célula,the cell
+el clima,the climate
+el bosque,the forest
+el paisaje,the landscape, the scenery
+la raíz,the root
+el cerebro,the brain
+la montaña,the mountain (fem.)
+el diente,the tooth
+el hueso,the bone
+el viento,the wind
+la estrella,the star
+el humo,the smoke
+la planta,the plant
+el ambiente,the environment, the atmosphere (masc.)
+la corriente,the current, the trend
+el monte,the mountain (masc.)
+la rosa,the rose
+la arena,the sand
+el espacio,the space, space

@@ -1,0 +1,19 @@
+Spanish,English
+el agua,the water
+beber,to drink
+comer,to eat
+él,he
+ella,she
+el hombre,the man
+la leche,the milk
+la manzana,the apple
+la mujer,the woman
+el niño,the boy
+la niña,the girl (n..)
+el pan,the bread
+ser,to be
+eres,you are (sing. informal)
+es,he/she/it is
+tú,you (singular, informal)
+usted,you (formal)
+yo,I

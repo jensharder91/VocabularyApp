@@ -1,0 +1,23 @@
+nacional,national
+superior,superior, top
+excelente,excellent
+industrial,industrial
+verdadero,true, real (v..)
+mundial,worldwide, world (adj.)
+puro,pure
+infantil,childish, infantile
+original,original
+profundo,profound, deep
+mal,bad, wrong, ill
+adecuado,appropriate
+oscuro,dark, gloomy
+loco,crazy
+dulce,sweet
+similar,similar
+eléctrico,electric
+probable,probable
+antiguo,old, ancient, antique (a..)
+consciente,aware, conscious
+clásico,classical
+terrible,terrible
+eficaz,efficient, effective

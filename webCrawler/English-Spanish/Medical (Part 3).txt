@@ -1,0 +1,21 @@
+el paciente,the patient
+el síntoma,the symptom
+el diagnóstico,the diagnosis
+la condición,the condition
+la dieta,the diet
+el órgano,the organ
+la emoción,the emotion
+la clínica,the clinic
+el virus,the virus
+la depresión,the depression
+la lágrima,the tear (crying)
+la circulación,the circulation
+el cadáver,the corpse, the body (dead)
+el remedio,the remedy
+el olor,the smell
+la mente,the mind
+muerto,dead
+la proteína,the protein
+el sabor,the taste
+grave,serious
+la ayuda,the help, the aid

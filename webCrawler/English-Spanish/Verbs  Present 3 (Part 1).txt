@@ -1,0 +1,16 @@
+hace,ago
+comprar,to buy
+dudar,to doubt
+llenar,to fill
+salvar,to save
+regresar,to return, to come back (r..)
+continuar,to continue
+poseer,to possess, own
+mezclar,to mix
+parar,to stop (p..)
+añadir,to add (a..)
+vivir,to live
+utilizar,to use (u.., long)
+valer,to cost, to be worth (v..)
+contener,to contain
+gastar,to spend

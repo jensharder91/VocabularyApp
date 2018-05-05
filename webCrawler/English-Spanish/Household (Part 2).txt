@@ -1,0 +1,21 @@
+la mesa,the table
+el paraguas,the umbrella
+la pared,the wall
+la piscina,the pool
+el piso,the floor
+el plato,the plate
+la puerta,the door
+la rasuradora,the razor
+el refrigerador,the refrigerator
+la sábana,the bed sheet
+la sartén,the frying pan
+la secadora,the dryer
+la silla,the chair
+el sofá,the sofa
+el sótano,the basement
+la taza,the cup (t..)
+el techo,the ceiling, roof
+el teléfono,the phone
+la televisión,the television
+el vaso,the glass
+la ventana,the window

@@ -1,0 +1,29 @@
+suyo,his / hers / yours (ud.)
+el abrigo,the coat
+la camisa,the shirt
+la falda,the skirt
+la media,the stockings
+el pantalón,the pants
+la ropa,the clothes
+el sombrero,the hat
+el vestido,the dress
+el zapato,the shoe
+el calcetín,the sock
+la corbata,the tie
+el traje,the suit
+la bota,the boot
+el suéter,the sweater
+el cinturón,the belt
+púrpura,purple
+marrón,brown
+las gafas,the glasses (eyewear)
+la chaqueta,the jacket
+azul,blue
+blanco,white
+negro,black
+rojo,red
+verde,green
+amarillo,yellow
+el color,the color
+gris,grey
+naranja,orange
