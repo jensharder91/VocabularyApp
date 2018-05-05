@@ -177,8 +177,8 @@ export class StudyPhasePage {
       let stringIndex = 0;
 
       // choose longer string as base of comparison
-      if (string1.length > string2.length) string = string1;
-      else string = string2;
+      if (string2.length > string1.length) string = string2;
+      else string = string1;
 
       // HTML element to write solution
       let solutionSpan = document.getElementById("solution");
