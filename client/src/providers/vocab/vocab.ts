@@ -25,7 +25,8 @@ export interface Topic {
   name: string;
   cards: Card[];
   waitingCards: Card[];
-  csvStringUrl: string;
+  customTopic?: boolean;
+  csvStringUrl?: string;
 }
 
 export interface Card {
@@ -124,7 +125,7 @@ export class VocabProvider {
       return this.currentLanguage;
     }
     else {
-      return <Language>{topics:[]};
+      return <Language>{ topics: [] };
     }
   }
 
@@ -181,6 +182,16 @@ export class VocabProvider {
       }
       this.saveUser();
     }
+  }
+
+  getTopicByName(topicName:string):Topic{
+    let topic: Topic = <Topic>{ id: "_mock", name: "mock", customTopic: true, cards: [], waitingCards: [] };
+    this.currentLanguage.topics.forEach((myTopic) => {
+      if (myTopic.name == topicName) {
+        topic = myTopic;
+      }
+    });
+    return topic;
   }
 
   // Getting all cards from the current language
@@ -312,11 +323,15 @@ export class VocabProvider {
       allLoaded.push(new Promise((resolve, reject) => {
         // let url: string = 'assets/data/test.csv';
 
-        this.http.get(topic.csvStringUrl)
-          .subscribe(
-            data => this.extractData(topic, data, resolve),
-            err => { console.log("Error with csv"); reject(); }
-          );
+        if (!topic.customTopic) {
+          this.http.get(topic.csvStringUrl)
+            .subscribe(
+              data => this.extractData(topic, data, resolve),
+              err => { console.log("Error with csv"); reject(); }
+            );
+        } else {
+          resolve();
+        }
       }));
     })
 
@@ -382,13 +397,19 @@ export class VocabProvider {
 
     this.saveUser();
 
-    let toast = this.toastCtrl.create({
-      message: max + ' cards added to the first level',
-      duration: 3000,
-      position: 'bottom'
-    });
-
-    toast.present();
+    if (max < 1) {
+      this.toastCtrl.create({
+        message: 'There are no cards to insert. Plesse add new cards in the topic list.',
+        duration: 3000,
+        position: 'bottom'
+      }).present();
+    } else {
+      this.toastCtrl.create({
+        message: max + ' cards added to the first level',
+        duration: 3000,
+        position: 'bottom'
+      }).present();
+    }
   }
 
   getAvailableContent(languageId: string): Topic[] {

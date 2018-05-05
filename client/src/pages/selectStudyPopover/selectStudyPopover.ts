@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ToastController, ViewController, App, NavParams } from 'ionic-angular';
+import { ToastController, ViewController, AlertController, App, NavParams } from 'ionic-angular';
 
-import { VocabProvider, Card } from "../../providers/vocab/vocab";
+import { VocabProvider, Card, Topic } from "../../providers/vocab/vocab";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 
@@ -19,7 +19,8 @@ export class SelectStudyPopoverPage {
     private toastCtrl: ToastController,
     private navParams: NavParams,
     private viewCtrl: ViewController,
-    private vocabProvider: VocabProvider) {
+    private vocabProvider: VocabProvider,
+    private alertCtrl: AlertController) {
 
     this.level = this.navParams.get('level');
     this.topic = this.navParams.get('topic');
@@ -98,6 +99,39 @@ export class SelectStudyPopoverPage {
     this.viewCtrl.dismiss().then(() => {
       this.vocabProvider.addTenVocs(this.topic);
     });
+  }
+
+  addVocabulary(topic: string) {
+    let prompt = this.alertCtrl.create({
+      title: 'Create New Card',
+      message: "Enter a new vocabulary!",
+      inputs: [
+        {
+          name: 'front',
+          placeholder: 'Front'
+        },
+        {
+          name: 'back',
+          placeholder: 'Back'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.vocabProvider.createCard(topic, data.front, data.back);
+          }
+        }
+      ]
+    });
+
+    prompt.present();
   }
 
 }
