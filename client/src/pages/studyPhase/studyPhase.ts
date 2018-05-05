@@ -157,65 +157,133 @@ export class StudyPhasePage {
     this.seeBackside = !this.seeBackside;
 
     if (card.classList.contains("flipped")) {
-      this.stringDiff(this.backCard, this.myInput);
+      this.markStringDiff(this.backCard, this.myInput);
+      this.lcs(this.backCard, this.myInput);
     } else {
-      this.stringDiff(this.frontCard, this.myInput);
+      this.markStringDiff(this.frontCard, this.myInput);
     }
   }
 
   // mark differences between two strings
-  stringDiff(string1: string, string2: string){
+  markStringDiff(string1: string, string2: string){
 
     if (this.seeBackside) {
 
+      // Indices of LCS
+      let diff = this.lcs(string1, string2);
+
+      // string as base of comparison
+      let string;
+      let stringIndex = 0;
+
+      // choose longer string as base of comparison
+      if (string1.length > string2.length) string = string1;
+      else string = string2;
+
       // HTML element to write solution
-      let span = document.getElementById("solution");
-      if (span != null) {
-        console.log("im here");
-        span.innerHTML = '';
-        console.log(string1);
-        console.log(string2);
+      let solutionSpan = document.getElementById("solution");
 
-        // Parse first string and compare with second string character wise
-        let i = 0;
-        string1.split('').forEach(function (elem) {
+      if (solutionSpan != null) {
+
+        solutionSpan.innerHTML = '';
+        for (let i = 0; i < string.length; i++){
           let newSpan = document.createElement('span');
-          if (elem != string2[i]) {
-            // mark differences in red
-            newSpan.style.color = "#f0513c";
-            newSpan.style.textDecoration = "underline";
-          } else {
+
+          // matching character
+          if (diff[i] == 1){
             newSpan.style.color = "#00df53";
-          }
-
-          newSpan.innerHTML = elem;
-          span.appendChild(newSpan);
-          i++;
-        });
-
-        // if second string is longer than the first, mark difference with underscores
-        if (string2.length > string1.length) {
-          for (let i = 0; i < (string2.length - string1.length); i++) {
-            let newSpan = document.createElement('span');
+            newSpan.innerHTML = string[stringIndex];
+            stringIndex++;
+          } else {
+            // mark disjunct characters in red
             newSpan.style.color = "#f0513c";
-            newSpan.innerHTML = "&ensp;";
             newSpan.style.textDecoration = "underline";
-            span.appendChild(newSpan);
+            if (string[stringIndex]) {
+              newSpan.innerHTML = string[stringIndex];
+              stringIndex++;
+            }
+            else newSpan.innerHTML = "_";
           }
+
+          // add formatted control string to HTML
+          solutionSpan.appendChild(newSpan);
         }
 
       } else {
-
+        // reset solution field to blank
         this.resetSolution();
       }
     }
   }
 
+  // Find Longest Common Subsequence and
+  // return indices of common character positions
+  lcs(string1:string, string2: string){
+
+    let m = string1.length;
+    let n = string2.length;
+
+    let L = [];
+
+    // dynamically compute LCS
+    for (let i = 0; i <= m; i++) {
+      L[i] = [];
+      for (let j = 0; j <= n; j++) {
+        if (i == 0 || j == 0){
+          L[i][j] = 0;
+        } else if (string1[i-1] == string2[j-1]) {
+          L[i][j] = L[i - 1][j - 1] + 1;
+        } else {
+          L[i][j] = this.max(L[i - 1][j], L[i][j - 1]);
+        }
+      }
+    }
+
+    // Backtracking to find indices of LCS characters
+    // initialise arrays to store indices
+    let commonCharsIndices1 = [];
+    let commonCharsIndices2 = [];
+    for (let i = 0; i < m; i++) {
+      commonCharsIndices1[i] = 0;
+    }
+    for (let i = 0; i < n; i++) {
+      commonCharsIndices2[i] = 0;
+    }
+
+    // Start from the right-most-bottom-most corner
+    // and one by one store character indices of lcs
+    let i = m, j = n;
+    while (i > 0 && j > 0) {
+      // If current character in string1 and string2 are same,
+      // then current character is part of LCS
+      if (string1[i-1] == string2[j-1]) {
+        // Add current index to result
+        commonCharsIndices1[i-1] = 1;
+        commonCharsIndices2[j-1] = 1;
+
+        i--;
+        j--;
+      }
+
+      // If not same, then find the larger of two
+      // and go in the direction of larger value
+      else if (L[i-1][j] > L[i][j-1]) i--;
+      else j--;
+    }
+
+    // return longer sequence of indices
+    if (m > n) return commonCharsIndices1;
+    else return commonCharsIndices2;
+  }
+
+  // return maximum of two numbers
+  max(a:number, b: number) {
+    return (a > b)? a : b;
+  }
+
   // reset HTML field for solution display
   resetSolution(){
-    let span = document.getElementById("solution");
-    if (span != null){
-      span.innerHTML = '&ensp;';
-    }
+    let solutionSpan = document.getElementById("solution");
+    if (solutionSpan != null) solutionSpan.innerHTML = '&ensp;';
   }
 }
