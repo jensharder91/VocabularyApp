@@ -124,7 +124,7 @@ export class VocabProvider {
       return this.currentLanguage;
     }
     else {
-      return <Language>{};
+      return <Language>{topics:[]};
     }
   }
 

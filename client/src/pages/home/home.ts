@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { VocabProvider, User } from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import { SelectStudyPage } from "../selectStudy/selectStudy";
@@ -14,13 +14,33 @@ import { ManageLanguagesPage } from "../manageLanguages/manageLanguages";
 
 export class HomePage {
 
+  public unregisterBackButtonAction: any;
   private user: User = { userName: "Mock", languages: [] };
 
   constructor(public navCtrl: NavController,
-    public vocabProvider: VocabProvider) {
-
+    public vocabProvider: VocabProvider,
+    public platform: Platform) {
 
     this.user = vocabProvider.getUser();
+  }
+
+  ionViewDidEnter() {
+    this.initializeBackButtonCustomHandler();
+  }
+
+  ionViewWillLeave() {
+    // Unregister the custom back button action for this page
+    this.unregisterBackButtonAction && this.unregisterBackButtonAction();
+  }
+
+  public initializeBackButtonCustomHandler(): void {
+    this.unregisterBackButtonAction = this.platform.registerBackButtonAction(() => {
+      this.customHandleBackButton();
+    }, 10);
+  }
+
+  private customHandleBackButton(): void {
+    this.platform.exitApp();
   }
 
   ionViewWillEnter() {
