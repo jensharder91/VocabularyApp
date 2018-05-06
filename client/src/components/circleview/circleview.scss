@@ -111,4 +111,14 @@ circleview-component {
     //border: 2px solid map-get($colors, primary);
     //box-shadow: 0px 3px 4px #b1b1b1;
   }
+
+  .click-disabled {
+    pointer-events: none;
+  }
+
+  .click-disabled .circleview-image {
+    pointer-events: none;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+  }
 }

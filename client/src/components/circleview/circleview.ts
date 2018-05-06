@@ -11,6 +11,7 @@ export class CircleviewComponent {
   @Input("text") myText;
   @Input("subtext") mySubtext;
   @Input("image") myImage;
+  @Input("disabled") disabled = false;
 
   constructor() {
 

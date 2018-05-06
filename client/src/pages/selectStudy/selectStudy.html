@@ -28,8 +28,8 @@
           General
         </ion-item-divider>
         <ion-item class="center">
-          <circleview-component text="Study Due Cards" [subtext]="vocabProvider.getCardsToLearn().length" image="assets/imgs/selectStudy/study_due.svg"(click)="studyDueCards()"></circleview-component>
-          <circleview-component text="Show All Cards" [subtext]="vocabProvider.getCardDeckAll().length" image="assets/imgs/selectStudy/showAll.svg" (click)="showAllCards()"></circleview-component>
+          <circleview-component text="Study Due Cards" [subtext]="vocabProvider.getCardsToLearn().length" image="assets/imgs/selectStudy/study_due.svg"(click)="studyDueCards()" [disabled]="!vocabProvider.getCardsToLearn().length > 0"></circleview-component>
+          <circleview-component text="Show All Cards" [subtext]="vocabProvider.getCardDeckAll().length" image="assets/imgs/selectStudy/showAll.svg" (click)="showAllCards()" [disabled]="!vocabProvider.getCardDeckAll().length > 0"></circleview-component>
         </ion-item>
         <ion-item-divider style="background-color: #ff7400">
           Topics
