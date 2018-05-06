@@ -14,6 +14,8 @@ export class SelectStudyPopoverPage {
   private mode: string;
   private topic: string;
   private level: number;
+  private language1: string;
+  private language2: string;
 
   constructor(protected app: App,
     private toastCtrl: ToastController,
@@ -25,6 +27,8 @@ export class SelectStudyPopoverPage {
     this.level = this.navParams.get('level');
     this.topic = this.navParams.get('topic');
     this.mode = this.navParams.get('mode');
+    this.language1 = this.navParams.get('language1');
+    this.language2 = this.navParams.get('language2');
   }
 
   showTopicCardDeck(topic: string) {
@@ -43,7 +47,9 @@ export class SelectStudyPopoverPage {
         this.app.getRootNav().setRoot(VocabularyListPage, {
           mode: this.mode,
           topic: this.topic,
-          level: this.level
+          level: this.level,
+          language1: this.language1,
+          language2: this.language2
         });
       } else {
         this.toastCtrl.create({
@@ -108,11 +114,11 @@ export class SelectStudyPopoverPage {
       inputs: [
         {
           name: 'front',
-          placeholder: 'Front'
+          placeholder: this.language1
         },
         {
           name: 'back',
-          placeholder: 'Back'
+          placeholder: this.language2
         },
       ],
       buttons: [

@@ -51,14 +51,13 @@ export class SelectStudyPage {
   }
 
   presentTopicPopover(topic: any) {
-
     this.popoverCtrl.create(SelectStudyPopoverPage,
-      { topic: topic, mode: "topic" }).present();
+      { topic: topic, mode: "topic", language1: this.language.name1, language2: this.language.name2 }).present();
   }
 
   presentLevelPopover(level: number) {
     this.popoverCtrl.create(SelectStudyPopoverPage,
-      { level: level, mode: "levels" }).present();
+      { level: level, mode: "levels", language1: this.language.name1, language2: this.language.name2 }).present();
   }
 
   openManage() {

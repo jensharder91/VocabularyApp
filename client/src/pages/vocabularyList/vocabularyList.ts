@@ -15,6 +15,8 @@ export class VocabularyListPage {
   private mode: string;
   private topic: string;
   private level: number;
+  private language1: string;
+  private language2: string;
 
   listLowerLimit = 0;
   listUpperLimit = 10;
@@ -26,6 +28,8 @@ export class VocabularyListPage {
     this.level = this.navParams.get('level');
     this.topic = this.navParams.get('topic');
     this.mode = this.navParams.get('mode');
+    this.language1 = this.navParams.get('language1');
+    this.language2 = this.navParams.get('language2');
 
     this.getCards();
 
@@ -105,11 +109,11 @@ export class VocabularyListPage {
       inputs: [
         {
           name: 'front',
-          placeholder: 'Front'
+          placeholder: this.language1
         },
         {
           name: 'back',
-          placeholder: 'Back'
+          placeholder: this.language2
         },
       ],
       buttons: [
