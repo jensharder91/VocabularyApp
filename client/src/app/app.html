@@ -15,20 +15,20 @@
       </button>
       <div *ngIf="vocabProvider.getCurrentLanguage().id">
         <button menuClose ion-item (click)="openSelectStudyPage()">
-        <ion-icon class="menu_main_icon" name="book"></ion-icon><span class="menu_main_item">{{vocabProvider.getCurrentLanguage().shortName1}} / {{vocabProvider.getCurrentLanguage().shortName2}}</span>
-      </button>
+          <img class="menu_main_icon" src="assets/imgs/icons/language_icon.svg"><span class="menu_main_item">{{vocabProvider.getCurrentLanguage().shortName1}} / {{vocabProvider.getCurrentLanguage().shortName2}}</span>
+        </button>
         <button menuClose ion-item (click)="startLearning()">
-        <ion-icon class="menu_icon" name="play"></ion-icon><span class="menu_item">Study Due Cards</span> <ion-badge item-end>{{vocabProvider.getCardsToLearn().length}}</ion-badge>
-      </button>
-      <button menuClose ion-item (click)="showAllCards()">
-      <ion-icon class="menu_icon" name="eye"></ion-icon><span class="menu_item">Show All Cards</span>
-    </button>
-    <button menuClose ion-item (click)="manageTopics()">
-    <ion-icon class="menu_icon" name="build"></ion-icon><span class="menu_item">Manage Topics</span>
-  </button>
+         <img class="menu_icon" src="assets/imgs/icons/studyDue_icon.svg"><span class="menu_item">Study Due Cards</span> <ion-badge item-end>{{vocabProvider.getCardsToLearn().length}}</ion-badge>
+        </button>
+        <button menuClose ion-item (click)="showAllCards()">
+          <img class="menu_icon" src="assets/imgs/icons/showVocList_icon.svg"><span class="menu_item">Show All Cards</span>
+        </button>
+        <button menuClose ion-item (click)="manageTopics()">
+          <ion-icon class="menu_icon" name="build"></ion-icon><span class="menu_item">Manage Topics</span>
+        </button>
       </div>
       <button menuClose ion-item (click)="openSettingsPage()">
-        <ion-icon class="menu_main_icon" name="settings"></ion-icon><span class="menu_main_item">Settings</span>
+        <img class="menu_main_icon" src="assets/imgs/icons/settings_icon.svg"><span class="menu_main_item">Settings</span>
       </button>
     </ion-list>
   </ion-content>

@@ -1,11 +1,10 @@
 page-selectStudyPopover {
-  .popoverBtn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: map-get($colors, primary);
-    border: 2px solid map-get($colors, primary);
+
+  .popoverBtn .circleview-container .circleview-subtext{
+    // remove subtext for buttons
+    width: 0px;
+    height: 0px;
+    border: 0px;
   }
 
   .no-scroll .scroll-content{
@@ -17,10 +16,8 @@ page-selectStudyPopover {
     padding: 10vh 0;
   }
 
-
-
   .buttonIcon{
-    
+
   }
 }
 
