@@ -18,8 +18,8 @@
   </div>
 
   <div *ngIf="mode=='levels'">
-    <circleview-component class="popoverBtn" text="Show Cards" image="assets/imgs/level/showVocList_icon_levels.svg" (click)="showTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"></circleview-component>
-    <circleview-component class="popoverBtn" text="Study Cards" image="assets/imgs/level/startStudy_icon_levels.svg" (click)="studyTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"></circleview-component>
+    <circleview-component class="popoverBtn" text="Show Cards" image="assets/imgs/level/showVocList_icon_levels.svg" (click)="showLevelCardDeck(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"></circleview-component>
+    <circleview-component class="popoverBtn" text="Study Cards" image="assets/imgs/level/startStudy_icon_levels.svg" (click)="studyLevelCardDeck(level)" [disabled]="!(this.vocabProvider.getCardDeckForLevel(level-1).length>0)"></circleview-component>
   </div>
 
 </ion-content>
