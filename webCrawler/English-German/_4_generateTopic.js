@@ -27,7 +27,7 @@ function writeRow(index){
 
   if (path.extname(this.list[index]) === fileType) {
     console.log(this.list[index]); //print the file
-    let statement = 'topics.push(<Topic>{ id: "_' + this.list[index].substr(0, this.list[index].lastIndexOf(".")).replace(/\s/g, "").toLowerCase() + '", name: "' + this.list[index].substr(0, this.list[index].lastIndexOf(".")).replace("_", " ").replace("_", " ") + '", cards: [], waitingCards: [], csvStringUrl: "assets/data/esp-eng/' + this.list[index] + '" });\n';
+    let statement = 'topics.push(<Topic>{ id: "_' + this.list[index].substr(0, this.list[index].lastIndexOf(".")).replace(/\s/g, "").toLowerCase() + '", name: "' + this.list[index].substr(0, this.list[index].lastIndexOf(".")).replace("_", " ").replace("_", " ") + '", cards: [], waitingCards: [], csvStringUrl: "assets/data/ger-eng/' + this.list[index] + '" });\n';
     fs.appendFile('_generatedTopics.txt', statement, function(error) {
       if (error) throw error;
 
