@@ -351,13 +351,15 @@ export class VocabProvider {
       topic.waitingCards = [];
 
       for (let j = 0; j < parsedData.length; j++) {
-        topic.waitingCards.push({
-          frontSide: parsedData[j][0],
-          backSide: parsedData[j][1],
-          level: 0,
-          dueDate: new Date().getTime(),
-          nextTimeInverse: false
-        });
+        if (parsedData[j][0] && parsedData[j][1]) {
+          topic.waitingCards.push({
+            frontSide: parsedData[j][0],
+            backSide: parsedData[j][1],
+            level: 0,
+            dueDate: new Date().getTime(),
+            nextTimeInverse: false
+          });
+        }
       }
 
       this.saveUser();
