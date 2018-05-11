@@ -15,6 +15,21 @@
 
 <ion-content class="card-background-page">
 
+  <div class="counterContainer">
+    <div class="curCounter">
+      <div class="counterBox">
+
+      <span class="counterText">{{this.counter + 1}}</span>
+    </div>
+    </div>
+    <div class="maxCounter">
+      <div class="counterBox">
+      <span class="counterText">{{this.currentCardDeck.length }}</span>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Vocabulary vocCard -->
   <div class="container">
     <div class="vocCard" (click)="flip()">

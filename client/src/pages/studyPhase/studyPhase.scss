@@ -105,4 +105,58 @@ page-studyPhase {
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
   }
+  // counter
+  .counterContainer {
+    width: 70px;
+    height: 55px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .curCounter {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+    background-color: #94d4dd;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+  }
+
+  .maxCounter {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+    background-color: #146874;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+  }
+
+  .counterBox {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    // padding: 10%;
+    display: flex;
+    align-items: center;
+  }
+
+  .counterText {
+
+    color: map-get($colors, dark); // text-align: center;
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-weight: bold;
+    font-size: 120%;
+    align-items: center;
+    text-align: center;
+  }
 }
