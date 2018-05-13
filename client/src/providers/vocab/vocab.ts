@@ -323,7 +323,10 @@ export class VocabProvider {
       allLoaded.push(new Promise((resolve, reject) => {
         // let url: string = 'assets/data/test.csv';
 
-        if (!topic.customTopic) {
+        if (!topic.customTopic //dont import if it is a cutom topic
+          && topic.cards.length == 0 //do not import if there are cards (imported already)
+          && topic.waitingCards.length == 0//do not import if there are waiting cards (imported already)
+        ) {
           this.http.get(topic.csvStringUrl)
             .subscribe(
               data => this.extractData(topic, data, resolve),
