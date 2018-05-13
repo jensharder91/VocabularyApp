@@ -15,12 +15,12 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-searchbar (ionInput)="searchChanged()" [(ngModel)]="terms"></ion-searchbar>
   <ion-grid>
     <ion-row align-items-center justify-content-center>
       <ion-col>
         <ion-list>
-          <ion-item-sliding *ngFor="let card of dict| slice:listLowerLimit:listUpperLimit; let i=index">
+          <ion-item-sliding *ngFor="let card of dict | searchPipe : terms | slice:listLowerLimit:listUpperLimit; let i=index">
             <ion-item>
               <ion-label text-wrap style="text-align: right; margin-right: 10px" (click)="changeCard(card)">
                 {{ card.frontSide }}
@@ -44,17 +44,17 @@
 
     <ion-row>
       <ion-col col-sm-1 text-center>
-        <button ion-button (click)="showPrevList()" [disabled]="listLowerLimit == 0">
+        <button ion-button (click)="showPrevList()" [disabled]="listLowerLimit <= 0">
           <ion-icon name="arrow-back"></ion-icon>
         </button>
       </ion-col>
       <ion-col>
         <ion-label text-center>
-          {{ listLowerLimit + 1 }} - {{ listUpperLimit }} of {{ dict.length }} words
+          {{ listLowerLimit + 1 }} - {{ listUpperLimit }} of {{ searchPipe.transform(dict, terms).length }} words
         </ion-label>
       </ion-col>
       <ion-col col-sm-1 text-center>
-        <button ion-button (click)="showNextList()" [disabled]="listUpperLimit >= dict.length">
+        <button ion-button (click)="showNextList()" [disabled]="listUpperLimit >= searchPipe.transform(dict, terms).length">
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
       </ion-col>

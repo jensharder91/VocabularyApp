@@ -14,7 +14,7 @@ import { HomePage } from "../pages/home/home";
 import { ManageTopicsPage } from "../pages/manageTopics/manageTopics";
 import { ManageLanguagesPage } from "../pages/manageLanguages/manageLanguages";
 import { SettingsPage } from "../pages/settings/settings";
-import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
+import { VocabularyListPage,SearchPipe } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
 import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
 
@@ -37,7 +37,8 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     VocabularyListPage,
     CircleviewComponent,
     LanguageSelectComponent,
-    HorizontalscrollComponent
+    HorizontalscrollComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -61,6 +62,7 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
     StatusBar,
     SplashScreen,
     VocabProvider,
+    SearchPipe,
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -1,6 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Pipe } from '@angular/core';
 import { AlertController, NavParams } from 'ionic-angular';
 import { VocabProvider, Card } from "../../providers/vocab/vocab";
+
+@Pipe({
+  name: 'searchPipe'
+})
+export class SearchPipe {
+  transform(items: any[], terms: string): any[] {
+    if (!items) return [];
+    if (!terms) return items;
+    terms = terms.toLowerCase();
+    return items.filter(it => {
+      return it.frontSide.toLowerCase().includes(terms) || it.backSide.toLowerCase().includes(terms); // only filter country name
+    });
+  }
+}
 
 @Component({
   selector: 'page-vocabularyList',
@@ -11,6 +25,9 @@ export class VocabularyListPage {
 
   dict: Card[] = [];
   private cardDeckTitle: String;
+
+  //searchbar
+  private terms: string = "";
 
   private mode: string;
   private topic: string;
@@ -23,7 +40,8 @@ export class VocabularyListPage {
 
   constructor(public alertCtrl: AlertController,
     public navParams: NavParams,
-    public vocabProvider: VocabProvider) {
+    public vocabProvider: VocabProvider,
+    private searchPipe: SearchPipe) {
 
     this.level = this.navParams.get('level');
     this.topic = this.navParams.get('topic');
@@ -33,12 +51,7 @@ export class VocabularyListPage {
 
     this.getCards();
 
-    this.listLowerLimit = 0;
-    this.listUpperLimit = 10;
-
-    if (this.listUpperLimit >= this.dict.length) {
-      this.listUpperLimit = this.dict.length;
-    }
+    this.searchChanged();
   }
 
   getCards() {
@@ -135,15 +148,24 @@ export class VocabularyListPage {
     prompt.present();
   }
 
+  searchChanged() {
+    this.listLowerLimit = 0;
+    this.listUpperLimit = 10;
+
+    if (this.listUpperLimit >= this.searchPipe.transform(this.dict, this.terms).length) {
+      this.listUpperLimit = this.searchPipe.transform(this.dict, this.terms).length;
+    }
+  }
+
   showNextList() {
 
-    if (this.listUpperLimit < this.dict.length) {
+    if (this.listUpperLimit < this.searchPipe.transform(this.dict, this.terms).length) {
 
       this.listLowerLimit += 10;
       this.listUpperLimit += 10;
 
-      if (this.listUpperLimit > this.dict.length) {
-        this.listUpperLimit = this.dict.length;
+      if (this.listUpperLimit > this.searchPipe.transform(this.dict, this.terms).length) {
+        this.listUpperLimit = this.searchPipe.transform(this.dict, this.terms).length;
       }
     }
   }
@@ -155,8 +177,8 @@ export class VocabularyListPage {
       this.listLowerLimit -= 10;
       this.listUpperLimit = this.listLowerLimit + 10;
 
-      if (this.listUpperLimit > this.dict.length) {
-        this.listUpperLimit = this.dict.length;
+      if (this.listUpperLimit > this.searchPipe.transform(this.dict, this.terms).length) {
+        this.listUpperLimit = this.searchPipe.transform(this.dict, this.terms).length;
       }
     }
   }
