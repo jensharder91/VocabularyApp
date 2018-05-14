@@ -1,0 +1,43 @@
+page-manageTopics {
+
+  .topic-header{
+    background-color: map-get($colors, primary);
+  }
+
+  .topic-name{
+    font-weight: bold;
+    text-align: left;
+    margin: 10px 10px;
+    color: map-get($colors, light);
+  }
+
+  .topic-description{
+    font-size: 90%;
+    text-align: left;
+    margin: 10px 10px;
+    color: map-get($colors, light);
+  }
+
+  .study-buttons {
+    margin: 10px 10px 10px 10px;
+    text-align: center;
+  }
+
+  .study-buttons .button{
+    width: 50px;
+  }
+
+  .topic-name-entry{
+    font-weight: bold;
+    text-align: left;
+    margin: 10px 10px;
+    color: map-get($colors, primary);
+  }
+
+  .topic-description-entry{
+    font-size: 90%;
+    text-align: left;
+    margin: 10px 10px;
+    color: map-get($colors, primary);
+  }
+}

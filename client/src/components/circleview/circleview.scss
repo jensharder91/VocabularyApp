@@ -1,115 +1,41 @@
 circleview-component {
   .circleview-container {
-    //item
     display: inline-block;
-    width: 100px;
-    height: 125px;
-    margin: 0 10px;
+    width: 70px;
+    height: auto;
+    margin: 10px 10px 10px;
     position: relative;
-    //border-radius: 50%;
-    // border: 1px solid map-get($colors, primary);
-    //box-shadow: 6px 6px 4px map-get($colors, primary);
+    //border: 1px solid map-get($colors, primary);
   }
 
   .circleview-text {
-    //text
     color: map-get($colors, primary);
-    // text-shadow: -4px 0 10px map-get($colors, primary), 0 4px 10px map-get($colors, primary), 4px 0 10px map-get($colors, primary), 0 -4px 10px map-get($colors, primary);
-    // text-shadow: -2px 0 1px map-get($colors, primary), 0 2px 1px map-get($colors, primary), 2px 0 1px map-get($colors, primary), 0 -2px 1px map-get($colors, primary);
-    //text-shadow:
-    /* first layer at 1px */
-    /*-1px -1px 0px map-get($colors, primary),
-     0px -1px 0px map-get($colors, primary),
-     1px -1px 0px map-get($colors, primary),
-    -1px  0px 0px map-get($colors, primary),
-     1px  0px 0px map-get($colors, primary),
-    -1px  1px 0px map-get($colors, primary),
-     0px  1px 0px map-get($colors, primary),
-     1px  1px 0px map-get($colors, primary),*/
-    /* second layer at 2px */
-    /*-2px -2px 0px map-get($colors, primary),
-    -1px -2px 0px map-get($colors, primary),
-     0px -2px 0px map-get($colors, primary),
-     1px -2px 0px map-get($colors, primary),
-     2px -2px 0px map-get($colors, primary),
-     2px -1px 0px map-get($colors, primary),
-     2px  0px 0px map-get($colors, primary),
-     2px  1px 0px map-get($colors, primary),
-     2px  2px 0px map-get($colors, primary),
-     1px  2px 0px map-get($colors, primary),
-     0px  2px 0px map-get($colors, primary),
-    -1px  2px 0px map-get($colors, primary),
-    -2px  2px 0px map-get($colors, primary),
-    -2px  1px 0px map-get($colors, primary),
-    -2px  0px 0px map-get($colors, primary),
-    -2px -1px 0px map-get($colors, primary);*/
-    // font-size: large;
-    // font-weight: bold;
-    //center
+    font-size: small;
+    font-weight: bold;
     text-align: center;
     vertical-align: middle;
-    line-height: 220px;
-    left: 0;
-    top: 0;
-    position: absolute;
     width: inherit;
+    float: left;
+    clear: left;
+    //border: 1px solid map-get($colors, primary);
   }
 
   .circleview-subtext {
-    //text
-    color: map-get($colors, light);
-    // text-shadow: -2px 0 1px map-get($colors, primary), 0 2px 1px map-get($colors, primary), 2px 0 1px map-get($colors, primary), 0 -2px 1px map-get($colors, primary);
-    //text-shadow:
-    /* first layer at 1px */
-    /*-1px -1px 0px map-get($colors, primary),
-     0px -1px 0px map-get($colors, primary),
-     1px -1px 0px map-get($colors, primary),
-    -1px  0px 0px map-get($colors, primary),
-     1px  0px 0px map-get($colors, primary),
-    -1px  1px 0px map-get($colors, primary),
-     0px  1px 0px map-get($colors, primary),
-     1px  1px 0px map-get($colors, primary),*/
-    /* second layer at 2px */
-    /*-2px -2px 0px map-get($colors, primary),
-    -1px -2px 0px map-get($colors, primary),
-     0px -2px 0px map-get($colors, primary),
-     1px -2px 0px map-get($colors, primary),
-     2px -2px 0px map-get($colors, primary),
-     2px -1px 0px map-get($colors, primary),
-     2px  0px 0px map-get($colors, primary),
-     2px  1px 0px map-get($colors, primary),
-     2px  2px 0px map-get($colors, primary),
-     1px  2px 0px map-get($colors, primary),
-     0px  2px 0px map-get($colors, primary),
-    -1px  2px 0px map-get($colors, primary),
-    -2px  2px 0px map-get($colors, primary),
-    -2px  1px 0px map-get($colors, primary),
-    -2px  0px 0px map-get($colors, primary),
-    -2px -1px 0px map-get($colors, primary);*/
-    // circle
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid map-get($colors, primary);
-    // text center
+    color: map-get($colors, primary);
     font-size: 90%;
     text-align: center;
     vertical-align: middle;
-    line-height: 30px;
-    left: 70px;
-    top: 0;
-    position: absolute;
-    background-color: map-get($colors, primary);
+    width: inherit;
+    float: left;
+    clear: left;
   }
 
   .circleview-image {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    background-color: map-get($colors, primary);
     //border: 2px solid map-get($colors, primary);
-    //box-shadow: 0px 3px 4px #b1b1b1;
   }
 
   .click-disabled {

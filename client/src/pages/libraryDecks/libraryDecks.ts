@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController, ToastController } from 'ionic-angular';
+import {AlertController, NavController, PopoverController, ToastController, ViewController} from 'ionic-angular';
 import { VocabProvider, Language, Topic } from "../../providers/vocab/vocab";
-import { SelectStudyPage } from '../selectStudy/selectStudy'
+import { Card } from "../../providers/vocab/vocab";
+import { MenuPopoverPage } from "../menuPopover/menuPopover";
+import {VocabularyListPage} from "../vocabularyList/vocabularyList";
 
 
 export interface ToggleItem {
@@ -12,14 +14,19 @@ export interface ToggleItem {
 
 @Component({
   selector: 'page-manageTopics',
-  templateUrl: 'manageTopics.html'
+  templateUrl: 'libraryDecks.html'
 })
 
-export class ManageTopicsPage {
+export class LibraryDecksPage {
 
   public toggleItems: ToggleItem[] = [];
 
-  constructor(public vocabProvider: VocabProvider, private navCtrl: NavController, private alertCtrl: AlertController, private toastCtrl: ToastController) {
+  constructor(public vocabProvider: VocabProvider,
+              private navCtrl: NavController,
+              private alertCtrl: AlertController,
+              private toastCtrl: ToastController,
+              private popoverCtrl: PopoverController,
+              private viewCtrl: ViewController) {
 
     vocabProvider.getCurrentLanguage().topics.forEach(topic => {
       this.toggleItems.push({ state: true, originState: true, topic: topic });
@@ -79,6 +86,34 @@ export class ManageTopicsPage {
 
   }
 
+  saveToggleChange(item) {
+
+    if (item.state) {
+      this.saveNow();
+    } else {
+      this.alertCtrl.create({
+        title: 'Warning!',
+        message: 'The topic ' + item.topic.name + ' including your progress will be removed.',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              item.state = item.originState;
+            }
+          },
+          {
+            text: 'Okay',
+            handler: () => {
+              this.saveNow();
+            }
+          }
+        ]
+      }).present();
+    }
+
+  }
+
   saveNow() {
     let newTopicList: Topic[] = [];
     this.toggleItems.forEach(toggleItem => {
@@ -87,7 +122,7 @@ export class ManageTopicsPage {
       }
     });
     this.vocabProvider.addContentToUser(this.vocabProvider.getCurrentLanguage().id, newTopicList);
-    this.navCtrl.setRoot(SelectStudyPage);
+    //this.navCtrl.setRoot(VocabBoxPage);
   }
 
   addCustomTopic() {
@@ -150,5 +185,15 @@ export class ManageTopicsPage {
         ]
       }).present();
     }
+  }
+
+  showTopicCardDeck(topic:string) {
+    let curCards: Card[] = this.vocabProvider.getCardDeckForTopic(topic);
+    this.navCtrl.setRoot(VocabularyListPage, {
+      mode: "topic",
+      topic: topic,
+      language1: this.vocabProvider.getCurrentLanguage().name1,
+      language2: this.vocabProvider.getCurrentLanguage().name2
+    });
   }
 }

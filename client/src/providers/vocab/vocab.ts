@@ -108,6 +108,7 @@ export class VocabProvider {
   }
 
   getUser(): User {
+    console.log(this.user);
     return this.user;
   }
 
@@ -123,8 +124,7 @@ export class VocabProvider {
   getCurrentLanguage(): Language {
     if (this.currentLanguage) {
       return this.currentLanguage;
-    }
-    else {
+    } else {
       return <Language>{ topics: [] };
     }
   }
@@ -226,7 +226,7 @@ export class VocabProvider {
     return result;
   }
 
-  // Getting the card from the current lamguagedecks in topic
+  // Getting the card from the current language decks in topic
   getCardDeckForTopic(topic: string): Card[] {
 
     let result: Card[] = [];
@@ -403,16 +403,15 @@ export class VocabProvider {
     this.saveUser();
 
     if (max < 1) {
-      this.toastCtrl.create({
-        message: 'There are no cards to insert. Plesse add new cards in the topic list.',
-        duration: 3000,
-        position: 'bottom'
+      this.alertCtrl.create({
+        title: 'No cards left to upload!',
+        subTitle: 'Add more topics to your favorites to continue studying!',
+        buttons: ['OK']
       }).present();
     } else {
-      this.toastCtrl.create({
-        message: max + ' cards added to the first level',
-        duration: 3000,
-        position: 'bottom'
+      this.alertCtrl.create({
+        title: max + ' cards added to the first level.',
+        buttons: ['OK']
       }).present();
     }
   }

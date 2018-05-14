@@ -1,14 +1,30 @@
-<!--<ion-header>
+<ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{language.shortName1}} / {{language.shortName2}}</ion-title>
+    <ion-title *ngIf="!searchBtnClicked">VocApp</ion-title>
+    <ion-searchbar *ngIf="searchBtnClicked"
+                   [(ngModel)]="mySearchInput"
+                   [showCancelButton]="true"
+                   (ionInput)="onSearchInput($event)"
+                   (ionCancel)="onSearchCancel($event)">
+    </ion-searchbar>
+    <ion-buttons end>
+      <button *ngIf="!searchBtnClicked" ion-button icon-only (click)="openSearchbar()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="presentMenuPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-</ion-header>-->
+</ion-header>
 
-<ion-tabs>
-  <ion-tab tabIcon="home" [root]="tab1Root"></ion-tab>
-  <ion-tab tabIcon="book" [root]="tab2Root"></ion-tab>
-</ion-tabs>
-
+<ion-content>
+  <ion-tabs tabsPlacement="top">
+    <ion-tab tabIcon="filing" tabTitle="{{language.shortName1}}/{{language.shortName2}}" [root]="tab1Root"></ion-tab>
+    <ion-tab tabIcon="heart" tabTitle="Favorites" [root]="tab2Root"></ion-tab>
+    <ion-tab tabIcon="book" tabTitle="Library" [root]="tab3Root"></ion-tab>
+  </ion-tabs>
+</ion-content>

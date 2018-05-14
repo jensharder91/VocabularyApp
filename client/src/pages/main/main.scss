@@ -4,5 +4,8 @@ page-main {
     padding: 2vh 0;
   }
 
+  .no-scroll .scroll-content {
+    overflow: hidden;
+  }
 
 }

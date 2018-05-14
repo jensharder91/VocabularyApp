@@ -1,0 +1,36 @@
+<ion-content>
+
+  <div class="topic-header">
+    <ion-navbar>
+      <span class="topic-name">My Vocabulary Box</span><br/>
+      <span class="topic-description">Your vocabulary</span>
+      <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="funnel"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+
+    <ion-navbar>
+      <div class="study-buttons">
+        <button ion-button round color="light" (click)="studyDueCards()" [disabled]="!vocabProvider.getCardsToLearn().length > 0">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+        <button ion-button round color="light" (click)="showAllCards()">
+          <ion-icon name="book"></ion-icon>
+        </button>
+        <button ion-button round color="light" (click)="addMultipleVocsToBox()">
+          <ion-icon name="cube"></ion-icon>
+        </button>
+        <button ion-button round color="light" (click)="addVocabulary(mock)" [disabled]="true">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </div>
+    </ion-navbar>
+  </div>
+
+  <div class="vocabulary-box">
+    <circleview-component *ngFor="let i of [1,2,3,4,5,6]" text="Level {{i}}" [subtext]="vocabProvider.getCardDeckForLevel(i - 1).length + ' cards'" image="assets/imgs/level/level_{{i}}.svg" (click)="studyDueCards()" [disabled]="!vocabProvider.getCardsToLearn().length > 0"></circleview-component>
+  </div>
+
+</ion-content>

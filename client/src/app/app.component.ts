@@ -7,9 +7,11 @@ import { VocabProvider, Card } from "../providers/vocab/vocab";
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase'
-import { SelectStudyPage } from '../pages/selectStudy/selectStudy';
+import { VocabBoxPage } from '../pages/vocabBox/vocabBox';
 import { VocabularyListPage } from '../pages/vocabularyList/vocabularyList';
-import { ManageTopicsPage } from '../pages/manageTopics/manageTopics';
+import { LibraryDecksPage } from '../pages/libraryDecks/libraryDecks';
+import { WelcomePage } from "../pages/welcome/welcome";
+import {MainPage} from "../pages/main/main";
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +19,7 @@ import { ManageTopicsPage } from '../pages/manageTopics/manageTopics';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SettingsPage;
+  rootPage: any = WelcomePage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -39,7 +41,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
       this.platform.registerBackButtonAction(()=>{
-          this.nav.setRoot(HomePage);
+          this.nav.setRoot(MainPage);
       });
 
       return this.vocabProvider.login();
@@ -47,19 +49,19 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       console.log("logged in");
-      this.nav.setRoot(HomePage);
+      this.nav.setRoot(MainPage);
     }).catch(() => {
       //error -> not logged in?
       console.log("error -> not logged in?");
     });
   }
 
-  openHomePage() {
-    this.nav.setRoot(HomePage);
+  openMainPage() {
+    this.nav.setRoot(MainPage);
   }
 
   openSelectStudyPage() {
-    this.nav.setRoot(SelectStudyPage);
+    this.nav.setRoot(VocabBoxPage);
   }
 
   openSettingsPage() {
@@ -67,7 +69,7 @@ export class MyApp {
   }
 
   manageTopics() {
-    this.nav.setRoot(ManageTopicsPage);
+    this.nav.setRoot(LibraryDecksPage);
   }
 
   showAllCards() {

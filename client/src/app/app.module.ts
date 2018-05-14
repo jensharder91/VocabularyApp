@@ -11,28 +11,36 @@ import { VocabProvider } from '../providers/vocab/vocab';
 
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { HomePage } from "../pages/home/home";
-import { ManageTopicsPage } from "../pages/manageTopics/manageTopics";
+import { LibraryDecksPage } from "../pages/libraryDecks/libraryDecks";
 import { ManageLanguagesPage } from "../pages/manageLanguages/manageLanguages";
 import { SettingsPage } from "../pages/settings/settings";
 import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
-import {SelectStudyPage} from "../pages/selectStudy/selectStudy";
+import { VocabBoxPage } from "../pages/vocabBox/vocabBox";
 
 import {CircleviewComponent} from '../components/circleview/circleview';
 import {LanguageSelectComponent} from '../components/languageselect/languageselect';
 import {HorizontalscrollComponent} from '../components/horizontalscroll/horizontalscroll';
 import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPopover";
+import {MainPage} from "../pages/main/main";
+import {FavoritesPage} from "../pages/favorites/favorites";
+import {MenuPopoverPage} from "../pages/menuPopover/menuPopover";
+import {WelcomePage} from "../pages/welcome/welcome";
 
 
 @NgModule({
   declarations: [
     MyApp,
     StudyPhasePage,
-    SelectStudyPage,
+    WelcomePage,
+    VocabBoxPage,
     SelectStudyPopoverPage,
+    MenuPopoverPage,
     HomePage,
-    ManageTopicsPage,
+    MainPage,
+    LibraryDecksPage,
     ManageLanguagesPage,
+    FavoritesPage,
     SettingsPage,
     VocabularyListPage,
     CircleviewComponent,
@@ -48,11 +56,15 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    WelcomePage,
     StudyPhasePage,
-    SelectStudyPage,
+    VocabBoxPage,
+    MainPage,
+    MenuPopoverPage,
+    FavoritesPage,
     SelectStudyPopoverPage,
     HomePage,
-    ManageTopicsPage,
+    LibraryDecksPage,
     ManageLanguagesPage,
     SettingsPage,
     VocabularyListPage

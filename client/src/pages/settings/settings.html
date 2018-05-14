@@ -9,16 +9,43 @@
 
 <ion-content>
 
-  <div class="custom-card">
-      <h1>Username</h1>
+  <ion-list>
+    <ion-item>
+      <ion-label>Username</ion-label>
       <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
-  </div>
+    </ion-item>
 
-  <ion-card class="save-button" (click)="save()">
-    <ion-card-content class="save-button-title">
-      Save
-    </ion-card-content>
-  </ion-card>
+    <ion-item>
+      <ion-label>Available Languages</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let toggleItem of toggleItems">
+      <ion-label>{{toggleItem.language.shortName1}} / {{toggleItem.language.shortName2}}</ion-label>
+      <ion-toggle [(ngModel)]="toggleItem.state" (click)="saveAvailableLanguages(toggleItem)"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Current Language</ion-label>
+      <ion-select [(ngModel)]="languageID">
+        <ion-option *ngFor="let item of user.languages" value="{{item.id}}">{{item.name1}}/{{item.name2}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Number of cards to upload at once</ion-label>
+
+    </ion-item>
+    <ion-item>
+      <ion-label>Notifications</ion-label>
+
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>
+
+<ion-footer>
+  <ion-navbar>
+    <button ion-button (click)="save()">
+      Save
+    </button>
+  </ion-navbar>
+</ion-footer>

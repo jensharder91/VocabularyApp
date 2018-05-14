@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { VocabProvider, User } from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
-import { SelectStudyPage } from "../selectStudy/selectStudy";
 import { ManageLanguagesPage } from "../manageLanguages/manageLanguages";
+import {MainPage} from "../main/main";
 
 
 @Component({
@@ -53,6 +53,7 @@ export class HomePage {
 
   start(id: string) {
     this.vocabProvider.setCurrentLanguage(id);
-    this.navCtrl.setRoot(SelectStudyPage);
+    //this.navCtrl.setRoot(SelectStudyPage);
+    this.navCtrl.setRoot(MainPage);
   }
 }

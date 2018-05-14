@@ -1,59 +1,40 @@
 languageselect-component {
+
   .circleview-container {
-    // //item
-    // width: 105px;
-    // height: 105px;
     display: inline-block;
-    width: 104px;
-    height: 104px;
-    margin: 0 10px;
+    width: 70px;
+    height: 70px;
+    margin: 10px 10px 10px;
     position: relative;
-    background-color: map-get($colors, primary);
-    border: 2px solid map-get($colors, primary);
-    border-radius: 50%;
-    // //box-shadow: 6px 6px 4px map-get($colors, primary);
+    //border: 1px solid map-get($colors, primary);
   }
 
-  .circleview-text-1 {
-    //text
-    color: map-get($colors, light);
-    text-shadow: -4px 0 5px map-get($colors, primary), 0 4px 5px map-get($colors, primary), 4px 0 5px map-get($colors, primary), 0 -4px 5px map-get($colors, primary);
-    font-size: large;
+  .circleview-text {
+    color: map-get($colors, primary);
+    font-size: small;
     font-weight: bold;
-    left: 20px;
-    top: 20px;
-    position: absolute;
-  }
-
-  .circleview-text-2 {
-    //text
-    color: map-get($colors, light);
-    text-shadow: -4px 0 5px map-get($colors, primary), 0 4px 5px map-get($colors, primary), 4px 0 5px map-get($colors, primary), 0 -4px 5px map-get($colors, primary);
-    font-size: large;
-    font-weight: bold;
-    right: 20px;
-    bottom: 20px;
-    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    width: inherit;
+    float: left;
+    clear: left;
   }
 
   .circleview-image-1 {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    // box-shadow: 2px 2px 4px map-get($colors, primary);
     left: 0;
     top: 0;
-    position: absolute;
     clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
   }
 
   .circleview-image-2 {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    // box-shadow: 2px 2px 4px map-get($colors, primary);
     left: 0;
     top: 0;
     position: absolute;

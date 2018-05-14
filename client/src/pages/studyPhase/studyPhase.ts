@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { VocabProvider, Card } from "../../providers/vocab/vocab";
-import { SelectStudyPage } from "../selectStudy/selectStudy";
+import { VocabBoxPage } from "../vocabBox/vocabBox";
 
 @Component({
   selector: 'page-studyPhase',
@@ -95,7 +95,7 @@ export class StudyPhasePage {
           {
             text: 'Go Back',
             handler: data => {
-              this.navCtrl.setRoot(SelectStudyPage);
+              this.navCtrl.setRoot(VocabBoxPage);
             }
           }
         ]

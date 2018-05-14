@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AlertController, NavParams } from 'ionic-angular';
+import {AlertController, NavParams, PopoverController} from 'ionic-angular';
 import { VocabProvider, Card } from "../../providers/vocab/vocab";
+import {MenuPopoverPage} from "../menuPopover/menuPopover";
 
 @Component({
   selector: 'page-vocabularyList',
@@ -19,11 +20,13 @@ export class VocabularyListPage {
   private language2: string;
 
   listLowerLimit = 0;
-  listUpperLimit = 10;
+  listUpperLimit = 5;
+  listInterval = 5;
 
   constructor(public alertCtrl: AlertController,
-    public navParams: NavParams,
-    public vocabProvider: VocabProvider) {
+              public navParams: NavParams,
+              public vocabProvider: VocabProvider,
+              public popoverCtrl: PopoverController) {
 
     this.level = this.navParams.get('level');
     this.topic = this.navParams.get('topic');
@@ -34,7 +37,8 @@ export class VocabularyListPage {
     this.getCards();
 
     this.listLowerLimit = 0;
-    this.listUpperLimit = 10;
+    this.listUpperLimit = 5;
+    this.listInterval = 5;
 
     if (this.listUpperLimit >= this.dict.length) {
       this.listUpperLimit = this.dict.length;
@@ -139,8 +143,8 @@ export class VocabularyListPage {
 
     if (this.listUpperLimit < this.dict.length) {
 
-      this.listLowerLimit += 10;
-      this.listUpperLimit += 10;
+      this.listLowerLimit += this.listInterval;
+      this.listUpperLimit += this.listInterval;
 
       if (this.listUpperLimit > this.dict.length) {
         this.listUpperLimit = this.dict.length;
@@ -152,8 +156,8 @@ export class VocabularyListPage {
 
     if (this.listLowerLimit > 0) {
 
-      this.listLowerLimit -= 10;
-      this.listUpperLimit = this.listLowerLimit + 10;
+      this.listLowerLimit -= this.listInterval;
+      this.listUpperLimit = this.listLowerLimit + this.listInterval;
 
       if (this.listUpperLimit > this.dict.length) {
         this.listUpperLimit = this.dict.length;

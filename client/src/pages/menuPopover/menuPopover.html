@@ -1,10 +1,16 @@
-<ion-content class="no-scroll center-content">
+<ion-content class="no-scroll custom-popover">
   <ion-list>
     <button ion-item (click)="openSettingsPage()">
-      <img class="icon" src="assets/imgs/icons/settings_icon.svg"><span>Settings</span>
+      <ion-icon name="settings"></ion-icon> Settings
     </button>
     <button ion-item>
-      Log Out
+      <ion-icon name="chatboxes"></ion-icon> Feedback
+    </button>
+    <button ion-item>
+      <ion-icon name="information-circle"></ion-icon> Info
+    </button>
+    <button ion-item>
+      <ion-icon name="log-out"></ion-icon> Log Out
     </button>
   </ion-list>
 </ion-content>

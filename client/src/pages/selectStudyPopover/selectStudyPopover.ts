@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ToastController, ViewController, AlertController, App, NavParams } from 'ionic-angular';
+import {ToastController, ViewController, AlertController, App, NavParams, PopoverController} from 'ionic-angular';
 
 import { VocabProvider, Card, Topic } from "../../providers/vocab/vocab";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
+import {MenuPopoverPage} from "../menuPopover/menuPopover";
 
 @Component({
   selector: 'page-selectStudyPopover',
@@ -18,11 +19,12 @@ export class SelectStudyPopoverPage {
   private language2: string;
 
   constructor(protected app: App,
-    private toastCtrl: ToastController,
-    private navParams: NavParams,
-    private viewCtrl: ViewController,
-    private vocabProvider: VocabProvider,
-    private alertCtrl: AlertController) {
+              private toastCtrl: ToastController,
+              private navParams: NavParams,
+              private viewCtrl: ViewController,
+              private vocabProvider: VocabProvider,
+              private alertCtrl: AlertController,
+              private popoverCtrl: PopoverController) {
 
     this.level = this.navParams.get('level');
     this.topic = this.navParams.get('topic');

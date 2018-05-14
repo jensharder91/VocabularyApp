@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<!--<ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
       <button ion-button menuToggle>
@@ -10,7 +10,7 @@
 
   <ion-content>
     <ion-list no-lines>
-      <button menuClose ion-item (click)="openHomePage()">
+      <button menuClose ion-item (click)="openMainPage()">
         <ion-icon class="menu_main_icon" name="home"></ion-icon><span class="menu_main_item">Home</span>
       </button>
       <div *ngIf="vocabProvider.getCurrentLanguage().id">
@@ -32,7 +32,7 @@
       </button>
     </ion-list>
   </ion-content>
-</ion-menu>
+</ion-menu>-->
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

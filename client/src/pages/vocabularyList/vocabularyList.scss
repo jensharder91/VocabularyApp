@@ -1,3 +1,52 @@
 page-vocabularyList {
 
+  .section-title {
+    text-align: left;
+    font-weight: bold;
+    margin: 10px 10px;
+    color: map-get($colors, light);
+  }
+
+  .study-buttons {
+    margin: 10px 10px 10px 10px;
+    text-align: center;
+  }
+
+  .study-buttons .button{
+    width: 50px;
+  }
+
+  .topic-header{
+    background-color: map-get($colors, primary);
+  }
+
+  .topic-name{
+    font-weight: bold;
+    text-align: left;
+    margin: 10px 10px;
+    color: map-get($colors, light);
+
+  }
+
+  .topic-description{
+    font-size: 90%;
+    text-align: left;
+    margin: 10px 10px;
+    color: map-get($colors, light);
+  }
+
+  .list-entry-left{
+    text-align: right;
+    margin-right: 10px;
+    font-size: 90%;
+  }
+
+  .list-entry-right{
+    margin-left: 10px;
+    font-size: 90%;
+  }
+
+  .list-counter{
+    color: map-get($colors, light);
+  }
 }

@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 
-import { VocabProvider } from "../../providers/vocab/vocab";
-import { HomePage } from '../home/home'
+import {Language, User, VocabProvider} from "../../providers/vocab/vocab";
+import {MainPage} from "../main/main";
+
+
+export interface ToggleItem {
+  state: boolean;
+  originState: boolean;
+  language: Language;
+}
 
 @Component({
   selector: 'settings',
@@ -10,20 +17,92 @@ import { HomePage } from '../home/home'
 
 })
 
+
 export class SettingsPage {
 
   private username: string = "";
+  private user: User = { userName: "Mock", languages: [] };
 
-  constructor(public navCtrl: NavController, public vocabProvider: VocabProvider) {
+  public toggleItems: ToggleItem[] = [];
+  private languageID: string;
+
+  constructor(public navCtrl: NavController,
+              public vocabProvider: VocabProvider,
+              public alertCtrl: AlertController) {
 
     this.username = vocabProvider.getUserName();
+    this.user = vocabProvider.getUser();
+
+    this.user.languages.forEach(language => {
+      this.toggleItems.push({ state: true, originState: true, language: language });
+    });
+
+    vocabProvider.getAvaiableLanguages().forEach(language => {
+      let isActiveLanguage: boolean = false;
+      this.toggleItems.forEach((toggleItem) => {
+        if (toggleItem.language.id == language.id) {
+          isActiveLanguage = true;
+        }
+      });
+
+      if (!isActiveLanguage) {
+        this.toggleItems.push({ state: false, originState: false, language: language });
+      }
+    });
   }
 
-
   save() {
+
+    // Save username
     this.vocabProvider.saveUserName(this.username);
 
-    this.navCtrl.setRoot(HomePage);
+    // Save current language
+    this.vocabProvider.setCurrentLanguage(this.languageID);
+    console.log(this.vocabProvider.getCurrentLanguage().id);
+
+    // Save number of cards per upload
+
+    // Save notifications
+
+    // Return to main page (vocabulary box)
+    this.navCtrl.setRoot(MainPage);
+  }
+
+  saveAvailableLanguages(item){
+    if (item.state) {
+      this.saveNow();
+    } else {
+      this.alertCtrl.create({
+        title: 'Warning!',
+        message: 'The language ' + item.language.id + ' including your progress will be removed.',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              item.state = item.originState;
+            }
+          },
+          {
+            text: 'Okay',
+            handler: () => {
+              this.saveNow();
+            }
+          }
+        ]
+      }).present();
+    }
+  }
+
+  saveNow() {
+    let newLanguageList: Language[] = [];
+    this.toggleItems.forEach(toggleItem => {
+      if (toggleItem.state) {
+        newLanguageList.push(toggleItem.language);
+      }
+    });
+    this.vocabProvider.addLanguagesToUser(newLanguageList);
+    //this.navCtrl.setRoot(HomePage);
   }
 
 }
