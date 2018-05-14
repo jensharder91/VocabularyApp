@@ -15,7 +15,7 @@ export class WelcomePage {
   @ViewChild('mySlider') slides: Slides;
 
   private username: string = "";
-  private user: User = { userName: "Mock", languages: [] };
+  private user: User = { userName: "Mock", languages: [], currentLanguageId:"" };
 
   public availableLanguages: Language[] = [];
 
@@ -43,7 +43,7 @@ export class WelcomePage {
 
   saveLanguage(id){
     console.log(id + "selected");
-    this.vocabProvider.setCurrentLanguage(id);
+    this.vocabProvider.addLanguageToUser(id);
     this.slides.slideNext(500, true);
   }
 

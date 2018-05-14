@@ -7,6 +7,7 @@ import { Http } from "@angular/http";
 export interface User {
   userName: string;
   languages: Language[];
+  currentLanguageId: string;
 }
 
 export interface Language {
@@ -113,20 +114,28 @@ export class VocabProvider {
   }
 
   setCurrentLanguage(id: string) {
-    this.currentLanguage = null;
+    this.user.currentLanguageId = id;
     this.user.languages.forEach((myLanguage) => {
-      if (myLanguage.id == id) {
+      if (myLanguage.id == this.user.currentLanguageId) {
         this.currentLanguage = myLanguage;
       }
     });
   }
 
   getCurrentLanguage(): Language {
-    if (this.currentLanguage) {
-      return this.currentLanguage;
-    } else {
-      return <Language>{ topics: [] };
+    let curLanguage: Language = this.currentLanguage;
+    if (curLanguage) {
+      return curLanguage;
     }
+    curLanguage = <Language>{ topics: [] };
+    if (this.user) {
+      this.user.languages.forEach((myLanguage) => {
+        if (myLanguage.id == this.user.currentLanguageId) {
+          curLanguage = myLanguage;
+        }
+      });
+    }
+    return curLanguage;
   }
 
   createCard(topicString: string, frontSideValue: string, backSideValue: string) {
@@ -141,13 +150,11 @@ export class VocabProvider {
 
     let topic: Topic;
 
-    if (this.currentLanguage) {
-      this.currentLanguage.topics.forEach((myTopic) => {
-        if (topicString == myTopic.name) {
-          topic = myTopic;
-        }
-      });
-    }
+    this.getCurrentLanguage().topics.forEach((myTopic) => {
+      if (topicString == myTopic.name) {
+        topic = myTopic;
+      }
+    });
 
     if (topic && frontSideValue && backSideValue) {
       topic.cards.push(card);
@@ -167,13 +174,11 @@ export class VocabProvider {
 
     let topic: Topic;
 
-    if (this.currentLanguage) {
-      this.currentLanguage.topics.forEach((myTopic) => {
-        if (topicString == myTopic.name) {
-          topic = myTopic;
-        }
-      });
-    }
+    this.getCurrentLanguage().topics.forEach((myTopic) => {
+      if (topicString == myTopic.name) {
+        topic = myTopic;
+      }
+    });
 
     if (topic) {
       let index = topic.cards.indexOf(card);
@@ -186,7 +191,7 @@ export class VocabProvider {
 
   getTopicByName(topicName: string): Topic {
     let topic: Topic = <Topic>{ id: "_mock", name: "mock", customTopic: true, cards: [], waitingCards: [] };
-    this.currentLanguage.topics.forEach((myTopic) => {
+    this.getCurrentLanguage().topics.forEach((myTopic) => {
       if (myTopic.name == topicName) {
         topic = myTopic;
       }
@@ -199,13 +204,11 @@ export class VocabProvider {
 
     let allCards: Card[] = [];
 
-    if (this.currentLanguage) {
-      this.currentLanguage.topics.forEach((topic) => {
-        topic.cards.forEach((card) => {
-          allCards.push(card);
-        });
+    this.getCurrentLanguage().topics.forEach((topic) => {
+      topic.cards.forEach((card) => {
+        allCards.push(card);
       });
-    }
+    });
 
     return allCards;
   }
@@ -214,15 +217,13 @@ export class VocabProvider {
   getCardDeckForLevel(level: number): Card[] {
 
     let result: Card[] = [];
-    if (this.currentLanguage) {
-      this.currentLanguage.topics.forEach((topic) => {
-        topic.cards.forEach((card) => {
-          if (level == card.level) {
-            result.push(card);
-          }
-        });
+    this.getCurrentLanguage().topics.forEach((topic) => {
+      topic.cards.forEach((card) => {
+        if (level == card.level) {
+          result.push(card);
+        }
       });
-    }
+    });
     return result;
   }
 
@@ -230,13 +231,11 @@ export class VocabProvider {
   getCardDeckForTopic(topic: string): Card[] {
 
     let result: Card[] = [];
-    if (this.currentLanguage) {
-      this.currentLanguage.topics.forEach((myTopic) => {
-        if (topic == myTopic.name) {
-          result = myTopic.cards;
-        }
-      });
-    }
+    this.getCurrentLanguage().topics.forEach((myTopic) => {
+      if (topic == myTopic.name) {
+        result = myTopic.cards;
+      }
+    });
     return result;
   }
 
@@ -244,15 +243,13 @@ export class VocabProvider {
   getCardsToLearn() {
     let result: Card[] = [];
 
-    if (this.currentLanguage) {
-      this.currentLanguage.topics.forEach((topic) => {
-        topic.cards.forEach((card) => {
-          if (card.dueDate <= new Date().getTime()) {
-            result.push(card);
-          }
-        });
+    this.getCurrentLanguage().topics.forEach((topic) => {
+      topic.cards.forEach((card) => {
+        if (card.dueDate <= new Date().getTime()) {
+          result.push(card);
+        }
       });
-    }
+    });
     return result;
   }
 
@@ -370,7 +367,7 @@ export class VocabProvider {
   public addTenVocs(topicName: string) {
 
     let topic: Topic;
-    this.currentLanguage.topics.forEach((myTopic) => {
+    this.getCurrentLanguage().topics.forEach((myTopic) => {
       if (myTopic.name == topicName) {
         topic = myTopic;
       }
@@ -684,8 +681,13 @@ export class VocabProvider {
     return languages;
   }
 
-  addLanguagesToUser(languages: Language[]) {
-    this.user.languages = languages;
+  addLanguageToUser(id: string) {
+    this.getAvaiableLanguages().forEach((myLanguage) => {
+      if (myLanguage.id == id) {
+        this.user.languages.push(myLanguage);
+      }
+    });
+    this.setCurrentLanguage(id);
     this.saveUser();
   }
 }
