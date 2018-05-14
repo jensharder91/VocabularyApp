@@ -34,7 +34,7 @@ export class SelectStudyPopoverPage {
   }
 
   showTopicCardDeck(topic: string) {
-    let curCards: Card[] = this.vocabProvider.getCardDeckForTopic(topic);
+    let curCards: Card[] = this.vocabProvider.getAllCardskForTopic(topic);
     this.showCards(curCards);
   }
 

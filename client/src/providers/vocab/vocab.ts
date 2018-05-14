@@ -232,8 +232,20 @@ export class VocabProvider {
 
     let result: Card[] = [];
     this.getCurrentLanguage().topics.forEach((myTopic) => {
-      if (topic == myTopic.name) {
+      if (topic == myTopic.id) {
         result = myTopic.cards;
+      }
+    });
+    return result;
+  }
+
+  getAllCardskForTopic(topic: string): Card[] {
+
+    let result: Card[] = [];
+    this.getCurrentLanguage().topics.forEach((myTopic) => {
+      if (topic == myTopic.id) {
+        result = myTopic.cards;
+        result = result.concat(myTopic.waitingCards);
       }
     });
     return result;

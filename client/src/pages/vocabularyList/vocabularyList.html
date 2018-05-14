@@ -3,7 +3,7 @@
   <div class="topic-header">
     <ion-navbar>
       <span class="topic-name">{{cardDeckTitle}}</span><br/>
-      <span class="topic-description">{{vocabProvider.getCardDeckForTopic(cardDeckTitle).length}} of {{vocabProvider.getCardDeckForTopic(cardDeckTitle).length}} cards in your vocabulary box</span>
+      <span class="topic-description">{{vocabProvider.getCardDeckForTopic(topic).length}} of {{vocabProvider.getAllCardskForTopic(topic).length}} cards in your vocabulary box</span>
       <ion-buttons end>
         <button ion-button icon-only>
           <ion-icon name="funnel"></ion-icon>
@@ -89,5 +89,3 @@
     </ion-grid>
   </ion-toolbar>
 </ion-footer>
-
-

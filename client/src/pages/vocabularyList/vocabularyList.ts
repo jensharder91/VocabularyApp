@@ -47,7 +47,7 @@ export class VocabularyListPage {
 
   getCards() {
     if (this.mode == "topic") {
-      this.dict = this.vocabProvider.getCardDeckForTopic(this.topic);
+      this.dict = this.vocabProvider.getAllCardskForTopic(this.topic);
       this.cardDeckTitle = this.topic;
     } else if (this.mode == "levels") {
       this.dict = this.vocabProvider.getCardDeckForLevel(this.level - 1);

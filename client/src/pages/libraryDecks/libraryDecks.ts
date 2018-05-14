@@ -188,7 +188,6 @@ export class LibraryDecksPage {
   }
 
   showTopicCardDeck(topic:string) {
-    let curCards: Card[] = this.vocabProvider.getCardDeckForTopic(topic);
     this.navCtrl.setRoot(VocabularyListPage, {
       mode: "topic",
       topic: topic,

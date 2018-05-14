@@ -11,7 +11,7 @@
 <ion-content padding class="no-scroll center-content">
 
   <div *ngIf="mode=='topic'">
-    <circleview-component class="popoverBtn" text="Show Cards" image="assets/imgs/topic/showVocList_icon_topics.svg" (click)="showTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"></circleview-component>
+    <circleview-component class="popoverBtn" text="Show Cards" image="assets/imgs/topic/showVocList_icon_topics.svg" (click)="showTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getAllCardskForTopic(topic).length>0)"></circleview-component>
     <circleview-component class="popoverBtn" text="Study Cards" image="assets/imgs/topic/startStudy_icon_topics.svg" (click)="studyTopicCardDeck(topic)" [disabled]="!(this.vocabProvider.getCardDeckForTopic(topic).length>0)"></circleview-component>
     <circleview-component class="popoverBtn" *ngIf="vocabProvider.getTopicByName(topic).waitingCards.length < 1" text="Add Cards" image="assets/imgs/topic/addCards_icon_topics.png" (click)='addVocabulary(topic)'></circleview-component>
     <circleview-component class="popoverBtn" *ngIf="vocabProvider.getTopicByName(topic).waitingCards.length > 0" text="Add Cards" image="assets/imgs/topic/addCards_icon_topics.png" (click)='loadCsvToDict(topic)'></circleview-component>

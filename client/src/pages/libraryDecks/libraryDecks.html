@@ -25,11 +25,11 @@
       <ion-avatar item-start>
         <img src="assets/imgs/topic/topic.svg">
       </ion-avatar>
-      <ion-label (click)="showTopicCardDeck(toggleItem.topic.name)">
+      <ion-label (click)="showTopicCardDeck(toggleItem.topic.id)">
         <span class="topic-name-entry">{{toggleItem.topic.name}}</span><br/>
         <span class="topic-description-entry">{{toggleItem.topic.cards.length}} of {{toggleItem.topic.waitingCards.length + toggleItem.topic.cards.length}} cards in your box</span>
       </ion-label>
-      <ion-toggle [(ngModel)]="toggleItem.state" (click)="saveToggleChange(toggleItem)"></ion-toggle>
+      <ion-toggle [(ngModel)]="toggleItem.state" (ionChange)="saveToggleChange(toggleItem)"></ion-toggle>
     </ion-item>
   </ion-list>
 
