@@ -86,7 +86,12 @@ export class ManageLanguagesPage {
         newLanguageList.push(toggleItem.language);
       }
     });
-    this.vocabProvider.addLanguagesToUser(newLanguageList);
-    this.navCtrl.setRoot(HomePage);
+
+    newLanguageList.forEach( (language)=> {
+      if (!(this.vocabProvider.getUser().languages.indexOf(language) > -1)){
+        this.vocabProvider.addLanguageToUser(language.id);
+      }
+      //this.navCtrl.setRoot(HomePage);
+    });
   }
 }

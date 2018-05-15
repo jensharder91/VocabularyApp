@@ -702,4 +702,14 @@ export class VocabProvider {
     this.setCurrentLanguage(id);
     this.saveUser();
   }
+
+  removeLanguageFromUser(id: string) {
+    this.user.languages.forEach((myLanguage) => {
+      if (myLanguage.id == id) {
+        this.user.languages.splice(this.user.languages.indexOf(myLanguage),1);
+      }
+    });
+    this.setCurrentLanguage("");
+    this.saveUser();
+  }
 }

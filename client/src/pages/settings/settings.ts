@@ -21,7 +21,7 @@ export interface ToggleItem {
 export class SettingsPage {
 
   private username: string = "";
-  private user: User = { userName: "Mock", languages: [] };
+  private user: User = { userName: "Mock", languages: [], currentLanguageId: "" };
 
   public toggleItems: ToggleItem[] = [];
   private languageID: string;
@@ -68,9 +68,11 @@ export class SettingsPage {
     this.navCtrl.setRoot(MainPage);
   }
 
-  saveAvailableLanguages(item){
+  saveAvailableLanguages(item) {
     if (item.state) {
-      this.saveNow();
+      if (!(this.user.languages.indexOf(item.language) > -1)) {
+        this.vocabProvider.addLanguageToUser(item.language.id);
+      }
     } else {
       this.alertCtrl.create({
         title: 'Warning!',
@@ -86,23 +88,12 @@ export class SettingsPage {
           {
             text: 'Okay',
             handler: () => {
-              this.saveNow();
+              this.vocabProvider.removeLanguageFromUser(item.language.id)
             }
           }
         ]
       }).present();
     }
-  }
-
-  saveNow() {
-    let newLanguageList: Language[] = [];
-    this.toggleItems.forEach(toggleItem => {
-      if (toggleItem.state) {
-        newLanguageList.push(toggleItem.language);
-      }
-    });
-    this.vocabProvider.addLanguagesToUser(newLanguageList);
-    //this.navCtrl.setRoot(HomePage);
   }
 
 }

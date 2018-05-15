@@ -15,7 +15,7 @@ import {MainPage} from "../main/main";
 export class HomePage {
 
   public unregisterBackButtonAction: any;
-  private user: User = { userName: "Mock", languages: [] };
+  private user: User = { userName: "Mock", languages: [], currentLanguageId: "" };
 
   constructor(public navCtrl: NavController,
     public vocabProvider: VocabProvider,
