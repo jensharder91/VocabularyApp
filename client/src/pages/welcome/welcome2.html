@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>VocApp</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="indicator">
+    <img src="assets/imgs/indicator/2_3.svg" height="20">
+  </div>
+
+  <div class="myContent">
+
+      <span class="title">Hello {{userName}}!</span><br/>
+      <span class="subtitle">Select the language combination you would like to study.</span><br/>
+      <span class="text">You can change your selection in your settings later on.</span><br/>
+      <horizontalscroll-component class="selection" mode="languages" [items]="availableLanguages" (clickEvent)="saveLanguage($event)"></horizontalscroll-component>
+
+  </div>
+
+
+</ion-content>
+
+<ion-footer no-border>
+
+</ion-footer>

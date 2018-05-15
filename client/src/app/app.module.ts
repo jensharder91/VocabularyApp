@@ -25,14 +25,18 @@ import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPop
 import {MainPage} from "../pages/main/main";
 import {FavoritesPage} from "../pages/favorites/favorites";
 import {MenuPopoverPage} from "../pages/menuPopover/menuPopover";
-import {WelcomePage} from "../pages/welcome/welcome";
+import {Welcome1Page} from "../pages/welcome/welcome1";
+import {Welcome2Page} from "../pages/welcome/welcome2";
+import {Welcome3Page} from "../pages/welcome/welcome3";
 
 
 @NgModule({
   declarations: [
     MyApp,
     StudyPhasePage,
-    WelcomePage,
+    Welcome1Page,
+    Welcome2Page,
+    Welcome3Page,
     VocabBoxPage,
     SelectStudyPopoverPage,
     MenuPopoverPage,
@@ -56,7 +60,9 @@ import {WelcomePage} from "../pages/welcome/welcome";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    WelcomePage,
+    Welcome1Page,
+    Welcome2Page,
+    Welcome3Page,
     StudyPhasePage,
     VocabBoxPage,
     MainPage,

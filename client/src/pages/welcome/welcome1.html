@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>VocApp</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="indicator">
+    <img src="assets/imgs/indicator/1_3.svg" height="20">
+  </div>
+
+  <div class="myContent">
+
+
+          <span class="title">Welcome to VocApp!</span><br/>
+          <span class="subtitle">Please enter a username.</span><br/>
+          <ion-item>
+
+<ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
+</ion-item>
+
+  </div>
+
+
+
+
+</ion-content>
+
+<ion-footer no-border>
+  <button large block ion-button (click)="saveUser()" [disabled]="!username">Next</button>
+</ion-footer>

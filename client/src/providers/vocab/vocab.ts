@@ -104,7 +104,7 @@ export class VocabProvider {
     if (this.user && this.user.userName) {
       return this.user.userName;
     } else {
-      return "";
+      return "Unknown";
     }
   }
 

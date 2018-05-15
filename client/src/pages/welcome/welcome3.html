@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>VocApp</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="indicator">
+    <img src="assets/imgs/indicator/3_3.svg" height="20">
+  </div>
+
+
+  <div class="myContent">
+
+    <span class="slide-title">All Done!</span><br/>
+    <span class="slide-subtitle">Let's start learning {{vocabProvider.getCurrentLanguage().name1}}/{{vocabProvider.getCurrentLanguage().name2}}!</span><br/>
+
+  </div>
+
+
+</ion-content>
+<ion-footer no-border>
+
+    <button large block ion-button (click)="start()">Okay</button>
+</ion-footer>

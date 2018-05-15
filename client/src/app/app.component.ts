@@ -10,7 +10,7 @@ import { StudyPhasePage } from '../pages/studyPhase/studyPhase'
 import { VocabBoxPage } from '../pages/vocabBox/vocabBox';
 import { VocabularyListPage } from '../pages/vocabularyList/vocabularyList';
 import { LibraryDecksPage } from '../pages/libraryDecks/libraryDecks';
-import { WelcomePage } from "../pages/welcome/welcome";
+import { Welcome1Page } from "../pages/welcome/welcome1";
 import {MainPage} from "../pages/main/main";
 
 @Component({
@@ -19,7 +19,7 @@ import {MainPage} from "../pages/main/main";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = WelcomePage;
+  rootPage: any = Welcome1Page;
 
   pages: Array<{ title: string, component: any }>;
 
