@@ -3,40 +3,12 @@ import { Storage } from "@ionic/storage";
 import { AlertController, ToastController } from "ionic-angular";
 import * as papa from 'papaparse';
 import { Http } from "@angular/http";
+import { Card } from '../../../swagger/model/Card';
+import { Bundle } from '../../../swagger/model/Bundle';
+import { Topic } from '../../../swagger/model/Topic';
+import { User } from '../../../swagger/model/User';
+import { Language } from '../../../swagger/model/Language';
 
-export interface User {
-  userName: string;
-  languages: Language[];
-  currentLanguageId: string;
-}
-
-export interface Language {
-  id: string;
-  name1: string;
-  shortName1: string;
-  image1: string;
-  name2: string;
-  shortName2: string;
-  image2: string;
-  topics: Topic[];
-}
-
-export interface Topic {
-  id: string;
-  name: string;
-  cards: Card[];
-  waitingCards: Card[];
-  customTopic?: boolean;
-  csvStringUrl?: string;
-}
-
-export interface Card {
-  frontSide: string;
-  backSide: string;
-  level: number;
-  nextTimeInverse: boolean;
-  dueDate: number;
-}
 
 @Injectable()
 export class VocabProvider {
@@ -86,7 +58,7 @@ export class VocabProvider {
         myUserName = name;
       }
 
-      this.user = <User>{ userName: myUserName, languages: [] };
+      this.user = <User>{ userName: myUserName };
 
       resolve();
       // });
@@ -115,54 +87,48 @@ export class VocabProvider {
 
   setCurrentLanguage(id: string) {
     this.user.currentLanguageId = id;
+    this.saveUser();
+  }
+
+  getLanguageById(languageId: string): Language {
+    let language: Language;
     this.user.languages.forEach((myLanguage) => {
-      if (myLanguage.id == this.user.currentLanguageId) {
-        this.currentLanguage = myLanguage;
+      if (myLanguage.id == languageId) {
+        language = myLanguage;
       }
     });
+    return language;
   }
 
   getCurrentLanguage(): Language {
-    let curLanguage: Language = this.currentLanguage;
-    if (curLanguage) {
-      return curLanguage;
-    }
-    curLanguage = <Language>{ topics: [] };
-    if (this.user) {
-      this.user.languages.forEach((myLanguage) => {
-        if (myLanguage.id == this.user.currentLanguageId) {
-          curLanguage = myLanguage;
-        }
-      });
-    }
-    return curLanguage;
+    return this.getLanguageById(this.user.currentLanguageId);
   }
 
-  createCard(topicString: string, frontSideValue: string, backSideValue: string) {
+  generateCustomCardId(): string {
+    return this.user.userId + "_c_" + Math.floor((Math.random() * 99999999) + 1);
+  }
 
+  createCard(topicId: string, frontSideValue: string, backSideValue: string) {
+    let topic: Topic = this.getTopicById(topicId);
     let card: Card = {
+      id: this.generateCustomCardId(),
+      topicId: topicId,
+      bundleId: topic.bundleId,
+      languageId: topic.languageId,
       frontSide: frontSideValue,
       backSide: backSideValue,
       level: 0,
+      customCard: true,
       dueDate: new Date().getTime(),
       nextTimeInverse: false
     };
-
-    let topic: Topic;
-
-    this.getCurrentLanguage().topics.forEach((myTopic) => {
-      if (topicString == myTopic.name) {
-        topic = myTopic;
-      }
-    });
-
-    if (topic && frontSideValue && backSideValue) {
-      topic.cards.push(card);
-      this.saveUser();
-    }
+    topic.cards.push(card);
+    this.saveUser();
   }
 
-  changeCard(card: Card, frontSideValue: string, backSideValue: string) {
+  changeCard(cardId: string, frontSideValue: string, backSideValue: string) {
+
+    let card: Card = this.getCardById(cardId);
 
     card.frontSide = frontSideValue;
     card.backSide = backSideValue;
@@ -170,15 +136,11 @@ export class VocabProvider {
     this.saveUser();
   }
 
-  deleteCard(topicString: string, card: Card) {
+  deleteCard(cardId: string) {
 
-    let topic: Topic;
+    let card: Card = this.getCardById(cardId);
 
-    this.getCurrentLanguage().topics.forEach((myTopic) => {
-      if (topicString == myTopic.name) {
-        topic = myTopic;
-      }
-    });
+    let topic: Topic = this.getTopicById(card.topicId);
 
     if (topic) {
       let index = topic.cards.indexOf(card);
@@ -189,22 +151,36 @@ export class VocabProvider {
     }
   }
 
-  getTopicByName(topicName: string): Topic {
-    let topic: Topic = <Topic>{ id: "_mock", name: "mock", customTopic: true, cards: [], waitingCards: [] };
-    this.getCurrentLanguage().topics.forEach((myTopic) => {
-      if (myTopic.name == topicName) {
-        topic = myTopic;
+  getTopicsFromCurrentLanguage(): Topic[] {
+
+    let topics: Topic[];
+
+    this.user.topics.forEach((topic) => {
+      if (topic.languageId == this.user.currentLanguageId) {
+        topics.push(topic);
       }
     });
-    return topic;
+
+    return topics;
   }
 
+
+  // getTopicByName(topicName: string): Topic {
+  //   let topic: Topic = <Topic>{ id: "_mock", languageId: "_mock", bundleId: "_mock", name: "mock", customTopic: true, cards: [], waitingCards: [] };
+  //   this.getCurrentLanguage().topics.forEach((myTopic) => {
+  //     if (myTopic.name == topicName) {
+  //       topic = myTopic;
+  //     }
+  //   });
+  //   return topic;
+  // }
+
   // Getting all cards from the current language
-  getCardDeckAll(): Card[] {
+  getCardsAll(): Card[] {
 
     let allCards: Card[] = [];
 
-    this.getCurrentLanguage().topics.forEach((topic) => {
+    this.getTopicsFromCurrentLanguage().forEach((topic) => {
       topic.cards.forEach((card) => {
         allCards.push(card);
       });
@@ -213,58 +189,75 @@ export class VocabProvider {
     return allCards;
   }
 
+  getCardById(cardId: string): Card {
+    let card: Card;
+    this.getCardsAll().forEach((myCard) => {
+      if (myCard.id == cardId) {
+        card = myCard;
+      }
+    });
+    return card;
+  }
+
   // Getting the card from the current lamguagedecks in level
-  getCardDeckForLevel(level: number): Card[] {
+  getCardsByLevel(level: number): Card[] {
 
     let result: Card[] = [];
-    this.getCurrentLanguage().topics.forEach((topic) => {
-      topic.cards.forEach((card) => {
-        if (level == card.level) {
-          result.push(card);
-        }
-      });
+
+    this.getCardsAll().forEach((card) => {
+      if (level == card.level) {
+        result.push(card);
+      }
     });
     return result;
+  }
+
+  getTopicById(topicId: string): Topic {
+    let topic: Topic;
+    this.user.topics.forEach((myTopic) => {
+      if (myTopic.id == topicId) {
+        topic = myTopic;
+      }
+    });
+    return topic;
   }
 
   // Getting the card from the current language decks in topic
-  getCardDeckForTopic(topic: string): Card[] {
-
-    let result: Card[] = [];
-    this.getCurrentLanguage().topics.forEach((myTopic) => {
-      if (topic == myTopic.id) {
-        result = myTopic.cards;
-      }
-    });
-    return result;
+  getActiveCardsByTopicId(topicId: string): Card[] {
+    return this.getTopicById(topicId).cards;
   }
 
-  getAllCardskForTopic(topic: string): Card[] {
+  // Getting the waiting card from the current language decks in topic
+  getWaitingCardsByTopicId(topicId: string): Card[] {
+    return this.getTopicById(topicId).cards;
+  }
 
-    let result: Card[] = [];
-    this.getCurrentLanguage().topics.forEach((myTopic) => {
-      if (topic == myTopic.id) {
-        result = myTopic.cards;
-        result = result.concat(myTopic.waitingCards);
-      }
-    });
-    return result;
+  getAllCardsByTopicId(topicId: string): Card[] {
+    let topic: Topic = this.getTopicById(topicId);
+    return topic.cards.concat(topic.waitingCards);
   }
 
   //get all cards which we need to learn right known
   getCardsToLearn() {
     let result: Card[] = [];
 
-    this.getCurrentLanguage().topics.forEach((topic) => {
-      topic.cards.forEach((card) => {
-        if (card.dueDate <= new Date().getTime()) {
-          result.push(card);
-        }
-      });
-    });
+    this.getCardsAll().forEach((card) => {
+      if (card.dueDate <= new Date().getTime()) {
+        result.push(card);
+      }
+    })
     return result;
   }
 
+  getBundleById(bundleId: string):Bundle{
+    let bundle: Bundle;
+    this.user.bundles.forEach((myBundle) => {
+      if (myBundle.id == bundleId) {
+        bundle = myBundle;
+      }
+    });
+    return bundle;
+}
   saveUser(): Promise<any> {
     return new Promise((resolve, reject) => {
       let promises = [];
@@ -362,6 +355,10 @@ export class VocabProvider {
       for (let j = 0; j < parsedData.length; j++) {
         if (parsedData[j][0] && parsedData[j][1]) {
           topic.waitingCards.push({
+            id: this.generateCustomCardId(),
+            topicId: topic.id,
+            bundleId: topic.bundleId,
+            languageId: topic.languageId,
             frontSide: parsedData[j][0],
             backSide: parsedData[j][1],
             level: 0,
@@ -376,14 +373,9 @@ export class VocabProvider {
     resolve();
   }
 
-  public addTenVocs(topicName: string) {
+  public addTenVocs(topicId: string) {
 
-    let topic: Topic;
-    this.getCurrentLanguage().topics.forEach((myTopic) => {
-      if (myTopic.name == topicName) {
-        topic = myTopic;
-      }
-    });
+    let topic: Topic = this.getTopicById(topicId);
 
     if (topic) {
       if (topic.waitingCards == null) {
@@ -673,15 +665,27 @@ export class VocabProvider {
     return [];
   }
 
-  addContentToUser(languageId: string, topics: Topic[]) {
-    this.user.languages.forEach(language => {
-      if (language.id == languageId) {
-        language.topics = topics;
-        this.importCsvByTopics(language.topics).then(() => {
-          this.saveUser();
-        });
-      }
+  addTopicToUser(topic: Topic, bundle: Bundle) {
+    this.user.topics.push(topic);
+    if(this.getBundleById(topic.bundleId) == null){
+      this.user.bundles.push(bundle);
+    }
+    this.importCsvByTopics([topic]).then(() => {
+      this.saveUser();
     });
+  }
+
+  removeTopicFromUser(topicId: string){
+    let topic : Topic = this.getTopicById(topicId);
+
+    if (topic) {
+      let index = this.user.topics.indexOf(topic);
+      if (index > -1) {
+        this.user.topics.splice(index, 1);
+      }
+      //TODO check if bundle can be removed (no more topics there)
+      this.saveUser();
+    }
   }
 
   getAvaiableLanguages(): Language[] {
@@ -693,23 +697,23 @@ export class VocabProvider {
     return languages;
   }
 
-  addLanguageToUser(id: string) {
-    this.getAvaiableLanguages().forEach((myLanguage) => {
-      if (myLanguage.id == id) {
-        this.user.languages.push(myLanguage);
-      }
-    });
-    this.setCurrentLanguage(id);
+  addLanguageToUser(language: Language) {
+
+        this.user.languages.push(language);
+    this.setCurrentLanguage(language.id);
     this.saveUser();
   }
 
-  removeLanguageFromUser(id: string) {
-    this.user.languages.forEach((myLanguage) => {
-      if (myLanguage.id == id) {
-        this.user.languages.splice(this.user.languages.indexOf(myLanguage),1);
+  removeLanguageFromUser(languageId: string) {
+    let language : Language = this.getLanguageById(languageId);
+
+    if (language) {
+      let index = this.user.languages.indexOf(language);
+      if (index > -1) {
+        this.user.languages.splice(index, 1);
       }
-    });
-    this.setCurrentLanguage("");
-    this.saveUser();
+      //TODO remove all bundles and topics related to this language
+      this.saveUser();
+    }
   }
 }
