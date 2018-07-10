@@ -4,14 +4,14 @@ import { VocabProvider } from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
 import {VocabularyListPage} from "../vocabularyList/vocabularyList";
 import { Card } from '../../../swagger/model/Card';
-import { Topic } from '../../../swagger/model/Topic';
+import { Bundle } from '../../../swagger/model/Bundle';
 import { Language } from '../../../swagger/model/Language';
 
 
 export interface ToggleItem {
   state: boolean;
   originState: boolean;
-  topic: Topic;
+  bundle: Bundle;
 }
 
 @Component({
@@ -30,163 +30,166 @@ export class LibraryDecksPage {
               private popoverCtrl: PopoverController,
               private viewCtrl: ViewController) {
 
-    vocabProvider.getTopicsFromCurrentLanguage().forEach(topic => {
-      this.toggleItems.push({ state: true, originState: true, topic: topic });
+    vocabProvider.getBundlesFromCurrentLanguage().forEach(bundle => {
+      this.toggleItems.push({ state: true, originState: true, bundle: bundle });
     });
 
-    vocabProvider.getAvailableContent(vocabProvider.getCurrentLanguage().id).forEach(topic => {
+    vocabProvider.getAvaiableBundles(vocabProvider.getCurrentLanguage().id).forEach(bundle => {
       let isActiveTopic: boolean = false;
       this.toggleItems.forEach((toggleItem) => {
-        if (toggleItem.topic.id == topic.id) {
+        if (toggleItem.bundle.id == bundle.id) {
           isActiveTopic = true;
         }
       });
 
       if (!isActiveTopic) {
-        this.toggleItems.push({ state: false, originState: false, topic: topic });
+        this.toggleItems.push({ state: false, originState: false, bundle: bundle });
       }
     })
   }
 
   save() {
 
-    let deleteTopicList: Topic[] = [];
-    this.toggleItems.forEach(toggleItem => {
-      if (toggleItem.originState && !toggleItem.state) {
-        deleteTopicList.push(toggleItem.topic);
-      }
-    });
+    //// TODO:
+    console.log("save clicked");
 
-    let topicList: string = "";
-    deleteTopicList.forEach((topic) => {
-      topicList += topic.name + " ";
-    });
-
-    if (deleteTopicList.length == 0) {
-      this.saveNow();
-    } else {
-      this.alertCtrl.create({
-        title: 'Warning!',
-        message: 'The following topics incl. your progress will be removed: ' + topicList + '.',
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-            }
-          },
-          {
-            text: 'Okay',
-            handler: () => {
-              this.saveNow();
-            }
-          }
-        ]
-      }).present();
-    }
+    // let deleteTopicList: Topic[] = [];
+    // this.toggleItems.forEach(toggleItem => {
+    //   if (toggleItem.originState && !toggleItem.state) {
+    //     deleteTopicList.push(toggleItem.topic);
+    //   }
+    // });
+    //
+    // let topicList: string = "";
+    // deleteTopicList.forEach((topic) => {
+    //   topicList += topic.name + " ";
+    // });
+    //
+    // if (deleteTopicList.length == 0) {
+    //   this.saveNow();
+    // } else {
+    //   this.alertCtrl.create({
+    //     title: 'Warning!',
+    //     message: 'The following topics incl. your progress will be removed: ' + topicList + '.',
+    //     buttons: [
+    //       {
+    //         text: 'Cancel',
+    //         role: 'cancel',
+    //         handler: () => {
+    //           console.log('Cancel clicked');
+    //         }
+    //       },
+    //       {
+    //         text: 'Okay',
+    //         handler: () => {
+    //           this.saveNow();
+    //         }
+    //       }
+    //     ]
+    //   }).present();
+    // }
 
   }
 
   saveToggleChange(item) {
 
-    if (item.state) {
-      this.saveNow();
-    } else {
-      this.alertCtrl.create({
-        title: 'Warning!',
-        message: 'The topic ' + item.topic.name + ' including your progress will be removed.',
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            handler: () => {
-              item.state = item.originState;
-            }
-          },
-          {
-            text: 'Okay',
-            handler: () => {
-              this.saveNow();
-            }
-          }
-        ]
-      }).present();
-    }
+    // if (item.state) {
+    //   this.saveNow();
+    // } else {
+    //   this.alertCtrl.create({
+    //     title: 'Warning!',
+    //     message: 'The topic ' + item.topic.name + ' including your progress will be removed.',
+    //     buttons: [
+    //       {
+    //         text: 'Cancel',
+    //         role: 'cancel',
+    //         handler: () => {
+    //           item.state = item.originState;
+    //         }
+    //       },
+    //       {
+    //         text: 'Okay',
+    //         handler: () => {
+    //           this.saveNow();
+    //         }
+    //       }
+    //     ]
+    //   }).present();
+    // }
 
   }
 
-  saveNow() {
-    let newTopicList: Topic[] = [];
-    this.toggleItems.forEach(toggleItem => {
-      if (toggleItem.state) {
-        newTopicList.push(toggleItem.topic);
-      }
-    });
-    //TODO
-    // this.vocabProvider.addContentToUser(this.vocabProvider.getCurrentLanguage().id, newTopicList);
-  }
+  // saveNow() {
+  //   let newTopicList: Topic[] = [];
+  //   this.toggleItems.forEach(toggleItem => {
+  //     if (toggleItem.state) {
+  //       newTopicList.push(toggleItem.topic);
+  //     }
+  //   });
+  //   //TODO
+  //   // this.vocabProvider.addContentToUser(this.vocabProvider.getCurrentLanguage().id, newTopicList);
+  // }
 
   addCustomTopic() {
-    this.alertCtrl.create({
-      title: 'Create Topic',
-      message: "Enter a new name for your topic!",
-      inputs: [
-        {
-          name: 'name'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            let rnd = Math.floor((Math.random() * 10000) + 1);
-            this.toggleItems.push(<ToggleItem>{ state: true, originState: false, topic: <Topic>{ id: "_" + data.name + rnd, name: data.name, customTopic: true, cards: [], waitingCards: [] } });
-          }
-        }
-      ]
-    }).present();
+    // this.alertCtrl.create({
+    //   title: 'Create Topic',
+    //   message: "Enter a new name for your topic!",
+    //   inputs: [
+    //     {
+    //       name: 'name'
+    //     }
+    //   ],
+    //   buttons: [
+    //     {
+    //       text: 'Cancel',
+    //       handler: data => {
+    //         console.log('Cancel clicked');
+    //       }
+    //     },
+    //     {
+    //       text: 'Save',
+    //       handler: data => {
+    //         let rnd = Math.floor((Math.random() * 10000) + 1);
+    //         this.toggleItems.push(<ToggleItem>{ state: true, originState: false, topic: <Topic>{ id: "_" + data.name + rnd, name: data.name, customTopic: true, cards: [], waitingCards: [] } });
+    //       }
+    //     }
+    //   ]
+    // }).present();
   }
 
   editCustomTopic(toggleItem: ToggleItem) {
-    if (!toggleItem.topic.customTopic) {
-      this.toastCtrl.create({
-        message: 'Default topics can not be edited.',
-        duration: 2000,
-        position: 'bottom'
-      }).present();
-    } else {
-      this.alertCtrl.create({
-        title: 'Create Topic',
-        message: "Enter a new name for your topic!",
-        inputs: [
-          {
-            name: 'name',
-            value: toggleItem.topic.name
-          }
-        ],
-        buttons: [
-          {
-            text: 'Cancel',
-            handler: data => {
-              console.log('Cancel clicked');
-            }
-          },
-          {
-            text: 'Save',
-            handler: data => {
-              toggleItem.topic.name = data.name;
-            }
-          }
-        ]
-      }).present();
-    }
+    // if (!toggleItem.topic.customTopic) {
+    //   this.toastCtrl.create({
+    //     message: 'Default topics can not be edited.',
+    //     duration: 2000,
+    //     position: 'bottom'
+    //   }).present();
+    // } else {
+    //   this.alertCtrl.create({
+    //     title: 'Create Topic',
+    //     message: "Enter a new name for your topic!",
+    //     inputs: [
+    //       {
+    //         name: 'name',
+    //         value: toggleItem.topic.name
+    //       }
+    //     ],
+    //     buttons: [
+    //       {
+    //         text: 'Cancel',
+    //         handler: data => {
+    //           console.log('Cancel clicked');
+    //         }
+    //       },
+    //       {
+    //         text: 'Save',
+    //         handler: data => {
+    //           toggleItem.topic.name = data.name;
+    //         }
+    //       }
+    //     ]
+    //   }).present();
+    // }
   }
 
   showTopicCardDeck(topic:string) {

@@ -15,7 +15,7 @@ import { Language } from '../../../swagger/model/Language';
 
 export class Welcome3Page {
 
-  private user: User = { userId: "_mock", userName: "Mock", languages: [], currentLanguageId:"" };
+  private user: User = { userId: "_mock", userName: "Mock", languages: [], currentLanguageId:"esp-eng" };
 
   constructor(public navCtrl: NavController,
     public vocabProvider: VocabProvider,
