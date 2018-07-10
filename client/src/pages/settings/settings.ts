@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 
-import {Language, User, VocabProvider} from "../../providers/vocab/vocab";
+import { VocabProvider} from "../../providers/vocab/vocab";
 import {MainPage} from "../main/main";
+import { User } from '../../../swagger/model/User';
+import { Language } from '../../../swagger/model/Language';
 
 
 export interface ToggleItem {
@@ -21,7 +23,7 @@ export interface ToggleItem {
 export class SettingsPage {
 
   private username: string = "";
-  private user: User = { userName: "Mock", languages: [], currentLanguageId: "" };
+  private user: User = { userId: "_mock", userName: "Mock", languages: [], currentLanguageId: "" };
 
   public toggleItems: ToggleItem[] = [];
   private languageID: string;

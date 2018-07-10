@@ -5,13 +5,15 @@ import {
 } from 'ionic-angular';
 import { Http } from "@angular/http";
 import 'rxjs/add/operator/map';
-import { VocabProvider, Language, Card } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 
 import { LibraryDecksPage } from "../libraryDecks/libraryDecks";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { SelectStudyPopoverPage } from "../selectStudyPopover/selectStudyPopover";
 import { VocabularyListPage } from '../vocabularyList/vocabularyList';
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
+import { Card } from '../../../swagger/model/Card';
+import { Language } from '../../../swagger/model/Language';
 
 @Component({
   selector: 'page-vocabBox',
@@ -52,10 +54,9 @@ export class VocabBoxPage {
   }
 
   public addMultipleVocsToBox() {
-    // TODO: switch to next possible topic in list
-    if (this.language.topics.length > 0) {
-      this.vocabProvider.addTenVocs(this.language.topics[0].name);
-    } else {
+
+      let x:number = this.vocabProvider.addTenVocsAutomatically();
+    if(x > 0){
       this.alertCtrl.create({
         title: 'No cards left to upload!',
         subTitle: 'Add more topics to your favorites to continue studying!',

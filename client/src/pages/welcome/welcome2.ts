@@ -1,9 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController, Platform, Slides} from 'ionic-angular';
-import {Language, User, VocabProvider} from "../../providers/vocab/vocab";
+import { VocabProvider} from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import {Welcome1Page} from "./welcome1";
 import {Welcome3Page} from "./welcome3";
+import { User } from '../../../swagger/model/User';
+import { Language } from '../../../swagger/model/Language';
 
 @Component({
   selector: 'page-welcome',

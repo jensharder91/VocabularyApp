@@ -58,7 +58,7 @@ export class VocabProvider {
         myUserName = name;
       }
 
-      this.user = <User>{ userName: myUserName };
+      this.user = <User>{ userName: myUserName, languages: [], bundles: [], topics: [] };
 
       resolve();
       // });
@@ -153,7 +153,7 @@ export class VocabProvider {
 
   getTopicsFromCurrentLanguage(): Topic[] {
 
-    let topics: Topic[];
+    let topics: Topic[] = [];
 
     this.user.topics.forEach((topic) => {
       if (topic.languageId == this.user.currentLanguageId) {
@@ -190,7 +190,7 @@ export class VocabProvider {
   }
 
   getCardById(cardId: string): Card {
-    let card: Card;
+    let card: Card = <Card>{};
     this.getCardsAll().forEach((myCard) => {
       if (myCard.id == cardId) {
         card = myCard;
@@ -213,7 +213,7 @@ export class VocabProvider {
   }
 
   getTopicById(topicId: string): Topic {
-    let topic: Topic;
+    let topic: Topic = <Topic>{};
     this.user.topics.forEach((myTopic) => {
       if (myTopic.id == topicId) {
         topic = myTopic;
@@ -250,7 +250,7 @@ export class VocabProvider {
   }
 
   getBundleById(bundleId: string):Bundle{
-    let bundle: Bundle;
+    let bundle: Bundle = <Bundle>{};
     this.user.bundles.forEach((myBundle) => {
       if (myBundle.id == bundleId) {
         bundle = myBundle;
@@ -380,17 +380,28 @@ export class VocabProvider {
     if (topic) {
       if (topic.waitingCards == null) {
         this.importCsvByTopics([topic]).then(() => {
-          this.addTenVocsNow(topic);
+          this.addTenVocsNow(topic, 10);
         })
       } else {
-        this.addTenVocsNow(topic);
+        this.addTenVocsNow(topic, 10);
       }
     }
   }
 
-  private addTenVocsNow(topic: Topic) {
+  addTenVocsAutomatically(): number{
+    let numberToAdd = 10;
 
-    let max = 10;
+    this.getTopicsFromCurrentLanguage().forEach((topic) => {
+        if(topic.waitingCards && topic.waitingCards.length > 0 && numberToAdd > 0){
+          numberToAdd = numberToAdd - this.addTenVocsNow(topic, numberToAdd);
+        }
+    });
+
+    return numberToAdd;
+  }
+
+  private addTenVocsNow(topic: Topic, max: number):number {
+
     if (max > topic.waitingCards.length) {
       max = topic.waitingCards.length;
     }
@@ -415,6 +426,7 @@ export class VocabProvider {
         buttons: ['OK']
       }).present();
     }
+    return max;
   }
 
   getAvailableContent(languageId: string): Topic[] {

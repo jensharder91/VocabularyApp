@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController, PopoverController, ToastController, ViewController} from 'ionic-angular';
-import { VocabProvider, Language, Topic } from "../../providers/vocab/vocab";
-import { Card } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
 import {VocabularyListPage} from "../vocabularyList/vocabularyList";
+import { Card } from '../../../swagger/model/Card';
+import { Topic } from '../../../swagger/model/Topic';
+import { Language } from '../../../swagger/model/Language';
 
 
 export interface ToggleItem {
@@ -28,7 +30,7 @@ export class LibraryDecksPage {
               private popoverCtrl: PopoverController,
               private viewCtrl: ViewController) {
 
-    vocabProvider.getCurrentLanguage().topics.forEach(topic => {
+    vocabProvider.getTopicsFromCurrentLanguage().forEach(topic => {
       this.toggleItems.push({ state: true, originState: true, topic: topic });
     });
 
@@ -121,8 +123,8 @@ export class LibraryDecksPage {
         newTopicList.push(toggleItem.topic);
       }
     });
-    this.vocabProvider.addContentToUser(this.vocabProvider.getCurrentLanguage().id, newTopicList);
-    //this.navCtrl.setRoot(VocabBoxPage);
+    //TODO
+    // this.vocabProvider.addContentToUser(this.vocabProvider.getCurrentLanguage().id, newTopicList);
   }
 
   addCustomTopic() {

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AlertController, LoadingController, NavController } from 'ionic-angular';
-import { VocabProvider, Language, Topic } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import { HomePage } from '../home/home'
+import { Topic } from '../../../swagger/model/Topic';
+import { Language } from '../../../swagger/model/Language';
 
 
 export interface ToggleItem {
@@ -89,7 +91,7 @@ export class ManageLanguagesPage {
 
     newLanguageList.forEach( (language)=> {
       if (!(this.vocabProvider.getUser().languages.indexOf(language) > -1)){
-        this.vocabProvider.addLanguageToUser(language.id);
+        this.vocabProvider.addLanguageToUser(language);
       }
       //this.navCtrl.setRoot(HomePage);
     });

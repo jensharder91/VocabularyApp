@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import {ToastController, ViewController, AlertController, App, NavParams, PopoverController} from 'ionic-angular';
 
-import { VocabProvider, Card, Topic } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 import {MenuPopoverPage} from "../menuPopover/menuPopover";
+import { Card } from '../../../swagger/model/Card';
+import { Topic } from '../../../swagger/model/Topic';
 
 @Component({
   selector: 'page-selectStudyPopover',
@@ -34,12 +36,12 @@ export class SelectStudyPopoverPage {
   }
 
   showTopicCardDeck(topic: string) {
-    let curCards: Card[] = this.vocabProvider.getAllCardskForTopic(topic);
+    let curCards: Card[] = this.vocabProvider.getAllCardsByTopicId(topic);
     this.showCards(curCards);
   }
 
   showLevelCardDeck(level: number) {
-    let curCards: Card[] = this.vocabProvider.getCardDeckForLevel(level - 1);
+    let curCards: Card[] = this.vocabProvider.getCardsByLevel(level - 1);
     this.showCards(curCards);
   }
 
@@ -65,12 +67,12 @@ export class SelectStudyPopoverPage {
   }
 
   studyTopicCardDeck(topic: string) {
-    let curCards: Card[] = this.vocabProvider.getCardDeckForTopic(topic);
+    let curCards: Card[] = this.vocabProvider.getActiveCardsByTopicId(topic);
     this.studyCards(curCards);
   }
 
   studyLevelCardDeck(level: number) {
-    let curCards: Card[] = this.vocabProvider.getCardDeckForLevel(level - 1);
+    let curCards: Card[] = this.vocabProvider.getCardsByLevel(level - 1);
     this.studyCards(curCards);
   }
 

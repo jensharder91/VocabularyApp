@@ -1,9 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController, Platform, Slides} from 'ionic-angular';
-import {Language, User, VocabProvider} from "../../providers/vocab/vocab";
+import { VocabProvider} from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import {MainPage} from "../main/main";
 import {Welcome2Page} from './welcome2';
+import { User } from '../../../swagger/model/User';
+import { Language } from '../../../swagger/model/Language';
 
 @Component({
   selector: 'page-welcome',
@@ -13,7 +15,7 @@ import {Welcome2Page} from './welcome2';
 
 export class Welcome3Page {
 
-  private user: User = { userName: "Mock", languages: [], currentLanguageId:"" };
+  private user: User = { userId: "_mock", userName: "Mock", languages: [], currentLanguageId:"" };
 
   constructor(public navCtrl: NavController,
     public vocabProvider: VocabProvider,

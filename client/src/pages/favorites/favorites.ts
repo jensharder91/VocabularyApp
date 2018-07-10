@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController, PopoverController, ToastController} from 'ionic-angular';
 import 'rxjs/add/operator/map';
-import {VocabProvider, Language, Topic, Card} from "../../providers/vocab/vocab";
+import {VocabProvider} from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
 import {StudyPhasePage} from "../studyPhase/studyPhase";
 import {VocabularyListPage} from "../vocabularyList/vocabularyList";
+import { Card } from '../../../swagger/model/Card';
+import { Topic } from '../../../swagger/model/Topic';
+import { Language } from '../../../swagger/model/Language';
 
 @Component({
   selector: 'page-favorites',
@@ -22,7 +25,7 @@ export class FavoritesPage {
               private alertCtrl: AlertController) {
 
     this.language = vocabProvider.getCurrentLanguage();
-    this.topics = this.language.topics;
+    this.topics = vocabProvider.getTopicsFromCurrentLanguage();
   }
 
   studyDueCards() {
@@ -46,10 +49,8 @@ export class FavoritesPage {
   }
 
   public addMultipleVocsToBox() {
-    // TODO: switch to next possible topic in list
-    if (this.language.topics.length > 0) {
-      this.vocabProvider.addTenVocs(this.language.topics[0].name);
-    } else {
+      let added : number = this.vocabProvider.addTenVocsAutomatically();
+    if(added > 1){
       this.alertCtrl.create({
         title: 'No cards left to upload!',
         subTitle: 'Add more topics to your favorites to continue studying!',
