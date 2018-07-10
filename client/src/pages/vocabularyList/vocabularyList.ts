@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {AlertController, NavParams, PopoverController} from 'ionic-angular';
-import { VocabProvider, Card } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import {MenuPopoverPage} from "../menuPopover/menuPopover";
+import { Card } from '../../../swagger/model/Card';
 
 @Component({
   selector: 'page-vocabularyList',
@@ -47,13 +48,13 @@ export class VocabularyListPage {
 
   getCards() {
     if (this.mode == "topic") {
-      this.dict = this.vocabProvider.getAllCardskForTopic(this.topic);
+      this.dict = this.vocabProvider.getActiveCardsByTopicId(this.topic);
       this.cardDeckTitle = this.topic;
     } else if (this.mode == "levels") {
-      this.dict = this.vocabProvider.getCardDeckForLevel(this.level - 1);
+      this.dict = this.vocabProvider.getCardsByLevel(this.level - 1);
       this.cardDeckTitle = "" + this.level;
     } else {
-      this.dict = this.vocabProvider.getCardDeckAll();
+      this.dict = this.vocabProvider.getCardsAll();
       this.cardDeckTitle = "All Cards";
     }
   }
@@ -65,7 +66,7 @@ export class VocabularyListPage {
 
   deleteCard(card: any) {
 
-    this.vocabProvider.deleteCard(this.topic, card);
+    this.vocabProvider.deleteCard(card.id);
     //update list
     this.getCards();
 
@@ -96,7 +97,7 @@ export class VocabularyListPage {
         {
           text: 'Save',
           handler: data => {
-            this.vocabProvider.changeCard(card, data.front, data.back);
+            this.vocabProvider.changeCard(card.id, data.front, data.back);
           }
         }
       ]

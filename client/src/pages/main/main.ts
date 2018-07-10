@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {NavController, Platform, PopoverController} from 'ionic-angular';
-import { User } from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import { VocabBoxPage } from "../vocabBox/vocabBox";
 import { LibraryDecksPage } from "../libraryDecks/libraryDecks";
-import { VocabProvider, Language, Card } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import {FavoritesPage} from "../favorites/favorites";
 import {MenuPopoverPage} from "../menuPopover/menuPopover";
+import { Card } from '../../../swagger/model/Card';
+import { User } from '../../../swagger/model/User';
+import { Language } from '../../../swagger/model/Language';
 
 
 @Component({

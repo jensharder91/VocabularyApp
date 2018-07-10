@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-import { VocabProvider, User } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import 'rxjs/add/operator/map';
 import { ManageLanguagesPage } from "../manageLanguages/manageLanguages";
 import {MainPage} from "../main/main";
-
+import { User } from '../../../swagger/model/User';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +15,7 @@ import {MainPage} from "../main/main";
 export class HomePage {
 
   public unregisterBackButtonAction: any;
-  private user: User = { userName: "Mock", languages: [], currentLanguageId: "" };
+  private user: User = { userId: "_mock", userName: "Mock", languages: [], currentLanguageId: "" };
 
   constructor(public navCtrl: NavController,
     public vocabProvider: VocabProvider,

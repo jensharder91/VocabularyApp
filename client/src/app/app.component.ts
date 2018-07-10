@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { VocabProvider, Card } from "../providers/vocab/vocab";
+import { VocabProvider} from "../providers/vocab/vocab";
+import { Card } from '../../swagger/model/Card';
 
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';

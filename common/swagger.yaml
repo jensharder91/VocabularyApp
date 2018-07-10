@@ -1,0 +1,163 @@
+swagger: '2.0'
+info:
+  description: Temporal Api for LearnIt.
+  version: 0.1.0
+  title: LearnIt
+host: 127.0.0.1:8080
+basePath: /v1
+tags:
+  - name: cards
+    description: Operations about Cards
+schemes:
+  - http
+paths:
+  '/cards/all':
+    get:
+      tags:
+        - cards
+      summary: Get all cards
+      description: ''
+      operationId: getAllCards
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Card'
+        '404':
+          description: No Cards found
+
+definitions:
+  User:
+    type: "object"
+    required:
+      - "userId"
+      - "userName"
+    properties:
+      userId:
+        type: "string"
+      userName:
+        type: "string"
+      passwordHash:
+        type: "string"
+      languages:
+        type: "array"
+        items:
+          $ref: "#/definitions/Language"
+      bundles:
+        type: "array"
+        items:
+          $ref: "#/definitions/Bundle"
+      topics:
+        type: "array"
+        items:
+          $ref: "#/definitions/Topic"
+      currentLanguageId:
+        type: "string"
+  Language:
+    type: "object"
+    required:
+      - "id"
+      - "name1"
+      - "shortName1"
+      - "name2"
+      - "shortName2"
+    properties:
+      id:
+        type: "string"
+      name1:
+        type: "string"
+      shortName1:
+        type: "string"
+      image1:
+        type: "string"
+      name2:
+        type: "string"
+      shortName2:
+        type: "string"
+      image2:
+        type: "string"
+  Bundle:
+    type: "object"
+    required:
+      - "id"
+      - "languageId"
+      - "name"
+    properties:
+      id:
+        type: "string"
+      languageId:
+         type: "string"
+      name:
+         type: "string"
+      customBundle:
+         type: "boolean"
+      csvStringUrl:
+         type: "string"
+  Topic:
+    type: "object"
+    required:
+      - "id"
+      - "bundleId"
+      - "languageId"
+      - "name"
+      - "cards"
+      - "waitingCards"
+    properties:
+      id:
+        type: "string"
+      bundleId:
+        type: "string"
+      languageId:
+         type: "string"
+      name:
+        type: "string"
+      cards:
+        type: "array"
+        items:
+          $ref: "#/definitions/Card"
+      waitingCards:
+        type: "array"
+        items:
+          $ref: "#/definitions/Card"
+      customTopic:
+         type: "boolean"
+      csvStringUrl:
+         type: "string"
+  Card:
+    type: "object"
+    required:
+      - "id"
+      - "topicId"
+      - "bundleId"
+      - "languageId"
+      - "frontSide"
+      - "backSide"
+    properties:
+      id:
+        type: "string"
+      topicId:
+        type: "string"
+      bundleId:
+        type: "string"
+      languageId:
+         type: "string"
+      frontSide:
+        type: "string"
+      backSide:
+        type: "string"
+      reverseable:
+        type: "boolean"
+        default: true
+      level:
+        type: "number"
+      nextTimeInverse:
+        type: "boolean"
+      customCard:
+         type: "boolean"
+      dueDate:
+        type: "number"

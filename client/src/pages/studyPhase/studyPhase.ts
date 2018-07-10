@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
-import { VocabProvider, Card } from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import { VocabBoxPage } from "../vocabBox/vocabBox";
+import { Card } from '../../../swagger/model/Card';
 
 @Component({
   selector: 'page-studyPhase',
@@ -36,15 +37,15 @@ export class StudyPhasePage {
     this.mode = this.navParams.get('mode');
 
     if (this.mode == "topic") {
-      this.currentCardDeck = this.vocabProvider.getCardDeckForTopic(this.topic);
+      this.currentCardDeck = this.vocabProvider.getActiveCardsByTopicId(this.topic);
       this.repeatLevel = true;
     } else if (this.mode == "levels") {
-      this.currentCardDeck = this.vocabProvider.getCardDeckForLevel(this.level - 1);
+      this.currentCardDeck = this.vocabProvider.getCardsByLevel(this.level - 1);
       this.repeatLevel = true;
     } else if (this.mode == "due"){
       this.currentCardDeck = this.vocabProvider.getCardsToLearn();
     }else {
-      this.currentCardDeck = this.vocabProvider.getCardDeckAll();
+      this.currentCardDeck = this.vocabProvider.getCardsAll();
     }
 
 

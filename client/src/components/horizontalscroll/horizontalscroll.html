@@ -12,7 +12,7 @@
     </div>
     <!-- <circleview-component *ngFor="let item of myItems" (click)="itemClick(item.key)" [subtext]="item.amount" [image]="item.image"></circleview-component> -->
     <div *ngIf="mode=='levels'">
-      <circleview-component *ngFor="let i of [1, 2, 3, 4, 5, 6]" (click)="itemClick(i)" [text]="i" [subtext]="vocabProvider.getCardDeckForLevel(i -1).length" image="assets/imgs/level/level_{{i}}.svg"></circleview-component>
+      <circleview-component *ngFor="let i of [1, 2, 3, 4, 5, 6]" (click)="itemClick(i)" [text]="i" [subtext]="vocabProvider.getCardsByLevel(i -1).length" image="assets/imgs/level/level_{{i}}.svg"></circleview-component>
     </div>
   </ion-scroll>
 </div>
