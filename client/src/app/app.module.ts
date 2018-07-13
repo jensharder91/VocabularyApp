@@ -8,10 +8,14 @@ import { IonicStorageModule } from "@ionic/storage";
 
 import { MyApp } from './app.component';
 import { VocabProvider } from '../providers/vocab/vocab';
+import { TopicService } from '../providers/servermock/topicService';
+import { BundleService } from '../providers/servermock/bundleService';
+import { LanguageService } from '../providers/servermock/languageService';
 
 import { StudyPhasePage } from '../pages/studyPhase/studyPhase';
 import { HomePage } from "../pages/home/home";
 import { LibraryDecksPage } from "../pages/libraryDecks/libraryDecks";
+import { LibraryTopicsPage } from "../pages/libraryTopics/libraryTopics";
 import { ManageLanguagesPage } from "../pages/manageLanguages/manageLanguages";
 import { SettingsPage } from "../pages/settings/settings";
 import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
@@ -43,6 +47,7 @@ import {Welcome3Page} from "../pages/welcome/welcome3";
     HomePage,
     MainPage,
     LibraryDecksPage,
+    LibraryTopicsPage,
     ManageLanguagesPage,
     FavoritesPage,
     SettingsPage,
@@ -71,6 +76,7 @@ import {Welcome3Page} from "../pages/welcome/welcome3";
     SelectStudyPopoverPage,
     HomePage,
     LibraryDecksPage,
+    LibraryTopicsPage,
     ManageLanguagesPage,
     SettingsPage,
     VocabularyListPage
@@ -79,6 +85,9 @@ import {Welcome3Page} from "../pages/welcome/welcome3";
     StatusBar,
     SplashScreen,
     VocabProvider,
+    TopicService,
+    BundleService,
+    LanguageService,
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

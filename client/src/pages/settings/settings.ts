@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
 
-import { VocabProvider} from "../../providers/vocab/vocab";
-import {MainPage} from "../main/main";
+import { VocabProvider } from "../../providers/vocab/vocab";
+import { MainPage } from "../main/main";
 import { User } from '../../../swagger/model/User';
 import { Language } from '../../../swagger/model/Language';
 
@@ -29,8 +29,8 @@ export class SettingsPage {
   private languageID: string;
 
   constructor(public navCtrl: NavController,
-              public vocabProvider: VocabProvider,
-              public alertCtrl: AlertController) {
+    public vocabProvider: VocabProvider,
+    public alertCtrl: AlertController) {
 
     this.username = vocabProvider.getUserName();
     this.user = vocabProvider.getUser();
@@ -39,17 +39,19 @@ export class SettingsPage {
       this.toggleItems.push({ state: true, originState: true, language: language });
     });
 
-    vocabProvider.getAvaiableLanguages().forEach(language => {
-      let isActiveLanguage: boolean = false;
-      this.toggleItems.forEach((toggleItem) => {
-        if (toggleItem.language.id == language.id) {
-          isActiveLanguage = true;
+    vocabProvider.getAvaiableLanguages().then((languages) => {
+      languages.forEach(language => {
+        let isActiveLanguage: boolean = false;
+        this.toggleItems.forEach((toggleItem) => {
+          if (toggleItem.language.id == language.id) {
+            isActiveLanguage = true;
+          }
+        });
+
+        if (!isActiveLanguage) {
+          this.toggleItems.push({ state: false, originState: false, language: language });
         }
       });
-
-      if (!isActiveLanguage) {
-        this.toggleItems.push({ state: false, originState: false, language: language });
-      }
     });
   }
 

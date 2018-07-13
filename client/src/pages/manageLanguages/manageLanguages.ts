@@ -27,17 +27,20 @@ export class ManageLanguagesPage {
       this.toggleItems.push({ state: true, originState: true, language: language });
     });
 
-    vocabProvider.getAvaiableLanguages().forEach(language => {
-      let isActiveLanguage: boolean = false;
-      this.toggleItems.forEach((toggleItem) => {
-        if (toggleItem.language.id == language.id) {
-          isActiveLanguage = true;
-        }
-      });
+    vocabProvider.getAvaiableLanguages().then((languages) => {
 
-      if (!isActiveLanguage) {
-        this.toggleItems.push({ state: false, originState: false, language: language });
-      }
+      languages.forEach(language => {
+        let isActiveLanguage: boolean = false;
+        this.toggleItems.forEach((toggleItem) => {
+          if (toggleItem.language.id == language.id) {
+            isActiveLanguage = true;
+          }
+        });
+
+        if (!isActiveLanguage) {
+          this.toggleItems.push({ state: false, originState: false, language: language });
+        }
+      })
     })
   }
 
@@ -82,18 +85,18 @@ export class ManageLanguagesPage {
   }
 
   saveNow() {
-    let newLanguageList: Language[] = [];
-    this.toggleItems.forEach(toggleItem => {
-      if (toggleItem.state) {
-        newLanguageList.push(toggleItem.language);
-      }
-    });
-
-    newLanguageList.forEach( (language)=> {
-      if (!(this.vocabProvider.getUser().languages.indexOf(language) > -1)){
-        this.vocabProvider.addLanguageToUser(language);
-      }
-      //this.navCtrl.setRoot(HomePage);
-    });
+    // let newLanguageList: Language[] = [];
+    // this.toggleItems.forEach(toggleItem => {
+    //   if (toggleItem.state) {
+    //     newLanguageList.push(toggleItem.language);
+    //   }
+    // });
+    //
+    // newLanguageList.forEach( (language)=> {
+    //   if (!(this.vocabProvider.getUser().languages.indexOf(language) > -1)){
+    //     this.vocabProvider.addLanguageToUser(language);
+    //   }
+    //   //this.navCtrl.setRoot(HomePage);
+    // });
   }
 }

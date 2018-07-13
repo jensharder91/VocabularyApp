@@ -21,15 +21,15 @@
   </div>
 
   <ion-list>
-    <ion-item text-wrap *ngFor="let toggleBundle of toggleBundles">
+    <ion-item text-wrap *ngFor="let toggleTopic of toggleTopics">
       <ion-avatar item-start>
         <img src="assets/imgs/topic/topic.svg">
       </ion-avatar>
-      <ion-label (click)="showTopicCardDecks(toggleBundle.bundle.id)">
-        <span class="topic-name-entry">{{toggleBundle.bundle.name}}</span><br/>
-        <!-- <span class="topic-description-entry">-1 of -2 topics in your box</span> -->
+      <ion-label (click)="showTopicCardDeck(toggleTopic.topic.id)">
+        <span class="topic-name-entry">{{toggleTopic.topic.name}}</span><br/>
+        <span class="topic-description-entry">{{toggleTopic.topic.cards.length}} of {{toggleTopic.topic.cards.length + toggleTopic.topic.waitingCards.length}} topics in your box</span>
       </ion-label>
-      <ion-toggle [(ngModel)]="toggleBundle.state" (ionChange)="saveToggleChange(toggleBundle)"></ion-toggle>
+      <ion-toggle [(ngModel)]="toggleTopic.state" (ionChange)="saveToggleChange(toggleTopic)"></ion-toggle>
     </ion-item>
   </ion-list>
 

@@ -1,55 +1,57 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController, PopoverController, ToastController, ViewController } from 'ionic-angular';
+import { AlertController, NavController, PopoverController, ToastController, ViewController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 import { Card } from '../../../swagger/model/Card';
-import { Bundle } from '../../../swagger/model/Bundle';
+import { Topic } from '../../../swagger/model/Topic';
 import { Language } from '../../../swagger/model/Language';
-import { LibraryTopicsPage } from '../libraryTopics/libraryTopics';
 
 
-export interface ToggleBundle {
+export interface ToggleTopic {
   state: boolean;
   originState: boolean;
-  bundle: Bundle;
+  topic: Topic;
 }
 
 @Component({
-  selector: 'page-manageBundles',
-  templateUrl: 'libraryDecks.html'
+  selector: 'page-manageTopics',
+  templateUrl: 'libraryTopics.html'
 })
 
-export class LibraryDecksPage {
+export class LibraryTopicsPage {
 
-  public toggleBundles: ToggleBundle[] = [];
+  public toggleTopics: ToggleTopic[] = [];
 
   constructor(public vocabProvider: VocabProvider,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private popoverCtrl: PopoverController,
-    private viewCtrl: ViewController) {
+    private viewCtrl: ViewController,
+    private navParams: NavParams) {
 
-    vocabProvider.getBundlesFromCurrentLanguage().forEach(bundle => {
-      this.toggleBundles.push({ state: true, originState: true, bundle: bundle });
+    let bundleId: string = navParams.get("bundleId");
+
+    vocabProvider.getTopicsByBundleId(bundleId).forEach(topic => {
+      this.toggleTopics.push({ state: true, originState: true, topic: topic });
     });
 
-    vocabProvider.getAvaiableBundlesByLanguageId(vocabProvider.getCurrentLanguage().id).then((languages) => {
-
-      languages.forEach(bundle => {
+    vocabProvider.getAvailableTopicsByBundleId(bundleId).then((topics) => {
+      topics.forEach(topic => {
         let isActiveTopic: boolean = false;
-        this.toggleBundles.forEach((toggleItem) => {
-          if (toggleItem.bundle.id == bundle.id) {
+        this.toggleTopics.forEach((toggleItem) => {
+          if (toggleItem.topic.id == topic.id) {
             isActiveTopic = true;
           }
         });
 
         if (!isActiveTopic) {
-          this.toggleBundles.push({ state: false, originState: false, bundle: bundle });
+          this.toggleTopics.push({ state: false, originState: false, topic: topic });
         }
       })
     })
+
   }
 
   save() {
@@ -161,7 +163,7 @@ export class LibraryDecksPage {
     // }).present();
   }
 
-  editCustomTopic(toggleItem: ToggleBundle) {
+  editCustomTopic(toggleItem: ToggleTopic) {
     // if (!toggleItem.topic.customTopic) {
     //   this.toastCtrl.create({
     //     message: 'Default topics can not be edited.',
@@ -196,9 +198,11 @@ export class LibraryDecksPage {
     // }
   }
 
-  showTopicCardDecks(bundleId: string) {
-    this.navCtrl.setRoot(LibraryTopicsPage, {
-      bundleId: bundleId
+  showTopicCardDeck(topicId: string) {
+    console.log("see all vocs from topic id: " + topicId)
+    this.navCtrl.setRoot(VocabularyListPage, {
+      mode: "topic",
+      topicId: topicId
     });
   }
 }
