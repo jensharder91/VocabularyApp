@@ -407,8 +407,8 @@ export class VocabProvider {
 
   }
 
-  getAvailableTopicsByTopicId(topicId:string): Promise<Topic>{
-      return this.topicService.topicByTopicIdGet(topicId);
+  getAvailableTopicsByTopicId(topicId: string): Promise<Topic> {
+    return this.topicService.topicByTopicIdGet(topicId);
   }
 
   getAvailableTopicsByBundleId(bundleId: string): Promise<Topic[]> {
@@ -417,10 +417,15 @@ export class VocabProvider {
 
   }
 
-  addTopicToUser(topic: Topic, bundle: Bundle) {
+  addTopicToUser(topic: Topic) {
+    topic.favorite = true;
     this.user.topics.push(topic);
-    if (this.getBundleById(topic.bundleId) == null) {
-      this.user.bundles.push(bundle);
+    let bundle: Bundle = this.getBundleById(topic.bundleId);
+    if (bundle == null || bundle.id == null || bundle.id == "") {
+      this.getAvaiableBundleById(topic.bundleId).then((bundle)=>{
+        this.user.bundles.push(bundle);
+        this.saveUser();
+      })
     }
     // this.importCsvByTopics([topic]).then(() => {
     this.saveUser();
@@ -429,7 +434,7 @@ export class VocabProvider {
 
   removeTopicFromUser(topicId: string) {
     let topic: Topic = this.getTopicById(topicId);
-
+    topic.favorite = false;
     if (topic) {
       let index = this.user.topics.indexOf(topic);
       if (index > -1) {
@@ -490,21 +495,40 @@ export class VocabProvider {
 
   }
 
-  addBundleToUser(bundle: Bundle) {
+  getAvaiableBundleById(bundleId: string): Promise<Bundle> {
 
+    return this.bundleService.bundleByBundleIdGet(bundleId);
+
+  }
+
+  addBundleToUser(bundle: Bundle) {
+    bundle.favorite = true;
     this.user.bundles.push(bundle);
+    this.getAvailableTopicsByBundleId(bundle.id).then((topics) => {
+      topics.forEach((topic) => {
+        this.user.topics.push(topic);
+      })
+      this.saveUser();
+    })
     this.saveUser();
   }
 
   removeBundleFromUser(bundleId: string) {
     let bundle: Bundle = this.getBundleById(bundleId);
-
+    bundle.favorite = false;
     if (bundle) {
       let index = this.user.bundles.indexOf(bundle);
       if (index > -1) {
         this.user.bundles.splice(index, 1);
       }
-      //TODO remove all topics and topics related to this bundle
+
+      //remove all topics and topics related to this bundle
+      this.getTopicsByBundleId(bundleId).forEach((topic) => {
+        let index = this.user.topics.indexOf(topic);
+        if (index > -1) {
+          this.user.topics.splice(index, 1);
+        }
+      })
       this.saveUser();
     }
   }

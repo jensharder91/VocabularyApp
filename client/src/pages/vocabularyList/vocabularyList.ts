@@ -12,7 +12,7 @@ import { Topic } from '../../../swagger/model/Topic';
 
 export class VocabularyListPage {
 
-  dict: Card[] = [];
+  private dict: Card[] = [];
   private topic: Topic;
   private cardDeckTitle: String;
 
@@ -32,11 +32,18 @@ export class VocabularyListPage {
     public vocabProvider: VocabProvider,
     public popoverCtrl: PopoverController) {
 
+  }
+
+  ionViewWillEnter() {
     this.level = this.navParams.get('level');
     this.topicId = this.navParams.get('topicId');
     this.mode = this.navParams.get('mode');
-    this.language1 = vocabProvider.getCurrentLanguage().name1;
-    this.language2 = vocabProvider.getCurrentLanguage().name2;
+    this.language1 = this.vocabProvider.getCurrentLanguage().name1;
+    this.language2 = this.vocabProvider.getCurrentLanguage().name2;
+
+    this.dict = [];
+    this.topic = <Topic>{};
+    this.cardDeckTitle = "";
 
     this.getCards().then(() => {
       this.listLowerLimit = 0;
@@ -47,8 +54,6 @@ export class VocabularyListPage {
         this.listUpperLimit = this.dict.length;
       }
     });
-
-
   }
 
   getCards(): Promise<any> {
@@ -197,6 +202,14 @@ export class VocabularyListPage {
       if (this.listUpperLimit > this.dict.length) {
         this.listUpperLimit = this.dict.length;
       }
+    }
+  }
+
+  toggleFavorite() {
+    if (this.topic.favorite) {
+      this.vocabProvider.removeTopicFromUser(this.topic.id);
+    } else {
+      this.vocabProvider.addTopicToUser(this.topic);
     }
   }
 }

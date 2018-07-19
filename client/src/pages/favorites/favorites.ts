@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController, PopoverController, ToastController} from 'ionic-angular';
+import { AlertController, NavController, PopoverController, ToastController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
-import {VocabProvider} from "../../providers/vocab/vocab";
+import { VocabProvider } from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
-import {StudyPhasePage} from "../studyPhase/studyPhase";
-import {VocabularyListPage} from "../vocabularyList/vocabularyList";
+import { StudyPhasePage } from "../studyPhase/studyPhase";
+import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 import { Card } from '../../../swagger/model/Card';
 import { Topic } from '../../../swagger/model/Topic';
 import { Language } from '../../../swagger/model/Language';
@@ -20,12 +20,15 @@ export class FavoritesPage {
   private topics: Topic[];
 
   constructor(public vocabProvider: VocabProvider,
-              public navCtrl: NavController,
-              private toastCtrl: ToastController,
-              private alertCtrl: AlertController) {
+    public navCtrl: NavController,
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController) {
 
-    this.language = vocabProvider.getCurrentLanguage();
-    this.topics = vocabProvider.getTopicsFromCurrentLanguage();
+  }
+
+  ionViewWillEnter() {
+    this.language = this.vocabProvider.getCurrentLanguage();
+    this.topics = this.vocabProvider.getTopicsFromCurrentLanguage();
   }
 
   studyDueCards() {
@@ -49,8 +52,8 @@ export class FavoritesPage {
   }
 
   public addMultipleVocsToBox() {
-      let added : number = this.vocabProvider.addTenVocsAutomatically();
-    if(added > 1){
+    let added: number = this.vocabProvider.addTenVocsAutomatically();
+    if (added > 1) {
       this.alertCtrl.create({
         title: 'No cards left to upload!',
         subTitle: 'Add more topics to your favorites to continue studying!',

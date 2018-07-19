@@ -2,8 +2,8 @@
 
   <div class="topic-header">
     <ion-navbar>
-      <span class="topic-name">All Decks</span><br/>
-      <span class="topic-description">Complete library</span>
+      <span class="topic-name">Bundle: {{curBundle.name}}</span><br/>
+      <span class="topic-description">All topics from this deck</span>
       <ion-buttons end>
         <button ion-button icon-only>
           <ion-icon name="funnel"></ion-icon>
@@ -20,7 +20,7 @@
     </ion-navbar>
   </div>
 
-  <ion-list>
+  <!-- <ion-list>
     <ion-item text-wrap *ngFor="let toggleTopic of toggleTopics">
       <ion-avatar item-start>
         <img src="assets/imgs/topic/topic.svg">
@@ -31,6 +31,10 @@
       </ion-label>
       <ion-toggle [(ngModel)]="toggleTopic.state" (ionChange)="saveToggleChange(toggleTopic)"></ion-toggle>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
+
+  <div class="center-content">
+    <circleview-component (click)="showTopicCardDeck(toggleTopic.topic.id)" (press)="press()" *ngFor="let toggleTopic of toggleTopics" [text]="toggleTopic.topic.name" [subtext]="toggleTopic.topic.cards.length +' of '+ (toggleTopic.topic.cards.length + toggleTopic.topic.waitingCards.length) +' topics in your box'" image="assets/imgs/topic/topic.svg"></circleview-component>
+  </div>
 
 </ion-content>

@@ -96,6 +96,8 @@ definitions:
          type: "string"
       customBundle:
          type: "boolean"
+      favorite:
+         type: "boolean"
       csvStringUrl:
          type: "string"
   Topic:
@@ -125,6 +127,8 @@ definitions:
         items:
           $ref: "#/definitions/Card"
       customTopic:
+         type: "boolean"
+      favorite:
          type: "boolean"
       csvStringUrl:
          type: "string"

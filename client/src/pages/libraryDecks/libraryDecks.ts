@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController, PopoverController, ToastController, ViewController } from 'ionic-angular';
+import { AlertController, NavController, PopoverController, ToastController, ViewController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
@@ -23,33 +23,46 @@ export interface ToggleBundle {
 export class LibraryDecksPage {
 
   public toggleBundles: ToggleBundle[] = [];
+  private favoritesOnly: boolean = false;
 
   constructor(public vocabProvider: VocabProvider,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private popoverCtrl: PopoverController,
-    private viewCtrl: ViewController) {
+    private viewCtrl: ViewController,
+    private navParams: NavParams) {
 
-    vocabProvider.getBundlesFromCurrentLanguage().forEach(bundle => {
+
+  }
+
+  ionViewWillEnter() {
+    this.favoritesOnly = this.navParams.get("favorite");
+
+    this.toggleBundles = [];
+
+    this.vocabProvider.getBundlesFromCurrentLanguage().forEach(bundle => {
       this.toggleBundles.push({ state: true, originState: true, bundle: bundle });
     });
 
-    vocabProvider.getAvaiableBundlesByLanguageId(vocabProvider.getCurrentLanguage().id).then((languages) => {
+    if (!this.favoritesOnly) {
 
-      languages.forEach(bundle => {
-        let isActiveTopic: boolean = false;
-        this.toggleBundles.forEach((toggleItem) => {
-          if (toggleItem.bundle.id == bundle.id) {
-            isActiveTopic = true;
+      this.vocabProvider.getAvaiableBundlesByLanguageId(this.vocabProvider.getCurrentLanguage().id).then((languages) => {
+
+        languages.forEach(bundle => {
+          let isActiveTopic: boolean = false;
+          this.toggleBundles.forEach((toggleItem) => {
+            if (toggleItem.bundle.id == bundle.id) {
+              isActiveTopic = true;
+            }
+          });
+
+          if (!isActiveTopic) {
+            this.toggleBundles.push({ state: false, originState: false, bundle: bundle });
           }
-        });
-
-        if (!isActiveTopic) {
-          this.toggleBundles.push({ state: false, originState: false, bundle: bundle });
-        }
+        })
       })
-    })
+    }
   }
 
   save() {
@@ -95,33 +108,35 @@ export class LibraryDecksPage {
 
   }
 
-  saveToggleChange(item) {
-
-    // if (item.state) {
-    //   this.saveNow();
-    // } else {
-    //   this.alertCtrl.create({
-    //     title: 'Warning!',
-    //     message: 'The topic ' + item.topic.name + ' including your progress will be removed.',
-    //     buttons: [
-    //       {
-    //         text: 'Cancel',
-    //         role: 'cancel',
-    //         handler: () => {
-    //           item.state = item.originState;
-    //         }
-    //       },
-    //       {
-    //         text: 'Okay',
-    //         handler: () => {
-    //           this.saveNow();
-    //         }
-    //       }
-    //     ]
-    //   }).present();
-    // }
-
-  }
+  // saveToggleChange(item:ToggleBundle) {
+  //
+  //   if (!item.state) {
+  //     this.vocabProvider.addBundleToUser(item.bundle);
+  //     item.state = true;
+  //   } else {
+  //     this.alertCtrl.create({
+  //       title: 'Warning!',
+  //       message: 'The bundle ' + item.bundle.name + ' including your progress will be removed.',
+  //       buttons: [
+  //         {
+  //           text: 'Cancel',
+  //           role: 'cancel',
+  //           handler: () => {
+  //             item.state = item.originState;
+  //           }
+  //         },
+  //         {
+  //           text: 'Okay',
+  //           handler: () => {
+  //             this.vocabProvider.removeBundleFromUser(item.bundle.id);
+  //             item.state = false;
+  //           }
+  //         }
+  //       ]
+  //     }).present();
+  //   }
+  //
+  // }
 
   // saveNow() {
   //   let newTopicList: Topic[] = [];
@@ -200,5 +215,9 @@ export class LibraryDecksPage {
     this.navCtrl.setRoot(LibraryTopicsPage, {
       bundleId: bundleId
     });
+  }
+
+  press() {
+    console.log("press");
   }
 }

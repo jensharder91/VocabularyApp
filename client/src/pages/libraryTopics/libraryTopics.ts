@@ -6,6 +6,7 @@ import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 import { Card } from '../../../swagger/model/Card';
 import { Topic } from '../../../swagger/model/Topic';
 import { Language } from '../../../swagger/model/Language';
+import { Bundle } from '../../../swagger/model/bundle';
 
 
 export interface ToggleTopic {
@@ -22,6 +23,7 @@ export interface ToggleTopic {
 export class LibraryTopicsPage {
 
   public toggleTopics: ToggleTopic[] = [];
+  private curBundle: Bundle = <Bundle>{};
 
   constructor(public vocabProvider: VocabProvider,
     private navCtrl: NavController,
@@ -31,13 +33,24 @@ export class LibraryTopicsPage {
     private viewCtrl: ViewController,
     private navParams: NavParams) {
 
-    let bundleId: string = navParams.get("bundleId");
 
-    vocabProvider.getTopicsByBundleId(bundleId).forEach(topic => {
+  }
+
+  ionViewWillEnter() {
+    let bundleId: string = this.navParams.get("bundleId");
+
+    this.toggleTopics = [];
+    this.curBundle = <Bundle>{};
+
+    this.vocabProvider.getAvaiableBundleById(bundleId).then((bundle) => {
+      this.curBundle = bundle;
+    })
+
+    this.vocabProvider.getTopicsByBundleId(bundleId).forEach(topic => {
       this.toggleTopics.push({ state: true, originState: true, topic: topic });
     });
 
-    vocabProvider.getAvailableTopicsByBundleId(bundleId).then((topics) => {
+    this.vocabProvider.getAvailableTopicsByBundleId(bundleId).then((topics) => {
       topics.forEach(topic => {
         let isActiveTopic: boolean = false;
         this.toggleTopics.forEach((toggleItem) => {
@@ -51,7 +64,6 @@ export class LibraryTopicsPage {
         }
       })
     })
-
   }
 
   save() {

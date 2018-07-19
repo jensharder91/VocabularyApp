@@ -2,8 +2,8 @@
 
   <div class="topic-header">
     <ion-navbar>
-      <span class="topic-name">{{cardDeckTitle}}</span><br/>
-      <span class="topic-description">{{topic.cards.length}} of {{topic.cards.length + topic.waitingCards.length}} cards in your vocabulary box</span>
+      <span class="topic-name"><span [hidden]="!topic">Topic: </span>{{cardDeckTitle}}</span><br/>
+      <span *ngIf="topic" class="topic-description">{{topic.cards.length}} of {{topic.cards.length + topic.waitingCards.length}} cards in your vocabulary box</span>
       <ion-buttons end>
         <button ion-button icon-only>
           <ion-icon name="funnel"></ion-icon>
@@ -13,16 +13,17 @@
 
     <ion-navbar>
       <div class="study-buttons">
-        <button ion-button round color="light" [disabled]="true">
-          <ion-icon name="heart-outline"></ion-icon>
+        <button *ngIf="topic" ion-button round color="light" [disabled]="topic.customTopic" (click)="toggleFavorite()">
+          <ion-icon [hidden]="topic.favorite" name="heart-outline"></ion-icon>
+          <ion-icon [hidden]="!topic.favorite" name="heart"></ion-icon>
         </button>
         <button ion-button round color="light" [disabled]="true">
           <ion-icon name="play"></ion-icon>
         </button>
-        <button ion-button round color="light" [disabled]="true">
+        <button *ngIf="topic" ion-button round color="light" [disabled]="true">
           <ion-icon name="cube"></ion-icon>
         </button>
-        <button ion-button round color="light" (click)="addCard()" [disabled]="!topic.cards.length + topic.waitingCards.length > 0">
+        <button *ngIf="topic" ion-button round color="light" (click)="addCard()" [disabled]="!topic.cards.length + topic.waitingCards.length > 0">
           <ion-icon name="add"></ion-icon>
         </button>
       </div>
