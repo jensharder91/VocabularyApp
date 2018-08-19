@@ -13,13 +13,13 @@
 
     <ion-navbar>
       <div class="study-buttons">
-        <button ion-button round color="light" (click)="studyDueCards()" [disabled]="!vocabProvider.getCardsToLearn().length > 0">
+        <button *ngIf="favoritesOnly" ion-button round color="light" (click)="studyDueCards()" [disabled]="!vocabProvider.getCardsToLearn().length > 0">
           <ion-icon name="calendar"></ion-icon>
         </button>
-        <button ion-button round color="light" (click)="showAllCards()">
+        <button *ngIf="favoritesOnly" ion-button round color="light" (click)="showAllCards()">
           <ion-icon name="book"></ion-icon>
         </button>
-        <button ion-button round color="light" (click)="addMultipleVocsToBox()">
+        <button *ngIf="favoritesOnly" ion-button round color="light" (click)="addMultipleVocsToBox()">
           <ion-icon name="cube"></ion-icon>
         </button>
         <button ion-button round color="light" (click)="addVocabulary(mock)" [disabled]="true">
@@ -30,8 +30,7 @@
   </div>
 
   <div class="center-content">
-        NOOOOOOOOOOOOOOOOOOOOOOOO
-    <circleview-component *ngFor="let topic of topics" [text]="topic.name" [subtext]="topic.cards.length + ' cards'" image="assets/imgs/topic/topic.svg"></circleview-component>
+    <circleview-component (itemClickEvent)="showTopicCardDecks($event)" (favClickEvent)="toggleFav($event)" *ngFor="let toggleBundle of toggleBundles" [key]="toggleBundle.bundle.id" [text]="toggleBundle.bundle.name" [subtext]="-1" showFavIcon=true [favOption]="toggleBundle.bundle.favorite" image="assets/imgs/topic/topic.svg"></circleview-component>
   </div>
 
 </ion-content>

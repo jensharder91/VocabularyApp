@@ -47,4 +47,11 @@ circleview-component {
     opacity: 0.4;
     filter: alpha(opacity=40);
   }
+
+  .favDisplay{
+    position: absolute;
+    left: -5px;
+    top: 40px;
+    font-size: 300%;
+  }
 }

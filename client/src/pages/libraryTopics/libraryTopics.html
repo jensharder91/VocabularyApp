@@ -34,7 +34,7 @@
   </ion-list> -->
 
   <div class="center-content">
-    <circleview-component (click)="showTopicCardDeck(toggleTopic.topic.id)" (press)="press()" *ngFor="let toggleTopic of toggleTopics" [text]="toggleTopic.topic.name" [subtext]="toggleTopic.topic.cards.length +' of '+ (toggleTopic.topic.cards.length + toggleTopic.topic.waitingCards.length) +' topics in your box'" image="assets/imgs/topic/topic.svg"></circleview-component>
+    <circleview-component (itemClickEvent)="showTopicCardDeck($event)" (favClickEvent)="toggleFav($event)" *ngFor="let toggleTopic of toggleTopics" [key]="toggleTopic.topic.id" [text]="toggleTopic.topic.name" [subtext]="toggleTopic.topic.cards.length +' of '+ (toggleTopic.topic.cards.length + toggleTopic.topic.waitingCards.length) +' topics in your box'" showFavIcon=true [favOption]="toggleTopic.topic.favorite" image="assets/imgs/topic/topic.svg"></circleview-component>
   </div>
 
 </ion-content>

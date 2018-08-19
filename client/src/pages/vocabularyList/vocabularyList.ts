@@ -42,7 +42,7 @@ export class VocabularyListPage {
     this.language2 = this.vocabProvider.getCurrentLanguage().name2;
 
     this.dict = [];
-    this.topic = <Topic>{};
+    this.topic = null;
     this.cardDeckTitle = "";
 
     this.getCards().then(() => {

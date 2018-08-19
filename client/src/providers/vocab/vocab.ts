@@ -506,6 +506,7 @@ export class VocabProvider {
     this.user.bundles.push(bundle);
     this.getAvailableTopicsByBundleId(bundle.id).then((topics) => {
       topics.forEach((topic) => {
+        topic.favorite = true;
         this.user.topics.push(topic);
       })
       this.saveUser();

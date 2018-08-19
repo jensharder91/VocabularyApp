@@ -30,7 +30,7 @@
   </div>
 
   <div class="vocabulary-box">
-    <circleview-component *ngFor="let i of [1,2,3,4,5,6]" text="Level {{i}}" [subtext]="vocabProvider.getCardsByLevel(i - 1).length + ' cards'" image="assets/imgs/level/level_{{i}}.svg" (click)="studyDueCards()" [disabled]="!vocabProvider.getCardsToLearn().length > 0"></circleview-component>
+    <circleview-component *ngFor="let i of [1,2,3,4,5,6]" text="Level {{i}}" [subtext]="vocabProvider.getCardsByLevel(i - 1).length + ' cards'" image="assets/imgs/level/level_{{i}}.svg" (click)="studyLevelCards(i)" [disabled]="!vocabProvider.getCardsToLearn().length > 0"></circleview-component>
   </div>
 
 </ion-content>

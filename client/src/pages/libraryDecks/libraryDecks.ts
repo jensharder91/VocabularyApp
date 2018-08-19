@@ -7,6 +7,7 @@ import { Card } from '../../../swagger/model/Card';
 import { Bundle } from '../../../swagger/model/Bundle';
 import { Language } from '../../../swagger/model/Language';
 import { LibraryTopicsPage } from '../libraryTopics/libraryTopics';
+import * as _ from 'lodash';
 
 
 export interface ToggleBundle {
@@ -37,7 +38,6 @@ export class LibraryDecksPage {
   }
 
   ionViewWillEnter() {
-    this.favoritesOnly = this.navParams.get("favorite");
 
     this.toggleBundles = [];
 
@@ -45,24 +45,22 @@ export class LibraryDecksPage {
       this.toggleBundles.push({ state: true, originState: true, bundle: bundle });
     });
 
-    if (!this.favoritesOnly) {
 
-      this.vocabProvider.getAvaiableBundlesByLanguageId(this.vocabProvider.getCurrentLanguage().id).then((languages) => {
+    this.vocabProvider.getAvaiableBundlesByLanguageId(this.vocabProvider.getCurrentLanguage().id).then((languages) => {
 
-        languages.forEach(bundle => {
-          let isActiveTopic: boolean = false;
-          this.toggleBundles.forEach((toggleItem) => {
-            if (toggleItem.bundle.id == bundle.id) {
-              isActiveTopic = true;
-            }
-          });
-
-          if (!isActiveTopic) {
-            this.toggleBundles.push({ state: false, originState: false, bundle: bundle });
+      languages.forEach(bundle => {
+        let isActiveTopic: boolean = false;
+        this.toggleBundles.forEach((toggleItem) => {
+          if (toggleItem.bundle.id == bundle.id) {
+            isActiveTopic = true;
           }
-        })
+        });
+
+        if (!isActiveTopic) {
+          this.toggleBundles.push({ state: false, originState: false, bundle: bundle });
+        }
       })
-    }
+    })
   }
 
   save() {
@@ -211,13 +209,19 @@ export class LibraryDecksPage {
     // }
   }
 
+  toggleFav(bundleId: string) {
+    let toggleBundle = _.find(this.toggleBundles, function(o) { return (o.bundle.id == bundleId); });
+    if (toggleBundle.bundle.favorite) {
+      this.vocabProvider.removeBundleFromUser(bundleId);
+    } else {
+      this.vocabProvider.addBundleToUser(toggleBundle.bundle);
+    }
+  }
+
   showTopicCardDecks(bundleId: string) {
     this.navCtrl.setRoot(LibraryTopicsPage, {
       bundleId: bundleId
     });
   }
 
-  press() {
-    console.log("press");
-  }
 }

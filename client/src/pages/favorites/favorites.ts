@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController, PopoverController, ToastController } from 'ionic-angular';
-import 'rxjs/add/operator/map';
+import { AlertController, NavController, PopoverController, ToastController, ViewController, NavParams } from 'ionic-angular';
 import { VocabProvider } from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
-import { StudyPhasePage } from "../studyPhase/studyPhase";
 import { VocabularyListPage } from "../vocabularyList/vocabularyList";
 import { Card } from '../../../swagger/model/Card';
-import { Topic } from '../../../swagger/model/Topic';
+import { Bundle } from '../../../swagger/model/Bundle';
 import { Language } from '../../../swagger/model/Language';
+import { LibraryTopicsPage } from '../libraryTopics/libraryTopics';
+import * as _ from 'lodash';
+
+
+export interface ToggleBundle {
+  state: boolean;
+  originState: boolean;
+  bundle: Bundle;
+}
 
 @Component({
   selector: 'page-favorites',
@@ -16,81 +23,188 @@ import { Language } from '../../../swagger/model/Language';
 
 export class FavoritesPage {
 
-  public language: Language;
-  private topics: Topic[];
+    public toggleBundles: ToggleBundle[] = [];
+    private favoritesOnly: boolean = false;
 
-  constructor(public vocabProvider: VocabProvider,
-    public navCtrl: NavController,
-    private toastCtrl: ToastController,
-    private alertCtrl: AlertController) {
+    constructor(public vocabProvider: VocabProvider,
+      private navCtrl: NavController,
+      private alertCtrl: AlertController,
+      private toastCtrl: ToastController,
+      private popoverCtrl: PopoverController,
+      private viewCtrl: ViewController,
+      private navParams: NavParams) {
 
-  }
 
-  ionViewWillEnter() {
-    this.language = this.vocabProvider.getCurrentLanguage();
-    this.topics = this.vocabProvider.getTopicsFromCurrentLanguage();
-  }
+    }
 
-  studyDueCards() {
-    let curCards: Card[] = this.vocabProvider.getCardsToLearn();
+    ionViewWillEnter() {
 
-    if (curCards.length > 0) {
-      this.navCtrl.setRoot(StudyPhasePage, {
-        mode: "due"
+      this.toggleBundles = [];
+
+      this.vocabProvider.getBundlesFromCurrentLanguage().forEach(bundle => {
+        this.toggleBundles.push({ state: true, originState: true, bundle: bundle });
       });
-    } else {
-      this.toastCtrl.create({
-        message: 'No cards for learning left! Try again later.',
-        duration: 3000,
-        position: 'bottom'
-      }).present();
     }
-  }
 
-  showAllCards() {
-    this.navCtrl.setRoot(VocabularyListPage);
-  }
+    save() {
 
-  public addMultipleVocsToBox() {
-    let added: number = this.vocabProvider.addTenVocsAutomatically();
-    if (added > 1) {
-      this.alertCtrl.create({
-        title: 'No cards left to upload!',
-        subTitle: 'Add more topics to your favorites to continue studying!',
-        buttons: ['OK']
-      }).present();
+      //// TODO:
+      console.log("save clicked");
+
+      // let deleteTopicList: Topic[] = [];
+      // this.toggleItems.forEach(toggleItem => {
+      //   if (toggleItem.originState && !toggleItem.state) {
+      //     deleteTopicList.push(toggleItem.topic);
+      //   }
+      // });
+      //
+      // let topicList: string = "";
+      // deleteTopicList.forEach((topic) => {
+      //   topicList += topic.name + " ";
+      // });
+      //
+      // if (deleteTopicList.length == 0) {
+      //   this.saveNow();
+      // } else {
+      //   this.alertCtrl.create({
+      //     title: 'Warning!',
+      //     message: 'The following topics incl. your progress will be removed: ' + topicList + '.',
+      //     buttons: [
+      //       {
+      //         text: 'Cancel',
+      //         role: 'cancel',
+      //         handler: () => {
+      //           console.log('Cancel clicked');
+      //         }
+      //       },
+      //       {
+      //         text: 'Okay',
+      //         handler: () => {
+      //           this.saveNow();
+      //         }
+      //       }
+      //     ]
+      //   }).present();
+      // }
+
     }
-  }
 
-  addVocabulary(topic: string) {
-    let prompt = this.alertCtrl.create({
-      title: 'Create New Card',
-      inputs: [
-        {
-          name: 'front',
-          placeholder: this.language.name1
-        },
-        {
-          name: 'back',
-          placeholder: this.language.name2
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.vocabProvider.createCard(topic, data.front, data.back);
-          }
-        }
-      ]
-    });
+    // saveToggleChange(item:ToggleBundle) {
+    //
+    //   if (!item.state) {
+    //     this.vocabProvider.addBundleToUser(item.bundle);
+    //     item.state = true;
+    //   } else {
+    //     this.alertCtrl.create({
+    //       title: 'Warning!',
+    //       message: 'The bundle ' + item.bundle.name + ' including your progress will be removed.',
+    //       buttons: [
+    //         {
+    //           text: 'Cancel',
+    //           role: 'cancel',
+    //           handler: () => {
+    //             item.state = item.originState;
+    //           }
+    //         },
+    //         {
+    //           text: 'Okay',
+    //           handler: () => {
+    //             this.vocabProvider.removeBundleFromUser(item.bundle.id);
+    //             item.state = false;
+    //           }
+    //         }
+    //       ]
+    //     }).present();
+    //   }
+    //
+    // }
 
-    prompt.present();
+    // saveNow() {
+    //   let newTopicList: Topic[] = [];
+    //   this.toggleItems.forEach(toggleItem => {
+    //     if (toggleItem.state) {
+    //       newTopicList.push(toggleItem.topic);
+    //     }
+    //   });
+    //   //TODO
+    //   // this.vocabProvider.addContentToUser(this.vocabProvider.getCurrentLanguage().id, newTopicList);
+    // }
+
+    addCustomTopic() {
+      // this.alertCtrl.create({
+      //   title: 'Create Topic',
+      //   message: "Enter a new name for your topic!",
+      //   inputs: [
+      //     {
+      //       name: 'name'
+      //     }
+      //   ],
+      //   buttons: [
+      //     {
+      //       text: 'Cancel',
+      //       handler: data => {
+      //         console.log('Cancel clicked');
+      //       }
+      //     },
+      //     {
+      //       text: 'Save',
+      //       handler: data => {
+      //         let rnd = Math.floor((Math.random() * 10000) + 1);
+      //         this.toggleItems.push(<ToggleItem>{ state: true, originState: false, topic: <Topic>{ id: "_" + data.name + rnd, name: data.name, customTopic: true, cards: [], waitingCards: [] } });
+      //       }
+      //     }
+      //   ]
+      // }).present();
+    }
+
+    editCustomTopic(toggleItem: ToggleBundle) {
+      // if (!toggleItem.topic.customTopic) {
+      //   this.toastCtrl.create({
+      //     message: 'Default topics can not be edited.',
+      //     duration: 2000,
+      //     position: 'bottom'
+      //   }).present();
+      // } else {
+      //   this.alertCtrl.create({
+      //     title: 'Create Topic',
+      //     message: "Enter a new name for your topic!",
+      //     inputs: [
+      //       {
+      //         name: 'name',
+      //         value: toggleItem.topic.name
+      //       }
+      //     ],
+      //     buttons: [
+      //       {
+      //         text: 'Cancel',
+      //         handler: data => {
+      //           console.log('Cancel clicked');
+      //         }
+      //       },
+      //       {
+      //         text: 'Save',
+      //         handler: data => {
+      //           toggleItem.topic.name = data.name;
+      //         }
+      //       }
+      //     ]
+      //   }).present();
+      // }
+    }
+
+    toggleFav(bundleId: string) {
+      let toggleBundle = _.find(this.toggleBundles, function(o) { return (o.bundle.id == bundleId); });
+      if (toggleBundle.bundle.favorite) {
+        this.vocabProvider.removeBundleFromUser(bundleId);
+      } else {
+        this.vocabProvider.addBundleToUser(toggleBundle.bundle);
+      }
+    }
+
+    showTopicCardDecks(bundleId: string) {
+      this.navCtrl.setRoot(LibraryTopicsPage, {
+        bundleId: bundleId
+      });
+    }
+
   }
-}

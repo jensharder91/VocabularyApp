@@ -5,9 +5,11 @@
   <span class="circleview-subtext">{{mySubtext}}</span>
 </div>
 
-<div class="circleview-container" *ngIf="!disabled">
+<div class="circleview-container" *ngIf="!disabled" (click)="itemClick(myKey)">
   <img *ngIf="myImage" src="{{myImage}}" class="circleview-image">
   <img *ngIf="!myImage" src="assets/imgs/selectStudy/default.svg" class="circleview-image">
+  <ion-icon *ngIf="showFavIcon && !favOption" class="favDisplay" name="star-outline" (click)="favClick(myKey);$event.stopPropagation()"></ion-icon>
+  <ion-icon *ngIf="showFavIcon && favOption" class="favDisplay" name="star" (click)="favClick(myKey);$event.stopPropagation()"></ion-icon>
   <span class="circleview-text">{{myText}}</span>
   <span class="circleview-subtext">{{mySubtext}}</span>
 </div>

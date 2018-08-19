@@ -29,24 +29,9 @@
     </ion-navbar>
   </div>
 
-  <!-- <ion-list>
-    <ion-item text-wrap *ngFor="let toggleBundle of toggleBundles">
-      <ion-avatar item-start>
-        <img src="assets/imgs/topic/topic.svg">
-      </ion-avatar>
-      <ion-label (click)="showTopicCardDecks(toggleBundle.bundle.id)">
-        <span class="topic-name-entry">{{toggleBundle.bundle.name}}</span><br/> -->
-  <!-- <span class="topic-description-entry">-1 of -2 topics in your box</span> -->
-  <!-- </ion-label>
-      <ion-toggle [(ngModel)]="toggleBundle.state" (ionChange)="saveToggleChange(toggleBundle)"></ion-toggle>
-    </ion-item>
-  </ion-list> -->
+  <div class="center-content">
+    <circleview-component (itemClickEvent)="showTopicCardDecks($event)" (favClickEvent)="toggleFav($event)" *ngFor="let toggleBundle of toggleBundles" [key]="toggleBundle.bundle.id" [text]="toggleBundle.bundle.name" [subtext]="toggleBundle.state" showFavIcon=true [favOption]="toggleBundle.bundle.favorite" image="assets/imgs/topic/topic.svg"></circleview-component>
+  </div>
 
-  <div *ngIf="!favoritesOnly" class="center-content">
-    <circleview-component (click)="showTopicCardDecks(toggleBundle.bundle.id)" *ngFor="let toggleBundle of toggleBundles" [text]="toggleBundle.bundle.name" [subtext]="toggleBundle.state" image="assets/imgs/topic/topic.svg"></circleview-component>
-  </div>
-  <div *ngIf="favoritesOnly" class="center-content">
-    <circleview-component (click)="showTopicCardDecks(toggleBundle.bundle.id)" (press)="press()" *ngFor="let toggleBundle of toggleBundles" [text]="toggleBundle.bundle.name" [subtext]="-1" image="assets/imgs/topic/topic.svg"></circleview-component>
-  </div>
 
 </ion-content>

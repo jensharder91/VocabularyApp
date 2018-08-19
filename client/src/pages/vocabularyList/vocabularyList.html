@@ -43,9 +43,9 @@
               <ion-label text-wrap class="list-entry-right" (click)="changeCard(card)">
                 {{ card.backSide }}
               </ion-label>
-              <!--<ion-label item-end>
+              <ion-label item-end>
                 <img src={{getProgressImage(card.level)}} alt="Level {{card.level}}" height="42" width="42">
-              </ion-label>-->
+              </ion-label>
             </ion-item>
             <ion-item-options *ngIf="mode=='topic'" side="right" icon-left>
               <button ion-button color="danger" (click)="deleteCard(card)">

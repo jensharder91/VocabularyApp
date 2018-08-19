@@ -53,6 +53,23 @@ export class VocabBoxPage {
     }
   }
 
+  studyLevelCards(level:number) {
+    let curCards: Card[] = this.vocabProvider.getCardsByLevel(level -1);
+
+    if (curCards.length > 0) {
+      this.navCtrl.setRoot(StudyPhasePage, {
+        mode: "level",
+        level: level
+      });
+    } else {
+      this.toastCtrl.create({
+        message: 'No cards for learning left! Try again later.',
+        duration: 3000,
+        position: 'bottom'
+      }).present();
+    }
+  }
+
   public addMultipleVocsToBox() {
 
       let x:number = this.vocabProvider.addTenVocsAutomatically();

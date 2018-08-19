@@ -7,6 +7,7 @@ import { Card } from '../../../swagger/model/Card';
 import { Topic } from '../../../swagger/model/Topic';
 import { Language } from '../../../swagger/model/Language';
 import { Bundle } from '../../../swagger/model/bundle';
+import * as _ from 'lodash';
 
 
 export interface ToggleTopic {
@@ -208,6 +209,15 @@ export class LibraryTopicsPage {
     //     ]
     //   }).present();
     // }
+  }
+
+  toggleFav(topicId: string) {
+    let toggleTopic = _.find(this.toggleTopics, function(o) { return (o.topic.id == topicId); });
+    if (toggleTopic.topic.favorite) {
+      this.vocabProvider.removeTopicFromUser(topicId);
+    } else {
+      this.vocabProvider.addTopicToUser(toggleTopic.topic);
+    }
   }
 
   showTopicCardDeck(topicId: string) {
