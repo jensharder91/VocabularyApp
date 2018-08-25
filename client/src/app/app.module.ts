@@ -22,16 +22,19 @@ import { VocabularyListPage } from "../pages/vocabularyList/vocabularyList";
 import { HttpModule } from "@angular/http";
 import { VocabBoxPage } from "../pages/vocabBox/vocabBox";
 
-import {CircleviewComponent} from '../components/circleview/circleview';
-import {LanguageSelectComponent} from '../components/languageselect/languageselect';
-import {HorizontalscrollComponent} from '../components/horizontalscroll/horizontalscroll';
-import {SelectStudyPopoverPage} from "../pages/selectStudyPopover/selectStudyPopover";
-import {MainPage} from "../pages/main/main";
-import {FavoritesPage} from "../pages/favorites/favorites";
-import {MenuPopoverPage} from "../pages/menuPopover/menuPopover";
-import {Welcome1Page} from "../pages/welcome/welcome1";
-import {Welcome2Page} from "../pages/welcome/welcome2";
-import {Welcome3Page} from "../pages/welcome/welcome3";
+import { CircleviewComponent } from '../components/circleview/circleview';
+import { LanguageSelectComponent } from '../components/languageselect/languageselect';
+import { HorizontalscrollComponent } from '../components/horizontalscroll/horizontalscroll';
+import { SelectStudyPopoverPage } from "../pages/selectStudyPopover/selectStudyPopover";
+import { MainPage } from "../pages/main/main";
+import { FavoritesPage } from "../pages/favorites/favorites";
+import { FilterPopoverPage } from "../pages/filterPopover/filterPopover";
+import { MenuPopoverPage } from "../pages/menuPopover/menuPopover";
+import { Welcome1Page } from "../pages/welcome/welcome1";
+import { Welcome2Page } from "../pages/welcome/welcome2";
+import { Welcome3Page } from "../pages/welcome/welcome3";
+
+import { FilterCardsPipe } from "../pipes/FilterCardsPipe";
 
 
 @NgModule({
@@ -44,6 +47,7 @@ import {Welcome3Page} from "../pages/welcome/welcome3";
     VocabBoxPage,
     SelectStudyPopoverPage,
     MenuPopoverPage,
+    FilterPopoverPage,
     HomePage,
     MainPage,
     LibraryDecksPage,
@@ -54,7 +58,8 @@ import {Welcome3Page} from "../pages/welcome/welcome3";
     VocabularyListPage,
     CircleviewComponent,
     LanguageSelectComponent,
-    HorizontalscrollComponent
+    HorizontalscrollComponent,
+    FilterCardsPipe
   ],
   imports: [
     BrowserModule,
@@ -72,6 +77,7 @@ import {Welcome3Page} from "../pages/welcome/welcome3";
     VocabBoxPage,
     MainPage,
     MenuPopoverPage,
+    FilterPopoverPage,
     FavoritesPage,
     SelectStudyPopoverPage,
     HomePage,
@@ -89,7 +95,8 @@ import {Welcome3Page} from "../pages/welcome/welcome3";
     BundleService,
     LanguageService,
     SQLite,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    FilterCardsPipe,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

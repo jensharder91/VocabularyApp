@@ -5,13 +5,14 @@
       <span class="topic-name"><span [hidden]="!topic">Topic: </span>{{cardDeckTitle}}</span><br/>
       <span *ngIf="topic" class="topic-description">{{topic.cards.length}} of {{topic.cards.length + topic.waitingCards.length}} cards in your vocabulary box</span>
       <ion-buttons end>
-        <button ion-button icon-only>
+        <button ion-button icon-only (click)="filterDialog($event)">
           <ion-icon name="funnel"></ion-icon>
         </button>
       </ion-buttons>
     </ion-navbar>
 
     <ion-navbar>
+      <ion-searchbar (ionInput)="searchChanged()" [(ngModel)]="searchText"></ion-searchbar>
       <div class="study-buttons">
         <button *ngIf="topic" ion-button round color="light" [disabled]="topic.customTopic" (click)="toggleFavorite()">
           <ion-icon [hidden]="topic.favorite" name="heart-outline"></ion-icon>
@@ -35,7 +36,7 @@
     <ion-row align-items-center justify-content-center>
       <ion-col>
         <ion-list>
-          <ion-item-sliding *ngFor="let card of dict| slice:listLowerLimit:listUpperLimit; let i=index">
+          <ion-item-sliding *ngFor="let card of (dict | filterCardsPipe:searchText) | slice:listLowerLimit:listUpperLimit; let i=index">
             <ion-item>
               <ion-label text-wrap class="list-entry-left" (click)="changeCard(card)">
                 {{ card.frontSide }}
@@ -73,15 +74,15 @@
         </ion-col>
         <ion-col>
           <ion-label *ngIf="dict.length > 0" text-center color="light">
-            {{ listLowerLimit + 1 }} - {{ listUpperLimit }} of {{ dict.length }} words
+            {{ listLowerLimit + 1 }} - {{ listUpperLimit }} of {{ filterCardsPipe.transform(dict, searchText).length }} words
           </ion-label>
           <ion-label *ngIf="!(dict.length > 0)" text-center color="light">
-            {{ listLowerLimit }} - {{ listUpperLimit }} of {{ dict.length }} words
+            {{ listLowerLimit }} - {{ listUpperLimit }} of {{ filterCardsPipe.transform(dict, searchText).length }} words
           </ion-label>
         </ion-col>
         <ion-col col-sm-1 text-center>
           <ion-buttons>
-            <button ion-button icon-only (click)="showNextList()" [disabled]="listUpperLimit >= dict.length">
+            <button ion-button icon-only (click)="showNextList()" [disabled]="listUpperLimit >= filterCardsPipe.transform(dict, searchText).length">
               <ion-icon name="arrow-forward"></ion-icon>
             </button>
           </ion-buttons>

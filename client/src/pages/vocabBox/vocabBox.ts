@@ -58,7 +58,7 @@ export class VocabBoxPage {
 
     if (curCards.length > 0) {
       this.navCtrl.setRoot(StudyPhasePage, {
-        mode: "level",
+        mode: "levels",
         level: level
       });
     } else {

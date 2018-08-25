@@ -4,6 +4,8 @@ import { VocabProvider } from "../../providers/vocab/vocab";
 import { MenuPopoverPage } from "../menuPopover/menuPopover";
 import { Card } from '../../../swagger/model/Card';
 import { Topic } from '../../../swagger/model/Topic';
+import { FilterCardsPipe } from '../../pipes/FilterCardsPipe';
+import { FilterPopoverPage } from "../filterPopover/filterPopover";
 
 @Component({
   selector: 'page-vocabularyList',
@@ -22,6 +24,7 @@ export class VocabularyListPage {
   private language1: string;
   private language2: string;
 
+  private searchText: string = "Ph";
 
   listLowerLimit = 0;
   listUpperLimit = 5;
@@ -30,7 +33,8 @@ export class VocabularyListPage {
   constructor(public alertCtrl: AlertController,
     public navParams: NavParams,
     public vocabProvider: VocabProvider,
-    public popoverCtrl: PopoverController) {
+    public popoverCtrl: PopoverController,
+    public filterCardsPipe: FilterCardsPipe) {
 
   }
 
@@ -46,13 +50,7 @@ export class VocabularyListPage {
     this.cardDeckTitle = "";
 
     this.getCards().then(() => {
-      this.listLowerLimit = 0;
-      this.listUpperLimit = 5;
-      this.listInterval = 5;
-
-      if (this.listUpperLimit >= this.dict.length) {
-        this.listUpperLimit = this.dict.length;
-      }
+      this.searchChanged();
     });
   }
 
@@ -179,15 +177,23 @@ export class VocabularyListPage {
     prompt.present();
   }
 
+  searchChanged() {
+    this.listLowerLimit = 0;
+    this.listUpperLimit = 10;
+    if (this.listUpperLimit >= this.filterCardsPipe.transform(this.dict, this.searchText).length) {
+      this.listUpperLimit = this.filterCardsPipe.transform(this.dict, this.searchText).length;
+    }
+  }
+
   showNextList() {
 
-    if (this.listUpperLimit < this.dict.length) {
+    if (this.listUpperLimit < this.filterCardsPipe.transform(this.dict, this.searchText).length) {
 
       this.listLowerLimit += this.listInterval;
       this.listUpperLimit += this.listInterval;
 
-      if (this.listUpperLimit > this.dict.length) {
-        this.listUpperLimit = this.dict.length;
+      if (this.listUpperLimit > this.filterCardsPipe.transform(this.dict, this.searchText).length) {
+        this.listUpperLimit = this.filterCardsPipe.transform(this.dict, this.searchText).length;
       }
     }
   }
@@ -199,8 +205,8 @@ export class VocabularyListPage {
       this.listLowerLimit -= this.listInterval;
       this.listUpperLimit = this.listLowerLimit + this.listInterval;
 
-      if (this.listUpperLimit > this.dict.length) {
-        this.listUpperLimit = this.dict.length;
+      if (this.listUpperLimit > this.filterCardsPipe.transform(this.dict, this.searchText).length) {
+        this.listUpperLimit = this.filterCardsPipe.transform(this.dict, this.searchText).length;
       }
     }
   }
@@ -211,5 +217,15 @@ export class VocabularyListPage {
     } else {
       this.vocabProvider.addTopicToUser(this.topic);
     }
+  }
+
+  filterDialog(event: any) {
+    let popover = this.popoverCtrl.create(FilterPopoverPage);
+    popover.onDidDismiss(data=>{
+      console.log("data:",data);
+    })
+    popover.present({
+      ev: event
+    });
   }
 }

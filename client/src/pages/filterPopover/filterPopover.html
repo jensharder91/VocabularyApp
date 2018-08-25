@@ -1,0 +1,12 @@
+<ion-content class="no-scroll custom-popover">
+  <ion-list>
+    <ion-item *ngFor="let filterLevel of filterArray; let i = index ">
+      <ion-label>Level {{filterLevel.level}}</ion-label>
+      <ion-checkbox [(ngModel)]="filterLevel.state"></ion-checkbox>
+    </ion-item>
+
+    <button ion-item (click)="saveFilter()">
+      Save filter
+    </button>
+  </ion-list>
+</ion-content>
