@@ -4,16 +4,16 @@ import csv
 
 patternTitle = ".+?progress.box.title.+\s+?(\w.+)"
 patternVocab = "type=.checkbox.+?class=.text.>(.+?)<.+?class=.text.>(.+?)<"
-firstLanguage = "German"
+firstLanguage = "English"
 secondLanguage = "Vietnamese"
 mainpageGER_ESP = "https://www.memrise.com/course/431174/duolingo-aleman-para-hispanohablantes/"
 mainpageENG_GER = "https://www.memrise.com/course/322492/complete-duolingo-german-vocabulary/"
 mainpageENG_ESP = "https://www.memrise.com/course/114794/spanish-duolingo/"
-mainpageENG_VIET = "https://www.memrise.com/course/37054/vietnamese-500-common-words/"
+mainpageENG_VIET = "https://www.memrise.com/course/1070394/duolingo-vietnamese-vocabulary/"
 
 
 
-for i in range(1,21):
+for i in range(1,85):
     print("############"+str(i))
     #get content of webpage
     webpage = str(mainpageENG_VIET+str(i))
@@ -23,13 +23,13 @@ for i in range(1,21):
 
 
     m = re.search(patternTitle, html, re.IGNORECASE)
-    title = m.groups()[0]
+    title = str(i) + "_"+m.groups()[0]
     print(title)
     #pattern = "type=.checkbox.+?class=.text.>(.+?)<.+?class=.text.>(.+?)<"
 
 
 
-    text = firstLanguage + "," + secondLanguage + "\n"
+    text = firstLanguage + ";" + secondLanguage + "\n"
     for m in re.finditer(patternVocab, html):
         firstLanguageVocab = m.groups()[0]
         secondLanguageVocab = m.groups()[1]
